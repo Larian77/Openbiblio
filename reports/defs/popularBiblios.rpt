@@ -1,0 +1,40 @@
+.title popularBiblios
+.category Statistics
+.column bibid hidden
+.column barcode_nmbr title=Barcode sort=barcode_nmbr
+.column title title="Title" sort=title func=biblio_link
+.column author title="Author" sort=author
+.column checkoutCount title="# Checkouts" sort=mostCheckoutCount
+.parameters
+.	select group_by default=biblio title="Group By"
+.		item biblio title="Bibliography"
+.		item copy title="Bibliography Copy"
+.	end select
+.	order_by default=mostCheckoutCount
+.		item barcode_nmbr title="Barcode"
+.		item title title="Title"
+.		item author title="Author"
+.		item checkoutCount title="# Checkouts, Author, Title" expr="concat(count(h.status_begin_dt), author, title)"
+.		item mostCheckoutCount title="Most Checkouts, Author, Title" type=numeric expr="concat(1 / count(h.status_begin_dt), author, title)"
+.	end order_by
+.end parameters
+.sql
+.	if_equal group_by biblio
+		SELECT b.bibid, b.title, b.author,
+			count(h.status_begin_dt) checkoutCount
+.	else
+		SELECT b.bibid, c.barcode_nmbr, b.title, b.author,
+			count(h.status_begin_dt) checkoutCount
+.	end if_set
+	FROM biblio_status_hist h, biblio_copy c, biblio b
+	WHERE  h.bibid = c.bibid
+		AND h.copyid = c.copyid
+		AND h.bibid = b.bibid
+		AND h.status_cd = 'out'
+.	if_equal group_by biblio
+		GROUP BY b.bibid, b.title, b.author
+.	else
+		GROUP BY b.bibid, c.barcode_nmbr, b.title, b.author
+.	end if_set
+.	order_by_expr
+.end sql

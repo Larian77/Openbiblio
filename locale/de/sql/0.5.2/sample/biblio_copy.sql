@@ -1,0 +1,13 @@
+insert into %prfx%biblio_copy values (1,null,null,'101','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (2,null,null,'102','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (3,null,null,'103','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (4,null,null,'104','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (5,null,null,'105','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (6,null,null,'106','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (7,null,'Jan','201','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (7,null,'Feb','202','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (7,null,'Mar','203','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (8,null,'1/20','210','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (8,null,'1/27','211','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (8,null,'2/10','212','in',sysdate(),null,null, 0);
+insert into %prfx%biblio_copy values (8,null,'2/17','213','in',sysdate(),null,null, 0);

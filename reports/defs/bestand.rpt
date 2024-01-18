@@ -1,0 +1,24 @@
+.title "Biblio List"
+.category "Cataloging"
+.column bibid hidden
+.column callno title="Call Num."
+.column title func=biblio_link title=Title sort=title
+.column author title=Author sort=author
+.column publisher title=Publisher sort=publisher
+.column collection title=Collection
+.column quantity title=Quantity
+.parameters
+.	order_by default=title
+.		item title title="Title"
+.		item author title="Author"
+.		item publisher title="Publisher"
+.	end order_by
+.end parameters
+
+.sql
+	SELECT b.bibid, concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) callno, b.title, b.author, coll.description collection, count(c.copyid) quantity, 
+	(SELECT bf.field_data FROM biblio_field bf WHERE b.bibid=bf.bibid AND bf.tag=260 AND bf.subfield_cd="b") publisher
+	FROM (biblio b INNER JOIN biblio_copy c ON b.bibid=c.bibid) INNER JOIN collection_dm coll ON b.collection_cd=coll.code
+	GROUP BY b.bibid
+.       order_by_expr
+.end sql

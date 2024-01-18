@@ -1,0 +1,44 @@
+.title overdueList
+.category Circulation
+.layout overdue title="Overdue Letters"
+.column bibid hidden
+.column copyid hidden
+.column mbrid hidden
+.column barcode_nmbr title=Barcode sort=barcode_nmbr
+.column callno title="Call Num." sort=callno
+.column title sort=title func=biblio_link
+.column author sort=author
+.column member_bcode title="Member Barcode" sort=member_bcode
+.column name title=Name sort=name func=member_link
+.column status_begin_dt title="Status Begin" sort=status_begin_dt
+.column due_back_dt title=Due sort=due_back_dt
+.column days_late sort='due_back_dt!r'
+.parameters
+.	date as_of title="As of" default="today"
+.	order_by
+.		item barcode_nmbr title="Barcode" expr='c.barcode_nmbr'
+.		item callno title="Call Num." expr="concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3)"
+.		item title title="Title"
+.		item author title="Author"
+.		item member_bcode title="Member Barcode" expr='m.barcode_nmbr'
+.		item name title="Name" expr="concat(m.last_name, ', ', m.first_name)"
+.		item status_begin_dt title="Status Begin"
+.		item due_back_dt title="Due"
+.	end order_by
+.end parameters
+.sql
+	select c.bibid, c.copyid, m.mbrid, c.barcode_nmbr,
+		concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) as callno,
+		b.title, b.author, c.status_begin_dt,
+		c.due_back_dt, m.barcode_nmbr member_bcode,
+		concat(m.last_name, ', ', m.first_name) name,
+		floor(to_days(now())-to_days(c.due_back_dt)) days_late
+	from biblio b, biblio_copy c, member m
+	where b.bibid = c.bibid
+		and c.mbrid = m.mbrid
+		and c.status_cd = 'out'
+.	if_set as_of
+		and c.due_back_dt < %as_of%
+.	end if_set
+.	order_by_expr
+.end sql

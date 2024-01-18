@@ -1,0 +1,50 @@
+.title "Duplicate Titles"
+.category Cataloging
+.column bibid hidden
+.column title title="Title" sort=multi1 func=biblio_link
+.column title_remainder title="Remainder of title"
+.column author title="Author" sort=multi2
+.column create_dt title="Record created on" sort=create_dt
+.parameters
+.	select criteria default=remain title="Duplicate Criteria"
+.		item remain title="Title, Title Remainder, Author"
+.		item title title="Title, Author"
+.	end select
+.	order_by default=multi1
+.		item multi1 title="Title, Title Remainder, Date Created" type=multi expr="title, title_remainder, create_dt"
+.		item multi2 title="Author, Title, Title Remainder, Date Created" type=multi expr="author, title, title_remainder, create_dt"
+.		item title title="Title" expr='b1.title'
+.		item title_remainder title="Title Remainder" expr='b1.title_remainder'
+.		item author title="Author" expr='b1.author'
+.		item create_dt title="Date Created" expr='b1.create_dt'
+.	end order_by
+.end parameters
+.sql
+	CREATE TEMPORARY TABLE temp_dup (
+		bibid integer auto_increment primary key
+		,create_dt datetime not null
+		,title varchar(160) null
+		,title_remainder varchar(160) null
+		,author varchar(80) null
+		,index auth_index (author)
+		,index titl_index (title)
+		)
+		ENGINE=HEAP
+	SELECT bibid AS bibid, create_dt AS create_dt, title AS title
+		, title_remainder AS title_remainder, author AS author
+	FROM biblio
+.end sql
+.sql
+	SELECT DISTINCT b1.bibid, b1.title, b1.title_remainder, b1.author, b1.create_dt
+	FROM temp_dup b1, biblio b2
+	WHERE b1.bibid <> b2.bibid
+		AND b1.title=b2.title
+.	if_equal criteria remain
+		AND b1.title_remainder=b2.title_remainder
+.	end if_set
+		AND b1.author=b2.author
+.	order_by_expr
+.end sql
+.sql
+drop table temp_dup
+.end sql

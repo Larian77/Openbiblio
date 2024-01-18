@@ -1,0 +1,21 @@
+.title "Return"
+.category Circulation 
+.column copyid hidden
+.column bibid hidden
+.column title func=biblio_link title=Title sort=title
+.column author title=Author sort=author
+.column returndate title="Date of Return"
+.parameters
+.	order_by default=returndate
+.		item title title="Title"
+.		item author title="Author"
+.		item returndate title="Date of Return"
+.	end order_by
+.end parameters
+
+.sql
+	SELECT bsh.copyid, b.bibid, b.title, b.author, bsh.status_begin_dt returndate
+	FROM biblio_status_hist bsh INNER JOIN biblio b ON b.bibid=bsh.bibid 
+	WHERE bsh.status_cd = 'crt'
+.       order_by_expr
+.end sql

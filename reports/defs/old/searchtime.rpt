@@ -1,0 +1,38 @@
+.title "Search for Playtime" 
+.category Cataloging
+.column bibid hidden
+.column callno sort=callno title="Call Num."
+.column title sort=title func=biblio_link title="Title"
+.column author sort=author title="Author"
+.column publisher title=Publisher sort=publisher
+.column time title="Time"
+.column collection sort=material title="Collection"
+.parameters
+.	string number title="max. Time"	
+.	select collection title="Collection"
+.		item ""
+.		sql
+			select coll.code as value, coll.description as title from collection_dm coll order by title 
+.		end sql
+.	end select
+.	order_by
+.		item title title="Title"
+.		item time title="Time"
+.	end order_by
+.end parameters
+.sql
+	SELECT bibid, callno, title, author, collection, publisher, time
+	FROM
+	        (SELECT b.bibid bibid, concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) callno, b.title title, b.author author, coll.description collection,
+	        (SELECT bf.field_data FROM biblio_field bf WHERE b.bibid=bf.bibid AND bf.tag=260 AND bf.subfield_cd="b") publisher,
+	        (SELECT bf.field_data FROM biblio_field bf WHERE b.bibid=bf.bibid AND bf.tag=901 AND bf.subfield_cd="e") time
+	        FROM (biblio b inner join collection_dm coll ON b.collection_cd=coll.code)
+.       if_not_equal collection ""
+                WHERE b.collection_cd = %collection%
+.       end if_not_equal
+		) as first
+.	if_set number
+	WHERE CAST(time as SIGNED)<=%number%
+.       end if_set
+.       order_by_expr
+.end sql

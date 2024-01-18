@@ -1,0 +1,63 @@
+StartFontMetrics 2.0
+Comment Copyright (C) 2001 Jan Karrman. All rights reserved.
+Comment Creation Date: Thu Feb 22 12:20:33 2001
+Comment UniqueID 5119294
+Comment VMusage 10488 6784
+FontName Code39JK
+FullName Code 39 JK
+FamilyName Code 39 JK
+FontBBox 0 0 360 800
+Version 001.000
+Notice Copyright (C) 2001 Jan Karrman. All rights reserved.
+EncodingScheme FontSpecific
+UnderlinePosition 0
+UnderlineThickness 0
+ItalicAngle 0
+IsFixedPitch false
+StartCharMetrics 44
+C 32 ; WX 390 ; N space ; B 0 0 360 800 ;
+C 36 ; WX 390 ; N dollar ; B 0 0 360 800 ;
+C 37 ; WX 390 ; N percent ; B 0 0 360 800 ;
+C 42 ; WX 390 ; N asterisk ; B 0 0 360 800 ;
+C 43 ; WX 390 ; N plus ; B 0 0 360 800 ;
+C 45 ; WX 390 ; N hyphen ; B 0 0 360 800 ;
+C 46 ; WX 390 ; N period ; B 0 0 360 800 ;
+C 47 ; WX 390 ; N slash ; B 0 0 360 800 ;
+C 48 ; WX 390 ; N zero ; B 0 0 360 800 ;
+C 49 ; WX 390 ; N one ; B 0 0 360 800 ;
+C 50 ; WX 390 ; N two ; B 0 0 360 800 ;
+C 51 ; WX 390 ; N three ; B 0 0 360 800 ;
+C 52 ; WX 390 ; N four ; B 0 0 360 800 ;
+C 53 ; WX 390 ; N five ; B 0 0 360 800 ;
+C 54 ; WX 390 ; N six ; B 0 0 360 800 ;
+C 55 ; WX 390 ; N seven ; B 0 0 360 800 ;
+C 56 ; WX 390 ; N eight ; B 0 0 360 800 ;
+C 57 ; WX 390 ; N nine ; B 0 0 360 800 ;
+C 65 ; WX 390 ; N A ; B 0 0 360 800 ;
+C 66 ; WX 390 ; N B ; B 0 0 360 800 ;
+C 67 ; WX 390 ; N C ; B 0 0 360 800 ;
+C 68 ; WX 390 ; N D ; B 0 0 360 800 ;
+C 69 ; WX 390 ; N E ; B 0 0 360 800 ;
+C 70 ; WX 390 ; N F ; B 0 0 360 800 ;
+C 71 ; WX 390 ; N G ; B 0 0 360 800 ;
+C 72 ; WX 390 ; N H ; B 0 0 360 800 ;
+C 73 ; WX 390 ; N I ; B 0 0 360 800 ;
+C 74 ; WX 390 ; N J ; B 0 0 360 800 ;
+C 75 ; WX 390 ; N K ; B 0 0 360 800 ;
+C 76 ; WX 390 ; N L ; B 0 0 360 800 ;
+C 77 ; WX 390 ; N M ; B 0 0 360 800 ;
+C 78 ; WX 390 ; N N ; B 0 0 360 800 ;
+C 79 ; WX 390 ; N O ; B 0 0 360 800 ;
+C 80 ; WX 390 ; N P ; B 0 0 360 800 ;
+C 81 ; WX 390 ; N Q ; B 0 0 360 800 ;
+C 82 ; WX 390 ; N R ; B 0 0 360 800 ;
+C 83 ; WX 390 ; N S ; B 0 0 360 800 ;
+C 84 ; WX 390 ; N T ; B 0 0 360 800 ;
+C 85 ; WX 390 ; N U ; B 0 0 360 800 ;
+C 86 ; WX 390 ; N V ; B 0 0 360 800 ;
+C 87 ; WX 390 ; N W ; B 0 0 360 800 ;
+C 88 ; WX 390 ; N X ; B 0 0 360 800 ;
+C 89 ; WX 390 ; N Y ; B 0 0 360 800 ;
+C 90 ; WX 390 ; N Z ; B 0 0 360 800 ;
+EndCharMetrics
+EndFontMetrics

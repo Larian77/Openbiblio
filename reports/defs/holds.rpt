@@ -1,0 +1,40 @@
+.title reportHolds
+.category Circulation
+.column bibid hidden
+.column mbrid hidden
+.column item_bcode sort=item_bcode
+.column title sort=title func=biblio_link
+.column author sort=author
+.column hold_begin_dt sort=hold_begin_dt
+.column mbr_bcode sort=mbr_bcode
+.column name sort=name func=member_link
+.parameters
+.	date placed_before title="Placed before"
+.	date placed_since title="Placed since"
+.	order_by
+.		item item_bcode title="Barcode" expr="c.barcode_nmbr"
+.		item title title="Title"
+.		item author title="Author"
+.		item hold_begin_dt title="Hold Begin"
+.		item mbr_bcode title="Member Barcode" expr="m.barcode_nmbr"
+.		item name title="Name" expr="concat(m.last_name, ', ', m.first_name)"
+.	end order_by
+.end parameters
+.sql
+	select b.bibid, c.barcode_nmbr item_bcode,
+		b.title, b.author, h.hold_begin_dt,
+		m.mbrid, m.barcode_nmbr mbr_bcode,
+		concat(m.last_name, ', ', m.first_name) name
+	from biblio b, biblio_copy c, biblio_hold h, member m
+	where b.bibid=c.bibid
+		and b.bibid=h.bibid
+		and c.copyid=h.copyid
+		and h.mbrid=m.mbrid
+.	if_set placed_before
+		and h.hold_begin_dt <= %placed_before%
+.	end if_set
+.	if_set placed_since
+		and h.hold_begin_dt >= %placed_since%
+.	end if_set
+.	order_by_expr
+.end sql

@@ -1,0 +1,13 @@
+insert into %prfx%material_type_dm values (null,'map','N',5,3,'map.gif');
+insert into %prfx%material_type_dm values (null,'computer file','N',5,3,'cd.gif');
+insert into %prfx%material_type_dm values (null,'globe','N',5,3,'cd.gif');
+insert into %prfx%material_type_dm values (null,'tactile material','N',5,3,'cd.gif');
+insert into %prfx%material_type_dm values (null,'projected graphic','N',5,3,'');
+insert into %prfx%material_type_dm values (null,'nonprojected graphic','N',5,3,'');
+insert into %prfx%material_type_dm values (null,'motion picture','N',5,3,'');
+insert into %prfx%material_type_dm values (null,'videorecording','N',5,3,'camera.gif');
+insert into %prfx%material_type_dm values (null,'sound recording','N',10,5,'tape.gif');
+insert into %prfx%material_type_dm values (null,'books','Y',20,10,'book.gif');
+insert into %prfx%material_type_dm values (null,'equipment','N',3,0,'case.gif');
+insert into %prfx%material_type_dm values (null,'serials','N',10,5,'mag.gif');
+

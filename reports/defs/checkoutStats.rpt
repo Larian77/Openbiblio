@@ -1,0 +1,31 @@
+.title "Periodic Checkout Count"
+.category Statistics
+.column cycle title="Cycle"
+.column checkoutCount title="# Checkouts"
+.parameters
+.	select timespan default=quarter title="Time Span"
+.		item week title="Week"
+.		item month title="Month"
+.		item quarter title="Quarter"
+.	end select
+.end parameters
+.sql
+.	if_equal timespan week
+		SELECT DATE_FORMAT((biblio_status_hist.status_begin_dt),
+			'%%x %%v') cycle,
+.	end if_set
+.	if_equal timespan month
+		SELECT DATE_FORMAT((biblio_status_hist.status_begin_dt),
+			'%%Y %%m') cycle,
+.	end if_set
+.	if_equal timespan quarter
+		SELECT CONCAT(YEAR(biblio_status_hist.status_begin_dt),
+			' ', QUARTER(biblio_status_hist.status_begin_dt)) cycle,
+.	end if_set
+	COUNT(*) checkoutCount
+	FROM biblio_copy, biblio_status_hist
+	WHERE biblio_copy.bibid = biblio_status_hist.bibid
+		AND biblio_copy.copyid = biblio_status_hist.copyid
+		AND biblio_status_hist.status_cd = 'out'
+	GROUP BY cycle
+.end sql

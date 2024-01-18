@@ -1,0 +1,26 @@
+.title balanceDueList
+.category Circulation
+.column mbrid hidden
+.column barcode_nmbr sort=barcode_nmbr
+.column name sort=name func=member_link
+.column balance sort=balance
+.parameters
+.	string minimum title="Minimum balance"
+.	order_by
+.		item barcode_nmbr title="Barcode"
+.		item name title="Name" expr="concat(m.last_name, ', ', m.first_name)"
+.		item balance title="Balance" type=numeric
+.	end order_by
+.end parameters
+.sql
+	select m.mbrid, m.barcode_nmbr,
+		concat(m.last_name, ', ', m.first_name) name,
+		sum(acct.amount) balance
+	from member m, member_account acct
+	where m.mbrid=acct.mbrid
+	group by m.mbrid, m.barcode_nmbr, m.last_name, m.first_name
+.	if_set minimum
+		having balance >= %#minimum%
+.	end if_set
+.	order_by_expr
+.end sql

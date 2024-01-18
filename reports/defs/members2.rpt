@@ -1,0 +1,101 @@
+.title "Member List : Grade, Teacher"
+.category Circulation
+.layout cards_a4_2x4 title="Card A4 2x4 Avery L7418"
+.layout cards_a4_2x5 title="Card A4 2x5 Herma 8840"
+.column mbrid hidden
+.column member_bcode sort=member_bcode
+.column name sort=name func=member_link
+.column classification title="Classification"
+.column school_grade title="Grade" sort=school_grade
+.column school_teacher title="Teacher" sort=school_teacher
+.parameters
+.	select member1st title="1st Character Member Last Name"
+.		item ''
+.		sql
+# 0.6.0: SQL in RPT .select parameter should be one line, unwrapped
+SELECT DISTINCT substring(last_name,1,1) AS value, substring(upper(last_name),1,1) AS title FROM member ORDER BY title
+.		end sql
+.	end select
+.	select criteria0 default=start title="... or Member Last Name"
+.		item start title="Starts With"
+.		item trunc title="Contains"
+.	end select
+.	string member title="..."
+.	select classification title="Classification"
+.		item ''
+.sql
+SELECT DISTINCT code AS value, description AS title FROM mbr_classify_dm
+.end sql
+.	end select
+.	select grade_sel title="Grade"
+.		item ''
+.sql
+SELECT DISTINCT data AS value, data AS title FROM member_fields WHERE code = 'schoolGrade' ORDER BY title
+.end sql
+.	end select
+.	select criteria1 default=start title="... or Grade"
+.		item start title="Starts With"
+.		item trunc title="Contains"
+.	end select
+.	string grade title="..."
+.	select criteria2 default=trunc title="Teacher Name"
+.		item start title="Starts With"
+.		item trunc title="Contains"
+.	end select
+.	string teacher title="..."
+.	order_by default=name
+.		item member_bcode expr='m.barcode_nmbr'
+.		item name expr="concat(m.last_name, ', ', m.first_name)"
+.		item school_grade title="Grade, Name" expr="concat_ws(' ', school_grade, m.last_name, ', ', m.first_name)"
+.		item school_teacher title="Teacher, Grade, Name" expr="concat_ws(' ', school_teacher, school_grade, m.last_name, ', ', m.first_name)"
+.	end order_by
+.end parameters
+.sql
+	SELECT m.mbrid, m.barcode_nmbr member_bcode,
+		concat(m.last_name, ', ', m.first_name) name,
+		mbr_classify_dm.description classification,
+		school_grade.data school_grade, school_teacher.data school_teacher
+	FROM member m
+	LEFT JOIN mbr_classify_dm ON mbr_classify_dm.code=m.classification
+	LEFT JOIN member_fields AS school_grade ON school_grade.mbrid=m.mbrid
+		AND school_grade.code='schoolGrade'
+	LEFT JOIN member_fields AS school_teacher ON school_teacher.mbrid=m.mbrid
+		AND school_teacher.code='schoolTeacher'
+	WHERE m.mbrid !=''
+.	if_set member
+.		if_equal criteria0 start
+			AND m.last_name LIKE '%"member%%%'
+.		end if_set
+.		if_equal criteria0 trunc
+			AND m.last_name LIKE '%%%"member%%%'		
+.		end if_set
+.	else
+.		if_not_equal member1st ''
+			AND m.last_name LIKE '%"member1st%%%'
+.		end if_set
+.	end if_set
+.	if_not_equal classification ''
+		AND m.classification = %classification%
+.	end if_set
+.	if_set grade
+.		if_equal criteria1 start
+			AND school_grade.data LIKE '%"grade%%%'
+.		end if_set
+.		if_equal criteria1 trunc
+			AND school_grade.data LIKE '%%%"grade%%%'		
+.		end if_set
+.	else
+.		if_not_equal grade_sel ''
+			AND school_grade.data = %grade_sel%
+.		end if_set
+.	end if_set
+.	if_set teacher
+.		if_equal criteria2 start
+			AND school_teacher.data LIKE '%"teacher%%%'
+.		end if_set
+.		if_equal criteria2 trunc
+			AND school_teacher.data LIKE '%%%"teacher%%%'
+.		end if_set
+.	end if_set
+.	order_by_expr
+.end sql

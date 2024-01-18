@@ -1,0 +1,184 @@
+---- 0.7.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+(Danke wieder mal an Hans van der Weij für all die Arbeit, die er sich in
+seinem Repositorium hier gemacht hat, alle Änderungen in dieser Verson habe
+ich aus seinen Änderungen geholt und bei mir eingearbeitet! /
+Thank You Again to Hans van der Weij for all his work in his repository, all
+Changes in this version i took from his work and put it in my version)
+* Kompatibilität zu Php 7 und 7.1 / Compatible to php 7 and php 7.1
+* Einige kleine Änderung / some minor changes
+---- 0.7.2.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Prüfung auf überschrittenes Mitgliedschaftsende bei Rückgabe / Test for
+expired membership at Check-In
+* Hinweis bei Ausleihe wenn Rückgabedatum nach Mitgliedschaftsende liegt /
+Hint if due-back-date is after end of membership
+* PHP-Deprecated und PHP-Warnungen deaktiviert / PHP-Deprecated and
+PHP-Warnings disabled
+* Charset im http-Header / Charsets in http-Header (patch by Wolfram Sang)
+* Fehlernachrichten beim Login lokalisiert / localize error messages for login
+(patch by Wolfram Sang)
+* Fehlernachrichten beim Mitglieder anlegen und Mitarbeiter anlegen
+lokalisiert / make strings for Staff and Members translatable (patch by Wolfram Sang)
+* 2 Rechtschreibfehler in deutscher Übersetzung beseitigt / 2 errors in german
+locale removed (patch by Bernhard Bittner)
+* Mailadressen als Link dargestellt / show mailadress as link (patch by Bernhard Bittner)
+* Reihenfolge der Felder beim Mitglieder anlegen geändert / Changed order of
+fields at New Member form
+
+---- 0.7.2.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Fehlerkorrektur 95 - Suche: Regexp Fehler in regulären Ausdrücken mit speziellen Zeichen / Fix issue 95 - Search: regexp error for regular expression special characters
+* Update Tests / Update tests
+Fehlerkorrektur 99 - Bericht Erwerbungen: Unbekannte Spalte Standort in Sortierung / Fix issue 99 - Acquisitions report: Unknown column 'callno' in 'order clause'
+* Suche: Deaktiviere linke Kürzung beim Standort / Search: disable left truncation for Call Number
+* Mitgliedersuche: Entferne angezeigte 1, wenn es nur eine Seite gibt / Member search: remove stray '1' if pageCount = 1
+* Korrekturen für ungeprüfte Weiterleitungen, Cross-Site-Skripte, lokalen Datei-Einschleusungen / Fixes for unvalidated redirects, cross site scripting, local file inclusion
+
+---- 0.7.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Benutzerlogin möglich um Übersicht zu sehen, um zu verlängern und um
+vorzubestellen / Memberlogin possible to renew items and to make holds
+* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
+* Bug in englischer Übersetzung gefixed / Fixed a bug at english localisation
+* Neue Berichte / new reports
+* Links ins Startseite zu den Bereichen / links at home to all areas
+* Verlängerung nicht mehr möglich, wenn Medium vorbestellt / Renew item isn't
+possible if item is on hold
+
+---- 0.7.1.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* bei Genres, die keine Verspätungsgebühr kosten ist die Verlängerung jetzt
+auch möglich wenn das Rückgabedatum überschritten ist / at collections, where
+no Daily Late Fee is defined, you can now renew items, when they are after the
+"due back"-date
+* Möglichkeit die Medien direkt in der Mitgliederansicht zurückzugeben / You
+can now Check In Bibliographies from Member-View
+* Verbesserte Anzeige der möglichen Ergebnisseiten in den Suchen und Reports /
+The Pages-Display shown at searches and reports now looks better
+* Anzeige des Untertitels in den Suchergebnissen / Title Remainder is now
+shown at searches
+
+---- 0.7.1.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Nach der Konvertierung von 0.5.1.x-Versionen können wieder neue neue
+Medienarten hinzugefügt werden / After converting from 0.5.1.x-versions new
+material types can be added again
+
+---- 0.7.1.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
+* Felder in Standardansicht geändert für deutsche Ansprüche /Fields in Basic
+Settings changed for german Needings
+* Felder in Standardansicht geändert für Benutzung auch in Ludotheken /Fields
+in Basic Settings changed for using it in ludotheks
+* Patch zum Hinzufügen von Bildern in der Medienansicht /Patch for adding
+pictures in Bibliography
+* Membership-Feature hinzugefügt / membership-feature added
+* MaxPages erhöht für Suchergebnisse bei großen Medienbeständen / MaxPages
+increased for searches with much bibliographies
+
+---- 0.7.1 ---- (Original obenbiblio-Project)
+* Additional fix SF bug 1162251/BB bug 3
+* Automatic barcode generation also for Edit Copy
+* Validation for Copy Barcode Number optional, remove conversion to lowercase
+* Update Help
+* Add Revise Page link to Help navigation, integrates with project wiki
+* New default media label layout, paper size Letter
+* Optimize dimensions and spacing for label Avery L7674
+* Add label Demco Multi-purp 1 1/2" x 29/32"
+* Add new layouts for media labels and member cards
+* Add parameters to Popular Bibliographies, moved to Statistics category
+* Add parameters Adress/Phone/Email to Member Search
+* Add new reports
+* Add Call Number search
+* Fix issue 41 - author search finds multiple copies with identical barcodes
+* Fix issue 42 - author search: incomplete results
+* Subject search: add biblio_field join
+* Title search: add Remainder of title
+* Add Keyword search
+* query speed: word boundaries for short words in biblio_field join criteria
+* query speed: remove count query, use sql_calc_found_rows
+* Fix issue 29 - Mistake in regular expression
+* Fix issue 29 - Mistake in regular expression
+* Fix issue 45 - Date class returns 00-00-0000 for illegal dates
+* Fix issue 46 - Ambiguous dates cause unexpected results
+* Date format in header unambiguous
+* Fix issue 16 - Deprecated set_magic_quotes_runtime
+* Fix issue 36 - MySQL 5.5 -> TYPE Deprecation
+* Fix issue 26, 27, 48 (incomplete delete checkout privileges, custom fields)
+* Fix issue 50 - Check In: incorrect time, PHP warnings
+* Fix issue 51, until 2038 - Date class: timestamp outside valid range
+* Fix issue 31 - Problem in adding a similar book
+* Fix issue 53 - Barcode lookup fails [0.7.0: Make biblio_search redirect to biblio_view on single search result]
+* Installer checks for issue 15
+* Fix issue 54 (partial)- $late is not always a whole number
+* Fix issue 17 - Check in of books
+* Fix issue 55 - Checkout History purge rules missing
+* Add note for Purge Bibliography History setting
+* Fix issue 22 - Place hold impossible if copy is On Hold
+* Fix issue 56 - Days Due Back silently truncated to 255 days
+* Suppress error_reporting E_STRICT (fixes reports for PHP 5.4)
+* Fix issue 59 - Field settings.locale too small
+* Fix issue 60 - Currency symbol for default OpenBiblio locale depends on operating system
+* Fix issue 61 - htmlspecialchars returns empty string instead of currency symbol and amount
+* Fix issue 57 - Install always claims to be successful
+* Fix issue 52 - Upload Marc Data: Function split() is deprecated
+* Deprecated: get_magic_quotes_runtime
+* htmlspecialchars returns empty string
+* PHP 5.4 htmlspecialchars needs to know character set
+* Fix issue 19 (partial) - Convert single byte UTF-8 characters for reports system
+* Automatic database upgrade for renewal patch / versions from openbiblio.de
+* Upload Marc Data 'Show in OPAC' default Yes - proposal from Issue 63
+* Search: exclude nonpublic for opac
+* Migrate release process to Mercurial
+
+---- 0.7.0 ----
+* Add the ability to override due date on checkout.
+* Add item history view and report.
+* On checking in an item, show the name of the member who had it out.
+* Add a list-of-barcodes parameter to copy search.
+* Add offline circulation support.
+* Fix a number of small bugs
+* Add custom copy fields
+* Add the ability to renew all a member's checkouts at once
+* Fix SF bug 1162251/BB bug 3
+* Relaxed alphanumeric restriction on barcodes
+
+---- 0.6.1 ----
+* Import missing classes/Search.php
+* Fix some whitespace problems in Rpt
+* Fix a few compatibility problems with PHP 4.2
+* Work around a bug in some versions of IE that requires downloaded PDFs to come from an URL with '.pdf' in the 'filename'.
+
+---- 0.6.0 ----
+* Track create_dt for copies
+* Add iterators and the Iter class
+* New Query class using Iters
+* Base from which this change log starts
+* New sidebar navigation code
+* New reports system
+* Improve selenium tests
+* Make release scripts prune empty directories
+
+---- 0.5.2 ----
+* Allow user-specified member classes with individual checkout privileges
+* Show per-material type custom MARC fields on view/edit pages
+* User-defined custom fields on member records
+* Integrate new, more robust install/upgrade system
+* Add some help files contributed by Hans van der Weij
+* Fix short_open_tags bugs
+* Allow days due back to have more than 2 digits
+* Make holds expire after user-specified maximum days
+* Add automatic barcode generation, thanks to Hans van der Weij
+* Improve error detection and handling
+* Add renewal functionality
+* Fix a large number of escaping bugs
+* Make author search look in field 700 as well as 100
+* Fix MySQL 4.1+ password encryption incompatibility
+* Use default currency symbols if none defined in locale
+* Fix a number of interface spelling errors
+* Make mbrid and bibid linking in report displays work for tables besides biblio and member
+* Improve international address support by having a single, multiline address field
+* Fix timeout errors by sending users to tab index after login
+* Hack around system locale name differences for en and de locales
+* Fix local file include vulnerabilities in shared/header.php and shared/help.php
+* Fix join syntax for newer MySQL compatibility
+* Fix bug 1082970
+* Import Selenium functional test
+
+---- 0.5.1 ----
+* Base from which this change log starts

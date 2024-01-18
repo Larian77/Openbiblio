@@ -1,0 +1,40 @@
+.title "Copy Search"
+.category "Cataloging"
+.layout labels title="Labels"
+.column copyid hidden
+.column bibid hidden
+.column barcode_nmbr title="Barcode" sort=barcode_nmbr
+.column callno title="Call Num."
+.column author title=Author
+.column title func=biblio_link title=Title sort=title
+.column collection title=Collection
+.parameters
+.	string barcode title="Barcode Starts With"
+.	string barcodes title="List of Barcodes (spaced)"
+.	date newer title="Newer than (Date or today)"
+.	order_by default=barcode_nmbr
+.		item barcode_nmbr title="Barcode"
+.		item title title="Title"
+.	end order_by
+.end parameters
+
+.sql
+	select c.*, concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) callno,
+		b.title, b.author, coll.description collection
+	from biblio_copy c, biblio b, collection_dm coll
+	where b.bibid=c.bibid and coll.code=b.collection_cd
+.	if_set barcode
+		and c.barcode_nmbr like '%"barcode%%%'
+.	end if_set
+.	if_set barcodes
+		and (0=1
+.		foreach_word barcodes
+			or c.barcode_nmbr=%barcodes%
+.		end foreach_word
+		)
+.	end if_set
+.	if_set newer
+		and c.create_dt >= %newer%
+.	end if_set
+.	order_by_expr
+.end sql

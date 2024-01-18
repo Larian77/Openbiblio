@@ -1,0 +1,21 @@
+.title "Most Popular Authors"
+.category Statistics
+.column author title="Author" sort=author
+.column checkoutCount title="# Checkouts" sort=mostCheckoutCount
+.parameters
+.	order_by default=mostCheckoutCount
+.		item author title="Author"
+.		item checkoutCount title="# Checkouts, Author" expr="concat(count(h.status_begin_dt), author)"
+.		item mostCheckoutCount title="Most Checkouts, Author" type=numeric expr="concat(1 / count(h.status_begin_dt), author)"
+.	end order_by
+.end parameters
+.sql
+	SELECT b.author, count(h.status_begin_dt) checkoutCount
+	FROM biblio_status_hist h, biblio_copy c, biblio b
+	WHERE h.bibid = c.bibid
+		AND h.copyid = c.copyid
+		AND h.bibid = b.bibid
+		AND h.status_cd = 'out'
+	GROUP BY b.author
+.	order_by_expr
+.end sql

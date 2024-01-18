@@ -1,0 +1,36 @@
+/*********************************************************
+ *  Body Style
+ *********************************************************/
+body {
+  background-color: #ffffff
+}
+
+/*********************************************************
+ *  Font Styles
+ *********************************************************/
+font.primary {
+  color: #000000;
+  font-size: 13px;
+  font-family: verdana,arial,helvetica;
+}
+font.error {
+  color: #aa0000;
+  font-size: 13px;
+  font-family: verdana,arial,helvetica;
+  font-weight: bold;
+}
+h1 {
+  font-size: 16px;
+  font-family: verdana,arial,helvetica;
+  font-weight: normal;
+}
+
+/*********************************************************
+ *  Link Styles
+ *********************************************************/
+a:link {
+  color: #0000aa;
+}
+a:visited {
+  color: #0000aa;
+}

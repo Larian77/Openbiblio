@@ -1,0 +1,41 @@
+.title "Item Checkout History"
+.category Circulation
+.column bibid hidden
+.column call_num title="Call Num." sort=call_num
+.column title sort=title func=biblio_link
+.column author sort=author
+.column mbrid hidden
+.column member title=Member sort=member func=member_link
+.column checkout title=Checkout sort=checkout
+.column due sort=due title=Due
+.parameters
+.	string title
+.	string call_num title='Call Number'
+.	order_by default=title
+.		item call_num title="Call Num." expr='CONCAT(b.call_nmbr1, b.call_nmbr2, b.call_nmbr3)'
+.		item title title="Title" expr='CONCAT(b.title,b.title_remainder)'
+.		item author title="Author" expr='b.author'
+.		item member title="Member" expr='CONCAT(m.last_name, m.first_name)'
+.		item checkout title="Checkout" expr='s.status_begin_dt'
+.		item due title="Due" expr='s.due_back_dt'
+.	end order_by
+.end parameters
+.sql
+	SELECT b.bibid,
+		CONCAT_WS(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) AS call_num,
+		CONCAT(b.title, ' ', IFNULL(b.title_remainder, '')) AS title,
+		b.author, m.mbrid,
+		CONCAT(m.last_name,', ',  m.first_name) AS member,
+		s.status_begin_dt AS checkout,
+		s.due_back_dt AS due
+	FROM biblio b, biblio_status_hist s, member m
+	WHERE s.bibid=b.bibid AND s.mbrid=m.mbrid
+		AND s.status_cd='out'
+.if_set title
+		AND CONCAT(b.title, ' ', IFNULL(b.title_remainder, '')) LIKE '%%%"title%%%'
+.end if_set
+.if_set call_num
+		AND CONCAT_WS(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) LIKE '%%%"call_num%%%'
+.end if_set
+.	order_by_expr
+.end sql

@@ -1,0 +1,48 @@
+.title "Member Search"
+.category "Circulation"
+.layout mbr_cards_10up title="Cards"
+.layout mbr_cards_3up title="ID Cards, self-laminating"
+.layout mbr_labels title="Labels"
+.column mbrid hidden
+.column barcode_nmbr title="Barcode" sort=barcode_nmbr
+.column name title="Name" sort=name func=member_link
+.column create_dt title="Create Date" sort=create_dt
+.parameters
+.	string barcode title="Barcode Starts With"
+.	string barcodes title="List of Barcodes (spaced)"
+.	string name title="Name Contains"
+.	string address title="Address or Phone or Email Contains"
+.	date newer title="Newer than (Date or today)"
+.	order_by default=barcode_nmbr
+.		item barcode_nmbr title="Barcode"
+.		item name title="Name" expr="CONCAT(last_name, ', ', first_name)"
+.		item create_dt title="Create Date"
+.	end order_by
+.end parameters
+
+.sql
+	SELECT mbrid, barcode_nmbr, concat(last_name, ', ', first_name) name, address, create_dt
+	FROM member
+	WHERE 1=1
+.	if_set barcode
+		AND barcode_nmbr LIKE '%"barcode%%%'
+.	end if_set
+.	if_set barcodes
+		AND (0=1
+.		foreach_word barcodes
+			OR barcode_nmbr=%barcodes%
+.		end foreach_word
+		)
+.	end if_set
+.	if_set name
+		AND CONCAT(last_name, ', ', first_name) LIKE '%%%"name%%%'
+.	end if_set
+.	if_set address
+		AND CONCAT_WS(address, email, home_phone, work_phone) LIKE '%%%"address%%%'
+.	end if_set
+
+.	if_set newer
+		AND create_dt >= %newer%
+.	end if_set
+.	order_by_expr
+.end sql

@@ -1,0 +1,28 @@
+.title "Inventory List"
+.category "Cataloging"
+.column copyid hidden
+.column bibid hidden
+.column barcode_nmbr title="Barcode" sort=barcode_nmbr
+.column callno title="Call Num."
+.column title func=biblio_link title=Title sort=title
+.column author title=Author sort=author
+.column publisher title=Publisher sort=publisher
+.column collection title=Collection
+.column status_cd title=Status sort=status_cd
+.column copy_desc title=Description
+.parameters
+.	order_by default=barcode_nmbr
+.		item barcode_nmbr title="Barcode"
+.		item title title="Title"
+.               item author title="Author"
+.               item publisher title="Publisher"
+.               item status_cd title="Status"
+.	end order_by
+.end parameters
+
+.sql
+        SELECT c.*, concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) callno, b.title, b.author, coll.description collection,
+        (SELECT bf.field_data FROM biblio_field bf WHERE b.bibid=bf.bibid AND bf.tag=260 AND bf.subfield_cd="b") publisher
+        FROM (biblio b INNER JOIN biblio_copy c ON b.bibid=c.bibid) INNER JOIN collection_dm coll ON b.collection_cd=coll.code
+.	order_by_expr
+.end sql

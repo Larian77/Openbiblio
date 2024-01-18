@@ -1,0 +1,42 @@
+.title reportCheckouts
+.category Circulation
+.column bibid hidden
+.column copyid hidden
+.column mbrid hidden
+.column barcode_nmbr title=Barcode sort=barcode_nmbr
+.column title sort=title func=biblio_link
+.column author sort=author
+.column member_bcode title="Member Barcode" sort=member_bcode
+.column name title=Name sort=name func=member_link
+.column status_begin_dt title="Status Begin" sort=status_begin_dt
+.column due_back_dt title=Due sort=due_back_dt
+.parameters
+.	date due_before title="Due before"
+.	date out_since title="Out since"
+.	order_by
+.		item barcode_nmbr title="Barcode" expr='c.barcode_nmbr'
+.		item title title="Title"
+.		item author title="Author"
+.		item member_bcode title="Member Barcode" expr='m.barcode_nmbr'
+.		item name title="Name" expr="concat(m.last_name, ', ', m.first_name)"
+.		item status_begin_dt title="Status Begin"
+.		item due_back_dt title="Due"
+.	end order_by
+.end parameters
+.sql
+	select c.bibid, c.copyid, m.mbrid, c.barcode_nmbr,
+		b.title, b.author, c.status_begin_dt,
+		c.due_back_dt, m.barcode_nmbr member_bcode,
+		concat(m.last_name, ', ', m.first_name) name
+	from biblio b, biblio_copy c, member m
+	where b.bibid = c.bibid
+		and c.mbrid = m.mbrid
+		and c.status_cd = 'out'
+.	if_set due_before
+		and c.due_back_dt <= %due_before%
+.	end if_set
+.	if_set out_since
+		and c.status_begin_dt >= %out_since%
+.	end if_set
+.	order_by_expr
+.end sql

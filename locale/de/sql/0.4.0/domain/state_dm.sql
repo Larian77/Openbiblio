@@ -1,0 +1,16 @@
+insert into %prfx%state_dm values ('BW','Baden-Württemberg','N');
+insert into %prfx%state_dm values ('BY','Bayern','N');
+insert into %prfx%state_dm values ('BE','Berlin','N');
+insert into %prfx%state_dm values ('BB','Brandenburg','N');
+insert into %prfx%state_dm values ('HB','Bremen','N');
+insert into %prfx%state_dm values ('HH','Hamburg','N');
+insert into %prfx%state_dm values ('HE','Hessen','N');
+insert into %prfx%state_dm values ('MV','Mecklenburg-Vorpommern','N');
+insert into %prfx%state_dm values ('NI','Niedersachsen','N');
+insert into %prfx%state_dm values ('NW','Nordrhein-Westfalen','N');
+insert into %prfx%state_dm values ('RP','Rheinland-Pfalz','N');
+insert into %prfx%state_dm values ('SL','Saarland','N');
+insert into %prfx%state_dm values ('SN','Sachsen','Y');
+insert into %prfx%state_dm values ('ST','Sachsen-Anhalt','N');
+insert into %prfx%state_dm values ('SH','Schleswig-Holstein','N');
+insert into %prfx%state_dm values ('TH','Thüringen','N');

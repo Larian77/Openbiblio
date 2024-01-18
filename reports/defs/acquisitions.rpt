@@ -1,0 +1,57 @@
+.title Acquisition
+.category Cataloging
+.layout labels title="Labels"
+.column bibid hidden
+.column callno sort=callno title="Call Num."
+.column barcode_nmbr sort=barcode_nmbr title="Barcode"
+.column title sort=title func=biblio_link title="Title"
+.column author sort=author title="Author"
+.column create_dt sort=create_dt title="Acq. Date"
+.column collection sort=material title="Collection"
+.column material sort=collection title="Material"
+.parameters
+.	date newer title="After (Date or yesterday)"
+.	date older title="Before"
+.	select collection title="Collection"
+.		item ""
+.		sql
+			select coll.code as value, coll.description as title from collection_dm coll
+.		end sql
+.	end select
+.	select material title="Material"
+.		item ""
+.		sql
+			select mat.code as value, mat.description as title from material_type_dm mat
+.		end sql
+.	end select
+.	order_by
+.		item create_dt title="Date Created" type=date
+.		item title title="Title"
+.		item author title="Author"
+.		item callno expr="concat(call_nmbr1, call_nmbr2, call_nmbr3)" title="Call Num."
+.	end order_by
+.end parameters
+.sql
+	select b.bibid, concat_ws(' ', b.call_nmbr1, b.call_nmbr2, b.call_nmbr3) callno,
+		c.barcode_nmbr, c.create_dt, b.title, b.author,
+		coll.description as collection, mat.description as material
+	from biblio_copy c, biblio b,
+		collection_dm as coll, material_type_dm as mat
+	where b.bibid=c.bibid
+		and mat.code=b.material_cd
+		and coll.code=b.collection_cd
+.	if_set newer
+		and c.create_dt >= %newer%
+.	end if_set
+.	if_set older
+		and c.create_dt < %older%
+.	end if_set
+.	if_not_equal collection ""
+		and b.collection_cd = %collection%
+.	end if_not_equal
+.	if_not_equal material ""
+		and b.material_cd = %material%
+.	end if_not_equal
+	group by c.barcode_nmbr, b.title, b.author, b.bibid, c.create_dt
+.	order_by_expr
+.end sql
