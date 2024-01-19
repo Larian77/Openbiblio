@@ -17,11 +17,16 @@ require_once("../classes/MemberAccountQuery.php");
 require_once("../classes/Date.php");
 require_once("../classes/Localize.php");
 
-class CircQuery extends Query {
-	function CircQuery() {
-		$this->Query();
-		$this->_loc = new Localize(OBIB_LOCALE, 'classes');
-	}
+class CircQuery extends Query 
+{
+    //Changes PVD(8.0.x)
+    var $_loc;
+    //Changes PVD(8.0.x)
+	function __construct() {
+        	//Changes PVD(8.0.x)
+	        new Query;
+        	$this->_loc = new Localize(OBIB_LOCALE, 'classes');
+        }
 	function checkout_e($mbcode, $bcode) {
 		$this->lock();
 		$ret = $this->_checkout_e($mbcode, $bcode, NULL, NULL, false);
