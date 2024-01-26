@@ -99,6 +99,10 @@
     exit();
   }
 
+  if (!isset($_SESSION["returnPage"]) || ($_SESSION["returnPage"] == "")) {
+      $_SESSION["returnPage"] = '../opac/loginform.php';
+  }
+  
   header("Location: ".$_SESSION["returnPage"]);
   exit();
 

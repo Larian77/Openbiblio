@@ -122,6 +122,11 @@ $_SESSION["hasCircMbrAuth"] = $staff->hasCircMbrAuth();
 $_SESSION["hasCatalogAuth"] = $staff->hasCatalogAuth();
 $_SESSION["hasReportsAuth"] = $staff->hasReportsAuth();
 
+
+if (!isset($_SESSION["returnPage"]) || ($_SESSION["returnPage"] == "")) {
+    $_SESSION["returnPage"] = '../home/index.php';
+}
+
 #**************************************************************************
 #*  Redirect to return page
 #**************************************************************************
