@@ -36,6 +36,6 @@
 ?>
 
 <form name="editMbrform" method="POST" action="../circ/mbr_edit.php">
-<input type="hidden" name="mbrid" value="<?php echo H($mbrid);?>">
+	<input type="hidden" name="mbrid" value="<?php echo H($mbrid);?>">
 <?php include("../circ/mbr_fields.php"); ?>
 <?php include("../shared/footer.php"); ?>

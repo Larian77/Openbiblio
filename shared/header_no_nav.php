@@ -17,8 +17,7 @@
   <tr>
     <td style="padding:0px" bgcolor="<?php echo H(OBIB_PRIMARY_BG);?>"><img src="../images/shim.gif" width="10" height="1" border="0"></td>
     <td style="padding:0px" height="100%" width="100%" valign="top">
-      <font class="primary">
-      <br>
-<!-- **************************************************************************************
+      <font class="primary"> <br> 
+     <!-- **************************************************************************************
      * beginning of main body
      **************************************************************************************-->

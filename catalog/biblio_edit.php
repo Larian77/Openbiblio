@@ -160,8 +160,10 @@ function showForm($postVars, $pageErrors=array()) {
       }
     //-->
   </script>
-  <form name="editbiblioform" method="POST" action="../catalog/biblio_edit.php">
-  <input type="hidden" name="bibid" value="<?php echo H($postVars["bibid"]);?>">
+<form name="editbiblioform" method="POST"
+	action="../catalog/biblio_edit.php">
+	<input type="hidden" name="bibid"
+		value="<?php echo H($postVars["bibid"]);?>">
 <?php
   include("../catalog/biblio_fields.php");
   include("../shared/footer.php");

@@ -1,9 +1,9 @@
 <?php
-  require_once("../shared/common.php");
-  $tab = "home";
-  $nav = "license";
+require_once ("../shared/common.php");
+$tab = "home";
+$nav = "license";
 
-  include("../shared/header.php");
+include ("../shared/header.php");
 ?>
 
 <br>
@@ -301,8 +301,9 @@ to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    <one line to give the program/'s name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    <one line to give the programs name and a brief idea of what it
+		does.>
+    Copyright (C) <year>  <name> of <author>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -341,7 +342,7 @@ necessary.  Here is a sample; alter the names:
   Yoyodyne, Inc., hereby disclaims all copyright interest in the program
   `Gnomovision' (which makes passes at compilers) written by James Hacker.
 
-  <signature of Ty Coon>, 1 April 1989
+  <signature> of <TyCoon>, 1 April 1989
   Ty Coon, President of Vice
 
 This General Public License does not permit incorporating your program into
@@ -349,6 +350,8 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
+
+
 </pre>
 
 

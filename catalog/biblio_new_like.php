@@ -64,6 +64,7 @@
       }
     //-->
   </script>
-<form name="newbiblioform" method="POST" action="../catalog/biblio_new.php">
+<form name="newbiblioform" method="POST"
+	action="../catalog/biblio_new.php">
 <?php include("../catalog/biblio_fields.php"); ?>
 <?php include("../shared/footer.php"); ?>
