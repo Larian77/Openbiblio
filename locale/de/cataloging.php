@@ -245,4 +245,9 @@ $trans["Member"]                             = "\$text = 'Mitglied';";
 $trans["Due Date"]                           = "\$text = 'Rückgabedatum';";
 $trans["No history was found."]              = "\$text = 'Keine Historie gefunden.';";
 
+#****************************************************************************
+#*  Translation text for page upload_usmarc.php
+#****************************************************************************
+$trans["File doesn't exist"] = "\$text='Das angegebene File ist leer oder existiert nicht!';";
+
 ?>
