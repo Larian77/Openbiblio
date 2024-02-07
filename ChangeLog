@@ -1,15 +1,24 @@
+---- 0.8.0 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+Danke an Ghanshyam Patel und all die anderen Programmierer, die sich dran gesetzt haben eine PHP 8.1-fÃ¤hige Version zu entwickeln und dass ich deren Ã„nderungen Ã¼bernehmen konnte.
+Thanks to Ghanshyam Patel and all the other programmers who took it upon themselves to develop a PHP 8.1-capable version and that I was able to adopt their changes.
+* KompatibilitÃ¤t zu PHP 8, 8.1 und 8.2 / Compatible to PHP 8, 8.1 and 8.2
+* HTML 5 - KompatibilitÃ¤t / HTML 5 - Compatibility
+* AdvancedSearch-0.6.X incl. translations & more improvements
+* Show Title Remainder in Searchresult
+
 ---- 0.7.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-(Danke wieder mal an Hans van der Weij für all die Arbeit, die er sich in
-seinem Repositorium hier gemacht hat, alle Änderungen in dieser Verson habe
-ich aus seinen Änderungen geholt und bei mir eingearbeitet! /
+(Danke wieder mal an Hans van der Weij fï¿½r all die Arbeit, die er sich in
+seinem Repositorium hier gemacht hat, alle ï¿½nderungen in dieser Verson habe
+ich aus seinen ï¿½nderungen geholt und bei mir eingearbeitet! /
 Thank You Again to Hans van der Weij for all his work in his repository, all
 Changes in this version i took from his work and put it in my version)
-* Kompatibilität zu Php 7 und 7.1 / Compatible to php 7 and php 7.1
-* Einige kleine Änderung / some minor changes
+* Kompatibilitï¿½t zu Php 7 und 7.1 / Compatible to php 7 and php 7.1
+* Einige kleine ï¿½nderung / some minor changes
+
 ---- 0.7.2.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Prüfung auf überschrittenes Mitgliedschaftsende bei Rückgabe / Test for
+* Prï¿½fung auf ï¿½berschrittenes Mitgliedschaftsende bei Rï¿½ckgabe / Test for
 expired membership at Check-In
-* Hinweis bei Ausleihe wenn Rückgabedatum nach Mitgliedschaftsende liegt /
+* Hinweis bei Ausleihe wenn Rï¿½ckgabedatum nach Mitgliedschaftsende liegt /
 Hint if due-back-date is after end of membership
 * PHP-Deprecated und PHP-Warnungen deaktiviert / PHP-Deprecated and
 PHP-Warnings disabled
@@ -18,57 +27,57 @@ PHP-Warnings disabled
 (patch by Wolfram Sang)
 * Fehlernachrichten beim Mitglieder anlegen und Mitarbeiter anlegen
 lokalisiert / make strings for Staff and Members translatable (patch by Wolfram Sang)
-* 2 Rechtschreibfehler in deutscher Übersetzung beseitigt / 2 errors in german
+* 2 Rechtschreibfehler in deutscher ï¿½bersetzung beseitigt / 2 errors in german
 locale removed (patch by Bernhard Bittner)
 * Mailadressen als Link dargestellt / show mailadress as link (patch by Bernhard Bittner)
-* Reihenfolge der Felder beim Mitglieder anlegen geändert / Changed order of
+* Reihenfolge der Felder beim Mitglieder anlegen geï¿½ndert / Changed order of
 fields at New Member form
 
 ---- 0.7.2.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Fehlerkorrektur 95 - Suche: Regexp Fehler in regulären Ausdrücken mit speziellen Zeichen / Fix issue 95 - Search: regexp error for regular expression special characters
+* Fehlerkorrektur 95 - Suche: Regexp Fehler in regulï¿½ren Ausdrï¿½cken mit speziellen Zeichen / Fix issue 95 - Search: regexp error for regular expression special characters
 * Update Tests / Update tests
 Fehlerkorrektur 99 - Bericht Erwerbungen: Unbekannte Spalte Standort in Sortierung / Fix issue 99 - Acquisitions report: Unknown column 'callno' in 'order clause'
-* Suche: Deaktiviere linke Kürzung beim Standort / Search: disable left truncation for Call Number
+* Suche: Deaktiviere linke Kï¿½rzung beim Standort / Search: disable left truncation for Call Number
 * Mitgliedersuche: Entferne angezeigte 1, wenn es nur eine Seite gibt / Member search: remove stray '1' if pageCount = 1
-* Korrekturen für ungeprüfte Weiterleitungen, Cross-Site-Skripte, lokalen Datei-Einschleusungen / Fixes for unvalidated redirects, cross site scripting, local file inclusion
+* Korrekturen fï¿½r ungeprï¿½fte Weiterleitungen, Cross-Site-Skripte, lokalen Datei-Einschleusungen / Fixes for unvalidated redirects, cross site scripting, local file inclusion
 
 ---- 0.7.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Benutzerlogin möglich um Übersicht zu sehen, um zu verlängern und um
+* Benutzerlogin mï¿½glich um ï¿½bersicht zu sehen, um zu verlï¿½ngern und um
 vorzubestellen / Memberlogin possible to renew items and to make holds
-* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
-* Bug in englischer Übersetzung gefixed / Fixed a bug at english localisation
+* Bugfixes zur Lokalisation eingefï¿½gt / Bugfixes for localisation inserted
+* Bug in englischer ï¿½bersetzung gefixed / Fixed a bug at english localisation
 * Neue Berichte / new reports
 * Links ins Startseite zu den Bereichen / links at home to all areas
-* Verlängerung nicht mehr möglich, wenn Medium vorbestellt / Renew item isn't
+* Verlï¿½ngerung nicht mehr mï¿½glich, wenn Medium vorbestellt / Renew item isn't
 possible if item is on hold
 
 ---- 0.7.1.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* bei Genres, die keine Verspätungsgebühr kosten ist die Verlängerung jetzt
-auch möglich wenn das Rückgabedatum überschritten ist / at collections, where
+* bei Genres, die keine Verspï¿½tungsgebï¿½hr kosten ist die Verlï¿½ngerung jetzt
+auch mï¿½glich wenn das Rï¿½ckgabedatum ï¿½berschritten ist / at collections, where
 no Daily Late Fee is defined, you can now renew items, when they are after the
 "due back"-date
-* Möglichkeit die Medien direkt in der Mitgliederansicht zurückzugeben / You
+* Mï¿½glichkeit die Medien direkt in der Mitgliederansicht zurï¿½ckzugeben / You
 can now Check In Bibliographies from Member-View
-* Verbesserte Anzeige der möglichen Ergebnisseiten in den Suchen und Reports /
+* Verbesserte Anzeige der mï¿½glichen Ergebnisseiten in den Suchen und Reports /
 The Pages-Display shown at searches and reports now looks better
 * Anzeige des Untertitels in den Suchergebnissen / Title Remainder is now
 shown at searches
 
 ---- 0.7.1.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Nach der Konvertierung von 0.5.1.x-Versionen können wieder neue neue
-Medienarten hinzugefügt werden / After converting from 0.5.1.x-versions new
+* Nach der Konvertierung von 0.5.1.x-Versionen kï¿½nnen wieder neue neue
+Medienarten hinzugefï¿½gt werden / After converting from 0.5.1.x-versions new
 material types can be added again
 
 ---- 0.7.1.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
-* Felder in Standardansicht geändert für deutsche Ansprüche /Fields in Basic
+* Bugfixes zur Lokalisation eingefï¿½gt / Bugfixes for localisation inserted
+* Felder in Standardansicht geï¿½ndert fï¿½r deutsche Ansprï¿½che /Fields in Basic
 Settings changed for german Needings
-* Felder in Standardansicht geändert für Benutzung auch in Ludotheken /Fields
+* Felder in Standardansicht geï¿½ndert fï¿½r Benutzung auch in Ludotheken /Fields
 in Basic Settings changed for using it in ludotheks
-* Patch zum Hinzufügen von Bildern in der Medienansicht /Patch for adding
+* Patch zum Hinzufï¿½gen von Bildern in der Medienansicht /Patch for adding
 pictures in Bibliography
-* Membership-Feature hinzugefügt / membership-feature added
-* MaxPages erhöht für Suchergebnisse bei großen Medienbeständen / MaxPages
+* Membership-Feature hinzugefï¿½gt / membership-feature added
+* MaxPages erhï¿½ht fï¿½r Suchergebnisse bei groï¿½en Medienbestï¿½nden / MaxPages
 increased for searches with much bibliographies
 
 ---- 0.7.1 ---- (Original obenbiblio-Project)

@@ -6,137 +6,227 @@
 <title>OpenBiblio Installationsanleitung</title>
 <style type="text/css">
 .notice {
-  margin-left: 50px;
-  margin-right: 50px;
-  border: solid black 1px;
-  background: #ffaaaa;
-  padding: 4px;
+	margin-left: 50px;
+	margin-right: 50px;
+	border: solid black 1px;
+	background: #ffaaaa;
+	padding: 4px;
 }
+
 .new {
-  margin-left: 50px;
-  margin-right: 50px;
-  border: solid black 1px;
-  background: #ffffaa;
-  padding: 4px;
+	margin-left: 50px;
+	margin-right: 50px;
+	border: solid black 1px;
+	background: #ffffaa;
+	padding: 4px;
 }
-h1 { border-bottom: solid black 1px }
-th { text-align: right }
+
+h1 {
+	border-bottom: solid black 1px
+}
+
+th {
+	text-align: right
+}
 </style>
 </head>
-<body bgcolor="#ffffff" topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
-<div style="background: #bebdbe"><img src="images/obiblio_logo.gif" width="170" height="35" border="0"></div>
-<div style="padding: 8px">
-<h1>Index:</h1>
-<ul>
-    <li><a href="#releaseNotes">Erscheinungsbemerkungen</a></li>
-    <li><a href="#sysReq">Systemvoraussetzungen</a></li>
-    <li><a href="#install">OpenBiblio 0.7.3(.x)-g Installationsanleitung (Neues System)</a></li>
-    <li><a href="#userlogin">Einrichten des Userlogin</a></li>
-    <li><a href="#update">Update einer früheren Version</a></li>
-</ul>
+<body bgcolor="#ffffff" topmargin="0" bottommargin="0" leftmargin="0"
+	rightmargin="0" marginheight="0" marginwidth="0">
+	<div style="background: #bebdbe">
+		<img src="images/obiblio_logo.gif" width="170" height="35" border="0">
+	</div>
+	<div style="padding: 8px">
+		<h1>Index:</h1>
+		<ul>
+			<li><a href="#releaseNotes">Erscheinungsbemerkungen</a></li>
+			<li><a href="#sysReq">Systemvoraussetzungen</a></li>
+			<li><a href="#install">OpenBiblio 0.8 Installationsanleitung
+					(Neues System)</a></li>
+			<li><a href="#userlogin">Einrichten des Userlogin</a></li>
+			<li><a href="#update">Update einer früheren Version</a></li>
+		</ul>
 
-<h1 id="releaseNotes">Erscheinungsbemerkungen</h1>
-<p>Version 0.7.3g wird für neue Installationen und zum updaten von älteren Openbiblio-Versionen empfohlen, da hiermit die Sicherheit verbessert wird. Die wichtigsten Änderungen sind im <a href="ChangeLog">ChangeLog</a> zu finden.</p>
-Update-Dringlichkeiten:
-<ul>
-  <li>Versionen vor 0.5.2: sehr wichtig. Das Update funktioniert auch mit den Versionen von openbiblio.de.</li>
-  <li>0.5.2: Die Dringlichkeit hängt ab von Kompatibilität, Bugfixes, Neuen Funktionen und dem Vertrauen in die Benutzer mit der Erlaubnis die Berichte aufzurufen.</li>
-  <li>0.6.0, 0.6.1: Die Dringlichkeit hängt ab von Kompatibilität, Bugfixes und Neuen Funktionen</li>
-  <li>0.7.0, 0.7.1: Viele Bugfixes für Neue Funktionen, besonders in der Ausleihe. Verbesserung der Sicherheit.</li>
-  <li>0.7.3 und größer: Update auf das aktuelle und sicherere Php 7.x möglich</li> 
-</ul>
-Bekannte Probleme:
-<ul>
-  <li>MARC wird nicht perfekt in der Datenbank abgespeichert (Problem 1, wird gefixed in obiblio-10-wip).</li>
-  <li>Wenn Sie bis ins Jahr 2038 noch nicht auf 64bit PHP geupdatet haben kann es zu Problemen bei der Berechnung von den Verspätungen, den entsprechenden Verspätungsgebühren und der Berechnung der Reservierungsdauer kommen. (Problem 51).</li>
-</ul>
-<p>OpenBiblio Testläufe arbeiteten erfolgreich in den folgenden Konfigurationen:</p>
-<blockquote>
-<table border=1>
-  <tr>
-    <th>Betriebssystem:</th>
-    <td>Debian 9.13 (GNU/Linux)</td>
-    <td>Ubuntu 14.04 (GNU/Linux)</td>
-    <td>Microsoft Windows 7</td>
-    <td>Ubuntu 9.04 (GNU/Linux)</td>
-    <td>Ubuntu 9.04 (GNU/Linux)</td>
-  </tr>
-  <tr>
-    <th>PHP Version:</th>
-    <td>7.4.15</td>
-    <td>7.1.13</td>
-    <td>5.6.0alpha3 VC11 <sup>EasyPHP</sup></td>
-    <td>5.3.1 <sup>XAMPP for Linux 173a</sup></td>
-    <td>4.3.9 <sup>XAMPP for Linux 149a</sup></td>
-  </tr>
-  <tr>
-    <th>Web Server:</th>
-    <td>Apache 2.4.25</td>
-    <td>Apache 2.4.7</td>
-    <td>Apache 2.4.7 VC11</td>
-    <td>Apache 2.2.14</td>
-    <td>Apache 2.0.52</td>
-  </tr>
-  <tr>
-    <th>MySql Version:</th>
-    <td>MariaDB 10.2.37</td>
-    <td>5.5.59</td>
-    <td>5.6.15 (niedrigere Versionen von 5.6 zählen die Ergebnisse nicht korrekt)</td>
-    <td>5.1.41</td>
-    <td>4.0.21</td>
-  </tr>
-</table>
-</blockquote>
-<h1 id="sysReq">Systemvoraussetzungen</h1>
-<ul>
-<li>PHP version 4.2.0 oder höher und ein Webserver, der dies unterstützt.</li>
-<li>MySQL version 4.0.12 oder höher</li>
-</ul>
-<div class="notice">
-Diese Version ist weiterhin kompatibel mit älteren Versionen von PHP und MySQL. Achten Sie aber darauf, dass sie für diese Versionen die Sicherheitsupdates einspielen.
-</div>
-<br>
-<div class="new">
-<strong>Oft genutzte Szenarien um ihr System den Anforderungen gerecht zu machen</strong>
-<ul>
-  <li>Linux: Fügen Sie die Software über ihren "Paketmanager" hinzu.</li>
-  <li>Windows: für eine Einzelplatzlösung oder zu Testzwecken sollte man ein "WAMP"-Paket wie <a href="http://www.easyphp.org">EasyPHP</a> oder <a href="http://www.apachefriends.org/de/xampp.html">XAMPP</a> nutzen.</li>
-  <li>Download und Installation der benötigten Software: siehe unten.</li>
-</ul>
-</div>
-<h1 id="install">Installationsanleitung</h1>
-<div class="new">
-Wenn ihr System schon den Anforderungen entspricht: machen sie weiter bei <a href="#step9">Schritt 9 und weiter.</a>
-</div>
-<br>
-<div class="new">
-Wenn Sie <i>phpMyAdmin</i> zum Einstellen ihrer Datenbank nutzen:
-<ul>
-  <li>Öffnen Sie das SQL-query Fenster.</li>
-  <li>Führen Sie dort die SQL-Kommandos aus <a href="#step9">Schritt 9</a> und Schritt 10, die unten beschrieben sind, aus.
-  Das Kommando ist der <b>dickgeschriebene</b> Teil direkt hinter mysql</li>
-  <li>Springen Sie zu <a href="#step12">Schritt 12</a> und beenden Sie die Prozedur.</li>
-</ul>
-</div>
-<h3>Prozedur</h3>
-<div class="notice">Schritte 1-8: Die Details sind eventuell etwas veraltet, aber die Grundlagen sind trotzdem gültig.</div>
-<ol>
-  <li>Um ihr System für OpenBiblio zu nutzen müssen Sie einen WebServer, PHP und MySQL installiert haben. Wenn Sie dieses nicht schon haben wird empfohlen für diese Installation <a href="http://www.apachefriends.org/de/xampp.html">XAMPP</a> zu nutzen, dieses bietet Ihnen mit einer Installation alle benötigten Programme (außer Openbiblio selber natürlich). XAMPP gibt es für <a href="http://www.apachefriends.org/de/xampp-windows.html">Windows</a>, <a href="http://www.apachefriends.org/de/xampp-linux.html">Linux</a>, <a href="http://www.apachefriends.org/de/xampp-macosx.html">MacOS X</a> und <a href="http://www.apachefriends.org/de/xampp-solaris.html">Solaris</a>. (ich danke Christopher Dagleish für den Hinweis auf XAMPP :-))</li>
-  <li>Laden Sie die für ihr System benötigte Version von <a href="http://www.apachefriends.org/de/xampp.html">XAMPP</a> herunter, dabei reicht theoretisch die Lite-Version, aber die volle Version wird trotzdem empfohlen (diese bietet auch regelmäßige Updates...). Installieren Sie anschließend das heruntergeladene XAMPP (die Installation wird auf der Seite der entsprechenden XAMPP-Version auf deutsch genau beschrieben und daher hier nicht weiter erklärt, aber lesen Sie bitte am besten alles dort durch :-)). Starten sie nun XAMPP, nach der dort beschriebenen Methode und schon haben Sie Apache, PHP und MySQL laufen. Fahren Sie nun mit der Einrichtung von OpenBiblio unter Punkt 7. fort!</li>
-  <li>Die folgenden Punkte 4-6 müssen Sie nur durchführen, falls Sie XAMPP nicht installiert haben bzw. nicht konnten (oder es aus welchen Gründen auch immer nicht lief):</li>
-  <li>Installieren Sie einen Webserver wie <a href="http://httpd.apache.org/">Apache</a>, der kompatibel mit PHP ist. Wenn sie Apache benutzen, machen Sie sich damit bekannt, wie man den Server startet und anhält. Eine Verknüpfung mit dieser Datei können sie einfach in ihr Autostartverzeichniss hinzufügen. Wenn Sie Linux benutzen sollte Apache normalerweise bei ihrer Linuxdistribution schon dabei sein und sich mit Linux automatisch starten.</li>
-  <li>Fügen Sie PHP zu ihrem Webserver als CGI oder als Module hinzu. Wenn Sie Apache 2.x benutzen, ist es stark empfohlen PHP als Modul statt als CGI zu installieren. Schauen sie auch 
-     <a href="http://de.php.net/manual/de/install.php">Beispiel 3-9. PHP and Apache 2.0 as Module</a> (derzeit leider nur in englisch) im <a href="http://www.php.net/manual/de/">PHP Handbuch</a> an, um mehr über die Installation von PHP zu erfahren.
-     <p>OpenBiblio benutzt Sessiondaten. Deshalb müssen Sie aufpassen, daß in PHP sessions angestellt sind. Passen Sie auf, daß sie ein Verzeichniss für Sessiondaten auf ihrem Server erstellen und den session.save_path in der php.ini-Datei festlegen. Die Standard php.ini setzt den session.save_path nach "/tmp". Deshalb müssen sie ein Verzeichniss c:/tmp (in Windows) erstellen. Trotz dessen sollten sie ein beschreibenderes Verzeichniss benutzen, erstellen sie ein sessiondata-Verzeichniss im PHP-Verzeichniss und ändern sie ihre php.ini-Datei entsprechend
-     <p>Beispiel php.ini Anweisung:
-     <pre>session.save_path = d:\PHP\sessiondata</pre>
-     
-     <p>Schauen Sie auch in die Sektion <a href="http://www.php.net/manual/de/ref.session.php">Session Funktionen</a> im PHP Handbuch für mehr Details über PHP-Sessions.
-  </li>
-  <li>Installieren Sie die MySQL Datenbank von <a href="http://www.mysql.com/">http://www.mysql.com/</a>. Machen Sie sich mit dem starten und stoppen des Servers vertraut.<br><br>Wenn Sie Linux benutzen, sollte MySQL ebenfalls schon dabei sein und mit Linux zusammen starten.</li>
-  <li>Die folgenden Punkte beschreiben das Einrichten von OpenBiblio und müssen von allen ausgeführt werden, die OpenBiblio das erste Mal installieren (egal ob sie XAMPP nutzen oder Apache, PHP, MySQL anders installiert haben):</li>
-  <li>Machen Sie sich vertraut mit dem einloggen unter MySQL aus dem DOS Promt heraus (oder vom Linuxprompt). Am besten nutzen Sie folgende Befehlsequenz.
-<blockquote><pre>
+		<h1 id="releaseNotes">Erscheinungsbemerkungen</h1>
+		<p>
+			Version 0.8 wird für neue Installationen und zum updaten von älteren
+			Openbiblio-Versionen empfohlen, da hiermit die Sicherheit verbessert
+			wird. Die wichtigsten Änderungen sind im <a href="ChangeLog">ChangeLog</a>
+			zu finden.
+		</p>
+		Update-Dringlichkeiten:
+		<ul>
+			<li>Versionen vor 0.5.2: sehr wichtig. Das Update funktioniert
+				auch mit den Versionen von openbiblio.de.</li>
+			<li>0.5.2: Die Dringlichkeit hängt ab von Kompatibilität,
+				Bugfixes, Neuen Funktionen und dem Vertrauen in die Benutzer mit der
+				Erlaubnis die Berichte aufzurufen.</li>
+			<li>0.6.0, 0.6.1: Die Dringlichkeit hängt ab von Kompatibilität,
+				Bugfixes und Neuen Funktionen</li>
+			<li>0.7.0, 0.7.1: Viele Bugfixes für Neue Funktionen, besonders
+				in der Ausleihe. Verbesserung der Sicherheit.</li>
+			<li>0.7.3.x: Update auf das aktuelle und sicherere PHP 7.x
+				möglich</li>
+			<li>0.8 und größer: Update auf das aktuelle und sicherere PHP
+				8.1/8.2 möglich (PHP bor 7.0 wird nicht mehr unterstützt!)</li>
+		</ul>
+		Bekannte Probleme:
+		<ul>
+			<li>MARC wird nicht perfekt in der Datenbank abgespeichert
+				(Problem 1, wird gefixed in obiblio-10-wip).</li>
+			<li>Wenn Sie bis ins Jahr 2038 noch nicht auf 64bit PHP
+				geupdatet haben kann es zu Problemen bei der Berechnung von den
+				Verspätungen, den entsprechenden Verspätungsgebühren und der
+				Berechnung der Reservierungsdauer kommen. (Problem 51).</li>
+		</ul>
+		<p>OpenBiblio Testläufe arbeiteten erfolgreich in den folgenden
+			Konfigurationen:</p>
+		<blockquote>
+			<table border=1>
+				<tr>
+					<th>Betriebssystem:</th>
+					<td>Debian GNU/Linux 10</td>
+					<td>Debian GNU/Linux 9.13</td>
+					<td>Ubuntu 14.04 (GNU/Linux)</td>
+				</tr>
+				<tr>
+					<th>PHP Version:</th>
+					<td>8.2.15</td>
+					<td>7.4.15</td>
+					<td>7.1.13</td>
+				</tr>
+				<tr>
+					<th>Web Server:</th>
+					<td>Apache 2.4.38</td>
+					<td>Apache 2.4.25</td>
+					<td>Apache 2.4.7</td>
+				</tr>
+				<tr>
+					<th>MySql Version:</th>
+					<td>MAriaDB 10.6.16</td>
+					<td>MAriaDB 10.2.37</td>
+					<td>5.5.59</td>
+				</tr>
+			</table>
+		</blockquote>
+		<h1 id="sysReq">Systemvoraussetzungen</h1>
+		<ul>
+			<li>PHP version 7.0 oder höher und ein Webserver, der dies
+				unterstützt. (PHP 4.2 mit Versionen bis 0.7.x)</li>
+			<li>MySQL version 4.0.12 oder höher</li>
+		</ul>
+		<div class="notice">Diese Version ist weiterhin kompatibel mit
+			älteren Versionen von PHP und MySQL. Achten Sie aber darauf, dass sie
+			für diese Versionen die Sicherheitsupdates einspielen.</div>
+		<br>
+		<div class="new">
+			<strong>Oft genutzte Szenarien um ihr System den
+				Anforderungen gerecht zu machen</strong>
+			<ul>
+				<li>Linux: Fügen Sie die Software über ihren "Paketmanager"
+					hinzu.</li>
+				<li>Windows: für eine Einzelplatzlösung oder zu Testzwecken
+					sollte man ein "WAMP"-Paket wie <a href="http://www.easyphp.org">EasyPHP</a>
+					oder <a href="https://www.apachefriends.org/">XAMPP</a> nutzen.
+				</li>
+				<li>Download und Installation der benötigten Software: siehe
+					unten.</li>
+			</ul>
+		</div>
+		<h1 id="install">Installationsanleitung</h1>
+		<div class="new">
+			Wenn ihr System schon den Anforderungen entspricht: machen sie weiter
+			bei <a href="#step9">Schritt 9 und weiter.</a>
+		</div>
+		<br>
+		<div class="new">
+			Wenn Sie <i>phpMyAdmin</i> zum Einstellen ihrer Datenbank nutzen:
+			<ul>
+				<li>Öffnen Sie das SQL-query Fenster.</li>
+				<li>Führen Sie dort die SQL-Kommandos aus <a href="#step9">Schritt
+						9</a> und Schritt 10, die unten beschrieben sind, aus. Das Kommando
+					ist der <b>dickgeschriebene</b> Teil direkt hinter mysql
+				</li>
+				<li>Springen Sie zu <a href="#step12">Schritt 12</a> und
+					beenden Sie die Prozedur.
+				</li>
+			</ul>
+		</div>
+		<h3>Prozedur</h3>
+		<div class="notice">Schritte 1-8: Die Details sind eventuell
+			etwas veraltet, aber die Grundlagen sind trotzdem gültig.</div>
+		<ol>
+			<li>Um ihr System für OpenBiblio zu nutzen müssen Sie einen
+				WebServer, PHP und MySQL installiert haben. Wenn Sie dieses nicht
+				schon haben wird empfohlen für diese Installation <a
+				href="https://www.apachefriends.org/">XAMPP</a> zu nutzen, dieses
+				bietet Ihnen mit einer Installation alle benötigten Programme (außer
+				Openbiblio selber natürlich). XAMPP gibt es für Windows, Linux und
+				MacOS X. (ich danke Christopher Dagleish für den Hinweis auf XAMPP
+				:-))
+			</li>
+			<li>Laden Sie die für ihr System benötigte Version von <a
+				href="http://www.apachefriends.org/de/xampp.html">XAMPP</a>
+				herunter, dabei reicht theoretisch die Lite-Version, aber die volle
+				Version wird trotzdem empfohlen (diese bietet auch regelmäßige
+				Updates...). Installieren Sie anschließend das heruntergeladene
+				XAMPP (die Installation wird auf der Seite der entsprechenden
+				XAMPP-Version auf deutsch genau beschrieben und daher hier nicht
+				weiter erklärt, aber lesen Sie bitte am besten alles dort durch
+				:-)). Starten sie nun XAMPP, nach der dort beschriebenen Methode und
+				schon haben Sie Apache, PHP und MySQL laufen. Fahren Sie nun mit der
+				Einrichtung von OpenBiblio unter Punkt 7. fort!
+			</li>
+			<li>Die folgenden Punkte 4-6 müssen Sie nur durchführen, falls
+				Sie XAMPP nicht installiert haben bzw. nicht konnten (oder es aus
+				welchen Gründen auch immer nicht lief):</li>
+			<li>Installieren Sie einen Webserver wie <a
+				href="http://httpd.apache.org/">Apache</a>, der kompatibel mit PHP
+				ist. Wenn sie Apache benutzen, machen Sie sich damit bekannt, wie
+				man den Server startet und anhält. Eine Verknüpfung mit dieser Datei
+				können sie einfach in ihr Autostartverzeichniss hinzufügen. Wenn Sie
+				Linux benutzen sollte Apache normalerweise bei ihrer
+				Linuxdistribution schon dabei sein und sich mit Linux automatisch
+				starten.
+			</li>
+			<li>Fügen Sie PHP zu ihrem Webserver als CGI oder als Module
+				hinzu. Wenn Sie Apache 2.x benutzen, ist es stark empfohlen PHP als
+				Modul statt als CGI zu installieren. Schauen sie auch <a
+				href="http://de.php.net/manual/de/install.php">Beispiel 3-9. PHP
+					and Apache 2.0 as Module</a> (derzeit leider nur in englisch) im <a
+				href="http://www.php.net/manual/de/">PHP Handbuch</a> an, um mehr
+				über die Installation von PHP zu erfahren.
+				<p>OpenBiblio benutzt Sessiondaten. Deshalb müssen Sie
+					aufpassen, daß in PHP sessions angestellt sind. Passen Sie auf, daß
+					sie ein Verzeichniss für Sessiondaten auf ihrem Server erstellen
+					und den session.save_path in der php.ini-Datei festlegen. Die
+					Standard php.ini setzt den session.save_path nach "/tmp". Deshalb
+					müssen sie ein Verzeichniss c:/tmp (in Windows) erstellen. Trotz
+					dessen sollten sie ein beschreibenderes Verzeichniss benutzen,
+					erstellen sie ein sessiondata-Verzeichniss im PHP-Verzeichniss und
+					ändern sie ihre php.ini-Datei entsprechend
+				<p>Beispiel php.ini Anweisung:
+				<pre>session.save_path = d:\PHP\sessiondata</pre>
+
+				<p>
+					Schauen Sie auch in die Sektion <a
+						href="http://www.php.net/manual/de/ref.session.php">Session
+						Funktionen</a> im PHP Handbuch für mehr Details über PHP-Sessions.
+			</li>
+			<li>Installieren Sie die MySQL Datenbank von <a
+				href="http://www.mysql.com/">http://www.mysql.com/</a>. Machen Sie
+				sich mit dem starten und stoppen des Servers vertraut.<br> <br>Wenn
+				Sie Linux benutzen, sollte MySQL ebenfalls schon dabei sein und mit
+				Linux zusammen starten.
+			</li>
+			<li>Die folgenden Punkte beschreiben das Einrichten von
+				OpenBiblio und müssen von allen ausgeführt werden, die OpenBiblio
+				das erste Mal installieren (egal ob sie XAMPP nutzen oder Apache,
+				PHP, MySQL anders installiert haben):</li>
+			<li>Machen Sie sich vertraut mit dem einloggen unter MySQL aus
+				dem DOS Promt heraus (oder vom Linuxprompt). Am besten nutzen Sie
+				folgende Befehlsequenz.
+				<blockquote>
+					<pre>
 C:\><b>c:\mysql\bin\mysql -uroot mysql</b>
 Enter password: <b>*********</b>
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -156,41 +246,51 @@ mysql> <b>exit</b>
 Bye
 
 C:\>
-</pre></blockquote>
-  </li>     
+</pre>
+				</blockquote>
+			</li>
 
 
-  <li id="step9">Erstellen Sie die OpenBiblio Datenbank. Um dies zu tun, loggen Sie sich in MySQL mit dem AdminAccount ein (wie oben beschrieben) und führen sie folgendes SQL Kommando aus.
-     <blockquote><pre>
+			<li id="step9">Erstellen Sie die OpenBiblio Datenbank. Um dies
+				zu tun, loggen Sie sich in MySQL mit dem AdminAccount ein (wie oben
+				beschrieben) und führen sie folgendes SQL Kommando aus.
+				<blockquote>
+					<pre>
 mysql> <b>create database OpenBiblio /*!40100 default character set utf8 */;</b>
 </pre>
-<div class="new">
-<strong>Neu:</strong> Der bedingte Kommentar <b>/* ... */ </b>wird in MySQL 4.1.0 oder höher ausgeführt und spezifiziert utf8_general_ci als Standard-Datenbank Zeichensatz für die Datenbank, die erstellt wird.
-</div>
-<br>
-<div class="notice">
-In alten Anleitungen wurde hier immer latin1 empfohlen, auf modernen System sollte aber nur noch utf8 verwendet werden, da hier die Eingabe von Sonderzeichen deutlich flexibler ist.
-<table border="1">
-<tr>
-<th>Datenbank&nbsp;Zeichensatz</th>
-<th>Registerkarte Admin: Bibliothekseinstellunegn, Feld <i>HTML&nbsp;Zeichensatz</i></th>
-<th>Kommentar</th>
-</tr>
-<tr>
-<td>latin1</td>
-<td>iso-8859-1</td>
-<td>Probleme bei der Darstellung von Umlauten etc.</td>
-</tr>
-<tr>
-<td>utf8<br><i>(empfohlen)</i></td>
-<td>UTF-8<br><i>(Initialwert, von der Installation gesetzt)</i></td>
-<td>PDF Layouts machen noch Probleme, wird noch geändert</td>
-</tr>
-</table>
-</div>
-<br>
-    Um zu überprüfen, ob die Datenbank wirklich angelegt wurde führen Sie folgendes Kommando aus.
-<pre>
+					<div class="new">
+						<strong>Neu:</strong> Der bedingte Kommentar <b>/* ... */ </b>wird
+						in MySQL 4.1.0 oder höher ausgeführt und spezifiziert
+						utf8_general_ci als Standard-Datenbank Zeichensatz für die
+						Datenbank, die erstellt wird.
+					</div>
+					<br>
+					<div class="notice">
+						In alten Anleitungen wurde hier immer latin1 empfohlen, auf
+						modernen System sollte aber nur noch utf8 verwendet werden, da
+						hier die Eingabe von Sonderzeichen deutlich flexibler ist.
+						<table border="1">
+							<tr>
+								<th>Datenbank&nbsp;Zeichensatz</th>
+								<th>Registerkarte Admin: Bibliothekseinstellunegn, Feld <i>HTML&nbsp;Zeichensatz</i></th>
+								<th>Kommentar</th>
+							</tr>
+							<tr>
+								<td>latin1</td>
+								<td>iso-8859-1</td>
+								<td>Probleme bei der Darstellung von Umlauten etc.</td>
+							</tr>
+							<tr>
+								<td>utf8<br> <i>(empfohlen)</i></td>
+								<td>UTF-8<br> <i>(Initialwert, von der
+										Installation gesetzt)</i></td>
+								<td>PDF Layouts machen noch Probleme, wird noch geändert</td>
+							</tr>
+						</table>
+					</div>
+					<br> Um zu überprüfen, ob die Datenbank wirklich angelegt
+					wurde führen Sie folgendes Kommando aus.
+					<pre>
 mysql> <b>show databases;</b>
 +--------------+
 | Database     |
@@ -198,80 +298,164 @@ mysql> <b>show databases;</b>
 | mysql        |
 | OpenBiblio   |
 +--------------+
-</pre></blockquote>
+</pre>
+				</blockquote>
 
-  </li>
+			</li>
 
-<li id="step10">Erstellen Sie den OpenBiblio Datenbank-Benutzer. Um dies zu tun loggen sie sich in MySQL mit dem admin-Account ein und führen Sie folgendes Kommando aus, wobei Sie <i>obiblio_user</i> und <i>obiblio_password</i> mit einem Usernamen und einem Passwort ihrer Wahl ersetzen.
-<blockquote><table><tr>
-<td><pre>mysql> 
+			<li id="step10">Erstellen Sie den OpenBiblio Datenbank-Benutzer.
+				Um dies zu tun loggen sie sich in MySQL mit dem admin-Account ein
+				und führen Sie folgendes Kommando aus, wobei Sie <i>obiblio_user</i>
+				und <i>obiblio_password</i> mit einem Usernamen und einem Passwort
+				ihrer Wahl ersetzen.
+				<blockquote>
+					<table>
+						<tr>
+							<td><pre>mysql> 
     -> </pre></td>
-<td><pre><b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost</b>
-<b>identified by '<i>obiblio_password</i>';</b></pre></td>
-</tr></table></blockquote>
-  </li>
+							<td><pre>
+									<b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost</b>
+<b>identified by '<i>obiblio_password</i>';</b>
+								</pre></td>
+						</tr>
+					</table>
+				</blockquote>
+			</li>
 
 
-  <li>Prüfen Sie ihre Datenbank und den Benutzer, indem Sie sich als Benutzer einloggen.
-<blockquote><pre>
+			<li>Prüfen Sie ihre Datenbank und den Benutzer, indem Sie sich
+				als Benutzer einloggen.
+				<blockquote>
+					<pre>
 <b>C:\mysql\bin\mysql -u<i>obiblio_user</i> -p<i>obiblio_password</i> OpenBiblio</b>
-</pre></blockquote>
-  </li>
+</pre>
+				</blockquote>
+			</li>
 
-  <li id="step11">Kopieren Sie das openbiblio-Verzeichnis und seinen gesamten Inhalt in das htdocs-Verzeichnis oder einen Unterordner ihres htdocs-Verzeichnis ihres Webservers.</li>
-  <li id="step12">Bearbeiten sie die Datei database_constants.php (befindet sich im Hauptverzeichniss von openbiblio) mit einem Texteditor ihrer Wahl.
-    Ändern sie den Username und das Passwort auf den neu erstellten MySQL-Benutzer und dessen Passwort (den sie im vorigen Schritt erstellt haben).
-  </li>
-  <li>Erstellen sie die OpenBiblio Tabellen. Um dies zu machen führen Sie das Install-Skript aus, welches Sie mit <a href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a> aufrufen können, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss in das htdocs-Verzeichniss ihres Webservers kopiert haben.
-  </li>
-  <li><strong>Für die Sicherheit:</strong> Entfernen Sie das Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf die install- oder update-Tools zu verhindern.</li>
-  <li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die display_errors Einstellung in der php.ini ist 'Off' um zu verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
-  <li><strong>Für die Sicherheit:</strong> Wechseln Sie in das openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei database_constants.php auf die Apache-Gruppe (meist www-data) und ändern Sie die Rechte auf 440. (chgrp www-data database_constants.php; chmod 440 database_constants.php)</li>
-  <li>Greifen Sie auf ihre neue Bibliothekssoftware unter <a href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a> zu, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss in das htdocs-Verzeichniss ihres Webservers kopiert haben.
-  Geben Sie zum einloggen "admin" als Username und als Passwort ein, sobald sie sich einloggen müssen. Sie können das Admin-Passwort ändern in der "Admin"-Registerkarte unter Mitarbeiter, wo Sie auch neue Mitarbeiter hinzufügen können.
-  </li>
-</ol>
+			<li id="step11">Kopieren Sie das openbiblio-Verzeichnis und
+				seinen gesamten Inhalt in das htdocs-Verzeichnis oder einen
+				Unterordner ihres htdocs-Verzeichnis ihres Webservers.</li>
+			<li id="step12">Bearbeiten sie die Datei database_constants.php
+				(befindet sich im Hauptverzeichniss von openbiblio) mit einem
+				Texteditor ihrer Wahl. Ändern sie den Username und das Passwort auf
+				den neu erstellten MySQL-Benutzer und dessen Passwort (den sie im
+				vorigen Schritt erstellt haben).</li>
+			<li>Erstellen sie die OpenBiblio Tabellen. Um dies zu machen
+				führen Sie das Install-Skript aus, welches Sie mit <a
+				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>
+				aufrufen können, wobei ich davon ausgehe, daß sie das
+				openbiblio-Verzeichniss in das htdocs-Verzeichniss ihres Webservers
+				kopiert haben.
+			</li>
+			<li><strong>Für die Sicherheit:</strong> Entfernen Sie das
+				Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf
+				die install- oder update-Tools zu verhindern.</li>
+			<li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die
+				display_errors Einstellung in der php.ini ist 'Off' um zu
+				verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
+			<li><strong>Für die Sicherheit:</strong> Wechseln Sie in das
+				openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei
+				database_constants.php auf die Apache-Gruppe (meist www-data) und
+				ändern Sie die Rechte auf 440. (chgrp www-data
+				database_constants.php; chmod 440 database_constants.php)</li>
+			<li>Greifen Sie auf ihre neue Bibliothekssoftware unter <a
+				href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a>
+				zu, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss in
+				das htdocs-Verzeichniss ihres Webservers kopiert haben. Geben Sie
+				zum einloggen "admin" als Username und als Passwort ein, sobald sie
+				sich einloggen müssen. Sie können das Admin-Passwort ändern in der
+				"Admin"-Registerkarte unter Mitarbeiter, wo Sie auch neue
+				Mitarbeiter hinzufügen können.
+			</li>
+		</ol>
 
-<br>
+		<br>
 
-	<h1 id="userlogin">Einrichten des Userlogin:</h1>
-	<p>Beim Userlogin habe ich versucht eine Version zu programmieren, die nicht die bisherige Datenbankstruktur anfässt oder erweitert, damit auch weiterhin Updates der deutschen Version zur englischen Originalversion möglich sind und die Datenbankeinträge die gleichen bleiben. Daher habe ich einige Funktionen, die openbiblio schon hat für diese neue Funktionalität benutzt. Aus diesem Grund war es mir aber auch nicht möglich eine echte Passwortfunktion zu verwenden, sondern nur ein Geheimwort (welches aber im Klartext in der Datenbank gespeichert wird und vom Bibliothekar auch im Klartext lesbar ist).</p>
-	<p>Im folgenden wird erklärt, wie man das Userlogin (ab Version 0.7.2g) einrichtet, da es ohne diese zusätzliche Einrichtung nicht funktioniert</p>
-<ol>
-  <li>In Openbiblio unter <a href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a> einloggen und dort in den Admin-Bereich wechseln.
-  </li>
-  <li>Hier in den Bereich Mitgliederfelder wechseln und dort ein neues spezifisches Feld hinzufügen.
-  </li>
-  <li>Das neue Feld muss unbedingt als Kennzeichen "secret" benannt werden. In der Beschreibung können Sie die Bezeichnung selber wählen, ich selber verwende hier "Geheimes Wort". Das Ganze anschliessend übermitteln.
-  </li>
-  <li>Ab jetzt ist unter <a href="http://localhost/openbiblio/opac/index.html">http://localhost/openbiblio/opac/index.html</a> das Benutzerlogin freigeschaltet.
-  </li>
-  <li>In den Benutzerinfos eines Mitglieds kann man ab nun das Geheime Wort hinterlegen. Sobald dies hinterlegt ist kann sich dieses Mitglied unter <a href="http://localhost/openbiblio/opac/loginform.php">http://localhost/openbiblio/opac/loginform.php</a> unter Angabe der Benutzernummer und des Geheimwort einloggen und seine Medien verlängern bzw. Vorbestellungen vornehmen. Wenn ein Mitglied kein Geheimwort hinterlegt hat erscheint hier die Info, dass er ein Geheimes Wort hinterlegen lassen muss.
-  </li>
- </ol>
+		<h1 id="userlogin">Einrichten des Userlogin:</h1>
+		<p>Beim Userlogin habe ich versucht eine Version zu programmieren,
+			die nicht die bisherige Datenbankstruktur anfässt oder erweitert,
+			damit auch weiterhin Updates der deutschen Version zur englischen
+			Originalversion möglich sind und die Datenbankeinträge die gleichen
+			bleiben. Daher habe ich einige Funktionen, die openbiblio schon hat
+			für diese neue Funktionalität benutzt. Aus diesem Grund war es mir
+			aber auch nicht möglich eine echte Passwortfunktion zu verwenden,
+			sondern nur ein Geheimwort (welches aber im Klartext in der Datenbank
+			gespeichert wird und vom Bibliothekar auch im Klartext lesbar ist).</p>
+		<p>Im folgenden wird erklärt, wie man das Userlogin (ab Version
+			0.7.2g) einrichtet, da es ohne diese zusätzliche Einrichtung nicht
+			funktioniert</p>
+		<ol>
+			<li>In Openbiblio unter <a
+				href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a>
+				einloggen und dort in den Admin-Bereich wechseln.
+			</li>
+			<li>Hier in den Bereich Mitgliederfelder wechseln und dort ein
+				neues spezifisches Feld hinzufügen.</li>
+			<li>Das neue Feld muss unbedingt als Kennzeichen "secret"
+				benannt werden. In der Beschreibung können Sie die Bezeichnung
+				selber wählen, ich selber verwende hier "Geheimes Wort". Das Ganze
+				anschliessend übermitteln.</li>
+			<li>Ab jetzt ist unter <a
+				href="http://localhost/openbiblio/opac/index.html">http://localhost/openbiblio/opac/index.html</a>
+				das Benutzerlogin freigeschaltet.
+			</li>
+			<li>In den Benutzerinfos eines Mitglieds kann man ab nun das
+				Geheime Wort hinterlegen. Sobald dies hinterlegt ist kann sich
+				dieses Mitglied unter <a
+				href="http://localhost/openbiblio/opac/loginform.php">http://localhost/openbiblio/opac/loginform.php</a>
+				unter Angabe der Benutzernummer und des Geheimwort einloggen und
+				seine Medien verlängern bzw. Vorbestellungen vornehmen. Wenn ein
+				Mitglied kein Geheimwort hinterlegt hat erscheint hier die Info,
+				dass er ein Geheimes Wort hinterlegen lassen muss.
+			</li>
+		</ol>
 
 
-<br>
-<h1 id="update">Update einer früheren Version:</h1>
-<ol>
-  <li>Benennen Sie ihr altes openbiblio-Verzeichniss um, so dass der Inhalt nicht verloren geht. Wir nennen hier das alte Verzeichnis openbiblio-old.
-  </li>
-  <li>Kopieren Sie das neue openbiblio-Verzeichnis und seinen Inhalt in ein Verzeichnis, das benannt werden sollte, wie das alte vorher hieß.
-  </li>
-  <li>Kopieren Sie die Datei database_constants.php aus dem openbiblio-old Verzeichnis in das neue openbiblio-Verzeichnis, indem Sie die Datei database_constants.php darin ersetzen.
-  </li>
-  <li>Erstellen sie unbedingt ein Backup ihrer Datenbank. Lesen Sie dazu die MySQL Dokumentation für eine Anleitung. (mysqldump benutzen)
-  </li>
-  <li>Updaten Sie die OpenBiblio-Datenbank-Tabellen, indem Sie das Konversions-Tool nutzen, welches sie unter <a href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a> finden, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss in das htdocs-Verzeichniss ihres Webservers kopiert haben.  Wenn es auf einem entfernten Server installiert ist, ist auch der erste Teil der Adresse unterschiedlich. Wenn die Tabellen schon OK sind dann sagt das Tool: nein
-  </li>
-  <li><strong>Für die Sicherheit:</strong> Entfernen Sie das Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf die install- oder update-Tools zu verhindern. Falls vorhanden entfernen Sie auch das openbiblio/tests-Verzeichniss</li>
-  <li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die display_errors Einstellung in der php.ini ist 'Off' um zu verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
-  <li><strong>Für die Sicherheit:</strong> Wechseln Sie in das openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei database_constants.php auf die Apache-Gruppe (meist www-data) und ändern Sie die Rechte auf 440. (chgrp www-data database_constants.php; chmod 440 database_constants.php)</li>
-</ol>
-<div class="notice">
-	<strong>Updates von 0.7.0:</strong> 0.7.2.2g ist ein Bugfix für 0.7.x: es funktioniert ohne, dass sie die Datenbank upgraden. Trotz alledem wird Schritt 5 empfohlen. Dieses bereinigt ungenutzte Einträge aus der Datenbank und entfernt einige Restriktionen.<br>
-<strong>Updates von 0.7.1 oder höher:</strong> 0.7.3g ist ein Bugfix für 0.7.x: es funktioniert ohne, dass sie die Datenbank upgraden.
-</div>
-</div>
+		<br>
+		<h1 id="update">Update einer früheren Version:</h1>
+		<ol>
+			<li>Benennen Sie ihr altes openbiblio-Verzeichniss um, so dass
+				der Inhalt nicht verloren geht. Wir nennen hier das alte Verzeichnis
+				openbiblio-old.</li>
+			<li>Kopieren Sie das neue openbiblio-Verzeichnis und seinen
+				Inhalt in ein Verzeichnis, das benannt werden sollte, wie das alte
+				vorher hieß.</li>
+			<li>Kopieren Sie die Datei database_constants.php aus dem
+				openbiblio-old Verzeichnis in das neue openbiblio-Verzeichnis, indem
+				Sie die Datei database_constants.php darin ersetzen.</li>
+			<li>Erstellen sie unbedingt ein Backup ihrer Datenbank. Lesen
+				Sie dazu die MySQL Dokumentation für eine Anleitung. (mysqldump
+				benutzen)</li>
+			<li>Updaten Sie die OpenBiblio-Datenbank-Tabellen, indem Sie das
+				Konversions-Tool nutzen, welches sie unter <a
+				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>
+				finden, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss
+				in das htdocs-Verzeichniss ihres Webservers kopiert haben. Wenn es
+				auf einem entfernten Server installiert ist, ist auch der erste Teil
+				der Adresse unterschiedlich. Wenn die Tabellen schon OK sind dann
+				sagt das Tool: nein
+			</li>
+			<li><strong>Für die Sicherheit:</strong> Entfernen Sie das
+				Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf
+				die install- oder update-Tools zu verhindern. Falls vorhanden
+				entfernen Sie auch das openbiblio/tests-Verzeichniss</li>
+			<li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die
+				display_errors Einstellung in der php.ini ist 'Off' um zu
+				verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
+			<li><strong>Für die Sicherheit:</strong> Wechseln Sie in das
+				openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei
+				database_constants.php auf die Apache-Gruppe (meist www-data) und
+				ändern Sie die Rechte auf 440. (chgrp www-data
+				database_constants.php; chmod 440 database_constants.php)</li>
+		</ol>
+		<div class="notice">
+			<strong>Updates von 0.7.0:</strong> 0.8 ist ein Bugfix für 0.7.x: es
+			funktioniert ohne, dass sie die Datenbank upgraden. Trotz alledem
+			wird Schritt 5 empfohlen. Dieses bereinigt ungenutzte Einträge aus
+			der Datenbank und entfernt einige Restriktionen.<br> <strong>Updates
+				von 0.7.1 oder höher:</strong> 0.8 ist ein Bugfix für 0.7.x: es funktioniert
+			ohne, dass sie die Datenbank upgraden.
+		</div>
+	</div>
 </body>
 </html>
