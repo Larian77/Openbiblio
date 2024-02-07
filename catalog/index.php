@@ -68,9 +68,13 @@ if (isset($_GET["msg"])) {
 					
 					
 					
+					
+					
 					<option value="author">
             <?php echo $loc->getText("indexAuthor"); ?>
           
+					
+					
 					
 					
 					
@@ -80,9 +84,13 @@ if (isset($_GET["msg"])) {
 					
 					
 					
+					
+					
 					<option value="subject">
             <?php echo $loc->getText("indexSubject"); ?>
           
+					
+					
 					
 					
 					
@@ -92,9 +100,13 @@ if (isset($_GET["msg"])) {
 					
 					
 					
+					
+					
 					<option value="all">
             <?php echo $loc->getText("indexAll"); ?>
         
+			
+			
 			
 			
 			
@@ -164,7 +176,6 @@ if (isset($_GET["msg"])) {
         ?>
 
         </font></td>
-			</font>
 		</tr>
 
 

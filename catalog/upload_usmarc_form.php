@@ -28,12 +28,11 @@ $loc = new Localize(OBIB_LOCALE, $tab);
 		type="radio" value="true" name="test" checked>  <?php echo $loc->getText("MarcUploadTestFalse"); ?><input
 		type="radio" value="false" name="test"><br />
 <?php echo $loc->getText("MarcUploadTestFileUpload"); ?>: <input
-		type="file" name="usmarc_data"><br>
-	<br>
+		type="file" name="usmarc_data"><br> <br>
 
 	<hr />
 	<b>Defaults:</b>
-	<table border="0">
+	<table style="border: none">
 		<tr>
 			<td><?php echo $loc->getText("biblioFieldsCollection"); ?>:</td>
 			<td><?php printSelect("collectionCd","collection_dm",$postVars); ?></td>
