@@ -35,6 +35,9 @@ require_once ("../classes/UsmarcTagDm.php");
 require_once ("../classes/UsmarcTagDmQuery.php");
 require_once ("../classes/UsmarcSubfieldDm.php");
 require_once ("../classes/UsmarcSubfieldDmQuery.php");
+#+ mibl fix issue #5
+require_once("../classes/MaterialFieldQuery.php");
+#- mibl
 require_once ("../functions/marcFuncs.php");
 require_once ("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE, "shared");
@@ -105,6 +108,15 @@ if (! $biblio = $biblioQ->doQuery($bibid, $tab)) {
     displayErrorPage($biblioQ);
 }
 $biblioFlds = $biblio->getBiblioFields();
+
+# * +mibl01 fix issue #5
+# * get descriptions of MaterialFields
+$matQ = new MaterialFieldQuery();
+$matQ->connect();
+$materialCd = $biblio->getMaterialCd();
+$matSubflds = $matQ->fetchRowsAsUsmarcsubfieldDm($materialCd);
+$matQ->close();
+# * -mibl01
 
 # **************************************************************************
 # * Show bibliography info.
@@ -376,7 +388,14 @@ if (! $copy = $copyQ->execSelect($bibid)) {
             ?>
             <tr>
 		<td valign="top" class="primary">
-                    <?php printUsmarcText($field->getTag(), $field->getSubfieldCd(), $marcTags, $marcSubflds, FALSE); ?>:
+		<?php
+            // There is certainly a better solution, but an arraymerge of both arrays destroys the indices if they are 4-digit numbers
+            // This Solution works because the value you are looking for is always only in one of the two arrays.
+            printUsmarcText($field->getTag(), $field->getSubfieldCd(), $marcTags, $marcSubflds, FALSE);
+            if (is_array($matSubflds))
+                printUsmarcText($field->getTag(), $field->getSubfieldCd(), $marcTags, $matSubflds, FALSE);
+            ?>
+			:
                 </td>
 		<td valign="top" class="primary">
                     <?php echo H($field->getFieldData()); ?>
