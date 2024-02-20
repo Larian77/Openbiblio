@@ -7,3 +7,4 @@ insert into %prfx%biblio_status_dm values ('lst','lost','N');
 insert into %prfx%biblio_status_dm values ('ln','on loan','N');
 insert into %prfx%biblio_status_dm values ('ord','on order','N');
 insert into %prfx%biblio_status_dm values ('crt','shelving cart','N');
+insert into %prfx%biblio_status_dm values ('pre','Presence','N');

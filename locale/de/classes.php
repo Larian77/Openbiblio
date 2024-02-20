@@ -204,6 +204,7 @@ $trans["Member owes fines: checkout not allowed"]                 = "\$text = 'B
 $trans["Member must renew membership before checking out."]       = "\$text = 'Das Mitglied muss seine Mitgliedschaft verlängern bevor es ausleihen darf.';";
 $trans["Bad copy barcode: %bcode%"]                               = "\$text = 'Falsche Exemplarnummer: %bcode%';";
 $trans["Item %bcode% has reached its renewal limit."]             = "\$text = 'Das Exemplar %bcode% hat sein Verlängerungslimit erreicht.';";
+$trans["Item %bcode% is a presentation copy."]                    = "\$text = 'Das Exemplar %bcode% ist ein Präsenzexemplar und kann nicht ausgeliehen werden.';";
 $trans["Item %bcode% is late and cannot be renewed."]             = "\$text = 'Das Exemplar %bcode% ist zu spät und darf nicht verlängert werden.';";
 $trans["Item %bcode% is on hold."]                                = "\$text = 'Das Exemplar %bcode% ist schon vorbestellt.';";
 $trans["Item %bcode% is already checked out to another member."]  = "\$text = 'Das Exemplar %bcode% ist bereits an ein anderes Mitglied verliehen.';";

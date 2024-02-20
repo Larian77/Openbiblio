@@ -408,9 +408,10 @@ mysql> <b>show databases;</b>
 			<strong>Updates from 0.7.0:</strong> 0.8 is a bugfix release to
 			0.7.x: it can run without upgrading the database. However, step 5 is
 			recommended. This cleans unused entries from the database and lifts
-			some restrictions.<br> <strong>Updates from 0.7.1 or
-				higher:</strong> 0.8 is a bugfix release to 0.7.x: it can run without
-			upgrading the database.
+			some restrictions.*<br> 
+			<strong>Updates from 0.7.1 or higher:</strong> 0.8 is a bugfix release to 0.7.x: it can run without
+			upgrading the database.*<br>
+			<strong>*</strong> If you want to use the new presence function (from 0.8) in your existing database, you must execute the following command in your database: <i>insert into biblio_status_dm values ('pre','Presence','N');</i>
 		</div>
 	</div>
 </body>

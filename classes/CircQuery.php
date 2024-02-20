@@ -95,6 +95,9 @@ class CircQuery extends Query
         if (!$copy)
             return new ObibError($this->_loc->getText("Bad copy barcode: %bcode%", array('bcode' => $bcode)));
         $fee2 = $copyQ->getDailyLateFee($copy);
+        if ($copy->getStatusCd() == OBIB_STATUS_ON_PRESENCE) {
+            return new ObibError($this->_loc->getText("Item %bcode% is a presentation copy.", array('bcode' => $bcode)));
+        }
         if ($copy->getStatusCd() == OBIB_STATUS_OUT) {
             if ($copy->getMbrid() == $mbrid) {
                 # Renewal
