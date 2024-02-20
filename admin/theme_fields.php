@@ -7,6 +7,10 @@ global $loc;
 global $postVars;
 global $pageErrors;
 
+if (! isset($postVars["titleAlign"])) {
+    $postVars["titleAlign"] = "";
+}
+
 ?>
 
 <table class="primary">
