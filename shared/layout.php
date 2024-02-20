@@ -77,6 +77,7 @@ if (empty($defs) or isset($_REQUEST['filled'])) {
 # Must ask for parameters
 $nav = "layoutparams";
 $focus_form_name = "layoutparamform";
+$focus_form_field = "lay_skip";
 
 require_once("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE, 'reports');
