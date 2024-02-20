@@ -24,6 +24,7 @@
  &nbsp; &raquo; <?php echo $navLoc->getText("catalogBibInfo");?><br>
  &nbsp; &nbsp; <a href="../catalog/biblio_edit.php?bibid=<?php echo HURL($bibid);?>" class="alt1"><?php echo $navLoc->getText("catalogBibEdit");?></a><br>
  &nbsp; &nbsp; <a href="../catalog/biblio_marc_list.php?bibid=<?php echo HURL($bibid);?>" class="alt1"><?php echo $navLoc->getText("catalogBibEditMarc");?></a><br>
+ &nbsp; &nbsp; <a href="../catalog/upload_picture_form.php?bibid=<?php echo HURL($bibid);?>" class="alt1"><?php echo $navLoc->getText("catalogUploadPicture");?></a><br>
  &nbsp; &nbsp; <a href="../catalog/biblio_history.php?bibid=<?php echo HURL($bibid);?>" class="alt1"><?php echo $navLoc->getText("History");?></a><br>
  &nbsp; &nbsp; <a href="../catalog/biblio_copy_new_form.php?bibid=<?php echo HURL($bibid);?>&reset=Y" class="alt1"><?php echo $navLoc->getText("catalogCopyNew");?></a><br>
  &nbsp; &nbsp; <a href="../catalog/biblio_hold_list.php?bibid=<?php echo HURL($bibid);?>" class="alt1"><?php echo $navLoc->getText("catalogHolds");?></a><br>
