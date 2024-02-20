@@ -23,7 +23,7 @@ $fields = array(
 foreach ($customFields as $name => $title) {
     $fields[$title . ':'] = inputField('text', 'custom_' . $name, $mbr->getCustom($name));
 }
-$fields["mbrFldsMbrShip"] = inputField('text', "membershipEnd", (! empty($mbr->getMembershipEnd()) ? $mbr->getMembershipEnd() : '9999-12-31'));
+$fields["mbrFldsMbrShip"] = inputField('text', "membershipEnd", (!empty($mbr->getMembershipEnd()) ? $mbr->getMembershipEnd() : '') );
 $fields["mbrFldsClassify"] = inputField('select', 'classification', $mbr->getClassification(), NULL, $mbrClassifyDm);
 
 ?>

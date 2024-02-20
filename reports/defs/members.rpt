@@ -7,21 +7,25 @@
 .column barcode_nmbr title="Barcode" sort=barcode_nmbr
 .column name title="Name" sort=name func=member_link
 .column create_dt title="Create Date" sort=create_dt
+.column mbrshipend title="Ablaufdatum" sort=mbrshipend
+.column email title="Email"
 .parameters
 .	string barcode title="Barcode Starts With"
 .	string barcodes title="List of Barcodes (spaced)"
 .	string name title="Name Contains"
 .	string address title="Address or Phone or Email Contains"
 .	date newer title="Newer than (Date or today)"
+.	date validity title="Validity date (Date)"
 .	order_by default=barcode_nmbr
 .		item barcode_nmbr title="Barcode"
 .		item name title="Name" expr="CONCAT(last_name, ', ', first_name)"
 .		item create_dt title="Create Date"
+.		item mbrshipend title="Ablaufdatum"
 .	end order_by
 .end parameters
 
 .sql
-	SELECT mbrid, barcode_nmbr, concat(last_name, ', ', first_name) name, address, create_dt
+	SELECT mbrid, barcode_nmbr, concat(last_name, ', ', first_name) name, address, create_dt, mbrshipend, email
 	FROM member
 	WHERE 1=1
 .	if_set barcode
@@ -44,5 +48,10 @@
 .	if_set newer
 		AND create_dt >= %newer%
 .	end if_set
+.	if_set validity
+		AND (mbrshipend= 0 OR mbrshipend>= %validity%) 
+                AND DATE_SUB(create_dt, INTERVAL 1 DAY) <= %validity%
+.	end if_set
+
 .	order_by_expr
 .end sql
