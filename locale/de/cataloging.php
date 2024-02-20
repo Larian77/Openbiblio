@@ -1,6 +1,8 @@
 <?php
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
+ *
+ * mibl pictuer upload
  */
 
 /**********************************************************************************
@@ -223,6 +225,11 @@ $trans["MarcUploadSubfield"]        = "\$text = 'Sub';";
 $trans["MarcUploadData"]            = "\$text = 'Daten';";
 $trans["MarcUploadRawData"]         = "\$text = 'Reine Daten:';";
 $trans["UploadFile"]                = "\$text = 'Datei hochladen';";
+
+#****************************************************************************
+#*  mibl Translation text for page upload_picture.php and upload_picture_form.php
+#****************************************************************************
+$trans["PictureUploadFileUpload"]                = "\$text = 'Bild';";
 
 #****************************************************************************
 #*  Translation text for page usmarc_select.php
