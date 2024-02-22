@@ -181,7 +181,7 @@ class BiblioSearchQuery extends Query
                         $join .= "and bf" . $i . ".field_data ";
                         $join .= $this->mkSQL("rlike %Q ", "[[:<:]]" . $wordsQ);
                     }
-                    $join .= "and not (bf" . $i . ".tag = '260' and bf" . $i . ".subfield_cd in ('a', 'b', 'e', 'f', 'g')) ";
+                    $join .= "and not (bf" . $i . ".tag = '260' and bf" . $i . ".subfield_cd in ('a', 'e')) ";
                     if ($opacFlg)
                         $join .= "and not (bf" . $i . ".tag in ('526', '856') and bf" . $i . ".subfield_cd = 'x') ";
                     $join .= "and not bf" . $i . ".subfield_cd regexp('[0-9]') ";
