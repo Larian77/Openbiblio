@@ -72,10 +72,20 @@ $uploaddir = '../pictures/';
 $dateiname = basename($_FILES['picture_data']['name']);
 $uploadfile = $uploaddir . $dateiname;
 
-$mimetype = $_FILES['picture_data']['type'];
-if ($mimetype == "image/jpeg" ||
+$validpic = true;
+$validpic = $mimetype == "image/jpeg" ||
     $mimetype == "image/gif" ||
-    $mimetype == "image/png") {
+    $mimetype == "image/png";
+
+//Überprüfung der Dateigröße
+$max_size = 500*1024; //500 KB
+if($_FILES['picture_data']['size'] > $max_size) {
+   echo "Bitte keine Dateien größer 500kb hochladen. ";
+   $validpic = false;
+}
+
+$mimetype = $_FILES['picture_data']['type'];
+if ($validpic) {
     
   if (move_uploaded_file($_FILES['picture_data']['tmp_name'], $uploadfile)) {
     echo "Datei ist valide und wurde erfolgreich hochgeladen.<br><br>";
