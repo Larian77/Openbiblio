@@ -80,7 +80,7 @@ $validpic = $mimetype == "image/jpeg" ||
 //Überprüfung der Dateigröße
 $max_size = 500*1024; //500 KB
 if($_FILES['picture_data']['size'] > $max_size) {
-   echo "Bitte keine Dateien größer 500kb hochladen. ";
+   echo $loc->getText("PicUploadSize500");  //"Bitte keine Dateien größer 500kb hochladen. ";
    $validpic = false;
 }
 
@@ -88,7 +88,7 @@ $mimetype = $_FILES['picture_data']['type'];
 if ($validpic) {
     
   if (move_uploaded_file($_FILES['picture_data']['tmp_name'], $uploadfile)) {
-    echo "Datei ist valide und wurde erfolgreich hochgeladen.<br><br>";
+    echo $loc->getText("PiccUploadPictureUploaded"); //"Datei ist valide und wurde erfolgreich hochgeladen.<br><br>";
 ?>    
     <table  class="primary"> 
   <tr>
@@ -128,10 +128,10 @@ if ($validpic) {
       <?php echo $loc->getText("Medieninfo"); ?></a><br/>
 <?php     
   } else {
-      echo "Möglicherweise eine Dateiupload-Attacke!\n";
+      echo $loc->getText("PiccUploadAttack"); //"Möglicherweise eine Dateiupload-Attacke!\n";
   }
 } else
-  echo "Datei enthält kein gültiges Bild!\n";
+  echo $loc->getText("PicUploadNoValidPicture"); //"Datei enthält kein gültiges Bild!\n";
 
 include("../shared/footer.php");
 ?>
