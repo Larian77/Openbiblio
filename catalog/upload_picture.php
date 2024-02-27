@@ -88,7 +88,7 @@ $mimetype = $_FILES['picture_data']['type'];
 if ($validpic) {
     
   if (move_uploaded_file($_FILES['picture_data']['tmp_name'], $uploadfile)) {
-    echo $loc->getText("PiccUploadPictureUploaded"); //"Datei ist valide und wurde erfolgreich hochgeladen.<br><br>";
+    echo $loc->getText("PicUploadPictureUploaded"); //"Datei ist valide und wurde erfolgreich hochgeladen.<br><br>";
 ?>    
     <table  class="primary"> 
   <tr>

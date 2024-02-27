@@ -231,7 +231,12 @@ $trans["UploadFile"] = "\$text = 'Upload File';";
 #****************************************************************************
 #*  mibl Translation text for page upload_picture.php and upload_picture_form.php
 #****************************************************************************
-$trans["PictureUploadFileUpload"]                = "\$text = 'Picture';";
+$trans["PictureUploadFileUpload"]         = "\$text = 'Picture';";
+$trans["PicUploadSize500"]                = "\$text = 'Please upload no picture with size greater 500kB.';";
+$trans["PicUploadPictureUploaded"]        = "\$text = 'File is valid and upload was successful.';";
+$trans["PicUploadInfoMedium"]             = "\$text = 'Medieninfo';";
+$trans["PicUploadAttack"]                 = "\$text = 'Possible upload attack!\n';";
+$trans["PicUploadNoValidPicture"]         = "\$text = 'File contains no valid picture!\n';";
 
 
 # ****************************************************************************

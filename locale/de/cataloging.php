@@ -229,7 +229,12 @@ $trans["UploadFile"]                = "\$text = 'Datei hochladen';";
 #****************************************************************************
 #*  mibl Translation text for page upload_picture.php and upload_picture_form.php
 #****************************************************************************
-$trans["PictureUploadFileUpload"]                = "\$text = 'Bild';";
+$trans["PictureUploadFileUpload"]         = "\$text = 'Bild';";
+$trans["PicUploadSize500"]                = "\$text = 'Bitte keine Datei größer 500kB hochladen.';";
+$trans["PicUploadPictureUploaded"]        = "\$text = 'Datei ist valide und wurde erfolgreich hochgeladen.';";
+$trans["PicUploadInfoMedium"]             = "\$text = 'Medieninfo';";
+$trans["PicUploadAttack"]                 = "\$text = 'Möglicherweise eine Dateiupload-Attacke!\n';";
+$trans["PicUploadNoValidPicture"]         = "\$text = 'Datei enthält kein gültiges Bild!\n';";
 
 #****************************************************************************
 #*  Translation text for page usmarc_select.php
