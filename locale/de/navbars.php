@@ -72,6 +72,7 @@ $trans["catalogResults"]           = "\$text = 'Suchergebnisse';";
 $trans["catalogBibInfo"]           = "\$text = 'Medieninformationen';";
 $trans["catalogBibEdit"]           = "\$text = 'Med. bearb.';";
 $trans["catalogBibEditMarc"]       = "\$text = 'MARC bearb.';";
+$trans["catalogUploadPicture"]     = "\$text = 'Bild hochladen';";
 $trans["catalogBibMarcNewFld"]     = "\$text = 'Neues MARC Feld';";
 $trans["catalogBibMarcNewFldShrt"] = "\$text = 'Neues MARC';";
 $trans["catalogBibMarcEditFld"]    = "\$text = 'Bearb. MARC Feld';";

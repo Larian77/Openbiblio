@@ -317,6 +317,14 @@ function changePage(page,sort)
       <a href="../shared/biblio_view.php?bibid=<?php echo HURL($biblio->getBibid());?>&amp;tab=<?php echo HURL($tab);?>">
       <img src="../images/<?php echo HURL($materialImageFiles[$biblio->getMaterialCd()]);?>" width="20" height="20" border="0" align="bottom" alt="<?php echo H($materialTypeDm[$biblio->getMaterialCd()]);?>"></a>
     </td>
+    <!-- picture   -->
+     <td style="white-space:nowrap" class="primary" valign="top" align="center" rowspan="2">
+     <?php if ($biblio->getPicture() != "") { ?>
+      <a href="../shared/biblio_view.php?bibid=<?php echo HURL($biblio->getBibid());?>&amp;tab=<?php echo HURL($tab);?>">
+      <img src="../pictures/<?php echo $biblio->getPicture();?>" width="100"  border="0" align="bottom"></a>
+      <?php } else { echo " "; } ?>
+    </td>
+    <!-- picture end  -->
     <td class="primary" valign="top" colspan="2">
       <table class="primary" style="width:100%">
         <tr>

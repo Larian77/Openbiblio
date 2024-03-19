@@ -5,6 +5,7 @@
 
 require_once("../shared/global_constants.php");
 require_once("../classes/Query.php");
+require_once ("../classes/BiblioQuery.php");
 require_once("../classes/BiblioSearch.php");
 require_once("../classes/BiblioField.php");
 require_once("../classes/Localize.php");
@@ -441,6 +442,26 @@ class BiblioSearchQuery extends Query
         if (isset($array["renewal_count"])) {
             $bib->setRenewalCount($array["renewal_count"]);
         }
+        # get Picture
+        $biblioQ = new BiblioQuery();
+        // Changes PVD(8.0.x)
+        $biblioQ->connect_e();
+        if ($biblioQ->errorOccurred()) {
+            $biblioQ->close();
+            displayErrorPage($biblioQ);
+        }
+        if (! $biblio = $biblioQ->doQuery($array["bibid"])) {
+            $biblioQ->close();
+            displayErrorPage($biblioQ);
+        }
+        $biblioFlds = $biblio->getBiblioFields();
+        
+        if (isset($biblioFlds["902a"])) {
+            $bib->setPicture($biblioFlds["902a"]->getFieldData());
+        } else {
+            $bib->setPicture("");
+        }
+        
 
         return $bib;
     }

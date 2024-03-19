@@ -72,6 +72,7 @@ $trans["catalogResults"]           = "\$text = 'Search Results';";
 $trans["catalogBibInfo"]           = "\$text = 'Biblio Info';";
 $trans["catalogBibEdit"]           = "\$text = 'Edit-Basic';";
 $trans["catalogBibEditMarc"]       = "\$text = 'Edit-MARC';";
+$trans["catalogUploadPicture"]     = "\$text = 'Upload Picture';";
 $trans["catalogBibMarcNewFld"]     = "\$text = 'New MARC Field';";
 $trans["catalogBibMarcNewFldShrt"] = "\$text = 'New MARC';";
 $trans["catalogBibMarcEditFld"]    = "\$text = 'Edit MARC Fld';";

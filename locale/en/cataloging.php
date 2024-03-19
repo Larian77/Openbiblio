@@ -252,4 +252,19 @@ $trans["No history was found."] = "\$text = 'No history was found.';";
 # ****************************************************************************
 $trans["File doesn't exist"] = "\$text='The specified file is empty or does not exist!';";
 
+#****************************************************************************
+#*  Translation text for pages upload_pciture*.php
+#****************************************************************************
+$trans["PictureUploadFileUpload"]         = "\$text = 'Image file (jpg, gif, png; max 500kb)\n';";
+$trans["PicUploadSize500"]                = "\$text = 'Please do not upload a file larger than 500kB.\n';";
+$trans["PicUploadExifType"]               = "\$text = 'This file has no correct exif info, only jpg, gif and png are allowed!\n';";
+$trans["PicUploadNoExif"]                 = "\$text = 'Apparently the exif extension for PHP is not installed, can't check image!\n';";
+$trans["PicUploadNoDir"]                  = "\$text = 'The directory \'pictures\' in the openbiblio directory cannot be found or the permissions are missing!\n';";
+$trans["PicUploadPictureUploaded"]        = "\$text = 'The file was valid and was successfully uploaded.\n';";
+$trans["PicUploadInfoMedium"]             = "\$text = 'To the media info';";
+$trans["PicUploadAttack"]                 = "\$text = 'The file could not be uploaded because an error occurred!\n';";
+$trans["PicUploadNoValidPicture"]         = "\$text = 'File does not contain a valid image!\n';";
+$trans["PicUploadNoFile"]                 = "\$text = 'No file was specified!\n';";
+$trans["PicUploadNoTmp"]                  = "\$text = 'Something went wrong with the upload! Is the \'upload_max_filesize\' value in PHP too low?\n';";
+
 ?>

@@ -39,6 +39,7 @@ class BiblioSearch {
   var $_dueBackDt = "";
   var $_daysLate = "";
   var $_renewalCount = "";
+  var $_picture = "";       #mibl
 
   /****************************************************************************
    * Getter methods for all fields
@@ -126,6 +127,10 @@ class BiblioSearch {
   }
   function getRenewalCount() {
     return $this->_renewalCount;
+  }
+  #mibl
+  function getPicture() {
+      return $this->_picture;
   }
 
   /****************************************************************************
@@ -216,6 +221,11 @@ class BiblioSearch {
   function setRenewalCount($value) {
     $this->_renewalCount = @trim($value);
   }
+  #mibl
+  function setPicture($value) {
+      $this->_picture = @trim($value);
+  }
+
 }
 
 ?>
