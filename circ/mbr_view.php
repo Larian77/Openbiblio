@@ -183,8 +183,7 @@ require_once ("../shared/header.php");
                         <?php echo $loc->getText("mbrViewEmail"); ?>
                     </td>
 					<td valign="top" class="primary">
-						<!-- ?php echo H($mbr->getEmail());? --> <a href=mailto:
-						<?php echo H($mbr->getEmail()); ?>><?php echo H($mbr->getEmail()); ?></a>
+						<a href=mailto:<?php echo H($mbr->getEmail()); ?>><?php echo H($mbr->getEmail()); ?></a>
 					</td>
 				</tr>
 				<tr>
