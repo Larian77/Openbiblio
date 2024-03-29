@@ -297,6 +297,7 @@ function changePage(page,sort)
             <td style="white-space:nowrap" class="primary" valign="top" align="center"><font class="small">
               <?php echo H($biblioQ->getCurrentRowNmbr());?>.
             </font></td>
+            <td></td> <!-- picture space for for lines with additional copy -->
             <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyBCode"); ?></b>: <?php echo H($biblio->getBarcodeNmbr());?>
               <?php if ($lookup == 'Y') { ?>
                 <a href="javascript:returnLookup('barcodesearch','barcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="javascript:returnLookup('holdForm','holdBarcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchHold"); ?></a>
