@@ -190,7 +190,7 @@ $trans["shelvingCartTrans"] = "\$text='Versäumnisgebühr (Nummer=%barcode%)';";
 $trans["checkinFormHdr1"] = "\$text='Medienrückgabe:';";
 $trans["checkinFormBarcode"] = "\$text='Mediennummer:';";
 $trans["checkinFormShelveButton"] = "\$text='Stelle in Eingangsablage';";
-$trans["checkinFormCheckinLink1"] = "\$text='Augewählte Medien einbuchen';";
+$trans["checkinFormCheckinLink1"] = "\$text='Ausgewählte Medien einbuchen';";
 $trans["checkinFormCheckinLink2"] = "\$text='Alle Medien einbuchen';";
 $trans["checkinFormHdr2"] = "\$text='derzeitiger Inhalt der Eingangsablage:';";
 $trans["checkinFormColHdr1"] = "\$text='Rückgabedatum';";
