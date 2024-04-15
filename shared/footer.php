@@ -26,7 +26,7 @@
   <br><br>
   <?php echo $headerLoc->getText("footerPoweredBy"); ?> <?php echo H(OBIB_CODE_VERSION);?>
   <?php echo $headerLoc->getText("footerDatabaseVersion"); ?> <?php echo H(OBIB_DB_VERSION);?><br>
-  <?php echo $headerLoc->getText("footerCopyright"); ?> &copy; 2002-2014 Dave Stevens, et al.<br>
+  <?php echo $headerLoc->getText("footerCopyright"); ?> &copy; 2002-2024 Dave Stevens, et al.<br>
   <?php echo $headerLoc->getText("footerUnderThe"); ?>
   <a href="../shared/copying.html"><?php echo $headerLoc->getText("footerGPL"); ?></a>
 </span>

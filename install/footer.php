@@ -12,7 +12,7 @@
 <font face="Arial, Helvetica, sans-serif" size="1">
 <span style="text-align: center;">
   Powered by OpenBiblio<br>
-  Copyright &copy; 2002-2014 Dave Stevens, et al.<br>
+  Copyright &copy; 2002-2024 Dave Stevens, et al.<br>
   under the GNU General Public License
 </span>
 <br>

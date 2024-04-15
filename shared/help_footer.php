@@ -7,7 +7,7 @@
 <span style="text-align: center;">
   <br><br>
   Powered by OpenBiblio<br>
-  Copyright &copy; 2002-2014 Dave Stevens, et al.<br>
+  Copyright &copy; 2002-2024 Dave Stevens, et al.<br>
   under the
   <a href="../shared/copying.html">GNU General Public License</a>
 </span>

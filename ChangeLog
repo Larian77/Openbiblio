@@ -3,8 +3,14 @@ Danke an Ghanshyam Patel und all die anderen Programmierer, die sich dran gesetz
 Thanks to Ghanshyam Patel and all the other programmers who took it upon themselves to develop a PHP 8.1-capable version and that I was able to adopt their changes.
 * Kompatibilität zu PHP 8, 8.1 und 8.2 / Compatible to PHP 8, 8.1 and 8.2
 * HTML 5 - Kompatibilität / HTML 5 - Compatibility
-* AdvancedSearch-0.6.X incl. translations & more improvements
-* Show Title Remainder in Searchresult
+* AdvancedSearch-0.6.X inkl. Übersetzungen & weitere Verbesserungen / AdvancedSearch-0.6.X incl. translations & more improvements
+* Rest des Titels im Suchergebnis anzeigen / Show Title Remainder in Searchresult
+* Verlag in die Suche einbeziehen / Include publisher in search
+* Erweiterung der Ausgabe des Report "Mitgliedersuche" / Extension of the "Member search" report output
+* Neuer Status "Präsenz" ohne Ausleih-Möglichkeit (siehe Anleitung) / New status "Presence" without lending option (see instructions)
+* Funktion zum Hochladen von Bildern / Function for uploading images
+* aktuelle GPL-Version / current GPL version
+* kleinere Fehler behoben / minor errors fixed
 
 ---- 0.7.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
 (Danke wieder mal an Hans van der Weij f�r all die Arbeit, die er sich in
