@@ -75,7 +75,7 @@
   #**************************************************************************
   require_once("../shared/header.php");
 ?>
-<?php echo $loc->getText("adminStaff_Staffmember"); ?><?php echo H($staff->getFirstName());?> <?php echo H($staff->getLastName());?><?php echo $loc->getText("adminStaff_editUpdated"); ?><br><br>
+<?php echo $loc->getText("adminStaff_Staffmember"); ?> <?php echo H($staff->getFirstName());?> <?php echo H($staff->getLastName());?><?php echo $loc->getText("adminStaff_editUpdated"); ?><br><br>
 <a href="../admin/staff_list.php"><?php echo $loc->getText("adminStaff_Return"); ?></a>
 
 <?php require_once("../shared/footer.php"); ?>
