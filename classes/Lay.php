@@ -802,8 +802,8 @@ class Lay
                     // $text = iconv('UTF-8', 'windows-1252', $text);
                     //Changes PVD(8.0.x)
                     //added due to encodeing errors
-                    $outputString = preg_replace('/[^\p{L}\p{N}\s]/u', '', $text);
-                    $text = iconv('UTF-8', 'ASCII//IGNORE', mb_convert_encoding($outputString ?? '', 'UTF-8'));
+                    $outputString = preg_replace('/[^\p{L}\p{N}\s\/\.-]/u', '', $text);
+                    $text = iconv('UTF-8', 'ISO-8859-1//IGNORE', mb_convert_encoding($outputString ?? '', 'UTF-8'));
                 }
             } else {
                 // $text = utf8_decode($text);
