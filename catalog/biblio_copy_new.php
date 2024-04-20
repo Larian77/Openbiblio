@@ -77,7 +77,7 @@ foreach ($customFields as $name => $title) {
   }
 }
 
-$validBarco = $_POST["validBarco"];
+$validBarco = isset($_POST["validBarco"]);
 $validData = $copy->validateData($validBarco);
 if (!$validData) {
   $pageErrors["barcodeNmbr"] = $copy->getBarcodeNmbrError();
