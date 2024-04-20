@@ -249,7 +249,7 @@ $biblioQ->close();
 </table>
 
 <?php
-if ($toolate == 1) {
+if (isset($toolate) == 1) {
     echo $loc->getText("* You cannot renew, if you are more then 7 days too late");
 }
 ?>
