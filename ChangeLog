@@ -1,3 +1,6 @@
+---- 0.8.0.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
+* Bugfixes
+
 ---- 0.8.0 ---- (Modifikationen/Modifications in openbiblio.de-Version)
 Danke an Ghanshyam Patel und all die anderen Programmierer, die sich dran gesetzt haben eine PHP 8.1-fähige Version zu entwickeln und dass ich deren Änderungen übernehmen konnte.
 Thanks to Ghanshyam Patel and all the other programmers who took it upon themselves to develop a PHP 8.1-capable version and that I was able to adopt their changes.
