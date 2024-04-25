@@ -141,13 +141,11 @@ th {
 		<ol>
 			<li>To use your system for OpenBiblio you have to install a
 				webserver, PHP and MySQL. If you didn't done it already, i recommend
-				to use <a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a>
-				for this installation, because this includes all the needed programs
-				in one installation (of course except Openbiblio). XAMPP is
-				ditributed for Windows, Linux and MacOS X. (i want to thank
+				to use the package-manager with Linux or <a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a>
+				for the installation with windows. (i want to thank
 				Christopher Dagleish for the hint to XAMPP :-))
 			</li>
-			<li>Download <a
+			<li>At Windows: Download <a
 				href="http://www.apachefriends.org/en/xampp.html">XAMPP</a> in the
 				version, which your system needs, the Lite-version is sufficient but
 				i recommend the full version nevertheless (this version offers
@@ -282,17 +280,9 @@ mysql> <b>show databases;</b>
 				command, substituting <i>obiblio_user</i> and <i>obiblio_password</i>
 				with the userid and password of your choice.
 				<blockquote>
-					<table>
-						<tr>
-							<td><pre>mysql> 
-    -> </pre></td>
-							<td><pre>
-									<b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost</b>
-<b>identified by '<i>obiblio_password</i>';</b>
-								</pre></td>
-						</tr>
-					</table>
-				</blockquote> Verify your OpenBiblio database and user by logging into the new
+					<pre>mysql> <b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost identified by '<i>obiblio_password</i>';</b></pre>
+				</blockquote>
+				<li>Verify your OpenBiblio database and user by logging into the new
 				MySQL database under the new user.
 				<blockquote>
 					<pre>

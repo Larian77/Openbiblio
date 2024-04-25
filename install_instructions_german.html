@@ -64,8 +64,7 @@ th {
 				Bugfixes und Neuen Funktionen</li>
 			<li>0.7.0, 0.7.1: Viele Bugfixes für Neue Funktionen, besonders
 				in der Ausleihe. Verbesserung der Sicherheit.</li>
-			<li>0.7.3.x: Update auf das aktuelle und sicherere PHP 7.x
-				möglich</li>
+			<li>0.7.3.x: Update auf PHP 7.x möglich</li>
 			<li>0.8 und größer: Update auf das aktuelle und sicherere PHP
 				8.1/8.2 möglich (PHP bor 7.0 wird nicht mehr unterstützt!)</li>
 		</ul>
@@ -155,16 +154,13 @@ th {
 		<div class="notice">Schritte 1-8: Die Details sind eventuell
 			etwas veraltet, aber die Grundlagen sind trotzdem gültig.</div>
 		<ol>
-			<li>Um ihr System für OpenBiblio zu nutzen müssen Sie einen
+			<li>Um ihr System f&uuml;r OpenBiblio zu nutzen m&uuml;ssen Sie einen
 				WebServer, PHP und MySQL installiert haben. Wenn Sie dieses nicht
-				schon haben wird empfohlen für diese Installation <a
-				href="https://www.apachefriends.org/">XAMPP</a> zu nutzen, dieses
-				bietet Ihnen mit einer Installation alle benötigten Programme (außer
-				Openbiblio selber natürlich). XAMPP gibt es für Windows, Linux und
-				MacOS X. (ich danke Christopher Dagleish für den Hinweis auf XAMPP
+				schon haben wird empfohlen unter Linux die Pakete per Paketmanager zu installieren und f&uuml;r die Installation unter Windows <a
+				href="https://www.apachefriends.org/">XAMPP</a> zu nutzen. (ich danke Christopher Dagleish f&uuml;r den Hinweis auf XAMPP
 				:-))
 			</li>
-			<li>Laden Sie die für ihr System benötigte Version von <a
+			<li>Unter Windows: Laden Sie die für ihr System benötigte Version von <a
 				href="http://www.apachefriends.org/de/xampp.html">XAMPP</a>
 				herunter, dabei reicht theoretisch die Lite-Version, aber die volle
 				Version wird trotzdem empfohlen (diese bietet auch regelmäßige
@@ -309,16 +305,7 @@ mysql> <b>show databases;</b>
 				und <i>obiblio_password</i> mit einem Usernamen und einem Passwort
 				ihrer Wahl ersetzen.
 				<blockquote>
-					<table>
-						<tr>
-							<td><pre>mysql> 
-    -> </pre></td>
-							<td><pre>
-									<b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost</b>
-<b>identified by '<i>obiblio_password</i>';</b>
-								</pre></td>
-						</tr>
-					</table>
+					<pre>mysql> <b>grant all privileges on OpenBiblio.* to <i>obiblio_user</i>@localhost identified by '<i>obiblio_password</i>';</b></pre>
 				</blockquote>
 			</li>
 
