@@ -60,10 +60,12 @@ if ($pwd == "") {
         } else {
             $sess_login_attempts = $_SESSION["loginAttempts"] + 1;
         }
-        # Suspend userid if login attempts >= 3
-        if ($sess_login_attempts >= 3) {
+        $_SESSION["loginAttempts"] = $sess_login_attempts;       
+        # Suspend userid if login attempts >= 10
+        if ($sess_login_attempts >= 10) {
             $staffQ->suspendStaff($username);
             $staffQ->close();
+            $_SESSION["loginAttempts"] = 0;
             header("Location: suspended.php");
             exit();
         }
