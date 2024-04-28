@@ -45,6 +45,21 @@ class StaffQuery extends Query {
                         $username, $pwd);
     return $this->_query($sql, "Error verifying username and password.");
   }
+  
+  /****************************************************************************
+   * Executes a query to verify a signon username
+   * Password was deleted because cannot be verified with password_hash
+   * @param string $username username of staff member to select
+   * @return boolean returns false, if error occurs
+   * @access public
+   ****************************************************************************
+   */
+  function verifySignonPwdHash($username) {
+    $sql = $this->mkSQL("select * from staff "
+                        . "where username = lower(%Q) ",
+                        $username);
+    return $this->_query($sql, "Error verifying username and password.");
+  }
 
   /****************************************************************************
    * Updates a staff member and sets the suspended flag to yes.
@@ -76,6 +91,7 @@ class StaffQuery extends Query {
     $staff->setLastName($array["last_name"]);
     $staff->setFirstName($array["first_name"]);
     $staff->setUsername($array["username"]);
+    $staff->setPwd($array["pwd"]);
     if ($array["circ_flg"] == "Y") {
       $staff->setCircAuth(true);
     } else {
@@ -145,10 +161,13 @@ class StaffQuery extends Query {
       $this->_error = "Username is already in use.";
       return false;
     }
+    if(!$staff->_pwd == 0) {
+        $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
+    }
     $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), "
-                        . "%N, %Q, md5(lower(%Q)), %Q, ",
+                        . "%N, %Q, %Q, %Q, ",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $staff->getPwd(), $staff->getLastName());
+                        $pwdhash, $staff->getLastName());
     if ($staff->getFirstName() == "") {
       $sql .= "null, ";
     } else {
@@ -161,6 +180,16 @@ class StaffQuery extends Query {
                          $staff->hasCatalogAuth() ? "Y" : "N",
                          $staff->hasReportsAuth() ? "Y" : "N");
     return $this->_query($sql, "Error inserting new staff member information.");
+    
+    if ($this->_query($sql)== 0) {
+      $this->_errorOccurred = true;
+      $this->_error = "Error inserting new staff member information.";
+      return false;
+    } else {
+      $Userid = $this->_conn->getInsertId();
+      return $Userid;
+    } 
+
   }
 
   /****************************************************************************
@@ -212,10 +241,28 @@ class StaffQuery extends Query {
    ****************************************************************************
    */
   function resetPwd($staff) {
-    $sql = $this->mkSQL("update staff set pwd=md5(lower(%Q)) "
+      $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
+      $sql = $this->mkSQL("update staff set pwd=%Q "
                         . "where userid=%N ",
-                        $staff->getPwd(), $staff->getUserid());
+                          $pwdhash, $staff->getUserid());
     return $this->_query($sql, "Error resetting password.");
+  }
+  
+  /****************************************************************************
+   * Change a staff member md5 password in a hash password in the staff table.
+   * Important in the DB table staff must be changed the column pwd type from
+   * char(32) to varchar(255)
+   * @param Staff $staff staff member to update
+   * @return boolean returns false, if error occurs
+   * @access public
+   ****************************************************************************
+   */
+  function Change_Md5_Pwd($staff, $pwd) {
+      $pwdhash = password_hash($pwd, PASSWORD_DEFAULT);
+      $sql = $this->mkSQL("update staff set pwd=%Q "
+                        . "where userid=%N ",
+                          $pwdhash, $staff->getUserid());
+    return $this->_query($sql, "Error changing md5 password into password hash.");
   }
 
   /****************************************************************************

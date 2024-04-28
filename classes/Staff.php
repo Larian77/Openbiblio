@@ -4,7 +4,7 @@
  */
 
 require_once("../classes/Localize.php");
-
+//require_once("../classes/Query.php"); // MV not necessary
 /******************************************************************************
  * Staff represents a library staff member.  Contains business rules for
  * staff member data validation.
@@ -73,7 +73,7 @@ class Staff
     function validatePwd()
     {
         $valid = true;
-        if (strlen($this->_pwd) < 4) {
+        if (strlen($this->_pwd) < 8 || strlen($this->_pwd) > 20) {
             $valid = false;
             $this->_pwdError = $this->_loc->getText("staffPwdLenErr");
         } elseif (substr_count($this->_pwd, " ") > 0) {
@@ -82,6 +82,9 @@ class Staff
         } elseif ($this->_pwd != $this->_pwd2) {
             $valid = false;
             $this->_pwdError = $this->_loc->getText("staffPwdMatchErr");
+        } elseif(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[@_#�%$])[0-9A-Za-z@_#�%$]{8,20}$/', $this->_pwd)) { 
+            $valid = false;
+            $this->_pwdError = $this->_loc->getText("staffPwdRequirementErr");        
         }
         return $valid;
     }
@@ -114,7 +117,7 @@ class Staff
      */
     function setPwd($pwd)
     {
-        $this->_pwd = strtolower(trim($pwd));
+    $this->_pwd = trim($pwd);
     }
     function getPwd()
     {
@@ -126,7 +129,7 @@ class Staff
     }
     function setPwd2($pwd)
     {
-        $this->_pwd2 = strtolower(trim($pwd));
+    $this->_pwd2 = trim($pwd);
     }
     function getPwd2()
     {
@@ -207,7 +210,7 @@ class Staff
      */
     function setUsername($username)
     {
-        $this->_username = strtolower(trim($username));
+        $this->_username = trim($username);
     }
     /****************************************************************************
      * @return boolean true if staff member has circulation authorization
@@ -372,7 +375,6 @@ class Staff
     {
         $this->_lastChangeUserid = trim($value);
     }
-
 
 }
 

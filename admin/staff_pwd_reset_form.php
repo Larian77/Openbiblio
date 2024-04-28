@@ -41,6 +41,7 @@
       <?php echo $loc->getText("adminStaff_new_form_Password"); ?>
     </td>
     <td valign="top" class="primary">
+      <?php echo $loc->getText("adminStaffPwdRequirement"); ?>
       <input type="password" name="pwd" size="20" maxlength="20"
       value="<?php if (isset($postVars["pwd"])) echo H($postVars["pwd"]); ?>" ><br>
       <font class="error">

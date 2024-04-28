@@ -260,6 +260,8 @@ $trans["adminStaff_new_Added"]                 = "\$text = ', wurde hinzugefügt
 $trans["adminStaff_new_form_Header"]          	= "\$text = 'Füge neuen Mitarbeiter hinzu:';";
 $trans["adminStaff_new_form_Password"]          = "\$text = 'Passwort:';";
 $trans["adminStaff_new_form_Reenterpassword"]   = "\$text = 'Passwort wiederholen:';";
+$trans["adminStaffPwdRequirement"]     = "\$text = '<p style=\"color: #1a62ac;\">Regeln: Passwort muss zwischen 8 bis 20 Zeichen lang sein, "
+        . "mindestens 1 Ziffer, <br />1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.<br /></p>';";
 
 #****************************************************************************
 #*  Translation text for page staff_pwd_reset.php

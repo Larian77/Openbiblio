@@ -35,23 +35,41 @@ if ($username == "") {
 #****************************************************************************
 $error_found = false;
 $pwd = $_POST["pwd"];
-if ($pwd == "") {
+if (str_replace(' ','',$pwd) == "") {
     $error_found = true;
     $pageErrors["pwd"] = $loc->getText("loginPwdReqErr");
 } else {
-
-
     $staffQ = new StaffQuery();
     $staffQ->connect_e();
     if ($staffQ->errorOccurred()) {
         displayErrorPage($staffQ);
     }
-    $staffQ->verifySignon($username, $pwd);
+    $PwdHashChange = 0;
+    $pwdmd5 = $staffQ->verifySignon($username, $pwd); // Necessary as long as md5 passwords are still available
+    if ($pwdmd5->num_rows == 1) {
+        $PwdHashChange = 1;
+    } else {
+        $pwdHash = $staffQ->verifySignonPwdHash($username);    
+    }
     if ($staffQ->errorOccurred()) {
         displayErrorPage($staffQ);
     }
     $staff = $staffQ->fetchStaff();
-    if ($staff == false) {
+    if (isset($pwdHash->num_rows) == 1) {
+        $validatepassword = '';
+        $validatepassword = password_verify($pwd, $staff->_pwd);
+        if($validatepassword != 1) {
+            $staff = false;
+        }
+    }   
+    if ($PwdHashChange === 1) {
+        $PwdHashNew = $staffQ->Change_Md5_Pwd($staff, $pwd);  //Update md5-Pwd to Pwd-Hash
+        if($PwdHashNew != 1) {
+            $staff = false;
+        }
+    }
+        
+    if ($staff == false) { 
         # invalid password.  Add one to login attempts.
         $error_found = true;
         $pageErrors["pwd"] = $loc->getText("loginPwdInvErr");
@@ -60,10 +78,12 @@ if ($pwd == "") {
         } else {
             $sess_login_attempts = $_SESSION["loginAttempts"] + 1;
         }
-        # Suspend userid if login attempts >= 3
-        if ($sess_login_attempts >= 3) {
+        $_SESSION["loginAttempts"] = $sess_login_attempts;   
+        # Suspend userid if login attempts >= 10
+        if ($sess_login_attempts >= 10) {
             $staffQ->suspendStaff($username);
             $staffQ->close();
+            $_SESSION["loginAttempts"] = 0;
             header("Location: suspended.php");
             exit();
         }

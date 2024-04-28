@@ -136,9 +136,11 @@ $trans["reportCriteriaDateErr"]   = "\$text = 'Invalid date format.';";
 $trans["staffLastNameReqErr"]     = "\$text = 'Last name is required.';";
 $trans["staffUserNameLenErr"]     = "\$text = 'Username must be at least 4 characters.';";
 $trans["staffUserNameCharErr"]    = "\$text = 'Username must not contain any spaces.';";
-$trans["staffPwdLenErr"]          = "\$text = 'Password must be at least 4 characters.';";
+$trans["staffPwdLenErr"]          = "\$text = 'Password must have between 8 and 20 characters.';";
 $trans["staffPwdCharErr"]         = "\$text = 'Password must not contain any spaces.';";
 $trans["staffPwdMatchErr"]        = "\$text = 'Passwords do not match.';";
+$trans["staffPwdRequirementErr"]  = "\$text = 'Password must have at least 1 digit(s), at least 1 lower case letter(s),"
+        . " at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
 
 #****************************************************************************
 #*  Translation text for class Member
