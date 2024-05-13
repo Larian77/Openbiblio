@@ -12,7 +12,7 @@
 <?php if ($nav == "home") { ?>
  &raquo; <?php echo $navLoc->getText("catalogSearch1"); ?><br>
 <?php } else { ?>
- <a href="../opac/index.php<?php if ($lookup == 'Y') echo "?lookup=Y"; ?> " class="alt1"><?php echo $navLoc->getText("catalogSearch2"); ?></a><br>
+ <a href="../opac/index.php<?php if (isset($lookup) == 'Y') echo "?lookup=Y"; ?> " class="alt1"><?php echo $navLoc->getText("catalogSearch2"); ?></a><br>
 <?php } ?>
 
 <?php if ($nav == "search") { ?>
