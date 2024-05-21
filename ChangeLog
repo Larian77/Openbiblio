@@ -1,3 +1,28 @@
+---- 0.8.1 ----
+Folgende Änderungen wurden in der Version 0.8.1 umgesetzt:
+* Einstellung, ob Benutzer (member) einen Online-Zugriff auf ihr Konto haben oder nicht.
+* Passwörter für Benutzer sind Pflicht bei Online-Zugriff und müssen bestimmten Kriterien entsprechen.
+* Passworter von Benutzer und Bibliotheksmitarbeitenden werden per password_hash verschlüsselt.
+* Bisherige Geheimwörter, welche in der DB-Tabelle memmber_fields hinterlegt waren, werden, verschlüsselt 
+   in die DB-Tabelle member kopiert. Die nicht mehr benötigten Felder in member_fields und 
+   member_fields_dm werden gelöscht.
+* Passwörter für Benutzer werden nun standardmäüig in der DB-Tabelle member verschlüsselt hinterlegt.
+* Bei entsprechenden Fehlversuchen bei Login eine zeitliche Sperrung. Sowohl die Anzahl der Fehlversuche, als auch der Zeitraum ist in einer bestimmten Spanne einstellbar.
+* Bei dem Upgrade auf 0.8.1 können die neuen Einstellungen beim Upgrade-Prozess gesetzt werden.
+* Die Aktualisierungseiten sind nun sprachlich angepasst.
+--------
+The following changes have been implemented in version 0.8.1:
+* Setting whether users (members) have online access to their account or not.
+* Passwords for users are mandatory for online access and must fulfil certain criteria.
+* Passwords of users and library staff are encrypted using password_hash.
+* Previous secret passwords, which were stored in the DB table memmber_fields, are encrypted and copied to the DB table member. 
+   to the DB table member. The fields no longer required in member_fields and 
+   member_fields_dm are deleted.
+* Passwords for users are now stored in encrypted form in the member DB table by default.
+* A time block is set for login failures. Both the number of failed attempts and the time period can be set within a certain range.
+* When upgrading to 0.8.1, the new settings can be set during the upgrade process.
+* The language of the update pages has been adapted.
+
 ---- 0.8.0 ---- (Modifikationen/Modifications in openbiblio.de-Version)
 Danke an Ghanshyam Patel und all die anderen Programmierer, die sich dran gesetzt haben eine PHP 8.1-fähige Version zu entwickeln und dass ich deren Änderungen übernehmen konnte.
 Thanks to Ghanshyam Patel and all the other programmers who took it upon themselves to develop a PHP 8.1-capable version and that I was able to adopt their changes.
@@ -14,17 +39,17 @@ Thanks to Ghanshyam Patel and all the other programmers who took it upon themsel
 
 ---- 0.7.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
 (Danke wieder mal an Hans van der Weij f�r all die Arbeit, die er sich in
-seinem Repositorium hier gemacht hat, alle �nderungen in dieser Verson habe
-ich aus seinen �nderungen geholt und bei mir eingearbeitet! /
+seinem Repositorium hier gemacht hat, alle Änderungen in dieser Version habe
+ich aus seinen Änderungen geholt und bei mir eingearbeitet! /
 Thank You Again to Hans van der Weij for all his work in his repository, all
 Changes in this version i took from his work and put it in my version)
-* Kompatibilit�t zu Php 7 und 7.1 / Compatible to php 7 and php 7.1
-* Einige kleine �nderung / some minor changes
+* Kompatibilität zu Php 7 und 7.1 / Compatible to php 7 and php 7.1
+* Einige kleine Änderung / some minor changes
 
 ---- 0.7.2.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Pr�fung auf �berschrittenes Mitgliedschaftsende bei R�ckgabe / Test for
+* Prüfung auf überschrittenes Mitgliedschaftsende bei Rückgabe / Test for
 expired membership at Check-In
-* Hinweis bei Ausleihe wenn R�ckgabedatum nach Mitgliedschaftsende liegt /
+* Hinweis bei Ausleihe wenn Rückgabedatum nach Mitgliedschaftsende liegt /
 Hint if due-back-date is after end of membership
 * PHP-Deprecated und PHP-Warnungen deaktiviert / PHP-Deprecated and
 PHP-Warnings disabled
@@ -43,47 +68,47 @@ fields at New Member form
 * Fehlerkorrektur 95 - Suche: Regexp Fehler in regul�ren Ausdr�cken mit speziellen Zeichen / Fix issue 95 - Search: regexp error for regular expression special characters
 * Update Tests / Update tests
 Fehlerkorrektur 99 - Bericht Erwerbungen: Unbekannte Spalte Standort in Sortierung / Fix issue 99 - Acquisitions report: Unknown column 'callno' in 'order clause'
-* Suche: Deaktiviere linke K�rzung beim Standort / Search: disable left truncation for Call Number
+* Suche: Deaktiviere linke Kürzung beim Standort / Search: disable left truncation for Call Number
 * Mitgliedersuche: Entferne angezeigte 1, wenn es nur eine Seite gibt / Member search: remove stray '1' if pageCount = 1
-* Korrekturen f�r ungepr�fte Weiterleitungen, Cross-Site-Skripte, lokalen Datei-Einschleusungen / Fixes for unvalidated redirects, cross site scripting, local file inclusion
+* Korrekturen für ungeprüfte Weiterleitungen, Cross-Site-Skripte, lokalen Datei-Einschleusungen / Fixes for unvalidated redirects, cross site scripting, local file inclusion
 
 ---- 0.7.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Benutzerlogin m�glich um �bersicht zu sehen, um zu verl�ngern und um
+* Benutzerlogin möglich um Übersicht zu sehen, um zu verlängern und um
 vorzubestellen / Memberlogin possible to renew items and to make holds
-* Bugfixes zur Lokalisation eingef�gt / Bugfixes for localisation inserted
-* Bug in englischer �bersetzung gefixed / Fixed a bug at english localisation
+* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
+* Bug in englischer Übersetzung gefixed / Fixed a bug at english localisation
 * Neue Berichte / new reports
 * Links ins Startseite zu den Bereichen / links at home to all areas
-* Verl�ngerung nicht mehr m�glich, wenn Medium vorbestellt / Renew item isn't
+* Verlängerung nicht mehr möglich, wenn Medium vorbestellt / Renew item isn't
 possible if item is on hold
 
 ---- 0.7.1.3 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* bei Genres, die keine Versp�tungsgeb�hr kosten ist die Verl�ngerung jetzt
-auch m�glich wenn das R�ckgabedatum �berschritten ist / at collections, where
+* bei Genres, die keine Verspätungsgebühr kosten ist die Verlängerung jetzt
+auch möglich wenn das Rückgabedatum +berschritten ist / at collections, where
 no Daily Late Fee is defined, you can now renew items, when they are after the
 "due back"-date
-* M�glichkeit die Medien direkt in der Mitgliederansicht zur�ckzugeben / You
+* Möglichkeit die Medien direkt in der Mitgliederansicht zurückzugeben / You
 can now Check In Bibliographies from Member-View
-* Verbesserte Anzeige der m�glichen Ergebnisseiten in den Suchen und Reports /
+* Verbesserte Anzeige der möglichen Ergebnisseiten in den Suchen und Reports /
 The Pages-Display shown at searches and reports now looks better
 * Anzeige des Untertitels in den Suchergebnissen / Title Remainder is now
 shown at searches
 
 ---- 0.7.1.2 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Nach der Konvertierung von 0.5.1.x-Versionen k�nnen wieder neue neue
-Medienarten hinzugef�gt werden / After converting from 0.5.1.x-versions new
+* Nach der Konvertierung von 0.5.1.x-Versionen können wieder neue neue
+Medienarten hinzugefügt werden / After converting from 0.5.1.x-versions new
 material types can be added again
 
 ---- 0.7.1.1 ---- (Modifikationen/Modifications in openbiblio.de-Version)
-* Bugfixes zur Lokalisation eingef�gt / Bugfixes for localisation inserted
-* Felder in Standardansicht ge�ndert f�r deutsche Anspr�che /Fields in Basic
+* Bugfixes zur Lokalisation eingefügt / Bugfixes for localisation inserted
+* Felder in Standardansicht geändert für deutsche Ansprüche /Fields in Basic
 Settings changed for german Needings
-* Felder in Standardansicht ge�ndert f�r Benutzung auch in Ludotheken /Fields
+* Felder in Standardansicht geändert für Benutzung auch in Ludotheken /Fields
 in Basic Settings changed for using it in ludotheks
-* Patch zum Hinzuf�gen von Bildern in der Medienansicht /Patch for adding
+* Patch zum Hinzufügen von Bildern in der Medienansicht /Patch for adding
 pictures in Bibliography
-* Membership-Feature hinzugef�gt / membership-feature added
-* MaxPages erh�ht f�r Suchergebnisse bei gro�en Medienbest�nden / MaxPages
+* Membership-Feature hinzugefügt / membership-feature added
+* MaxPages erhöht für Suchergebnisse bei großen Medienbeständen / MaxPages
 increased for searches with much bibliographies
 
 ---- 0.7.1 ---- (Original obenbiblio-Project)

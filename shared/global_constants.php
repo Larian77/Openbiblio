@@ -39,8 +39,8 @@ define("OBIB_SEARCH_ALL", "8");
  * system constants
  * ***************************************************************************
  */
-define("OBIB_CODE_VERSION", "0.8");
-define("OBIB_LATEST_DB_VERSION", "0.7.1");
+define("OBIB_CODE_VERSION", "0.8.1");
+define("OBIB_LATEST_DB_VERSION", "0.8.1");
 define("OBIB_DEFAULT_STATUS", "in");
 define("OBIB_STATUS_IN", "in");
 define("OBIB_STATUS_OUT", "out");
@@ -62,6 +62,8 @@ define("OBIB_MYSQL_DATE_FORMAT", "Y-m-d");
 define("OBIB_BARCODE_RE", '/^[A-Za-z0-9._\/\-]+$/');
 
 define("OBIB_LOCALE_ROOT", "../locale");
+
+define("OBIB_UPGRADE_KEY", "Your_own_Upgrade_Key"); // Please insert your own upgrade key!
 
 # Not fully implemented yet.
 define("DB_TABLENAME_PREFIX", "");

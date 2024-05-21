@@ -6,11 +6,13 @@
   require_once("../shared/common.php");
   $tab = "home";
   $nav = "";
-
+  require_once ("../classes/Localize.php");
+  $loc = new Localize(OBIB_LOCALE, "shared");
+  
   include("header.php");
 
-?>
 
-Your userid has been suspended.
 
-<?php include("footer.php"); ?>
+ echo $loc->getText('staffSuspended');
+
+ include("footer.php"); ?>

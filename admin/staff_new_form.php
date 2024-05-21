@@ -54,6 +54,14 @@
   </tr>
   <tr>
     <td style="white-space:nowrap;" class="primary">
+      <?php echo $loc->getText("adminStaff_edit_email"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php printInputText("email",30,30,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap;" class="primary">
       <?php echo $loc->getText("adminStaff_new_form_Password"); ?>
     </td>
     <td valign="top" class="primary">

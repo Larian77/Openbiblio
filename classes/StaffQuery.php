@@ -38,7 +38,7 @@ class StaffQuery extends Query {
    * @access public
    ****************************************************************************
    */
-  function verifySignon($username, $pwd) {
+  function verifySignonMd5($username, $pwd) {
     $sql = $this->mkSQL("select * from staff "
                         . "where username = lower(%Q) "
                         . " and pwd = md5(lower(%Q)) ",
@@ -58,19 +58,19 @@ class StaffQuery extends Query {
     $sql = $this->mkSQL("select * from staff "
                         . "where username = lower(%Q) ",
                         $username);
-    return $this->_query($sql, "Error verifying username and password.");
+    return $this->_query($sql, "Error verifying username.");
   }
 
   /****************************************************************************
-   * Updates a staff member and sets the suspended flag to yes.
+   * Updates a staff member and sets the timeout.
    * @param string $username username of staff member to suspend
    * @return boolean returns false, if error occurs
    * @access public
    ****************************************************************************
    */
-  function suspendStaff($username)
+  function LoginTimeoutStaff($username)
   {
-    $sql = $this->mkSQL("update staff set suspended_flg='Y' "
+    $sql = $this->mkSQL("update staff set pwd_timeout=sysdate() "
                         . "where username = lower(%Q)", $username);
     return $this->_query($sql, "Error suspending staff member.");
   }
@@ -91,7 +91,9 @@ class StaffQuery extends Query {
     $staff->setLastName($array["last_name"]);
     $staff->setFirstName($array["first_name"]);
     $staff->setUsername($array["username"]);
+    $staff->setEmail($array["email"]);
     $staff->setPwd($array["pwd"]);
+    $staff->setPwdTimeout($array["pwd_timeout"]);
     if ($array["circ_flg"] == "Y") {
       $staff->setCircAuth(true);
     } else {
@@ -165,13 +167,18 @@ class StaffQuery extends Query {
         $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
     }
     $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), "
-                        . "%N, %Q, %Q, %Q, ",
+                        . "%N, %Q, %Q, '0000-00-00 00:00:00', %Q, ",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
                         $pwdhash, $staff->getLastName());
     if ($staff->getFirstName() == "") {
       $sql .= "null, ";
     } else {
       $sql .= $this->mkSQL("%Q, ", $staff->getFirstName());
+    }
+    if ($staff->getEmail() == "") {
+      $sql .= "null, ";
+    } else {
+      $sql .= $this->mkSQL("%Q, ", $staff->getEmail());
     }
     $sql .= $this->mkSQL("'N', %Q, %Q, %Q, %Q, %Q) ",
                          $staff->hasAdminAuth() ? "Y" : "N",
@@ -219,6 +226,11 @@ class StaffQuery extends Query {
       $sql .= "first_name=null, ";
     } else {
       $sql .= $this->mkSQL("first_name=%Q, ", $staff->getFirstName());
+    }
+    if ($staff->getEmail() == "") {
+      $sql .= "email=null, ";
+    } else {
+      $sql .= $this->mkSQL("email=%Q, ", $staff->getEmail());
     }
     $sql .= $this->mkSQL("suspended_flg=%Q, admin_flg=%Q, circ_flg=%Q, "
                          . "circ_mbr_flg=%Q, catalog_flg=%Q, reports_flg=%Q "

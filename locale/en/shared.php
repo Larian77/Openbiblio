@@ -111,7 +111,7 @@ $trans["loginFormLogin"]           = "\$text = 'Login';";
 #****************************************************************************
 #*  Translation text for page login.php
 #****************************************************************************
-$trans["loginUserNameReqErr"]      = "\$text = 'Username is required.';";
+$trans["loginUserNameReqErr"]      = "\$text = 'Username is required or not correct.';";
 $trans["loginPwdReqErr"]           = "\$text = 'Password is required.';";
 $trans["loginPwdInvErr"]           = "\$text = 'Invalid signon.';";
 
@@ -162,5 +162,33 @@ $trans["footerDatabaseVersion"]    = "\$text='database version';";
 $trans["footerCopyright"]          = "\$text='Copyright';";
 $trans["footerUnderThe"]           = "\$text='under the';";
 $trans["footerGPL"]                = "\$text='GNU General Public License';";
+
+# ****************************************************************************
+#*  Translation text for page circ/ and opac/mbr_pwd_reset_form.php
+#****************************************************************************
+$trans["mbr_pwd_create_form_Resetheader"]  = "\$text = 'Create member password:';";
+$trans["mbr_pwd_reset_form_Resetheader"]   = "\$text = 'Reset member password:';";
+$trans["mbr_new_form_Password"]            = "\$text = 'Password:';";
+$trans["mbrPwdRequirement"]                = "\$text = '<p style=\"color: #1a62ac;\">Rules: Password must have between 8 and 20 characters, at least 1 digit(s), <br />"
+        . "at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)</p>';";
+$trans["mbr_new_form_Reenterpassword"]     = "\$text = 'Repeat password:';";
+$trans["mbrFldsSubmit"] = "\$text='Submit';";
+$trans["mbrFldsCancel"] = "\$text='Cancel';";
+
+#****************************************************************************
+#*  Translation text for page circ/ and opac/mbr_pwd_reset.php
+#****************************************************************************
+$trans["mbr_return"]                    = "\$text = 'Return to member profil';";
+$trans["mbr_pwd_reset_successfully"]   = "\$text = 'Password was changed successfully.';";
+
+#****************************************************************************
+#*  Translation text for page circ/ and opac/mbr_pwd_reset.php
+#****************************************************************************
+$trans["PwdTimeout"]                      = "\$text = 'Your account is blocked for %time% minutes due to too many incorrect entries';";
+
+#****************************************************************************
+#*  Translation text for page shared/supsended.php
+#****************************************************************************
+$trans["staffSuspended"]                      = "\$text = 'Ihr Account ist deaktiviert worden.';";
 
 ?>

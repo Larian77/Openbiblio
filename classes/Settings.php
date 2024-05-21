@@ -32,6 +32,9 @@ class Settings {
   var $_locale = "";
   var $_charset = "";
   var $_htmlLangAttr = "";
+  var $_loginAttempts = 9;
+  var $_pwdTimeout = 30;
+  var $_isLibraryOnline = TRUE;
 
   /****************************************************************************
   * @return array with code and description of installed locales
@@ -151,6 +154,15 @@ class Settings {
   function getHtmlLangAttr() {
     return $this->_htmlLangAttr;
   }
+  function getLoginAttempts() {
+      return $this->_loginAttempts;
+  }
+  function getPwdTimeout() {
+      return $this->_pwdTimeout;
+  }
+  function isLibraryOnline() {
+      return $this->_isLibraryOnline;
+  }
 
   /****************************************************************************
    * Setter methods for all fields
@@ -238,6 +250,19 @@ class Settings {
   }
   function setHtmlLangAttr($value) {
     $this->_htmlLangAttr = trim($value);
+  }
+  function setLoginAttempts($value) {
+      $this->_loginAttempts = $value;
+  }
+  function setPwdTimeout($value) {
+      $this->_pwdTimeout = $value;
+  } 
+  function setLibraryOnline($value) {
+    if ($value) {
+      $this->_isLibraryOnline = TRUE;
+    } else {
+      $this->_isLibraryOnline = FALSE;
+    }
   }
 
 }

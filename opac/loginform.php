@@ -21,6 +21,9 @@ require_once ("../shared/header_opac.php");
 require_once ("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE, $tab);
 
+if (OBIB_LIBRARY_ONLINE == 0) {
+    echo $loc->getText("loginDeactived");
+} else {
 ?>
 
 <br>
@@ -70,4 +73,7 @@ $loc = new Localize(OBIB_LOCALE, $tab);
 	</form>
 </center>
 
-<?php include("../shared/footer.php"); ?>
+<?php 
+}
+
+include("../shared/footer.php"); ?>

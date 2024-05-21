@@ -108,14 +108,15 @@ $trans["memberaccount"]            = "\$text = 'Member Account';";
 
 #Added
 
-$trans["memberInfo"]="\$text = 'Member Info';";
-$trans["memberSearch"]="\$text = 'Member Search';";
-$trans["editInfo"]="\$text = 'Edit Info';";
-$trans["checkoutHistory"]= "\$text = 'Checkout History';";
-$trans["account"]="\$text = 'Account';";
-$trans["checkIn"]="\$text = 'Check In';";
-$trans["memberSearch"]= "\$text = 'Member Search';";
-$trans["newMember"]= "\$text = 'New Member';";
-$trans["Offline Circulation"]= "\$text = 'Offline Circulation';";
-//$trans["account"]        	= "\$text = 'Account';";
+$trans["memberInfo"]               = "\$text = 'Member Info';";
+$trans["memberSearch"]             = "\$text = 'Member Search';";
+$trans["editInfo"]                 = "\$text = 'Edit profile';";
+$trans["PwdCreate"]                = "\$text = 'Create Passw.';";
+$trans["PwdReset"]                 = "\$text = 'Reset Password';";
+$trans["checkoutHistory"]          = "\$text = 'Checkout History';";
+$trans["account"]                  = "\$text = 'Account';";
+$trans["checkIn"]                  = "\$text = 'Check In';";
+$trans["memberSearch"]             = "\$text = 'Member Search';";
+$trans["newMember"]                = "\$text = 'New Member';";
+$trans["Offline Circulation"]      = "\$text = 'Offline Circulation';";
 ?>

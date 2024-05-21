@@ -199,6 +199,11 @@ $trans["admin_settingsLocale"]                 = "\$text = 'Sprache:';";
 $trans["admin_settingsHTMLChar"]                 = "\$text = 'HTML Zeichensatz:';";
 $trans["admin_settingsHTMLTagLangAttr"]                 = "\$text = 'HTML Tag Sprach Attribut:';";
 $trans["If the month value for purging history is higher than zero, values in statistics reports shift over time.<br>Data from statistics reports should be saved outside OpenBiblio for future reference."]                 = "\$text = 'Wenn die Monatsanzahl beim löschen der Historie größer als Null ist, können sich die statistischen Werte verändern.<br>Daten aus statistischen Reporten sollten für zukünftige Referenzen außerhalb von Openbiblio gespeichert werden.';";
+$trans["admin_settingsLoginAttemps"]       = "\$text = 'Sperrung nach n Fehlversuchen:';";
+$trans["admin_settingsPwdTimeout"]       = "\$text = 'Sperrzeit bei mehrmaligen Fehl-Login (min):';";
+$trans["admin_settingsLibraryOnline"]       = "\$text = 'Online-Zugriff für Benutzer:';";
+$trans["admin_settingsLibraryOnline_explication"]       = "\$text = '<p style=\"color: #1a62ac;\">Bei einer reiner Verwaltung der Benutzer ohne eigenen Online-Mitglieder-Zugang sind keine Passwörter zu vergeben.
+Wenn die Benutzer einen Online-Zugang haben sollen, dann sind Benutzer-Passwörter Pflicht.</p>';";
 
 #****************************************************************************
 #*  Translation text for all staff pages
@@ -231,6 +236,7 @@ $trans["adminStaff_edit_formHeader"]                 = "\$text = 'Bearbeite Mita
 $trans["adminStaff_edit_formLastname"]                 = "\$text = 'Nachname:';";
 $trans["adminStaff_edit_formFirstname"]                 = "\$text = 'Vorname:';";
 $trans["adminStaff_edit_formLogin"]                 = "\$text = 'Benutzername:';";
+$trans["adminStaff_edit_email"]                    = "\$text = 'E-Mail:';";
 $trans["adminStaff_edit_formAuth"]                 = "\$text = 'Befugnisse:';";
 $trans["adminStaff_edit_formCirc"]                 = "\$text = 'Ausleihe';";
 $trans["adminStaff_edit_formUpdatemember"]                 = "\$text = 'Benutzer bearb.';";
@@ -403,7 +409,7 @@ $trans["edit"]                             = "\$text = 'Bearb.';";
 
 $trans["Copy field, %desc%, has been deleted."] = "\$text = 'Exemplarfeld, %desc%, wurde gelöscht.';";
 $trans["return to copy field list"]             = "\$text = 'Zurück zur Exemplarfeldliste';";
-$trans["return to copy fields list"]             = "\$text = 'Zurück zur Exemplarfeldliste';";
+$trans["return to copy fields list"]            = "\$text = 'Zurück zur Exemplarfeldliste';";
 $trans["Are you sure you want to delete field '%desc%'?"] = "\$text = 'Sind Sie sicher, dass sie das Feld \'%desc%\' löschen wollen?';";
 $trans["Copy field, %desc%, has been updated."] = "\$text = 'Exemplarfeld, %desc%, wurde aktualisiert.';";
 $trans["Edit Copy Field"]                       = "\$text = 'Bearbeite Exemplarfeld';";
@@ -443,11 +449,44 @@ $trans["Add new classification type"]                    = "\$text = 'Füge neue
 
 $trans["Member field, %desc%, has been deleted."] = "\$text = 'Mitgliederfeld, %desc%, wurde gelöscht.';";
 $trans["return to member field list"]             = "\$text = 'Zurück zur Mitgliederfeldliste';";
-$trans["return to member fields list"]             = "\$text = 'Zurück zur Mitgliederfeldliste';";
+$trans["return to member fields list"]            = "\$text = 'Zurück zur Mitgliederfeldliste';";
 $trans["Member field, %desc%, has been updated."] = "\$text = 'Mitgliederfeld, %desc%, wurde aktualisiert.';";
 $trans["Edit Member Field"]                       = "\$text = 'Bearbeite Mitgliederfeld';";
 $trans["Custom Member Fields"]                    = "\$text = 'Spezifisches Mitgliederfeld';";
 $trans["Member field, %desc%, has been added."]   = "\$text = 'Mitgliederfeld, %desc%, wurde hinzugefügt.';";
 $trans["Add custom member field"]                 = "\$text = 'Füge spezifisches Mitgliederfeld hinzu';";
+
+#****************************************************************************
+#*  Translation text for install/maintenance.php
+#****************************************************************************
+
+$trans["MaintenanceMode"]                        = "\$text = 'Wartungsmodus';";
+$trans["MaintenanceExplication"]                 = "\$text = 'Ihre Openbiblio befindet sich zurzeit im Wartungsmodus.
+Bitte warten Sie die Wartung ab. Sollte diese länger andauern, kontaktieren Sie die Verantwortlichen.';";
+
+#****************************************************************************
+#*  Translation text for install/index.php
+#****************************************************************************
+
+$trans["DBConnection"]                           = "\$text = 'Datenbank-Verbindung ist in Ordnung.';";
+$trans["NoActionRequired"]                       = "\$text = 'Es ist keine weitere Aktion erforderlich.';";
+$trans["OpenbiblioUpToDate"]                     = "\$text = 'Openbiblio-Installation ist aktuell.';";
+$trans["startUsingOpenBiblio"]                   = "\$text = 'OpenBiblio jetzt starten.';";
+$trans["UpdateDatabaseInfo"]                     = "\$text = 'Es sieht so aus, als müssten wir die Datenbankversion "
+                                                            . "aktualisieren %oldDBversion% zu Version %newDBversion%.';";
+$trans["BackupDatabase"]                         = "\$text = 'WARNUNG - Bitte sichern Sie Ihre Datenbank vor der Aktualisierung.';";
+$trans["MaintenanceAccess"]                      = "\$text = 'Administratorzugang für Upgrade von Openbiblio';";
+$trans["UpgradeKey"]                             = "\$text = 'Upgrade-Schlüssel';";
+$trans["UpgradeSuspended"]                             = "\$text = 'Aufgrund zu häufiger Fehleingabe des Update-Schlüssels ist das weitere Vorgehen gesperrt.
+Um einen neuen Versuch starten zu können, empfiehlt es sich die Sitzung zu beenden und den Browser zu schließen.';";
+
+#****************************************************************************
+#*  Translation text for install/index.php
+#****************************************************************************
+
+$trans["OpenBiblioUpgrade"]                      = "\$text = 'OpenBiblio Upgrade';";
+$trans["UpdateOpenBiblioTables"]                 = "\$text = 'Aktualisierung der OpenBiblio-Tabellen, bitte warten...';";
+$trans["UpgradeFailed"]                          = "\$text = 'Upgrade fehlgeschlagen!';";
+$trans["UpdateSuccessfully"]                      = "\$text = 'Die OpenBiblio-Tabellen wurden erfolgreich aktualisiert!';";
 
 ?>

@@ -80,7 +80,7 @@ if ($balance > 0 && $balance >= $mbrMaxFines[$mbr->getClassification()]) {
 }
 
 # ****************************************************************************
-# * Pr�fung auf Hinweis wegen Ablauf der Mitgliedschaft vor R�ckgabedatum
+# * Prüfung auf Hinweis wegen Ablauf der Mitgliedschaft vor Rückgabedatum
 # * Derzeit abgedeckt durch Missbrauch des Fehlercodes und Markierung mit !!! davor
 # ****************************************************************************
 $dueMsg = "";
@@ -122,100 +122,120 @@ require_once ("../shared/header.php");
 <table class="primary">
 	<tr>
 		<td class="noborder" valign="top"><br>
-			<table class="primary">
-				<tr>
-					<th align="left" colspan="2" style="white-space: nowrap">
-                        <?php echo $loc->getText("mbrViewHead1"); ?>
-                    </th>
-				</tr>
-				<tr>
-					<td style="white-space: nowrap" class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewName"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php echo H($mbr->getLastName()); ?>,
-                        <?php echo H($mbr->getFirstName()); ?>
-                    </td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewAddr"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php
-                        echo str_replace("\n", "<br />", H($mbr->getAddress()));
-                        ?>
-                    </td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewCardNmbr"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php echo H($mbr->getBarcodeNmbr()); ?>
-                    </td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewClassify"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php echo H($mbrClassifyDm[$mbr->getClassification()]); ?>
-                    </td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewPhone"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php
-                        if ($mbr->getHomePhone() != "") {
-                            echo $loc->getText("mbrViewPhoneHome") . $mbr->getHomePhone() . " ";
+                    <table class="primary">
+                    <tr>
+			<th align="left" colspan="2" style="white-space: nowrap">
+                            <?php echo $loc->getText("mbrViewHead1"); ?>
+                        </th>
+                    </tr>
+                    <tr>
+                    	<td style="white-space: nowrap" class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewName"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php echo H($mbr->getLastName()); ?>,
+                            <?php echo H($mbr->getFirstName()); ?>
+                        </td>
+                    </tr>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewAddr"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php
+                            echo str_replace("\n", "<br />", H($mbr->getAddress()));
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewCardNmbr"); ?>
+                        </td>
+                        <td valign="top" class="primary">
+                            <?php echo H($mbr->getBarcodeNmbr()); ?>
+                        </td>
+                    </tr>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewClassify"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php echo H($mbrClassifyDm[$mbr->getClassification()]); ?>
+                        </td>
+                    </tr>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewPhone"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php
+                            if ($mbr->getHomePhone() != "") {
+                                echo $loc->getText("mbrViewPhoneHome") . $mbr->getHomePhone() . " ";
+                            }
+                            if ($mbr->getWorkPhone() != "") {
+                                echo "<br />" . $loc->getText("mbrViewPhoneWork") . $mbr->getWorkPhone();
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php echo $loc->getText("mbrViewEmail"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <a href=mailto:<?php echo H($mbr->getEmail()); ?>><?php echo H($mbr->getEmail()); ?></a>
+			</td>
+                    </tr>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php print $loc->getText("mbrViewMbrShipEnd"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php
+                            if ($mbr->getMembershipEnd() == "0000-00-00") {
+                                print $loc->getText("mbrViewMbrShipNoEnd");
+                            } else {
+                                echo $mbr->getMembershipEnd();
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                    foreach ($memberFieldsDm as $name => $title) {
+                        if (($value = $mbr->getCustom($name))) {        
+                    ?>
+                            <tr>
+				<td class="primary" valign="top">
+                                    <?php echo H($title); ?>
+                                </td>
+				<td valign="top" class="primary">
+                                    <?php echo H($value); ?>
+                                </td>
+                            </tr>
+                    <?php
                         }
-                        if ($mbr->getWorkPhone() != "") {
-                            echo $loc->getText("mbrViewPhoneWork") . $mbr->getWorkPhone();
-                        }
-                        ?>
-                    </td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php echo $loc->getText("mbrViewEmail"); ?>
-                    </td>
-					<td valign="top" class="primary">
-						<a href=mailto:<?php echo H($mbr->getEmail()); ?>><?php echo H($mbr->getEmail()); ?></a>
-					</td>
-				</tr>
-				<tr>
-					<td class="primary" valign="top">
-                        <?php print $loc->getText("mbrViewMbrShipEnd"); ?>
-                    </td>
-					<td valign="top" class="primary">
-                        <?php
-                        if ($mbr->getMembershipEnd() == "0000-00-00")
-                            print $loc->getText("mbrViewMbrShipNoEnd");
-                        else
-                            echo $mbr->getMembershipEnd();
-                        ?>
-                    </td>
-				</tr>
-                <?php
-                foreach ($memberFieldsDm as $name => $title) {
-                    if (($value = $mbr->getCustom($name))) {
-                        ?>
-                        <tr>
-					<td class="primary" valign="top">
-                                <?php echo H($title); ?>
-                            </td>
-					<td valign="top" class="primary">
-                                <?php echo H($value); ?>
-                            </td>
-				</tr>
-                        <?php
                     }
-                }
-                ?>
-            </table></td>
+                    if (OBIB_LIBRARY_ONLINE == TRUE) {
+                    ?>
+                    <tr>
+			<td class="primary" valign="top">
+                            <?php echo $loc->getText("mbr_new_form_Password"); ?>
+                        </td>
+			<td valign="top" class="primary">
+                            <?php                            
+                                if ($mbr->getPwd() != NULL) {
+                                    echo '********';
+                                } else {
+                                    echo $loc->getText("mbrNoPassword");
+                                }
+                    }
+                            ?>
+			</td>
+                    </tr>
+			</td>
+                    </tr>
+                    </table>
+                </td>
 		<td class="noborder" valign="top">
 
             <?php
@@ -227,45 +247,49 @@ require_once ("../shared/header.php");
             $dms = $dmQ->getCheckoutStats($mbr->getMbrid());
             $dmQ->close();
             ?>
-            <?php echo $loc->getText("mbrViewHead2"); ?>
-            <table class="primary">
-				<tr>
-					<th align="left" rowspan="2">
+            <table id="LendingStatus" class="primary">
+                <tr>
+                    <th colspan="4">
+                       <?php echo $loc->getText("mbrViewHead2"); ?>
+                    </th>                  
+                </tr>
+		<tr>
+                    <th class="LendingHeads" align="left" rowspan="2">
                         <?php echo $loc->getText("mbrViewStatColHdr1"); ?>
                     </th>
-					<th align="left" rowspan="2">
+                    <th class="LendingHeads" align="left" rowspan="2">
                         <?php echo $loc->getText("mbrViewStatColHdr2"); ?>
                     </th>
-					<th align="center" colspan="2" style="white-space: nowrap">
+                    <th class="LendingHeads" align="center" colspan="2" style="white-space: nowrap">
                         <?php echo $loc->getText("mbrViewStatColHdr3"); ?>
                     </th>
-				</tr>
-				<tr>
-					<th align="left">
+		</tr>
+		<tr>
+                    <th class="LendingHeads" align="left">
                         <?php echo $loc->getText("mbrViewStatColHdr4"); ?>
                     </th>
-					<th align="left">
+                    <th class="LendingHeads" align="left">
                         <?php echo $loc->getText("mbrViewStatColHdr5"); ?>
                     </th>
-				</tr>
+		</tr>
                 <?php
                 foreach ($dms as $dm) {
-                    ?>
+                ?>
                     <tr>
-					<td style="white-space: nowrap" class="primary" valign="top">
+			<td style="white-space: nowrap" class="primary" valign="top">
                             <?php echo H($dm->getDescription()); ?>
                         </td>
-					<td valign="top" class="primary">
+                        <td valign="top" class="primary">
                             <?php echo H($dm->getCount()); ?>
                         </td>
-					<td valign="top" class="primary">
+			<td valign="top" class="primary">
                             <?php echo H($dm->getCheckoutLimit()); ?>
                         </td>
-					<td valign="top" class="primary">
+			<td valign="top" class="primary">
                             <?php echo H($dm->getRenewalLimit()); ?>
                         </td>
-				</tr>
-                    <?php
+                    </tr>
+                <?php
                 }
                 ?>
             </table>

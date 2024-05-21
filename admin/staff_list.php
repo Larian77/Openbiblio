@@ -47,6 +47,9 @@
     <th rowspan="2" valign="top">
       <?php echo $loc->getText("adminStaff_edit_formLogin"); ?>
     </th>
+    <th rowspan="2" valign="top">
+      <?php echo $loc->getText("adminStaff_edit_email");?>
+    </th>
     <th colspan="5">
       <?php echo $loc->getText("adminStaff_edit_formAuth"); ?>
     </th>
@@ -93,6 +96,10 @@
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <?php echo H($staff->getUsername());?>
+    </td>
+    <td valign="top" class="<?php echo H($row_class);?>">
+      <?php echo '<a href="mailto:' . H($staff->getEmail()) . '">'
+                . H($staff->getEmail()) . '</a>';?>
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <?php if ($staff->hasCircAuth()) {

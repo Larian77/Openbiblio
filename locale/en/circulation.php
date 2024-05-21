@@ -88,11 +88,18 @@ $trans["mbrsearchFoundResults"] = "\$text=' results found.';";
 $trans["mbrsearchSearchResults"] = "\$text='Search Results:';";
 $trans["mbrsearchCardNumber"] = "\$text='Card Number:';";
 $trans["mbrsearchClassification"] = "\$text='Classification:';";
+$trans["mbr_new_form_Reenterpassword"]     = "\$text = 'Repeat password:';";
+$trans["mbrPwdRequirement"]                = "\$text = '<p style=\"color: #1a62ac;\">Rules: Password must have between 8 and 20 characters, at least 1 digit(s), <br />"
+        . "at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)</p>';";
+$trans["mbrPwdRequirementErr"]  = "\$text = 'Password must have at least 8 characters, at least 1 digit(s), at least 1 lower case letter(s),"
+        . " at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
 
 # ****************************************************************************
-# * Translation text for page mbr_new.php
+# * Translation text for page mbr_new.php (and mbr_view.php)
 # ****************************************************************************
 $trans["mbrNewSuccess"] = "\$text='Member has been successfully added.';";
+$trans["mbr_new_form_Password"]            = "\$text = 'Password:';";
+$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>No password set!</p>';";
 
 # ****************************************************************************
 # * Translation text for page mbr_edit.php
@@ -101,10 +108,10 @@ $trans["mbrEditSuccess"] = "\$text='Member has been successfully updated.';";
 $trans["mbrRenewSuccess"] = "\$text='Membership was sucessfully renewed for %length% month.';";
 $trans["All items renewed."] = "\$text='All items renewed.';";
 
-# ****************************************************************************
+#****************************************************************************
 # * Translation text for page mbr_view.php
 # ****************************************************************************
-$trans["mbrViewHead1"] = "\$text='Member Information:';";
+$trans["mbrViewHead1"] = "\$text='Member Information';";
 $trans["mbrViewName"] = "\$text='Name:';";
 $trans["mbrViewAddr"] = "\$text='Address:';";
 $trans["mbrViewCardNmbr"] = "\$text='Card Number:';";
@@ -117,13 +124,13 @@ $trans["mbrViewGrade"] = "\$text='School Grade:';";
 $trans["mbrViewTeacher"] = "\$text='School Teacher:';";
 $trans["mbrViewMbrShipEnd"] = "\$text='paid until:';";
 $trans["mbrViewMbrShipNoEnd"] = "\$text='unlimited/not used';";
-$trans["mbrViewHead2"] = "\$text='Checkout Stats:';";
+$trans["mbrViewHead2"] = "\$text='Checkout Stats';";
 $trans["mbrViewStatColHdr1"] = "\$text='Material';";
 $trans["mbrViewStatColHdr2"] = "\$text='Count';";
 $trans["mbrViewStatColHdr3"] = "\$text='Limits';";
 $trans["mbrViewStatColHdr4"] = "\$text='Checkout';";
 $trans["mbrViewStatColHdr5"] = "\$text='Renewal';";
-$trans["mbrViewHead3"] = "\$text='Bibliography Check Out:';";
+$trans["mbrViewHead3"] = "\$text='Bibliography Check Out';";
 $trans["mbrViewBarcode"] = "\$text='Barcode Number:';";
 $trans["mbrViewCheckOut"] = "\$text='Check Out';";
 $trans["mbrViewHead4"] = "\$text='Bibliographies Currently Checked Out:';";

@@ -131,15 +131,16 @@ $trans["reportCriteriaDateTimeErr"] = "\$text = 'Ungültiges Zeitformat.';";
 $trans["reportCriteriaDateErr"]   = "\$text = 'Ungültiges Datumsformat.';";
 
 #****************************************************************************
-#*  Translation text for class Staff
+#*  Translation text for classes Staff and Member
 #****************************************************************************
-$trans["staffLastNameReqErr"]     = "\$text = 'Nachname wird benötigt.';";
-$trans["staffUserNameLenErr"]     = "\$text = 'Benutzername muss mindestens 4 Zeichen lang sein.';";
-$trans["staffUserNameCharErr"]    = "\$text = 'Benutzername darf kein Leerzeichen enthalten.';";
-$trans["staffPwdLenErr"]          = "\$text = 'Passwort muss zwischen 8 bis 20 Zeichen lang sein.';";
-$trans["staffPwdCharErr"]         = "\$text = 'Passwort darf kein Leerzeichen enthalten.';";
-$trans["staffPwdMatchErr"]        = "\$text = 'Passwörter sind nicht identisch.';";
-$trans["staffPwdRequirementErr"]  = "\$text = 'Passwort muss mindestens 1 Ziffer, 1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.';";
+$trans["LastNameReqErr"]     = "\$text = 'Nachname wird benötigt.';";
+$trans["UserNameLenErr"]     = "\$text = 'Benutzername muss mindestens 4 Zeichen lang sein.';";
+$trans["UserNameCharErr"]    = "\$text = 'Benutzername darf kein Leerzeichen enthalten.';";
+$trans["UserEmailCharErr"]   = "\$text = 'E-Mail-Adresse nicht korrekt.';";
+$trans["PwdLenErr"]          = "\$text = 'Passwort muss zwischen 8 bis 20 Zeichen lang sein.';";
+$trans["PwdCharErr"]         = "\$text = 'Passwort darf kein Leerzeichen enthalten.';";
+$trans["PwdMatchErr"]        = "\$text = 'Passwörter sind nicht identisch.';";
+$trans["PwdRequirementErr"]  = "\$text = 'Passwort muss mindestens 1 Ziffer, 1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.';";
 
 #****************************************************************************
 #*  Translation text for class Member

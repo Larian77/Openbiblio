@@ -20,8 +20,18 @@ $fields = array(
     "mbrFldsWorkPhone" => inputField('text', "workPhone", $mbr->getWorkPhone())
 );
 
+if (isset($_GET['mbrid'])) {
+    $mbr->setMbrid($_GET["mbrid"]);
+}
+if (isset($_GET['FileSource'])) {
+    $mbr->setFileSource($_GET["FileSource"]);
+}
+if ($set->_isLibraryOnline == TRUE && $mbr->getFileSource() != "mbr_edit_form") {
+        $fields["mbr_new_form_Password"] = inputField('password', 'pwd', $mbr->getPwd());
+        $fields['mbr_new_form_Reenterpassword'] = inputField('password', 'pwdRepeat', $mbr->getPwdRepeat());
+}
 foreach ($customFields as $name => $title) {
-    $fields[$title . ':'] = inputField('text', 'custom_' . $name, $mbr->getCustom($name));
+       $fields[$title . ':'] = inputField('text', 'custom_' . $name, $mbr->getCustom($name));
 }
 $fields["mbrFldsMbrShip"] = inputField('text', "membershipEnd", (!empty($mbr->getMembershipEnd()) ? $mbr->getMembershipEnd() : '') );
 $fields["mbrFldsClassify"] = inputField('select', 'classification', $mbr->getClassification(), NULL, $mbrClassifyDm);
@@ -35,26 +45,31 @@ $fields["mbrFldsClassify"] = inputField('select', 'classification', $mbr->getCla
     </th>
 	</tr>
 <?php
-foreach ($fields as $title => $html) {
+foreach ($fields as $title => $html) {  
     ?>
   <tr>
-		<td style="white-space: nowrap;" class="primary" valign="top">
-      <?php echo $loc->getText($title); ?>
+    <td style="white-space: nowrap;" class="primary" valign="top">
+      <?php 
+        echo $loc->getText($title); ?>
     </td>
-		<td valign="top" class="primary">
-      <?php echo $html; ?>
+    <td valign="top" class="primary">
+      <?php 
+        if ($title == 'mbr_new_form_Password') {
+            echo $loc->getText("mbrPwdRequirement");
+        } 
+        echo $html; ?>
     </td>
-	</tr>
+  </tr>
 <?php
-}
+};
 ?>
   <tr>
-		<td align="center" colspan="2" class="primary"><input type="submit"
+    <td align="center" colspan="2" class="primary"><input type="submit"
 			value="<?php echo $loc->getText("mbrFldsSubmit"); ?>" class="button">
 			<input type="button"
 			onClick="self.location='<?php echo H(addslashes($cancelLocation));?>'"
 			value="<?php echo $loc->getText("mbrFldsCancel"); ?>" class="button">
-		</td>
-	</tr>
+    </td>
+  </tr>
 
 </table>

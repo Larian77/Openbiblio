@@ -7,8 +7,7 @@ require_once("../classes/InstallQuery.php");
 
 class UpgradeQuery extends InstallQuery {
 
-    //Changes PVD(8.0.x)
-  function __construct() {
+  function UpgradeQuery() {
     # Call query constructor so database connection gets made
     $this->Query();
   }
@@ -72,7 +71,8 @@ class UpgradeQuery extends InstallQuery {
       '0.5.2' => '_upgrade052_e',
       '0.6.0' => '_upgrade060_e',
       '0.7.0' => '_upgrade071_e',
-    );
+      '0.7.1' => '_upgrade081_e'
+    );    
     $tmpPrfx = "obiblio_upgrade_";
     # FIXME - translate upgrade messages
     $locale = $this->getCurrentLocale($fromTablePrfx);
@@ -368,8 +368,8 @@ class UpgradeQuery extends InstallQuery {
     $notices = array();
     return array($notices, NULL);
   }
-  /* Upgrade 0.7.0 to 0.7.1 */
-  function _upgrade071_e($prfx, $tmpPrfx) {
+/* Upgrade 0.7.0 to 0.7.1 */  
+   function _upgrade071_e($prfx, $tmpPrfx) {
     # Lift some restrictions
     $this->exec('alter table '.$prfx.'settings '
                 . 'modify locale varchar(30) not null ');
@@ -397,6 +397,54 @@ class UpgradeQuery extends InstallQuery {
                 . $prfx.'material_usmarc_xref.materialCd='.$prfx.'material_type_dm.code '
                 . 'where '.$prfx.'material_type_dm.code is null ');
     $this->exec("update settings set version='0.7.1'");
+    $notices = array();
+    return array($notices, NULL);
+  }
+  /* Upgrade 0.7.1 to 0.8.1 */
+  function _upgrade081_e($prfx, $tmpPrfx) {
+    $settings = $_POST;
+    
+    $this->exec('ALTER TABLE ' . $prfx . 'member '
+                    . 'ADD pwd VARCHAR(255) AFTER barcode_nmbr ');
+    $this->exec('ALTER TABLE ' . $prfx . 'member '
+                    . 'ADD pwd_timeout DATETIME AFTER pwd ');
+        $this->exec("UPDATE " . $prfx . "member SET pwd_timeout='0000-00-00 00:00:00'");
+    $this->exec('ALTER TABLE ' . $prfx . 'staff MODIFY pwd VARCHAR(255) ');
+    $this->exec('ALTER TABLE ' . $prfx . 'staff '
+                    . 'ADD pwd_timeout DATETIME AFTER pwd ');
+    $this->exec('ALTER TABLE ' . $prfx . 'staff '
+                    . 'ADD email VARCHAR(128) NULL AFTER first_name ');
+    $this->exec("UPDATE " . $prfx . "staff SET pwd_timeout='0000-00-00 00:00:00'");
+    $this->exec("UPDATE " . $prfx . 'settings SET version = "' . OBIB_LATEST_DB_VERSION . '"');
+    $this->exec('ALTER TABLE ' . $prfx . 'settings '
+                    . 'ADD login_attempts INT(2) NOT NULL AFTER html_lang_attr ');
+    $this->exec('UPDATE ' . $prfx . 'settings SET login_attempts = ' . $settings["loginAttempts"]);
+    $this->exec('ALTER TABLE ' . $prfx . 'settings '
+                    . 'ADD pwd_timeout INT(2) NOT NULL AFTER login_attempts ');
+    $this->exec('UPDATE ' . $prfx . 'settings SET pwd_timeout = ' . $settings["pwdTimeout"]);
+    $this->exec('ALTER TABLE ' . $prfx . 'settings '
+                    . 'ADD library_online CHAR(1) ');
+    $this->exec('UPDATE ' . $prfx . 'settings SET library_online = "' . $settings["libraryOnline"] . '"');
+    $mbrfieldsdm = $this->exec("SELECT * FROM " . $prfx . "member_fields_dm WHERE code = 'secret' ");
+    if ($mbrfieldsdm == TRUE) {
+        $mbrSecretCodes = $this->exec("SELECT * FROM member_fields WHERE code = 'secret'");
+        $mbrCodeCount = count($mbrSecretCodes);
+        if ($mbrCodeCount != '' || $mbrCodeCount != NULL) {
+            $pwdCopyCount = 0;
+            foreach($mbrSecretCodes as $mbrSecretFields => $mbrValue ) {
+                $pwdhash = password_hash($mbrValue["data"], PASSWORD_DEFAULT);
+                $exit = $this->exec('UPDATE ' . $prfx . 'member SET pwd = "' . $pwdhash . '" WHERE mbrid = ' . $mbrValue["mbrid"] );
+                if ($exit == TRUE) {
+                   $exit = $this->exec('DELETE FROM ' . $prfx . 'member_fields WHERE mbrid = ' . $mbrValue["mbrid"] . ' AND code = "' . $mbrValue["code"] . '"');
+                   $pwdCopyCount = $pwdCopyCount + 1;
+                }
+            }
+            if ($mbrCodeCount == $pwdCopyCount) {
+                $this->exec('DELETE FROM ' . $prfx . ' member_fields_dm WHERE code = "secret" '); 
+            }
+        }
+    }
+    
     $notices = array();
     return array($notices, NULL);
   }

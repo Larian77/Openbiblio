@@ -214,7 +214,7 @@ td.title {
 <?php } ?>
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
   border-width: <?php echo H(OBIB_BORDER_WIDTH);?>;
-  text-align: <?php echo H(OBIB_TITLE_ALIGN);;?>
+  text-align: <?php echo H(OBIB_TITLE_ALIGN);?>;
 }
 td.alt1 {
   background-color: <?php echo H(OBIB_ALT1_BG);?>;
@@ -277,6 +277,17 @@ table.form th {
 }
 table.form .error { font-weight: bold; color: red }
 table.form .error { font-weight: bold; color: red }
+
+/*********************************************************
+ *  Member View Styles 
+ *********************************************************/
+#LendingStatus {
+   margin-top: 16px;
+}
+th.LendingHeads {
+   color: #000000;
+   background-color: #ffffff;
+}
 
 /*********************************************************
  *  Form Styles

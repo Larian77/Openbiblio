@@ -45,6 +45,7 @@ Current date and time (YYYY-MM-DD HH:MM:SS):
     }
 }
 ?>
+<div class="content">
 <h1>OpenBiblio <?php echo H(OBIB_CODE_VERSION); ?> Installation</h1>
 <?php
 if ($error) {
@@ -72,62 +73,125 @@ script.
 See
 <a href="../install_instructions.html">Install Instructions</a>
 for more details.
+
 <?php
 } else {
-    echo "Database connection is good.<br />";
     if ($version == OBIB_LATEST_DB_VERSION) {
-        ?>
-<blockquote>
-	<h2>Your OpenBiblio Installation is up to date</h2>
-	<font class="error">No action is required</font><br>
-	<br> <a href="../home/index.php">start using OpenBiblio</a>
-</blockquote>
+        $tab = 'admin';
+        require_once ("../shared/read_settings.php");
+        require_once ("../classes/Localize.php");
+        $loc = new Localize(OBIB_LOCALE,$tab);
+    
+        echo '<p class="goodNews">' . $loc->getText("DBConnection") . '<br />';
+?>
+        <p class="info"><?php echo $loc->getText('OpenbiblioUpToDate'); ?></p>
+
+        <font class="error"><?php echo $loc->getText('NoActionRequired'); ?></font><br>
+        <br><br>
+        <a href="../home/index.php"><?php echo $loc->getText('startUsingOpenBiblio'); ?></a>
 <?php
     } elseif ($version == NULL) {
-        ?>
-<h2>New Install:</h2>
-<blockquote>
-	<form name="installForm" method="POST" action="../install/install.php">
-		<table style="border: none; border-spacing: 0px">
-			<tr>
-				<td style="padding: 0px"><font class="primary">Language:</font></td>
-				<td style="padding: 0px"><select name="locale">
-                <?php
-        $stng = new Settings();
-        $arr_lang = $stng->getLocales();
-        foreach ($arr_lang as $langCode => $langDesc) {
-            echo "<option value=\"" . H($langCode) . "\"";
-            echo ">" . H($langDesc) . "\n";
-        }
-        ?>
-              </select></td>
-			</tr>
-			<tr>
-				<td style="padding: 0px" rowspan="2" valign="top"><font
-					class="primary">Install Test Data:</font></td>
-				<td style="padding: 0px"><input type="checkbox"
-					name="installTestData" value="yes"></td>
-			</tr>
-			<tr>
-				<td style="padding: 0px"><input type="submit" value="Install"></td>
-			</tr>
-		</table>
-	</form>
-</blockquote>
+        echo '<p class="goodNews">Database connection is good.<br />';
+?>
+        <h2>New Install:</h2>
+        <blockquote>
+            <form name="installForm" method="POST" action="../install/install.php">
+                <table style="border: none; border-spacing: 0px">
+                    <tr>
+                        <td style="padding: 5px"><font class="primary">Language:</font></td>
+                        <td style="padding: 5px"><select name="locale">
+                            <?php
+                            $stng = new Settings();
+                            $arr_lang = $stng->getLocales();
+                            foreach ($arr_lang as $langCode => $langDesc) {
+                                echo "<option value=\"" . H($langCode) . "\"";
+                                echo ">" . H($langDesc) . "\n";
+                            }
+                            ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px" rowspan="2" valign="top"><font
+                                class="primary">Install Test Data:</font></td>
+                        <td style="padding: 5px"><input type="checkbox"
+                                name="installTestData" value="yes"></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px"><input type="submit" value="Install"></td>
+                    </tr>
+                </table>
+            </form>
+        </blockquote>
 <?php
     } else {
-        ?>
-<h1>It looks like we need to update  database version <?php echo H($version); ?>
-        to version <?php echo H(OBIB_LATEST_DB_VERSION); ?>:</h1>
-<blockquote>
-	<font class="error">WARNING - Please back up your database before
-		updating.</font>
-	<form name="updateForm" method="POST" action="../install/update.php">
-		<input type="submit" value="Update">
+        $tab = 'admin';
+        require_once ("../shared/read_settings.php");
+        require_once ("../classes/Localize.php");
+        $loc = new Localize(OBIB_LOCALE,$tab);
+        
+        echo '<p class="goodNews">' . $loc->getText("DBConnection") . '<br />';
+?>
+        <p class="info">
+            <?php 
+            echo $loc->getText("UpdateDatabaseInfo",array("oldDBversion"=>H($version),"newDBversion"=>H(OBIB_LATEST_DB_VERSION)))
+            ?></p>
+
+    <font class="error"><?php echo $loc->getText('BackupDatabase'); ?></font>
+<?php
+    if ( OBIB_LATEST_DB_VERSION == '0.8.1'){ 
+   
+?>
+        <form name="updateForm" method="POST" action="../install/upgradeSettings.php">
+            
+    <?php       #***************************************************************
+                #* Protection against attacks
+                #***************************************************************
+                if (isset($_GET["upgrade"]) && $_GET["upgrade"] != "") {
+                $upgradeattempts = $_GET["upgrade"];
+                $upgrade = intval($upgradeattempts) +1;
+                $_GET["upgrade"] = $upgrade;
+            } else {
+                $upgrade = 1;
+            }
+            if ($upgrade <= 9) {
+                #***************************************************************
+                #* Upgrade only for administrators with upgrade key
+                #* The upgrade key OBIB_UPGRADE_KEY is set in the shared/global_settings.php file.
+                #* and should be set individually
+                #***************************************************************
+                echo '<br /><br /><h2>' . $loc->getText('MaintenanceAccess') . '</h2>'; 
+    ?>
+                <blockquote>
+                    <table style="border: none; border-spacing: 0px">
+                        <tr>
+                            <td style="padding: 5px;"><font class="primary"><?php echo  $loc->getText('UpgradeKey') . ':'; ?></font></td>
+                            <td style="padding: 5px;"><input type="password"
+                                            name="upgradekey" value=""></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;"><input type="hidden" id="upgrade" name="upgrade" value="<?php echo $upgrade ?>"></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;">
+                                <input type="hidden" name="update" value="true">
+                                <input type="submit" value="Update"></td>
+                        </tr>
+                    </table>           
+    <?php   } else if ( OBIB_LATEST_DB_VERSION != '0.8.1'){?>                
+                <form name="updateForm" method="POST" action="../install/update.php">
+                    <input type="submit" value="Update">
+    <?php
+            } else {
+                echo '<p><font class="error">' . $loc->getText("UpgradeSuspended") . '</font></p>';
+            }
+        }
+    ?>
 	</form>
 </blockquote>
 <?php
     }
 }
+echo '</div';
 include ("../install/footer.php");
 ?>

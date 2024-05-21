@@ -83,6 +83,9 @@ define("OBIB_CHARSET", $set->getCharset());
 define("OBIB_HTML_LANG_ATTR", $set->getHtmlLangAttr());
 define("OBIB_LIBRARY_USE_IMAGE_ONLY", $set->isUseImageSet());
 define("OBIB_LIBRARY_IMAGE_URL", $set->getLibraryImageUrl());
+define("OBIB_LOGIN_ATTEMPTS", $set->getLoginAttempts());
+define("OBIB_PWD_TIMEOUT", $set->getPwdTimeout());
+define("OBIB_LIBRARY_ONLINE", $set->isLibraryOnline());
 
 /****************************************************************************
  * theme related constants.

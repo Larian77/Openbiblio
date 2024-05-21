@@ -23,9 +23,12 @@ class Staff
     var $_pwd = "";
     var $_pwdError = "";
     var $_pwd2 = "";
+    var $_pwdTimeout = '0000-00-00 00:00:00';
     var $_lastName = "";
     var $_lastNameError = "";
     var $_firstName = "";
+    var $_email = "";
+    var $_emailError = "";
     var $_username = "";
     var $_usernameError = "";
     var $_circAuth = false;
@@ -53,14 +56,18 @@ class Staff
         $valid = true;
         if ($this->_lastName == "") {
             $valid = false;
-            $this->_lastNameError = $this->_loc->getText("staffLastNameReqErr");
+            $this->_lastNameError = $this->_loc->getText("LastNameReqErr");
         }
         if (strlen($this->_username) < 4) {
             $valid = false;
-            $this->_usernameError = $this->_loc->getText("staffUserNameLenErr");
+            $this->_usernameError = $this->_loc->getText("UserNameLenErr");
         } elseif (substr_count($this->_username, " ") > 0) {
             $valid = false;
-            $this->_usernameError = $this->_loc->getText("staffUserNameCharErr");
+            $this->_usernameError = $this->_loc->getText("UserNameCharErr");
+        }
+        if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
+            $valid = false;
+            $this->_emailError = $this->_loc->getText("UserEmailCharErr");
         }
         return $valid;
     }
@@ -75,16 +82,16 @@ class Staff
         $valid = true;
         if (strlen($this->_pwd) < 8 || strlen($this->_pwd) > 20) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdLenErr");
+            $this->_pwdError = $this->_loc->getText("PwdLenErr");
         } elseif (substr_count($this->_pwd, " ") > 0) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdCharErr");
+            $this->_pwdError = $this->_loc->getText("PwdCharErr");
         } elseif ($this->_pwd != $this->_pwd2) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdMatchErr");
-        } elseif(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[@_#�%$])[0-9A-Za-z@_#�%$]{8,20}$/', $this->_pwd)) { 
+            $this->_pwdError = $this->_loc->getText("PwdMatchErr");
+        } elseif(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[@_#§%$])[0-9A-Za-z@_#§%$]{8,20}$/', $this->_pwd)) { 
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdRequirementErr");        
+            $this->_pwdError = $this->_loc->getText("PwdRequirementErr");        
         }
         return $valid;
     }
@@ -110,7 +117,7 @@ class Staff
     }
 
     /****************************************************************************
-     * @param string $pwd Password of staff member
+     * @param string $pwd Password of staff member und Pwd-Timeout
      * @return void
      * @access public
      ****************************************************************************
@@ -129,11 +136,17 @@ class Staff
     }
     function setPwd2($pwd)
     {
-    $this->_pwd2 = trim($pwd);
+        $this->_pwd2 = trim($pwd);
     }
     function getPwd2()
     {
         return $this->_pwd2;
+    }
+    function getPwdTimeout() {
+        return $this->_pwdTimeout;
+    }
+    function setPwdTimeout($pwdTimeout) {
+            $this->_pwdTimeout = $pwdTimeout;
     }
 
     /****************************************************************************
@@ -211,6 +224,34 @@ class Staff
     function setUsername($username)
     {
         $this->_username = trim($username);
+    }
+    /****************************************************************************
+     * @return string Staff E-mail
+     * @access public
+     ****************************************************************************
+     */
+    function getEmail()
+    {
+        return $this->_email;
+    }
+    /****************************************************************************
+     * @return string E-mail error text
+     * @access public
+     ****************************************************************************
+     */
+    function getEmailError()
+    {
+        return $this->_emailError;
+    }
+    /****************************************************************************
+     * @param string $email E-mail of staff member
+     * @return void
+     * @access public
+     ****************************************************************************
+     */
+    function setEmail($email)
+    {
+        $this->_email = trim($email);
     }
     /****************************************************************************
      * @return boolean true if staff member has circulation authorization

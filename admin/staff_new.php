@@ -35,6 +35,8 @@
   $_POST["first_name"] = $staff->getFirstName();
   $staff->setUsername($_POST["username"]);
   $_POST["username"] = $staff->getUsername();
+  $staff->setEmail($_POST["email"]);
+  $_POST["email"] = $staff->getEmail();
   $staff->setPwd($_POST["pwd"]);
   $_POST["pwd"] = $staff->getPwd();
   $staff->setPwd2($_POST["pwd2"]);
@@ -49,6 +51,7 @@
   if (!($validData && $validPwd)) {
     $pageErrors["last_name"] = $staff->getLastNameError();
     $pageErrors["username"] = $staff->getUsernameError();
+    $pageErrors["email"] = $staff->getEmailError();
     $pageErrors["pwd"] = $staff->getPwdError();
     $_SESSION["postVars"] = $_POST;
     $_SESSION["pageErrors"] = $pageErrors;

@@ -15,37 +15,20 @@ require_once("../classes/Query.php");
  ******************************************************************************
  */
 class MemberLoginQuery extends Query {
-
-  function checkSecret() {
-        $sql = "select * from member_fields_dm";
-        $sql .= " where code = 'secret'";
-        return $this->_query($sql, "No Memberfield 'secret' defined. Member-Login is deactivated!");
-  }
-
-  function fetchRow() {
-    $array = $this->_conn->fetchRow();
-    if ($array == false) {
-      return false;
-   } else {
-   return true;
-   }
-   }
-
+  
   /****************************************************************************
-   * Executes a query to verify a signon username and password
-   * @param string $username username of staff member to select
-   * @param string $pwd password of staff member to select
+   * Executes a query to verify a signon username
+   * Variable $pwd (Password) was deleted because cannot be verified with password_hash
+   * @param string $mbrid to select from member_fields
    * @return boolean returns false, if error occurs
    * @access public
    ****************************************************************************
    */
-  function verifySignon($username, $pwd) {
-    $sql = $this->mkSQL("select * from member_fields "
-                        . "where mbrid = %N "
-                        . " and code = 'secret' "
-                        . " and data = %Q ",
-                        $username, $pwd);
-    return $this->_query($sql, "Error verifying username and password.");
+  function verifySignon($mbrid) {
+    $sql = $this->mkSQL("select pwd from member "
+                        . "where mbrid = %N ",
+                        $mbrid);
+    return $this->_query($sql, "Error verifying username.");
   }
 
 }

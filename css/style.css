@@ -4,6 +4,9 @@
 body {
   background-color: #ffffff
 }
+div.content {
+    padding-left: 15px;
+}
 
 /*********************************************************
  *  Font Styles
@@ -13,6 +16,9 @@ font.primary {
   font-size: 13px;
   font-family: verdana,arial,helvetica;
 }
+font.settingLocation {
+  font-size: 10px; 
+}
 font.error {
   color: #aa0000;
   font-size: 13px;
@@ -20,9 +26,23 @@ font.error {
   font-weight: bold;
 }
 h1 {
+  font-size: 20px;
+  font-family: verdana,arial,helvetica;
+  font-weight: bold;
+}
+h2 {
   font-size: 16px;
   font-family: verdana,arial,helvetica;
-  font-weight: normal;
+  font-weight: bold;    
+}
+p {
+  font-family: verdana,arial,helvetica;  
+}
+p.info {
+  font-size: 16px;
+}
+p.goodNews {
+    color: green;
 }
 
 /*********************************************************
@@ -33,4 +53,18 @@ a:link {
 }
 a:visited {
   color: #0000aa;
+}
+
+/*********************************************************
+ *  Table Styles
+ *********************************************************/
+
+table.upgrade {
+  border-collapse: collapse;
+}
+td.upgrade {
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  valign: top;
 }

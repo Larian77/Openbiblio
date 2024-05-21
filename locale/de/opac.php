@@ -58,16 +58,16 @@ $trans["opac_SearchMat"]     = "\$text='Begrenze Suche auf Medienarten';";
 #****************************************************************************
 $trans["loginFormTbleHdr"]         = "\$text = 'Benutzer Login';";
 $trans["MemberID"]        	   = "\$text = 'Benutzernummer';";
-$trans["Secret Word"]	           = "\$text = 'Geheimwort';";
+$trans["Secret Word"]	           = "\$text = 'Kennwort';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
+$trans["loginDeactived"]           = "\$text = 'Login ist deaktiviert.';";
 
 #****************************************************************************
 #*  Translation text for page login.php
 #****************************************************************************
 $trans["MemberID is required."]    = "\$text = 'Benutzernummer erforderlich';";
-$trans["Secret Word is required."] = "\$text = 'Geheimwort erforderlich';";
-$trans["No Memberfield 'secret' defined. Member-Login is deactivated!"]	= "\$text = 'Kein Mitgliederfeld 'secret' ist eingerichtet. Der Benutzerlogin wurde deaktiviert.';";
-$trans["Invalid Logon. Maybe you don't have a Secret Word? Please ask the Staff!"] = "\$text = 'Falsches Login. Eventuell haben Sie noch kein Geheimwort eingerichtet? Sprechen Sie bitte das Personal an!';";
+$trans["Password is required."] = "\$text = 'Geheimwort erforderlich';";
+$trans["Invalid Login!"] = "\$text = 'Falsche Anmeldedaten!';";
 
 #****************************************************************************
 #*  Translation text for page mbr_account.php
@@ -107,6 +107,9 @@ $trans["mbrViewHoldHdr7"]         = "\$text='Status';";
 $trans["mbrViewHoldHdr8"]         = "\$text='Rückgabe';";
 $trans["mbrViewNoHolds"]          = "\$text='Derzeit keine Medien vorbestellt.';";
 $trans["Please send a mail to delete holds"] = "\$text='Wenn Sie Vorbestellungen löschen wollen, mailen Sie uns bitte!';";
+$trans["eMail"]                   = "\$text='E-Mail';";
+$trans["mbrViewPwd"]              = "\$text='Kennwort:';";
+$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Passwort gesetzt!</p>';";
 
 #****************************************************************************
 #*  Translation text for page mbr_print_checkouts.php

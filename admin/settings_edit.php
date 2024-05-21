@@ -53,6 +53,13 @@
   $_POST["charset"] = $set->getCharset();
   $set->setHtmlLangAttr($_POST["htmlLangAttr"]);
   $_POST["htmlLangAttr"] = $set->getHtmlLangAttr();
+  $set->setLoginAttempts($_POST["loginAttempts"]);
+  $_POST["loginAttempts"] = $set->getLoginAttempts();
+  $set->setPwdTimeout($_POST["pwdTimeout"]);
+  $_POST["pwdTimeout"] = $set->getPwdTimeout();
+  $set->setLibraryOnline(isset($_POST["isLibraryOnline"]));
+  $_POST["isLibraryOnline"] = $set->isLibraryOnline();
+
 
   if (!$set->validateData()) {
     $pageErrors["sessionTimeout"] = $set->getSessionTimeoutError();

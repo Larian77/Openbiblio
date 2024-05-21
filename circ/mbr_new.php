@@ -47,6 +47,23 @@ $_POST["email"] = $mbr->getEmail();
 $mbr->setMembershipEnd($_POST["membershipEnd"]);
 $_POST["membershipEnd"] = $mbr->getMembershipEnd();
 $mbr->setClassification($_POST["classification"]);
+if (isset($_POST['pwd'])) {
+    $mbr->setPwd($_POST["pwd"]);
+    $_POST["pwd"] = $mbr->getPwd();
+}
+if (isset($_POST['pwdRepeat'])) {
+    $mbr->setPwdRepeat($_POST["pwdRepeat"]);
+    $_POST["pwdRepeat"] = $mbr->getPwdRepeat();
+}
+
+#********************************************************
+#* Depending on whether a new member is created or edited
+#********************************************************
+if (isset($_GET["FileSource"])) {
+    $mbr->setFileSource($_GET["FileSource"]);
+} else {
+    $mbr->setFileSource('mbr_new_form');
+}
 
 $dmQ = new DmQuery();
 $dmQ->connect_e();
@@ -63,10 +80,12 @@ if (!$validData) {
     $pageErrors["barcodeNmbr"] = $mbr->getBarcodeNmbrError();
     $pageErrors["lastName"] = $mbr->getLastNameError();
     $pageErrors["firstName"] = $mbr->getFirstNameError();
+    $pageErrors["email"] = $mbr->getEmailError();
     $pageErrors["membershipEnd"] = $mbr->getMembershipEndError();
-    $_SESSION["postVars"] = $_POST;
+    $pageErrors["pwd"] = $mbr->getPwdError();
     $_SESSION["pageErrors"] = $pageErrors;
-    header("Location: ../circ/mbr_new_form.php");
+    $_SESSION["postVars"] = $_POST;
+    header("Location: ../circ/mbr_new_form.php?FileSource=mbr_new_form");
     exit();
 }
 
@@ -80,7 +99,7 @@ if ($dupBarcode) {
     $pageErrors["barcodeNmbr"] = $loc->getText("mbrDupBarcode", array("barcode" => $mbr->getBarcodeNmbr()));
     $_SESSION["postVars"] = $_POST;
     $_SESSION["pageErrors"] = $pageErrors;
-    header("Location: ../circ/mbr_new_form.php");
+    header("Location: ../circ/mbr_new_form.php?FileSource=mbr_new_form");
     exit();
 }
 
