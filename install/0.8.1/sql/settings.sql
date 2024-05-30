@@ -1,7 +1,6 @@
 drop table if exists %prfx%settings;
 create table %prfx%settings (
-  id integer auto_increment primary key
-  ,library_name varchar(128) null
+  library_name varchar(128) null
   ,library_image_url text null
   ,use_image_flg char(1) not null
   ,library_hours varchar(128) null

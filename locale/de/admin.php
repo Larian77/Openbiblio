@@ -202,7 +202,7 @@ $trans["If the month value for purging history is higher than zero, values in st
 $trans["admin_settingsLoginAttemps"]       = "\$text = 'Sperrung nach n Fehlversuchen:';";
 $trans["admin_settingsPwdTimeout"]       = "\$text = 'Sperrzeit bei mehrmaligen Fehl-Login (min):';";
 $trans["admin_settingsLibraryOnline"]       = "\$text = 'Online-Zugriff für Benutzer:';";
-$trans["admin_settingsLibraryOnline_explication"]       = "\$text = '<p style=\"color: #1a62ac;\">Bei einer reiner Verwaltung der Benutzer ohne eigenen Online-Mitglieder-Zugang sind keine Passwörter zu vergeben.
+$trans["admin_settingsLibraryOnline_explication"]       = "\$text = '<p style=\"color: #1a62ac;\">Bei einer reinen Verwaltung der Benutzer ohne eigenen Online-Mitglieder-Zugang sind keine Passwörter zu vergeben.
 Wenn die Benutzer einen Online-Zugang haben sollen, dann sind Benutzer-Passwörter Pflicht.</p>';";
 
 #****************************************************************************
