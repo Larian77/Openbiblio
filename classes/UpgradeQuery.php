@@ -408,10 +408,6 @@ class UpgradeQuery extends InstallQuery {
                     . 'ADD pwd VARCHAR(255) AFTER barcode_nmbr ');
     $this->exec("ALTER TABLE " . $prfx . "member "
                     . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
-    $this->exec('ALTER TABLE ' . $prfx . 'member '
-                    . 'ADD pwd_forgotten varchar(255) NULL AFTER pwd_timeout ');
-    $this->exec('ALTER TABLE ' . $prfx . 'member '
-                    . 'ADD pwd_forgotten_time DATETIME NULL AFTER pwd_forgotten ');
     $this->exec('ALTER TABLE ' . $prfx . 'staff MODIFY pwd VARCHAR(255) ');
     $this->exec("ALTER TABLE " . $prfx . "staff "
                     . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
