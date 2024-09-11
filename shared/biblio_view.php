@@ -56,7 +56,6 @@ if (isset($_GET["msg"])) {
 # * Loading a few domain tables into associative arrays
 # ****************************************************************************
 $dmQ = new DmQuery();
-// Changes PVD(8.0.x)
 $dmQ->connect_e();
 $collectionDm = $dmQ->getAssoc("collection_dm");
 $materialTypeDm = $dmQ->getAssoc("material_type_dm");
@@ -64,7 +63,6 @@ $biblioStatusDm = $dmQ->getAssoc("biblio_status_dm");
 $dmQ->close();
 
 $marcTagDmQ = new UsmarcTagDmQuery();
-// Changes PVD(8.0.x)
 $marcTagDmQ->connect_e();
 if ($marcTagDmQ->errorOccurred()) {
     $marcTagDmQ->close();
@@ -79,7 +77,6 @@ $marcTags = $marcTagDmQ->fetchRows();
 $marcTagDmQ->close();
 
 $marcSubfldDmQ = new UsmarcSubfieldDmQuery();
-// Changes PVD(8.0.x)
 $marcSubfldDmQ->connect_e();
 if ($marcSubfldDmQ->errorOccurred()) {
     $marcSubfldDmQ->close();
@@ -97,7 +94,6 @@ $marcSubfldDmQ->close();
 # * Search database
 # ****************************************************************************
 $biblioQ = new BiblioQuery();
-// Changes PVD(8.0.x)
 $biblioQ->connect_e();
 if ($biblioQ->errorOccurred()) {
     $biblioQ->close();
@@ -278,7 +274,6 @@ if ($tab == "cataloging") {
 }
 
 $copyQ = new BiblioCopyQuery();
-// Changes PVD(8.0.x)
 $copyQ->connect_e();
 if ($copyQ->errorOccurred()) {
     $copyQ->close();

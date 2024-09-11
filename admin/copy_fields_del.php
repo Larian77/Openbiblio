@@ -27,7 +27,6 @@ $description = $_GET["desc"];
 #*  Delete row
 #**************************************************************************
 $dmQ = new DmQuery();
-//Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dmQ->delete("biblio_copy_fields_dm", $code);
 $dmQ->close();

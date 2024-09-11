@@ -28,19 +28,16 @@ $description = $_GET["desc"];
 #*  Delete row
 #**************************************************************************
 $dmQ = new DmQuery();
-//Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dmQ->delete("material_type_dm", $code);
 $dmQ->close();
 
 $checkoutPrivsQ = new CheckoutPrivsQuery();
-//Changes PVD(8.0.x)
 $checkoutPrivsQ->connect_e();
 $checkoutPrivsQ->delete_by_material_cd($code);
 $checkoutPrivsQ->close();
 
 $materialFieldQ = new MaterialFieldQuery();
-//Changes PVD(8.0.x)
 $materialFieldQ->connect_e();
 $materialFieldQ->deleteCustomField($code);
 $materialFieldQ->close();

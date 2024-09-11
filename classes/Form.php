@@ -48,8 +48,7 @@ class Form {
           $errors[] = new FieldError($f['name'], (new Form)->T("Choose a valid value from the list."));
         }
       } else if ($f['type'] == 'date') {
-        //Changes PVD(8.0.x)
-        list($val, $err) = (new Date)->read_e($values[$f['name']]);
+list($val, $err) = (new Date)->read_e($values[$f['name']]);
         if ($err)
           $errors[] = new FieldError($f['name'], $err->toStr());
         else
@@ -73,8 +72,7 @@ class Form {
     );
     $params = array_merge($defaults, $params);
     if (!$params['action']) {
-        //Changes PVD(8.0.x)
-      (new Fatal)->internalError((new Form)->T("No form action"));
+(new Fatal)->internalError((new Form)->T("No form action"));
     }
     $fields = (new Form)->_cleanFields($params['fields']);
     echo "<form method='".H($params['method'])."' action='".H($params['action'])."'";
@@ -86,7 +84,7 @@ class Form {
     }
     echo ">\n";
     echo '<input type="hidden" name="_posted" value="1" />'."\n";
-    //Changes PVD(8.0.x) Addeed Empty Arguments
+Addeed Empty Arguments
     list($msg, $errors) = (new FieldError('',''))->listExtract($params['errors']);
     $rows = array();
     foreach ($fields as $f) {
@@ -102,8 +100,7 @@ class Form {
         $error = NULL;
       if ($f['type'] == 'hidden') {
         if ($error) {
-            //Changes PVD(8.0.x)
-            (new Fatal)->internalError((new Form)->T("Unexpected hidden field error: %error%", array('error'=>$error)));
+(new Fatal)->internalError((new Form)->T("Unexpected hidden field error: %error%", array('error'=>$error)));
         }
         echo $html;
       } else {
@@ -206,8 +203,7 @@ class Form {
     for ($i=0; $i<count($fields); $i++) {
       $fields[$i] = array_merge($defaults, $fields[$i]);
       if (!isset($fields[$i]['name'])) {
-        //Changes PVD(8.0.x)
-        (new Fatal)->internalError((new Form)->T("No name set for form field."));
+(new Fatal)->internalError((new Form)->T("No name set for form field."));
       }
       if (!$fields[$i]['title']) {
         $fields[$i]['title'] = $fields[$i]['name'];

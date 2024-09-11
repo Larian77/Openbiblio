@@ -25,8 +25,7 @@ class Layout_list
         }
         $totalspacing -= $colspacing;
         if ($total <= 0) {
-            //Changes PVD(8.0.x)
-            (new Fatal)->internalError('Total width of columns must be positive');
+(new Fatal)->internalError('Total width of columns must be positive');
         }
         # We have 7.5in, distribute it weighted by width
         $unit = (7.5 - $totalspacing) / $total;

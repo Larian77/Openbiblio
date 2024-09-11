@@ -49,8 +49,7 @@
   #*  Checkin bibliographies in bibidList
   #**************************************************************************
   $copyQ = new BiblioCopyQuery();
-  //Changes PVD(8.0.x)
-  $copyQ->connect_e();
+$copyQ->connect_e();
   if ($copyQ->errorOccurred()) {
     $copyQ->close();
     displayErrorPage($copyQ);

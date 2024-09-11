@@ -28,8 +28,7 @@ class BiblioStatusHist
   var $_mbrBarcodeNmbr = "";
   var $_dueBackDt = "";
   var $_renewalCount = "";
-  //Changes PVD(8.0.x)
-  var $_mbrBarecodeNmbr;
+var $_mbrBarecodeNmbr;
 
   /****************************************************************************
    * Getter methods for all fields
@@ -139,18 +138,15 @@ class BiblioStatusHist
   }
   function setMbrBarcodeNmbr($value)
   {
-    //Changes PVD(8.0.x)
-    $this->_mbrBarecodeNmbr = trim($value ?? '');
+$this->_mbrBarecodeNmbr = trim($value ?? '');
   }
   function setDueBackDt($value)
   {
-    //Changes PVD(8.0.x)
-    $this->_dueBackDt = trim($value ?? '');
+$this->_dueBackDt = trim($value ?? '');
   }
   function setRenewalCount($value)
   {
-    //Changes PVD(8.0.x)
-    $this->_renewalCount = trim($value ?? '');
+$this->_renewalCount = trim($value ?? '');
   }
 }
 

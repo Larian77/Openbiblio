@@ -32,8 +32,7 @@ class BiblioCopy
     var $_renewalCount = "";
     var $_custom = array();
 
-    //Changes PVD(8.0.x)
-    function __construct()
+function __construct()
     {
         $this->_loc = new Localize(OBIB_LOCALE, "classes");
     }
@@ -132,58 +131,47 @@ class BiblioCopy
      */
     function setBibid($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_bibid = trim($value ?? '');
+$this->_bibid = trim($value ?? '');
     }
     function setCopyid($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_copyid = trim($value ?? '');
+$this->_copyid = trim($value ?? '');
     }
     function setCreateDt($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_createDt = trim($value ?? '');
+$this->_createDt = trim($value ?? '');
     }
     function setCopyDesc($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_copyDesc = trim($value ?? '');
+$this->_copyDesc = trim($value ?? '');
     }
     function setBarcodeNmbr($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_barcodeNmbr = trim($value ?? '');
+$this->_barcodeNmbr = trim($value ?? '');
     }
     function setStatusCd($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_statusCd = trim($value ?? '');
+$this->_statusCd = trim($value ?? '');
     }
     function setStatusBeginDt($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_statusBeginDt = trim($value ?? '');
+$this->_statusBeginDt = trim($value ?? '');
     }
     function setDueBackDt($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_dueBackDt = trim($value ?? '');
+$this->_dueBackDt = trim($value ?? '');
     }
     function setDaysLate($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_daysLate = trim($value ?? '');
+$this->_daysLate = trim($value ?? '');
     }
     function setMbrid($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_mbrid = trim($value ?? '');
+$this->_mbrid = trim($value ?? '');
     }
     function setRenewalCount($value)
     {
-        //Changes PVD(8.0.x)
-        $this->_renewalCount = trim($value ?? '');
+$this->_renewalCount = trim($value ?? '');
     }
 }
 

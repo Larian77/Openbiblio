@@ -19,11 +19,9 @@
 <?php } ?>
 <br /><br />
 <?php
-//Changes PVD(8.0.x)
 (new Nav)->node('reportlist', $navLoc->getText("Report List"), '../reports/index.php');
 if (isset($_SESSION['rpt_Report'])) {
-    //Changes PVD(8.0.x)
-    (new Nav)->node('results', $navLoc->getText("Report Results"),
+(new Nav)->node('results', $navLoc->getText("Report Results"),
            '../reports/run_report.php?type=previous');
 }
 
@@ -32,8 +30,6 @@ if (isset($helpPage)) {
   $helpurl .= "?page=".$helpPage;
 }
 $helpurl .= "')";
-//Changes PVD(8.0.x)
 (new Nav)->node('help', $navLoc->getText("help"), $helpurl);
-//Changes PVD(8.0.x)
 (new Nav)->display("$nav");
 ?>

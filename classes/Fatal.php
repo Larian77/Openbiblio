@@ -18,8 +18,7 @@ class Fatal {
     if (method_exists($_Error_FatalHandler, 'internalError')) {
       $_Error_FatalHandler->internalError($msg);
     } else {
-    //Changes PVD(8.0.x)
-      (new Fatal)->error('Internal Error: '.$msg);
+(new Fatal)->error('Internal Error: '.$msg);
     }
   }
   /* Query errors */
@@ -28,8 +27,7 @@ class Fatal {
     if (method_exists($_Error_FatalHandler, 'dbError')) {
       $_Error_FatalHandler->dbError($sql, $msg, $dberror);
     } else {
-        //Changes PVD(8.0.x)
-        (new Fatal)->error('Database Error: '.$msg.' in query: '.$sql.' DBMS says: '.$dberror);
+(new Fatal)->error('Database Error: '.$msg.' in query: '.$sql.' DBMS says: '.$dberror);
     }
   }
   /* Generic */

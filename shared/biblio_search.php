@@ -124,8 +124,7 @@
   }
 
   // limit search results to collections and materials
-  //Changes PVD(8.0.x)
-  //if no collec is selected then dont do any process
+//if no collec is selected then dont do any process
   $collecs = array();
   if(isset($_POST['collec']))
   {
@@ -136,8 +135,7 @@
   }
 }
   $materials = array();
-  //Changes PVD(8.0.x)
-  //if no material is selected then dont do any process
+//if no material is selected then dont do any process
   if(isset($_POST['material']))
   {
   if (is_array($_POST['material'])) {

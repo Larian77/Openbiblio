@@ -50,7 +50,6 @@ if (!$dm->validateData()) {
 #*  Update domain table row
 #**************************************************************************
 $dmQ = new DmQuery();
-//Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dmQ->update("collection_dm", $dm);
 $dmQ->close();

@@ -62,8 +62,7 @@ function H($s)
     } elseif ($phpver[0] == 5 && $phpver[1] == 3) {
         return htmlspecialchars($s, ENT_QUOTES | ENT_IGNORE);
     } else {
-        //Changes PVD(8.0.x)
-        return htmlspecialchars($s ?: '', ENT_QUOTES | ENT_SUBSTITUTE, $charset);
+return htmlspecialchars($s ?: '', ENT_QUOTES | ENT_SUBSTITUTE, $charset);
     }
 }
 function HURL($s)

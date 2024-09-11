@@ -18,8 +18,7 @@
   require_once("../shared/header.php");
 
   $dmQ = new DmQuery();
-  //Changes PVD(8.0.x)
-  $dmQ->connect_e();
+$dmQ->connect_e();
   $dms = $dmQ->getWithStats("collection_dm");
   $dmQ->close();
 

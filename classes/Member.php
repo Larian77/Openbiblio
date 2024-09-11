@@ -37,8 +37,7 @@ class Member {
   var $_custom = array();
   var $_loc;
 
-  //Changes PVD(8.0.x)
-  function __construct () {
+function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

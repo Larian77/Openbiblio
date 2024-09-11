@@ -8,7 +8,7 @@ require_once("../classes/RptIter.php");
 require_once("../classes/RptParser.php");
 
 class Rpt {
-    //Changes PVD(8.0.x) **Start
+**Start
     var $_title;
     var $_category;
     var $_layouts;
@@ -16,7 +16,7 @@ class Rpt {
     var $_paramdefs;
     var $_code;
     var $_interp;
-    //Changes PVD(8.0.x) **End
+**End
   function load_e($filename) {
     $this->_title = $filename;
     $this->_category = 'Misc.';
@@ -53,8 +53,7 @@ class Rpt {
           array_push($this->_code, $value);
           break;
         default:
-        //Changes PVD(8.0.x)
-        (new Fatal)->internalError("Can't happen");
+(new Fatal)->internalError("Can't happen");
       }
     }
     return NULL;

@@ -7,8 +7,7 @@ require_once("../classes/InstallQuery.php");
 
 class UpgradeQuery extends InstallQuery {
 
-    //Changes PVD(8.0.x)
-  function __construct() {
+function __construct() {
     # Call query constructor so database connection gets made
     $this->Query();
   }

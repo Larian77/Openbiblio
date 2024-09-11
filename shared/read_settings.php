@@ -19,7 +19,6 @@ include_once("../functions/errorFuncs.php");
  ****************************************************************************
  */
 $setQ = new SettingsQuery();
-//Changes PVD(8.0.x)
 $setQ->connect_e();
 if ($setQ->errorOccurred()) {
     $setQ->close();
@@ -39,7 +38,6 @@ $setQ->close();
  ****************************************************************************
  */
 $themeQ = new ThemeQuery();
-//Changes PVD(8.0.x)
 $themeQ->connect_e();
 if ($themeQ->errorOccurred()) {
     $themeQ->close();

@@ -239,8 +239,7 @@ class Params {
       case 'date':
         $val = trim($val);
         if (!empty($val)) {
-            //Changes PVD(8.0.x)
-          list($val, $error) = (new Date)->read_e($val);
+list($val, $error) = (new Date)->read_e($val);
           if ($error) {
             return array(NULL, array($errprefix=>$error));
           }
@@ -298,8 +297,7 @@ class Params {
       switch ($v[1]['type']) {
       case 'MARC':
         if (!isset($v[1]['skip_indicator'])) {
-            //Changes PVD(8.0.x)
-          (new Fatal)->internalError("MARC sort without skip indicator");
+(new Fatal)->internalError("MARC sort without skip indicator");
         }
         $skip = $v[1]['skip_indicator'];
         $expr = "ifnull(substring($expr, $skip+1), $expr)";

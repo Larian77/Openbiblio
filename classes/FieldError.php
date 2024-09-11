@@ -8,11 +8,10 @@ class FieldError extends ObibError
 {
   /* public */
   var $field;
-  //Changes PVD(8.0.x)
-  function __construct($field, $msg)
+function __construct($field, $msg)
   {
     // parent::ObibError($msg);
-    //Changes PVD(8.0.x) Changed Above Line To Below Line
+Changed Above Line To Below Line
     (new ObibError($msg));
     $this->field = $field;
   }

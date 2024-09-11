@@ -4,7 +4,6 @@
  */
 
 session_cache_limiter(null);
-//Changes PVD(8.0.x)
 //use to disable any thing to print
 //Buffering Issues:
 // If you are using output buffering (for example, with ob_start()), ensure that no content is being echoed or printed before the header() function is called.

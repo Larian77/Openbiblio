@@ -28,18 +28,15 @@ class BiblioQuery extends Query
     var $_loc;
     var $_fieldsInBiblio;
 
-    //Changes PVD(8.0.x)
-    function __construct()
+function __construct()
     {
-        //Changes PVD(8.0.x)
-        new Query();
+new Query();
         $this->_loc = new Localize(OBIB_LOCALE, "classes");
         $this->_fieldsInBiblio = array(
             '100a' => 'author',
             '245a' => 'title',
             '245b' => 'title_remainder',
-            //Changes PVD(8.0.x)
-            '245c' => 'responsibility_stmt',
+'245c' => 'responsibility_stmt',
             '650a' => 'topic1',
             '650a1' => 'topic2',
             '650a2' => 'topic3',
@@ -135,7 +132,7 @@ class BiblioQuery extends Query
             $tag = substr($key, 0, 3);
             $subfieldCd = substr($key, 3, 1);
             $subfieldIdx = '';
-            //Changes PVD(8.0.x) count() Replaced With strlrn()
+count() Replaced With strlrn()
             if (strlen($key) > 4) {
                 $index = substr($key, 4);
             }

@@ -9,8 +9,7 @@ class DbError extends ObibError {
   var $sql;
   var $msg;
   var $dberror;
-  //Changes PVD(8.0.x)
-  function __construct($sql, $msg, $dberror) {
+function __construct($sql, $msg, $dberror) {
     $this->sql = $sql;
     $this->msg = $msg;
     $this->dberror = $dberror;

@@ -7,12 +7,10 @@
  */
 class DbOld
 {
-    //Changes PVD(8.0.x)
-    private $results;
+private $results;
     private $id;
 
-    //Changes PVD(8.0.x)
-    function __construct($results, $id)
+function __construct($results, $id)
     {
         $this->results = $results;
         $this->id = $id;
@@ -23,8 +21,7 @@ class DbOld
     }
     function numRows()
     {
-        //Changes PVD(8.0.x)
-        $link = (new QueryAny)->db();
+$link = (new QueryAny)->db();
         return $link->num_rows($this->results);
     }
     function fetchRow($arrayType = OBIB_ASSOC)
@@ -32,8 +29,7 @@ class DbOld
         if (is_bool($this->results)) {
             return false;
         }
-        //Changes PVD(8.0.x)
-        $link = (new QueryAny)->db();
+$link = (new QueryAny)->db();
         switch ($arrayType) {
             case OBIB_NUM:
                 return $link->fetch_row($this->results);
@@ -49,8 +45,7 @@ class DbOld
     }
     function resetResult()
     {
-        //Changes PVD(8.0.x)
-        $link = (new QueryAny)->db();
+$link = (new QueryAny)->db();
         $link->data_seek($this->results, 0);
     }
 }

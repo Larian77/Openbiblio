@@ -18,10 +18,8 @@ require_once("../classes/Localize.php");
 class UsmarcBlockDmQuery extends Query {
   var $_loc;
 
-  //Changes PVD(8.0.x)
-  function __construct() {
-    //Changes PVD(8.0.x)
-    $this->connect_e();
+function __construct() {
+$this->connect_e();
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

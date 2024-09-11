@@ -47,7 +47,6 @@ if (isset($_GET["msg"])) {
 # * Loading a few domain tables into associative arrays
 # ****************************************************************************
 $dmQ = new DmQuery();
-// Changes PVD(8.0.x)
 $dmQ->connect_e();
 $mbrClassifyDm = $dmQ->getAssoc("mbr_classify_dm");
 $mbrMaxFines = $dmQ->getAssoc("mbr_classify_dm", "max_fines");
@@ -61,7 +60,6 @@ $dmQ->close();
 # * Search database for member
 # ****************************************************************************
 $mbrQ = new MemberQuery();
-// Changes PVD(8.0.x)
 $mbrQ->connect_e();
 $mbr = $mbrQ->get($mbrid);
 $mbrQ->close();
@@ -84,17 +82,14 @@ if ($balance > 0 && $balance >= $mbrMaxFines[$mbr->getClassification()]) {
 # * Derzeit abgedeckt durch Missbrauch des Fehlercodes und Markierung mit !!! davor
 # ****************************************************************************
 $dueMsg = "";
-// Changes PVD(8.0.x)
 // * If Case Added If Their Are No Errors
 if (isset($_SESSION['pageErrors'])) {
     $pgErrors = $_SESSION['pageErrors'];
 } else {
     $pageErrors;
 }
-// Changes PVD(8.0.x)
 if (@substr($pgErrors['barcodeNmbr'], 0, 3) === '!!!') {
-    // Changes PVD(8.0.x)
-    $dueMsg = "<font class=\"error\">" . substr($pgErrors['barcodeNmbr'], 3) . "</font><br><br>";
+$dueMsg = "<font class=\"error\">" . substr($pgErrors['barcodeNmbr'], 3) . "</font><br><br>";
     unset($postVars);
     unset($pageErrors);
 }
@@ -418,8 +413,7 @@ echo $loc->getText("mbrViewRenew1") . "&nbsp;&nbsp;&nbsp;<a href=\"../circ/mbr_r
     # * Search database for BiblioStatus data
     # ****************************************************************************
     $biblioQ = new BiblioSearchQuery();
-    // Changes PVD(8.0.x)
-    $biblioQ->connect_e();
+$biblioQ->connect_e();
     if ($biblioQ->errorOccurred()) {
         $biblioQ->close();
         displayErrorPage($biblioQ);
@@ -558,8 +552,7 @@ echo $loc->getText("mbrViewRenew1") . "&nbsp;&nbsp;&nbsp;<a href=\"../circ/mbr_r
     # * Search database for BiblioHold data
     # ****************************************************************************
     $holdQ = new BiblioHoldQuery();
-    // Changes PVD(8.0.x)
-    $holdQ->connect_e();
+$holdQ->connect_e();
     if ($holdQ->errorOccurred()) {
         $holdQ->close();
         displayErrorPage($holdQ);

@@ -28,11 +28,9 @@ class BiblioSearchQuery extends Query
     var $_pageCount = 0;
     var $_loc;
 
-    //Changes PVD(8.0.x)
-    function __construct()
+function __construct()
     {
-        //Changes PVD(8.0.x)
-        new Query;
+new Query;
         $this->_loc = new Localize(OBIB_LOCALE, "classes");
     }
     function setItemsPerPage($value)
@@ -189,7 +187,7 @@ class BiblioSearchQuery extends Query
                 }
                 $criteria = $this->_getCriteria($type, array("biblio.author", "biblio.responsibility_stmt", "biblio.title", "biblio.title_remainder", "biblio.topic1", "biblio.topic2", "biblio.topic3", "biblio.topic4", "biblio.topic5"), $words, $bField = true, $drop);
             } elseif ($type == OBIB_SEARCH_ALL) {
-                //Changes PVD(8.0.x) Added Type To _getCriteria
+Added Type To _getCriteria
                 $criteria =
                     $this->_getCriteria(
                         $type,
@@ -208,7 +206,7 @@ class BiblioSearchQuery extends Query
                     );
             } else {
                 // $criteria = $this->_getCriteria(array("biblio.title","biblio.title_remainder"),$words);
-                //Changes PVD(8.0.x) Added Type To _getCriteria
+Added Type To _getCriteria
                 $criteria =
                     $this->_getCriteria($type, array("biblio.title", "biblio.title_remainder"), $words);
             }
@@ -260,8 +258,7 @@ class BiblioSearchQuery extends Query
         }
 
         # Calculate stats based on row count
-        //Changes PVD(8.0.x)
-        $link = (new QueryAny)->db();
+$link = (new QueryAny)->db();
         $this->_rowCount = implode($link->fetch_row($link->query('select found_rows();')));
         $this->_pageCount = ceil($this->_rowCount / $this->_itemsPerPage);
         return true;
@@ -444,8 +441,7 @@ class BiblioSearchQuery extends Query
         }
         # get Picture
         $biblioQ = new BiblioQuery();
-        // Changes PVD(8.0.x)
-        $biblioQ->connect_e();
+$biblioQ->connect_e();
         if ($biblioQ->errorOccurred()) {
             $biblioQ->close();
             displayErrorPage($biblioQ);

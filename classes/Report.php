@@ -61,8 +61,7 @@ class Report
         $err = $rpt->_load_e($name, $_SESSION['rpt_' . $name]);
         if ($err) {
             unset($_SESSION['rpt_' . $name]);
-            //Changes PVD(8.0.x)
-            (new Fatal)->internalError("Couldn't load cached report: $name");
+(new Fatal)->internalError("Couldn't load cached report: $name");
         }
         return $rpt;
     }
@@ -131,8 +130,7 @@ class Report
     }
     function columnNames()
     {
-        //Changes PVD(8.0.x)
-        return array_map(function ($x) {
+return array_map(function ($x) {
             return $x["name"]; }, $this->columns());
     }
     function init_el($params)
@@ -170,8 +168,7 @@ class Report
         }
         list($rpt, $err) = Report::create_e($this->cache['type'], $newName);
         if ($err) {
-            //Changes PVD(8.0.x)
-            (new Fatal)->internalError("Unexpected report creation error: " . $err->toStr());
+(new Fatal)->internalError("Unexpected report creation error: " . $err->toStr());
         }
         $params = new Params;
         $params->loadDict($this->cache['params']);

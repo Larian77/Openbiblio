@@ -55,7 +55,6 @@ if (!empty($pageErrors)) {
 }
 
 $matQ = new MaterialFieldQuery;
-//Changes PVD(8.0.x)
 $matQ->connect_e();
 $matQ->update($rec);
 $matQ->close();

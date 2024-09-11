@@ -19,13 +19,10 @@ require_once("../classes/Localize.php");
 
 class CircQuery extends Query
 {
-    //Changes PVD(8.0.x)
-    var $_loc;
-    //Changes PVD(8.0.x)
-    function __construct()
+var $_loc;
+function __construct()
     {
-        //Changes PVD(8.0.x)
-        new Query;
+new Query;
         $this->_loc = new Localize(OBIB_LOCALE, 'classes');
     }
     function checkout_e($mbcode, $bcode)
@@ -52,23 +49,19 @@ class CircQuery extends Query
     function _checkout_e($mbcode, $bcode, $due, $date, $force)
     {
         if ($date === NULL) {
-            //Changes PVD(8.0.x)
-            list($date, $err) = (new Date)->read_e('today');
+list($date, $err) = (new Date)->read_e('today');
             if ($err)
-                //Changes PVD(8.0.x)
-                (new Fatal)->internalError("Unexpected date error: " . $err);
+(new Fatal)->internalError("Unexpected date error: " . $err);
             $earliest = $latest = time();
         } else {
-            //Changes PVD(8.0.x)
-            list($date, $err) = (new Date)->read_e($date);
+list($date, $err) = (new Date)->read_e($date);
             if ($err)
                 $earliest = strtotime($date . " 00:00:00");
             return new ObibError($this->_loc->getText("Can't understand date: %err%", array('err' => $err->toStr())));
             $latest = strtotime($date . " 23:59:59");
         }
         if ($due !== NULL) {
-            //Changes PVD(8.0.x)
-            list($due, $err) = (new Date)->read_e($due);
+list($due, $err) = (new Date)->read_e($due);
             if ($err)
                 return new ObibError($this->_loc->getText("Can't understand date: %err%", array('err' => $err->toStr())));
         }
@@ -119,8 +112,7 @@ class CircQuery extends Query
                     return $err;
                 $copy = $copyQ->maybeGetByBarcode($bcode);
                 if (!$copy)
-                    //Changes PVD(8.0.x)
-                    (new Fatal)->internalError("Copy disappeared mysteriously.");
+(new Fatal)->internalError("Copy disappeared mysteriously.");
             } else
                 return new ObibError(
                     $this->_loc->getText(
@@ -146,8 +138,7 @@ class CircQuery extends Query
             $hold = $holdQ->maybeGetFirstHold($copy->getBibid(), $copy->getCopyid());
             if ($hold) {
                 // FIXME: Y2K38. Before 2038, timestamp won't be outside valid range.
-                //Changes PVD(8.0.x)
-                $holdAge = (new Date)->daysLater($date, $hold->getHoldBeginDt());
+$holdAge = (new Date)->daysLater($date, $hold->getHoldBeginDt());
                 if (OBIB_HOLD_MAX_DAYS > 0 && $holdAge > OBIB_HOLD_MAX_DAYS)
                     $tooOld = true;
                 else
@@ -172,13 +163,11 @@ class CircQuery extends Query
         $copy->setMbrid($mbrid);
         $copy->setStatusBeginDt($time);
         if ($due === NULL)
-            //Changes PVD(8.0.x)
-            $copy->setDueBackDt((new Date)->addDays($date, $days));
+$copy->setDueBackDt((new Date)->addDays($date, $days));
         else
             $copy->setDueBackDt($due);
         if (!$copyQ->updateStatus($copy))
-            //Changes PVD(8.0.x)
-            (new Fatal)->InternalError("Impossible copyQ update error.");
+(new Fatal)->InternalError("Impossible copyQ update error.");
 
         $hist = new BiblioStatusHist();
         $hist->setBibid($copy->getBibid());
@@ -192,8 +181,7 @@ class CircQuery extends Query
         $histQ->insert($hist);
         if ($mbr->getMembershipEnd() != "0000-00-00") {
             if ($due === NULL)
-                //Changes PVD(8.0.x)
-                $back = (new Date)->addDays($date, $days);
+$back = (new Date)->addDays($date, $days);
             else
                 $back = $due;
             if (strtotime($mbr->getMembershipEnd()) < strtotime($back)) {
@@ -216,15 +204,12 @@ class CircQuery extends Query
             'hold' => NULL,
         );
         if ($date === NULL) {
-            //Changes PVD(8.0.x)
-            list($date, $err) = (new Date)->read_e('today');
+list($date, $err) = (new Date)->read_e('today');
             if ($err)
-                //Changes PVD(8.0.x)
-                (new Fatal)->internalError("Unexpected date error: " . $err);
+(new Fatal)->internalError("Unexpected date error: " . $err);
             $earliest = $latest = time();
         } else {
-            //Changes PVD(8.0.x)
-            list($date, $err) = (new Date)->read_e($date);
+list($date, $err) = (new Date)->read_e($date);
             if ($err)
                 return array(
                     $info,
@@ -250,8 +235,7 @@ class CircQuery extends Query
         if ($copy->getDueBackDt()) {
             // FIXME: Y2K38. This temporary fix should prevent unjust late fee when Override Due Date was used.
             if (strtotime($copy->getDueBackDt()) != false && strtotime($copy->getDueBackDt()) != -1)
-                //Changes PVD(8.0.x)
-                $late = $info['late'] = (new Date)->daysLater($date, $copy->getDueBackDt());
+$late = $info['late'] = (new Date)->daysLater($date, $copy->getDueBackDt());
         }
         $holdQ = new BiblioHoldQuery();
         $hold = $info['hold'] = $holdQ->maybeGetFirstHold($copy->getBibid(), $copy->getCopyid());
@@ -272,8 +256,7 @@ class CircQuery extends Query
         $copy->setStatusBeginDt($time);
         $copy->setDueBackDt("");
         if (!$copyQ->updateStatus($copy))
-            //Changes PVD(8.0.x)
-            (new Fatal)->InternalError("Impossible copyQ update error.");
+(new Fatal)->InternalError("Impossible copyQ update error.");
         if ($mbrid != "" and $late > 0 and $fee > 0) {
             $trans = new MemberAccountTransaction();
             $trans->setMbrid($mbrid);
@@ -283,8 +266,7 @@ class CircQuery extends Query
             $trans->setDescription($this->_loc->getText("Late fee (barcode=%barcode%)", array('barcode' => $bcode)));
             $transQ = new MemberAccountQuery();
             if (!$transQ->insert($trans))
-                //Changes PVD(8.0.x)
-                (new Fatal)->internalError("Impossible transQ insert error.");
+(new Fatal)->internalError("Impossible transQ insert error.");
         }
         $hist = new BiblioStatusHist();
         $hist->setBibid($copy->getBibid());
@@ -295,8 +277,7 @@ class CircQuery extends Query
         $hist->setMbrid($mbrid);
         $histQ = new BiblioStatusHistQuery();
         if (!$histQ->insert($hist))
-            //Changes PVD(8.0.x)
-            (new Fatal)->internalError("Impossible histQ insert error.");
+(new Fatal)->internalError("Impossible histQ insert error.");
         return array($info, NULL);
     }
 }

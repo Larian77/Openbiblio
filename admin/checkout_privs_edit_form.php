@@ -29,7 +29,6 @@ if (isset($_REQUEST["material_cd"]) and isset($_REQUEST["classification"])) {
 }
 
 $privsQ = new CheckoutPrivsQuery();
-// Changes PVD(8.0.x)
 $privsQ->connect_e();
 $priv = $privsQ->get($material_cd, $classification);
 $privsQ->close();
