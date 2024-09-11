@@ -141,89 +141,89 @@ class BiblioSearch {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = @trim($value);
+    $this->_bibid = trim($value ?? '');
   }
   function setCopyid($value) {
-    $this->_copyid = @trim($value);
+    $this->_copyid = trim($value ?? '');
   }
   function setCreateDt($value) {
-    $this->_createDt = @trim($value);
+    $this->_createDt = trim($value ?? '');
   }
   function setLastChangeDt($value) {
-    $this->_lastChangeDt = @trim($value);
+    $this->_lastChangeDt = trim($value ?? '');
   }
   function setLastChangeUserid($value) {
-    $this->_lastChangeUserid = @trim($value);
+    $this->_lastChangeUserid = trim($value ?? '');
   }
   function setLastChangeUsername($value) {
-    $this->_lastChangeUsername = @trim($value);
+    $this->_lastChangeUsername = trim($value ?? '');
   }
   function setMaterialCd($value) {
-    $this->_materialCd = @trim($value);
+    $this->_materialCd = trim($value ?? '');
   }
   function setCollectionCd($value) {
-    $this->_collectionCd = @trim($value);
+    $this->_collectionCd = trim($value ?? '');
   }
   function setCallNmbr1($value) {
-    $this->_callNmbr1 = @trim($value);
+    $this->_callNmbr1 = trim($value ?? '');
   }
   function setCallNmbr2($value) {
-    $this->_callNmbr2 = @trim($value);
+    $this->_callNmbr2 = trim($value ?? '');
   }
   function setCallNmbr3($value) {
-    $this->_callNmbr3 = @trim($value);
+    $this->_callNmbr3 = trim($value ?? '');
   }
   function setCallNmbrError($value) {
-    $this->_callNmbrError = @trim($value);
+    $this->_callNmbrError = trim($value ?? '');
   }
   function setTitle($value) {
-    $this->_title = @trim($value);
+    $this->_title = trim($value ?? '');
   }
   function setTitleRemainder($value) {
-    $this->_titleRemainder = @trim($value);
+    $this->_titleRemainder = trim($value ?? '');
   }
   function setResponsibilityStmt($value) {
-    $this->_responsibilityStmt = @trim($value);
+    $this->_responsibilityStmt = trim($value ?? '');
   }
   function setAuthor($value) {
-    $this->_author = @trim($value);
+    $this->_author = trim($value ?? '');
   }
   function setTopic1($value) {
-    $this->_topic1 = @trim($value);
+    $this->_topic1 = trim($value ?? '');
   }
   function setTopic2($value) {
-    $this->_topic2 = @trim($value);
+    $this->_topic2 = trim($value ?? '');
   }
   function setTopic3($value) {
-    $this->_topic3 = @trim($value);
+    $this->_topic3 = trim($value ?? '');
   }
   function setTopic4($value) {
-    $this->_topic4 = @trim($value);
+    $this->_topic4 = trim($value ?? '');
   }
   function setTopic5($value) {
-    $this->_topic5 = @trim($value);
+    $this->_topic5 = trim($value ?? '');
   }
   function setBarcodeNmbr($value) {
-    $this->_barcodeNmbr = @trim($value);
+    $this->_barcodeNmbr = trim($value ?? '');
   }
   function setStatusCd($value) {
-    $this->_statusCd = @trim($value);
+    $this->_statusCd = trim($value ?? '');
   }
   function setStatusBeginDt($value) {
-    $this->_statusBeginDt = @trim($value);
+    $this->_statusBeginDt = trim($value ?? '');
   }
   function setDueBackDt($value) {
-    $this->_dueBackDt = @trim($value);
+    $this->_dueBackDt = trim($value ?? '');
   }
   function setDaysLate($value) {
-    $this->_daysLate = @trim($value);
+    $this->_daysLate = trim($value ?? '');
   }
   function setRenewalCount($value) {
-    $this->_renewalCount = @trim($value);
+    $this->_renewalCount = trim($value ?? '');
   }
   #mibl
   function setPicture($value) {
-      $this->_picture = @trim($value);
+      $this->_picture = trim($value ?? '');
   }
 
 }

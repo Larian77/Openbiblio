@@ -362,15 +362,15 @@ class Staff
     }
     function setCreateDt($value)
     {
-        $this->_createDt = trim($value);
+        $this->_createDt = trim($value ?? '');
     }
     function setLastChangeDt($value)
     {
-        $this->_lastChangeDt = trim($value);
+        $this->_lastChangeDt = trim($value ?? '');
     }
     function setLastChangeUserid($value)
     {
-        $this->_lastChangeUserid = trim($value);
+        $this->_lastChangeUserid = trim($value ?? '');
     }
 
 
