@@ -3,3 +3,4 @@
 .buildpath
 .project
 .settings
+database_constants.php
