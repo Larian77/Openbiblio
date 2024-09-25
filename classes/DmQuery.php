@@ -32,7 +32,8 @@ class DmQuery extends Query {
   function get1($table, $code) {
     $rows = $this->_get($table, $code);
     if (count($rows) != 1) {
-(new Fatal)->internalError("Invalid domain table code");
+        //Changes PVD(8.0.x)
+     (new Fatal)->internalError("Invalid domain table code");
     }
     return $this->_mkObj($rows[0]);
   }
@@ -52,7 +53,8 @@ class DmQuery extends Query {
       $sql .= "from mbr_classify_dm left join member on mbr_classify_dm.code = member.classification ";
       $sql .= "group by 1, 2, 3, 4 ";
     } else {
-(new Fatal)->internalError("Cannot retrieve stats for that dm table");
+    //Changes PVD(8.0.x)
+      (new Fatal)->internalError("Cannot retrieve stats for that dm table");
     }
     $sql .= "order by description ";
     return array_map(array($this, '_mkObj'), $this->exec($sql));

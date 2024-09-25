@@ -30,7 +30,8 @@ class Biblio {
   var $_opacFlg = true;
   var $_loc;
 
-function __construct () {
+  //Changes PVD(8.0.x)
+  function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

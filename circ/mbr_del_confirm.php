@@ -21,6 +21,7 @@ $mbrid = $_GET["mbrid"];
 # * Getting member name
 # ****************************************************************************
 $mbrQ = new MemberQuery();
+// Changes PVD(8.0.x)
 $mbrQ->connect_e();
 $mbr = $mbrQ->get($mbrid);
 $mbrQ->close();
@@ -30,6 +31,7 @@ $mbrName = $mbr->getFirstName() . " " . $mbr->getLastName();
 # * Getting checkout count
 # ****************************************************************************
 $biblioQ = new BiblioSearchQuery();
+// Changes PVD(8.0.x)
 $biblioQ->connect_e();
 if ($biblioQ->errorOccurred()) {
     $biblioQ->close();
@@ -46,6 +48,7 @@ $biblioQ->close();
 # * Getting hold request count
 # ****************************************************************************
 $holdQ = new BiblioHoldQuery();
+// Changes PVD(8.0.x)
 $holdQ->connect_e();
 if ($holdQ->errorOccurred()) {
     $holdQ->close();

@@ -19,9 +19,12 @@ require_once("../classes/Localize.php");
 
 class CircQuery extends Query 
 {
-var $_loc;
-function __construct() {
-new Query;
+    //Changes PVD(8.0.x)
+    var $_loc;
+    //Changes PVD(8.0.x)
+	function __construct() {
+        	//Changes PVD(8.0.x)
+	        new Query;
         	$this->_loc = new Localize(OBIB_LOCALE, 'classes');
         }
 	function checkout_e($mbcode, $bcode) {
@@ -31,9 +34,11 @@ new Query;
 		return $ret;
 	}
 	function _checkout_e($mbcode, $bcode, $due, $date, $force) {
-list($date, $err) = (new Date)->read_e('today');
+        //Changes PVD(8.0.x)
+		list($date, $err) = (new Date)->read_e('today');
 		if ($err)
-(new Fatal)->internalError("Unexpected date error: ".$err);
+        //Changes PVD(8.0.x)
+			(new Fatal)->internalError("Unexpected date error: ".$err);
 		$earliest = $latest = time();
 		$mbrQ = new MemberQuery();
 		$mbr = $mbrQ->maybeGetByBarcode($mbcode);
@@ -77,7 +82,8 @@ list($date, $err) = (new Date)->read_e('today');
 					return $err;
 				$copy = $copyQ->maybeGetByBarcode($bcode);
 				if (!$copy)
-(new Fatal)->internalError("Copy disappeared mysteriously.");
+                //Changes PVD(8.0.x)
+					(new Fatal)->internalError("Copy disappeared mysteriously.");
 			} else
 				return new ObibError($this->_loc->getText("Item %bcode% is already checked out to another member.",
 					array('bcode'=>$bcode)));
@@ -101,11 +107,13 @@ list($date, $err) = (new Date)->read_e('today');
 		$copy->setMbrid($mbrid);
 		$copy->setStatusBeginDt($time);
 		if($due === NULL)
-$copy->setDueBackDt((new Date)->addDays($date, $days));
+        //Changes PVD(8.0.x)
+			$copy->setDueBackDt((new Date)->addDays($date, $days));
 		else
 			$copy->setDueBackDt($due);
 		if (!$copyQ->updateStatus($copy))
-(new Fatal)->InternalError("Impossible copyQ update error.");
+        //Changes PVD(8.0.x)
+			(new Fatal)->InternalError("Impossible copyQ update error.");
 		
 		$hist = new BiblioStatusHist();
 		$hist->setBibid($copy->getBibid());
@@ -119,7 +127,8 @@ $copy->setDueBackDt((new Date)->addDays($date, $days));
 		$histQ->insert($hist);
 		if ($mbr->getMembershipEnd()!="0000-00-00") {
 			if($due === NULL)
-$back=(new Date)->addDays($date, $days);
+            //Changes PVD(8.0.x)
+				$back=(new Date)->addDays($date, $days);
 			else
 				$back=$due;
 			if (strtotime($mbr->getMembershipEnd())<strtotime($back)) {

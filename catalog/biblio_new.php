@@ -81,7 +81,8 @@ function biblioToPageErrors($biblio) {
 function customFieldErrors($biblio) {
   require_once("../classes/MaterialFieldQuery.php");
   $matQ = new MaterialFieldQuery();
-$matQ->connect_e();
+  //Changes PVD(8.0.x)
+  $matQ->connect_e();
   $rows = $matQ->get($biblio->getMaterialCd());
   $matQ->close();
   $errors = array();
@@ -100,7 +101,8 @@ function insertBiblio($biblio) {
   require_once("../classes/BiblioQuery.php");
   
   $biblioQ = new BiblioQuery();
-$biblioQ->connect_e();
+  //Changes PVD(8.0.x)
+  $biblioQ->connect_e();
   if ($biblioQ->errorOccurred()) {
     $biblioQ->close();
     displayErrorPage($biblioQ);

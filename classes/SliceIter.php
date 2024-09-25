@@ -3,10 +3,12 @@
 class SliceIter extends Iter
 {
 
-var $iter;
+    //Changes PVD(8.0.x)
+    var $iter;
     var $len;
 
-function __construct($skip, $len, $iter)
+    //Changes PVD(8.0.x)
+    function __construct($skip, $len, $iter)
     {
         for ($i = 0; $i < $skip; $i++) {
             $iter->skip();

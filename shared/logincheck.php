@@ -45,7 +45,8 @@ if (!OBIB_DEMO_FLG) {
     #*  Checking session table to see if session_id has timed out
     #****************************************************************************
     $sessQ = new SessionQuery();
-$sessQ->connect_e();
+    //Changes PVD(8.0.x)
+    $sessQ->connect_e();
     if ($sessQ->errorOccurred()) {
         displayErrorPage($sessQ);
     }

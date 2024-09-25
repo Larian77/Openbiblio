@@ -59,6 +59,7 @@ function backToMain(URL) {
 	bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0"
 	marginwidth="0"
 	<?php
+// Changes PVD(8.0.x)
 // $focus_form_field This var is use but never declared before using in preg_match()
 // $focus_form_field = ""; //Removed because Focus doesn't working with this part
 

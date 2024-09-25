@@ -21,7 +21,8 @@ class Localize
      ****************************************************************************
      */
 
-function __construct($locale, $section)
+    //Changes PVD(8.0.x)
+    function __construct($locale, $section)
     {
         $localePath = "../locale/" . $locale . "/" . $section . ".php";
         include($localePath);

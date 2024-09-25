@@ -8,7 +8,8 @@ class RptIter extends Iter {
   var $params;
   var $iter;
   var $subselects;
-var $q;
+  //Changes PVD(8.0.x)
+  var $q;
   
   # $sqls is a list of tuples of array($code, $subselects).
   # $code contains the code elements which construct a single
@@ -48,7 +49,8 @@ var $q;
   #		An appropriate SQL ORDER BY clause is appended to
   #		the query at this point.
 
-function __construct($sqls, $params) {
+  //Changes PVD(8.0.x)
+  function __construct($sqls, $params) {
     $this->params = $params;
     $this->q = new Query();
     foreach ($sqls as $s) {
@@ -82,7 +84,8 @@ function __construct($sqls, $params) {
     }
     foreach ($this->subselects as $name => $sql) {
       if ($sql[0] != 'sql') {
-(new Fatal)->internalError('Broken RPT code structure');
+        //Changes PVD(8.0.x)
+        (new Fatal)->internalError('Broken RPT code structure');
       }
       $iter = new RptIter(array($sql[1]), $scope);
       $row[$name] = $iter->toArray();
@@ -145,10 +148,12 @@ function __construct($sqls, $params) {
             include_once("../classes/Search.php");
             list($t, $v) = $scope->getFirst($name);
             if ($t != "string") {
-(new Fatal)->internalError('$t != "string"');
+                //Changes PVD(8.0.x)
+              (new Fatal)->internalError('$t != "string"');
             }
             $vlist = array();
-foreach ((new Search)->explodeQuoted($v) as $w) {
+            //Changes PVD(8.0.x)
+            foreach ((new Search)->explodeQuoted($v) as $w) {
               $vlist[] = array('string', $w);
             }
           }
@@ -163,13 +168,15 @@ foreach ((new Search)->explodeQuoted($v) as $w) {
           if ($v = $scope->getFirst('order_by')) {
             list($type, $value, $raw) = $v;
             if ($type != "order_by") {
-(new Fatal)->internalError('$type != "order_by"');
+                //Changes PVD(8.0.x)
+              (new Fatal)->internalError('$type != "order_by"');
             }
             $query .= 'order by '.$value.' ';
           }
           break;
         default:
-(new Fatal)->internalError("Can't happen");
+        //Changes PVD(8.0.x)
+          (new Fatal)->internalError("Can't happen");
           break;
       }
     }

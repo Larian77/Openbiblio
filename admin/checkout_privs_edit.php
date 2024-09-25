@@ -28,6 +28,7 @@ if (
 }
 
 $privQ = new CheckoutPrivsQuery();
+//Changes PVD(8.0.x)
 $privQ->connect_e();
 $privQ->update(
     $_POST['material_cd'],

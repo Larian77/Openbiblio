@@ -36,6 +36,7 @@ $postvars["materialCd"] = $materialCd;
 $fieldname = "materialCd";
 $domainTable = "material_type_dm";
 $dmQ = new DmQuery();
+// Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dm = $dmQ->get1("material_type_dm", $materialCd);
 $material_type = $dm->getDescription();
@@ -53,6 +54,7 @@ echo $msg;
 <br>
 <?php
 $matQ = new MaterialFieldQuery();
+// Changes PVD(8.0.x)
 $matQ->connect_e();
 $rows = $matQ->get($materialCd);
 $matQ->close();

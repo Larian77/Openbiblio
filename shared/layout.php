@@ -43,7 +43,8 @@ require_once($filename);
 assert(class_exists($classname));
 
 if (isset($_REQUEST['rpt'])) {
-$rpt = (new Report)->load($_REQUEST['rpt']);
+  //Changes PVD(8.0.x)
+  $rpt = (new Report)->load($_REQUEST['rpt']);
 } else {
   $rpt = new Iter; # Some layouts don't need a report.
 }
@@ -101,7 +102,8 @@ if (isset($_REQUEST['msg'])) {
   <input type="hidden" name="filled" value="<?php echo H('1') ?>" />
 
   <?php
-(new Params)->printForm($defs, 'lay_');
+  //Changes PVD(8.0.x)
+  (new Params)->printForm($defs, 'lay_');
   ?>
 
   <input type="submit" value="Submit" class="button" />

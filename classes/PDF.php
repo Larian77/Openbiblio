@@ -50,14 +50,16 @@ class PDF
     var $creator; //creator
     var $PDFVersion; //PDF version number
 
-var $fontName; //PDF font name
+    //Changes PVD(8.0.x)
+    var $fontName; //PDF font name
 
     /*******************************************************************************
      *                                                                              *
      *                               Public methods                                 *
      *                                                                              *
      *******************************************************************************/
-function __construct($format, $orientation)
+    //Changes PVD(8.0.x)
+    function __construct($format, $orientation)
     {
         $unit = 'pt';
         //Some checks
@@ -159,7 +161,8 @@ function __construct($format, $orientation)
         $w = 0;
         $l = strlen($s);
         for ($i = 0; $i < $l; $i++) {
-$w += $cw[$s[$i]];
+            //Changes PVD(8.0.x)
+            $w += $cw[$s[$i]];
         }
         # array(x-min, y-min, x-max, y-max) -- LOWER-LEFT ORIGIN
         $bbox = $this->currentFont['bbox'];
@@ -686,7 +689,8 @@ $w += $cw[$s[$i]];
     {
         $filter = ($this->compress) ? '/Filter /FlateDecode ' : '';
         reset($this->images);
-//while (list($file, $info) = each($this->images)) {
+        //Changes PVD(8.0.x)
+        //while (list($file, $info) = each($this->images)) {
         //this line is update to this
         foreach ($this->images as $file => $info) {
             $this->_newobj();
@@ -761,7 +765,8 @@ $w += $cw[$s[$i]];
 
     function _putinfo()
     {
-//added because it was never defined
+        //Changes PVD(8.0.x)
+        //added because it was never defined
         define("FPDF_VERSION", "v1.86");
         $this->_out('/Producer ' . $this->_textstring('FPDF ' . FPDF_VERSION));
         if (!empty($this->title))

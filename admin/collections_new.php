@@ -47,6 +47,7 @@ if (!$dm->validateData()) {
 #*  Insert new domain table row
 #**************************************************************************
 $dmQ = new DmQuery();
+//Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dmQ->insert("collection_dm", $dm);
 $dmQ->close();

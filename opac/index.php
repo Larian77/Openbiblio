@@ -121,7 +121,8 @@ require_once ("../shared/header_opac.php");
 
                     <?php
                     $dmQ = new DmQuery();
-$dmQ->connect_e();
+                    // Changes PVD(8.0.x)
+                    $dmQ->connect_e();
                     $dms = $dmQ->get("collection_dm");
                     $dmQ->close();
                     foreach ($dms as $dm) {
@@ -137,7 +138,8 @@ $dmQ->connect_e();
 
                     <?php
                     $dmQ = new DmQuery();
-$dmQ->connect_e();
+                    // Changes PVD(8.0.x)
+                    $dmQ->connect_e();
                     $dms = $dmQ->get("material_type_dm");
                     $dmQ->close();
                     foreach ($dms as $dm) {

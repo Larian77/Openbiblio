@@ -83,9 +83,11 @@ if (!$_REQUEST['type']) {
     exit(0);
 }
 if ($_REQUEST['type'] == 'previous') {
-$rpt = (new Report)->load('Report');
+    //Changes PVD(8.0.x)
+    $rpt = (new Report)->load('Report');
 } else {
-list($rpt, $err) = (new Report)->create_e($_REQUEST['type'], 'Report');
+    //Changes PVD(8.0.x)
+    list($rpt, $err) = (new Report)->create_e($_REQUEST['type'], 'Report');
     if ($err) {
         $rpt = NULL;
     }
@@ -124,17 +126,20 @@ foreach ($rpt->layouts() as $l) {
     } else {
         $title = $l['name'];
     }
-(new Nav)->node(
+    //Changes PVD(8.0.x)
+    (new Nav)->node(
         'results/' . $l['name'],
         $loc->getText($title),
         '../shared/layout.php?rpt=Report&name=' . U($l['name'])
     );
 }
+//Changes PVD(8.0.x)
 (new Nav)->node(
     'results/list',
     $loc->getText("Print list"),
     '../shared/layout.php?rpt=Report&name=list'
 );
+//Changes PVD(8.0.x)
 (new Nav)->node(
     'reportcriteria',
     $loc->getText("Report Criteria"),

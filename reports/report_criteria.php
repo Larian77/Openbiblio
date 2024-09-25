@@ -22,13 +22,15 @@
     exit(0);
   }
   
-list($rpt, $err) = (new Report)->create_e($type);
+  //Changes PVD(8.0.x)
+  list($rpt, $err) = (new Report)->create_e($type);
   if ($err) {
     header('Location: ../reports/index.php');
     exit(0);
   }
 
-(new Nav)->node('reportcriteria', $loc->getText("Report Criteria"));
+  //Changes PVD(8.0.x)
+  (new Nav)->node('reportcriteria', $loc->getText("Report Criteria"));
   include("../shared/header.php");
 
   #****************************************************************************
@@ -55,7 +57,8 @@ list($rpt, $err) = (new Report)->create_e($type);
     )),
   );
   $params = array_merge($rpt->paramDefs(), $format);
-(new Params)->printForm($params);
+  //Changes PVD(8.0.x)
+  (new Params)->printForm($params);
 ?>
 
 <input type="submit" value="Submit" class="button" />

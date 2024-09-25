@@ -11,7 +11,8 @@ require_once("../classes/DbOld.php");
 class Query
 {
     var $_link;
-var $_conn;
+    //Changes PVD(8.0.x)
+    var $_conn;
     var $_error;
 
 
@@ -20,7 +21,8 @@ var $_conn;
      * call connect_e() yourself.
      */
 
-function __construct()
+    //Changes PVD(8.0.x)
+    function __construct()
     {
         $e = $this->connect_e();
         if ($e) {
@@ -38,7 +40,8 @@ function __construct()
      */
     function _connect_e()
     {
-$link = (new QueryAny)->db();
+        //Changes PVD(8.0.x)
+        $link = (new QueryAny)->db();
         if ($link->error_is()) {
             return array(NULL, $link->error_get());
         }
@@ -49,14 +52,16 @@ $link = (new QueryAny)->db();
     {
         $results = $this->_act($sql);
         if (!is_bool($results)) {
-(new Fatal)->dbError($sql, "Action query returned results.", 'No DBMS error.');
+            //Changes PVD(8.0.x)
+            (new Fatal)->dbError($sql, "Action query returned results.", 'No DBMS error.');
         }
     }
     function select($sql)
     {
         $results = $this->_act($sql);
         if (is_bool($results)) {
-(new Fatal)->dbError($sql, "Select did not return results.", 'No DBMS error.');
+            //Changes PVD(8.0.x)
+            (new Fatal)->dbError($sql, "Select did not return results.", 'No DBMS error.');
         }
         return new DbIter($results);
     }
@@ -64,7 +69,8 @@ $link = (new QueryAny)->db();
     {
         $r = $this->select($sql);
         if ($r->count() != 1) {
-(new Fatal)->dbError(
+            //Changes PVD(8.0.x)
+            (new Fatal)->dbError(
                 $sql,
                 'Wrong number of result rows: expected 1, got ' . $r->count(),
                 'No DBMS Error'
@@ -79,7 +85,8 @@ $link = (new QueryAny)->db();
         if ($r->count() == 0) {
             return NULL;
         } else if ($r->count() != 1) {
-(new Fatal)->dbError(
+            //Changes PVD(8.0.x)
+            (new Fatal)->dbError(
                 $sql,
                 'Wrong number of result rows: expected 0 or 1, got ' . $r->count(),
                 'No DBMS Error'
@@ -91,12 +98,14 @@ $link = (new QueryAny)->db();
     function _act($sql)
     {
         if (!$this->_link) {
-$this->connect_e();
+            //Changes PVD(8.0.x)
+            $this->connect_e();
             // (new Fatal)->internalError('Tried to make database query before connection.');
         }
         $r = $this->_link->query($sql);
         if ($r === false) {
-(new Fatal)->dbError($sql, 'Database query failed', $this->_link->my_error());
+            //Changes PVD(8.0.x)
+            (new Fatal)->dbError($sql, 'Database query failed', $this->_link->my_error());
         }
         return $r;
     }
@@ -121,12 +130,14 @@ $this->connect_e();
      */
     function lock()
     {
-//this two define is added because they have not defined this statment
+        //Changes PVD(8.0.x)
+        //this two define is added because they have not defined this statment
         define('OBIB_LOCK_NAME', 'akshar');
         define('OBIB_LOCK_TIMEOUT', '10');
         global $_Query_lock_depth;
         if ($_Query_lock_depth < 0) {
-(new Fatal)->internalError('Negative lock depth');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Negative lock depth');
         }
         if ($_Query_lock_depth == 0) {
             $row = $this->select1(
@@ -137,7 +148,8 @@ $this->connect_e();
                 )
             );
             if (!isset($row['locked']) or $row['locked'] != 1) {
-(new Fatal)->cantLock();
+                //Changes PVD(8.0.x)
+                (new Fatal)->cantLock();
             }
         }
         $_Query_lock_depth++;
@@ -146,7 +158,8 @@ $this->connect_e();
     {
         global $_Query_lock_depth;
         if ($_Query_lock_depth <= 0) {
-(new Fatal)->internalError('Tried to unlock an unlocked database.');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Tried to unlock an unlocked database.');
         }
         $_Query_lock_depth--;
         if ($_Query_lock_depth == 0) {
@@ -193,7 +206,8 @@ $this->connect_e();
     {
         $n = func_num_args();
         if ($n < 1) {
-(new Fatal)->internalError('Not enough arguments given to mkSQL().');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Not enough arguments given to mkSQL().');
         }
         $i = 1;
         $SQL = "";
@@ -206,16 +220,20 @@ $this->connect_e();
             }
             $SQL .= substr($fmt, 0, $p);
             if (strlen($fmt) < $p + 2) {
-(new Fatal)->internalError('Bad mkSQL() format string.');
+                //Changes PVD(8.0.x)
+                (new Fatal)->internalError('Bad mkSQL() format string.');
             }
-if ($fmt[$p + 1] == '%') {
+            //Changes PVD(8.0.x)
+            if ($fmt[$p + 1] == '%') {
                 $SQL .= "%";
             } else {
                 if ($i >= $n) {
-(new Fatal)->internalError('Not enough arguments given to mkSQL().');
+                    //Changes PVD(8.0.x)
+                    (new Fatal)->internalError('Not enough arguments given to mkSQL().');
                 }
                 $arg = func_get_arg($i++);
-switch ($fmt[$p + 1]) {
+                //Changes PVD(8.0.x)
+                switch ($fmt[$p + 1]) {
                     case '!':
                         /* very dangerous, but sometimes very useful -- be careful */
                         $SQL .= $arg;
@@ -244,24 +262,28 @@ switch ($fmt[$p + 1]) {
                         $SQL .= $this->_numstr($arg);
                         break;
                     case 'Q':
-//Adding this because connection link is empty
+                        //Changes PVD(8.0.x)
+                        //Adding this because connection link is empty
                         //on page BiblioSearchQuery query constructor is calling but it is not establiting the connection;
                         $this->connect_e();
                         $SQL .= "'" . $this->_link->real_escape_string($arg) . "'";
                         break;
                     case 'q':
-//Adding this because connection link is empty
+                        //Changes PVD(8.0.x)
+                        //Adding this because connection link is empty
                         $this->connect_e();
                         $SQL .= $this->_link->real_escape_string($arg);
                         break;
                     default:
-(new Fatal)->internalError('Bad mkSQL() format string.');
+                        //Changes PVD(8.0.x)
+                        (new Fatal)->internalError('Bad mkSQL() format string.');
                 }
             }
             $fmt = substr($fmt, $p + 2);
         }
         if ($i != $n) {
-(new Fatal)->internalError('Too many arguments to mkSQL().');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Too many arguments to mkSQL().');
         }
         return $SQL;
     }

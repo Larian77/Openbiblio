@@ -200,6 +200,7 @@ if (isset($_GET["msg"])) {
 # * Search database for biblio copy data
 # ****************************************************************************
 $biblioQ = new BiblioSearchQuery();
+// Changes PVD(8.0.x)
 $biblioQ->connect_e();
 if ($biblioQ->errorOccurred()) {
     $biblioQ->close();

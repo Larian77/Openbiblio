@@ -18,6 +18,7 @@ $loc = new Localize(OBIB_LOCALE, $tab);
 require_once ("../shared/header.php");
 
 $dmQ = new DmQuery();
+// Changes PVD(8.0.x)
 $dmQ->connect_e();
 $dms = $dmQ->get("biblio_copy_fields_dm");
 $dmQ->close();

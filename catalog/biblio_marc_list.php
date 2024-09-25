@@ -33,6 +33,7 @@ require_once ("../shared/header.php");
 # * Loading up an array ($marcArray) with the USMarc tag descriptions.
 # ****************************************************************************
 $marcTagDmQ = new UsmarcTagDmQuery();
+// Changes PVD(8.0.x)
 $marcTagDmQ->connect_e();
 if ($marcTagDmQ->errorOccurred()) {
     $marcTagDmQ->close();
@@ -47,6 +48,7 @@ $marcTags = $marcTagDmQ->fetchRows();
 $marcTagDmQ->close();
 
 $marcSubfldDmQ = new UsmarcSubfieldDmQuery();
+// Changes PVD(8.0.x)
 $marcSubfldDmQ->connect_e();
 if ($marcSubfldDmQ->errorOccurred()) {
     $marcSubfldDmQ->close();
@@ -64,6 +66,7 @@ $marcSubfldDmQ->close();
 # * Execute query
 # ****************************************************************************
 $fieldQ = new BiblioFieldQuery();
+// Changes PVD(8.0.x)
 $fieldQ->connect_e();
 if ($fieldQ->errorOccurred()) {
     $fieldQ->close();

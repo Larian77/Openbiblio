@@ -25,16 +25,19 @@ if (isset($_GET["xref_id"])) {
     $xref_id = $_GET["xref_id"];
     $postVars["xref_id"] = $xref_id;
     if (!isset($_GET["materialCd"])) {
-(new Fatal)->internalError('no material code set');
+        //Changes PVD(8.0.x)
+        (new Fatal)->internalError('no material code set');
     }
     $materialCd = $_GET["materialCd"];
     $postVars["materialCd"] = $materialCd;
     $matQ = new MaterialFieldQuery;
-$matQ->connect_e();
+    //Changes PVD(8.0.x)
+    $matQ->connect_e();
     $row = $matQ->get1($xref_id);
     $matQ->close();
     if ($row === NULL) {
-(new Fatal)->internalError('bad xref ID');
+        //Changes PVD(8.0.x)
+        (new Fatal)->internalError('bad xref ID');
     }
     $postVars["tag"] = $row["tag"];
     $postVars["subfieldCd"] = $row["subfieldCd"];

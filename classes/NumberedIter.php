@@ -1,9 +1,11 @@
 <?php
 class NumberedIter extends Iter
 {
-var $iter;
+    //Changes PVD(8.0.x)
+    var $iter;
     var $n;
-function __construct($iter)
+    //Changes PVD(8.0.x)
+    function __construct($iter)
     {
         $this->iter = $iter;
         $this->n = 0;

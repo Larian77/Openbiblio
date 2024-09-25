@@ -31,7 +31,8 @@ if (isset($_GET["code"])) {
     include_once ("../classes/DmQuery.php");
     include_once ("../functions/errorFuncs.php");
     $dmQ = new DmQuery();
-$dmQ->connect_e();
+    // Changes PVD(8.0.x)
+    $dmQ->connect_e();
     $dm = $dmQ->get1("collection_dm", $code);
     $postVars["description"] = $dm->getDescription();
     $postVars["daysDueBack"] = $dm->getDaysDueBack();

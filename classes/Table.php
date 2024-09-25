@@ -17,7 +17,8 @@ class Table
   var $_loc;
   var $_checked = false;
 
-function __construct($echolink = NULL, $checkbox = false)
+  //Changes PVD(8.0.x)
+  function __construct($echolink = NULL, $checkbox = false)
   {
     $this->_echolink = $echolink;
     $this->_checkbox = $checkbox;

@@ -41,7 +41,8 @@ if (isset($_GET["bibid"])) {
     # * Read copy information
     # ****************************************************************************
     $copyQ = new BiblioCopyQuery();
-$copyQ->connect_e();
+    // Changes PVD(8.0.x)
+    $copyQ->connect_e();
     if ($copyQ->errorOccurred()) {
         $copyQ->close();
         displayErrorPage($copyQ);

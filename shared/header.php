@@ -4,7 +4,8 @@
  * See the file COPYRIGHT.html for more details.
  */
 if (preg_match('/[^a-zA-Z0-9_]/', $tab)) {
-(new Fatal())->internalError("Possible security violation: bad tab name");
+    // Changes PVD(8.0.x)
+    (new Fatal())->internalError("Possible security violation: bad tab name");
     exit(); # just in case
 }
 

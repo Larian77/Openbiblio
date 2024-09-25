@@ -32,7 +32,8 @@ class BiblioCopy
     var $_renewalCount = "";
     var $_custom = array();
 
-function __construct()
+    //Changes PVD(8.0.x)
+    function __construct()
     {
         $this->_loc = new Localize(OBIB_LOCALE, "classes");
     }
@@ -131,47 +132,58 @@ function __construct()
      */
     function setBibid($value)
     {
-$this->_bibid = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_bibid = trim($value ?? '');
     }
     function setCopyid($value)
     {
-$this->_copyid = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_copyid = trim($value ?? '');
     }
     function setCreateDt($value)
     {
-$this->_createDt = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_createDt = trim($value ?? '');
     }
     function setCopyDesc($value)
     {
-$this->_copyDesc = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_copyDesc = trim($value ?? '');
     }
     function setBarcodeNmbr($value)
     {
-$this->_barcodeNmbr = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_barcodeNmbr = trim($value ?? '');
     }
     function setStatusCd($value)
     {
-$this->_statusCd = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_statusCd = trim($value ?? '');
     }
     function setStatusBeginDt($value)
     {
-$this->_statusBeginDt = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_statusBeginDt = trim($value ?? '');
     }
     function setDueBackDt($value)
     {
-$this->_dueBackDt = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_dueBackDt = trim($value ?? '');
     }
     function setDaysLate($value)
     {
-$this->_daysLate = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_daysLate = trim($value ?? '');
     }
     function setMbrid($value)
     {
-$this->_mbrid = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_mbrid = trim($value ?? '');
     }
     function setRenewalCount($value)
     {
-$this->_renewalCount = trim($value ?? '');
+        //Changes PVD(8.0.x)
+        $this->_renewalCount = trim($value ?? '');
     }
 }
 

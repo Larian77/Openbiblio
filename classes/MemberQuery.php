@@ -82,7 +82,8 @@ class MemberQuery extends Query
         # Running row count sql statement
         $rows = $this->exec($sqlcount);
         if (count($rows) != 1) {
-(new Fatal)->internalError("Wrong number of count rows");
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError("Wrong number of count rows");
         }
         # Calculate stats based on row count
         $this->_rowCount = $rows[0]["rowcount"];
@@ -106,7 +107,8 @@ class MemberQuery extends Query
             . "where mbrid=%N ", $mbrid);
         $rows = $this->exec($sql);
         if (count($rows) != 1) {
-(new Fatal)->internalError("Bad mbrid");
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError("Bad mbrid");
         }
         return $this->_mkObj($rows[0]);
     }
@@ -168,7 +170,8 @@ class MemberQuery extends Query
         # when we're called from fetchmember().
         # FIXME - redo query stuff to avoid this issue
         $q = new Query();
-$q->connect_e();
+        //Changes PVD(8.0.x)
+        $q->connect_e();
         $sql = $q->mkSQL('select * from member_fields where mbrid=%N', $mbrid);
         $rows = $q->exec($sql);
         $fields = array();
@@ -206,7 +209,8 @@ $q->connect_e();
         );
         $rows = $this->exec($sql);
         if (count($rows) != 1) {
-(new Fatal)->internalError('Bad number of rows');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Bad number of rows');
         }
         if ($rows[0]['num'] > 0) {
             return true;

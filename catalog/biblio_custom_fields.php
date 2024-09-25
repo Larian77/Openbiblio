@@ -8,7 +8,8 @@
   #****************************************************************************
 
   $marcTagDmQ = new UsmarcTagDmQuery();
-$marcTagDmQ->connect_e();
+  //Changes PVD(8.0.x)
+  $marcTagDmQ->connect_e();
   if ($marcTagDmQ->errorOccurred()) {
     $marcTagDmQ->close();
     displayErrorPage($marcTagDmQ);
@@ -22,7 +23,8 @@ $marcTagDmQ->connect_e();
   $marcTagDmQ->close();
 
   $marcSubfldDmQ = new UsmarcSubfieldDmQuery();
-$marcSubfldDmQ->connect_e();
+  //Changes PVD(8.0.x)
+  $marcSubfldDmQ->connect_e();
   if ($marcSubfldDmQ->errorOccurred()) {
     $marcSubfldDmQ->close();
     displayErrorPage($marcSubfldDmQ);
@@ -47,7 +49,8 @@ $marcSubfldDmQ->connect_e();
   }
   include_once("../classes/MaterialFieldQuery.php");
   $matQ = new MaterialFieldQuery();
-$matQ->connect_e();
+  //Changes PVD(8.0.x)
+  $matQ->connect_e();
   $rows = $matQ->get($materialCd);
   $matQ->close();
   $descrs = array();

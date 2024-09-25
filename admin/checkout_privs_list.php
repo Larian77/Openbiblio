@@ -16,6 +16,7 @@ $loc = new Localize(OBIB_LOCALE, $tab);
 require_once("../shared/header.php");
 
 $privsQ = new CheckoutPrivsQuery();
+//Changes PVD(8.0.x)
 $privsQ->connect_e();
 $privs = $privsQ->getAll();
 $privsQ->close();

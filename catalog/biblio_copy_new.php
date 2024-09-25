@@ -26,6 +26,7 @@ if (count($_POST) == 0) {
 }
 
 $copyQ = new BiblioCopyQuery();
+//Changes PVD(8.0.x)
 $copyQ->connect_e();
 if ($copyQ->errorOccurred()) {
   $copyQ->close();
@@ -66,6 +67,7 @@ $copy->setBarcodeNmbr($_POST["barcodeNmbr"]);
 $_POST["barcodeNmbr"] = $copy->getBarcodeNmbr();
 
 $dmQ = new DmQuery();
+//Changes PVD(8.0.x)
 $dmQ->connect_e();
 $customFields = $dmQ->getAssoc('biblio_copy_fields_dm');
 $dmQ->close();

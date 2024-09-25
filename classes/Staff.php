@@ -37,7 +37,8 @@ class Staff
     var $_loc;
 
 
-function __construct()
+    //Changes PVD(8.0.x)
+    function __construct()
     {
         $this->_loc = new Localize(OBIB_LOCALE, "classes");
     }
@@ -177,7 +178,8 @@ function __construct()
      */
     function setFirstName($firstName)
     {
-$this->_firstName = @trim($firstName);
+        //Changes PVD(8.0.x)
+        $this->_firstName = @trim($firstName);
     }
     /****************************************************************************
      * @return string Staff username

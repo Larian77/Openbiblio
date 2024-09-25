@@ -18,6 +18,7 @@ if (count($_POST) == 0 && count($_GET) == 0) {
   header("Location: ../circ/checkin_form.php?reset=Y");
   exit();
 }
+//Changes PVD(8.0.x)
 /*if ($_GET["barcodeNmbr"]) {
     $barcode = trim($_GET["barcodeNmbr"]);
 } else {
@@ -54,6 +55,7 @@ $params = "?barcode=" . U($barcode);
 if ($info['mbrid']) {
   $params .= "&mbrid=" . U($info['mbrid']);
 }
+//Changes PVD(8.0.x)
 /*
 if ($info['late']) {
     $params .= "&late=".U($info['late']);

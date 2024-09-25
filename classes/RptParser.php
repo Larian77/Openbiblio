@@ -65,13 +65,13 @@
 # 
 class RptParser
 {
-**Start
+    //Changes PVD(8.0.x) **Start
     var $filename;
     var $fd;
     var $lat;
     var $_tokens;
     var $line;
-**End
+    //Changes PVD(8.0.x) **End
     function load_e($filename)
     {
         # returns true or an error object
@@ -140,10 +140,12 @@ class RptParser
         # NOTE: Lines longer than 4096 bytes will mess things up.
         while ($line = fgets($this->fd, 4096)) {
             $this->line++;
-if ($line == "\n" or $line == "\r\n" or $line == "\r" or $line[0] == '#') {
+            //Changes PVD(8.0.x)
+            if ($line == "\n" or $line == "\r\n" or $line == "\r" or $line[0] == '#') {
                 continue;
             }
-if ($line[0] == '.') {
+            //Changes PVD(8.0.x)
+            if ($line[0] == '.') {
                 $this->_tokens = $this->getCmdTokens(trim(substr($line, 1)));
             } else {
                 $this->_tokens = $this->getSqlTokens(trim($line));
@@ -185,22 +187,27 @@ if ($line[0] == '.') {
         );
         $list = array();
         while (!empty($str)) {
-if ($str[0] == ' ' or $str[0] == "\t") {
+            //Changes PVD(8.0.x)
+            if ($str[0] == ' ' or $str[0] == "\t") {
                 $str = substr($str, 1);
                 continue;
             }
             if (ctype_alnum($str[0])) {
                 $w = '';
-while (!empty($str) and (ctype_alnum($str[0]) or $str[0] == '_')) {
-$w .= $str[0];
+                //Changes PVD(8.0.x)
+                while (!empty($str) and (ctype_alnum($str[0]) or $str[0] == '_')) {
+                    //Changes PVD(8.0.x)
+                    $w .= $str[0];
                     $str = substr($str, 1);
                 }
                 array_push($list, array('WORD', $w));
-} else if ($str[0] == '"' or $str[0] == '\'') {
+                //Changes PVD(8.0.x)
+            } else if ($str[0] == '"' or $str[0] == '\'') {
                 list($w, $str) = $this->getQuoted($str);
                 array_push($list, array('WORD', $w));
             } else {
-array_push($list, array($str[0]));
+                //Changes PVD(8.0.x)
+                array_push($list, array($str[0]));
                 $str = substr($str, 1);
             }
         }
@@ -212,21 +219,26 @@ array_push($list, array($str[0]));
     function getQuoted($str)
     {
         if (empty($str)) {
-(new Fatal)->internalError('getQuoted() called with empty $str');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('getQuoted() called with empty $str');
         }
-$q = $str[0];
+        //Changes PVD(8.0.x)
+        $q = $str[0];
         $w = '';
         for ($n = 1; $n < strlen($str); $n++) {
-if ($str[$n] == $q) {
+            //Changes PVD(8.0.x)
+            if ($str[$n] == $q) {
                 break;
             }
-if ($str[$n] == '\\') {
+            //Changes PVD(8.0.x)
+            if ($str[$n] == '\\') {
                 $n++;
                 if ($n >= strlen($str)) {
                     break;
                 }
             }
-$w .= $str[$n];
+            //Changes PVD(8.0.x)
+            $w .= $str[$n];
         }
         return array($w, substr($str, $n + 1));
     }
@@ -259,8 +271,10 @@ $w .= $str[$n];
                     array_push($list, array('SQLCODE', $sql));
                     $sql = '';
                 }
-if (array_key_exists($ref[0], $conversions)) {
-$conv = $conversions[$ref[0]];
+                //Changes PVD(8.0.x)
+                if (array_key_exists($ref[0], $conversions)) {
+                    //Changes PVD(8.0.x)
+                    $conv = $conversions[$ref[0]];
                     $ref = substr($ref, 1);
                 } else {
                     $conv = '%Q';
@@ -403,7 +417,8 @@ $conv = $conversions[$ref[0]];
                 }
                 return array('select', $name, $params, $list);
             default:
-(new Fatal)->internalError("Can't happen");
+                //Changes PVD(8.0.x)
+                (new Fatal)->internalError("Can't happen");
         }
     }
     function p_items()

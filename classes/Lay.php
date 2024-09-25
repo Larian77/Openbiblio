@@ -99,7 +99,8 @@ class Lay_Compound_Element
             $elem->paint($pos);
         }
         $this->display->endClip();
-if (isset($this->p['border'])) {
+        //Changes PVD(8.0.x)
+        if (isset($this->p['border'])) {
             $this->display->line($point, array('x' => $point['x'], 'y' => $max_clip['y']));
             $this->display->line($point, array('x' => $max_clip['x'], 'y' => $point['y']));
             $this->display->line($max_clip, array('x' => $point['x'], 'y' => $max_clip['y']));
@@ -230,11 +231,14 @@ class Lay_Transformer extends Lay_Container
     {
         parent::init($parent, $params);
         if ($params['scaling'] != 1)
-(new Fatal)->internalError('Transformer: scaling not implemented');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Transformer: scaling not implemented');
         if ($params['x-skew'] != 0 or $params['y-skew'] != 0)
-(new Fatal)->internalError('Transformer: skew not implemented');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Transformer: skew not implemented');
         if (abs(fmod($params['rotation'] * 2 / M_PI, 1)) > 0.01)
-(new Fatal)->internalError('Transformer: rotation is only supported in pi/2 increments');
+            //Changes PVD(8.0.x)
+            (new Fatal)->internalError('Transformer: rotation is only supported in pi/2 increments');
         $this->setDims();
     }
     function setDims()
@@ -279,7 +283,8 @@ class Lay_Lines extends Lay_Container
     var $dirs = array('x', 'y');
     var $first = true;
     var $children_dim;
-var $descent;
+    //Changes PVD(8.0.x)
+    var $descent;
     function init(&$parent, $params)
     {
         parent::init($parent, $params);
@@ -365,7 +370,8 @@ var $descent;
 
         $toobig = array();
         foreach ($dim as $d => $size) {
-//This is temp.
+            //Changes PVD(8.0.x)
+            //This is temp.
             if ($d == 'x' || $d == 'y') {
                 if ($size > $this->child_max_dim[$d]) {
                     $toobig[$d] = $size;
@@ -727,7 +733,8 @@ class Lay
 {
     var $display;
     var $current;
-var $fonts;
+    //Changes PVD(8.0.x)
+    var $fonts;
     function __construct($paper = 'letter', $orientation = 'portrait')
     {
         if (is_array($paper)) {
@@ -793,7 +800,8 @@ var $fonts;
             if (extension_loaded('iconv')) {
                 if ($text != '') {
                     // $text = iconv('UTF-8', 'windows-1252', $text);
-//added due to encodeing errors
+                    //Changes PVD(8.0.x)
+                    //added due to encodeing errors
                     $outputString = preg_replace('/[^\p{L}\p{N}\s\/\.-]/u', '', $text);
                     $text = iconv('UTF-8', 'ISO-8859-1//IGNORE', mb_convert_encoding($outputString ?? '', 'UTF-8'));
                 }
@@ -802,7 +810,8 @@ var $fonts;
                 $text = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8');
             }
         }
-foreach (preg_split('/\s+/', $text ?: "") as $word) {
+        //Changes PVD(8.0.x)
+        foreach (preg_split('/\s+/', $text ?: "") as $word) {
             if ($word == '') {
                 continue;
             }
@@ -825,7 +834,8 @@ foreach (preg_split('/\s+/', $text ?: "") as $word) {
             switch ($type) {
                 case 'x-length':
                 case 'y-length':
-list($len, $err) = $this->lengthToPoints($p[$name], $type[0]);
+                    //Changes PVD(8.0.x)
+                    list($len, $err) = $this->lengthToPoints($p[$name], $type[0]);
                     $p[$name] = $len;
                     break;
                 case 'x-align':
@@ -836,9 +846,11 @@ list($len, $err) = $this->lengthToPoints($p[$name], $type[0]);
                     $atypes['both'] = array('center', 'justify', 'strict-justify', 'baseline');
                     if (
                         !in_array($p[$name], $atypes['both'])
-and !in_array($p[$name], $atypes[$type[0]])
+                        //Changes PVD(8.0.x)
+                        and !in_array($p[$name], $atypes[$type[0]])
                     ) {
-$err = 'invalid ' . $type[0] . ' alignment type';
+                        //Changes PVD(8.0.x)
+                        $err = 'invalid ' . $type[0] . ' alignment type';
                     }
                     break;
                 case 'boolean':
