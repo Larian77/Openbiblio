@@ -9,6 +9,8 @@ create table %prfx%member (
   ,first_name varchar(50) not null
   ,pwd varchar(255) null
   ,pwd_timeout datetime not null
+  ,pwd_forgotten varchar(255) null
+  ,pwd_forgotten_time datetime null
   ,address text null
   ,home_phone varchar(15) null
   ,work_phone varchar(15) null

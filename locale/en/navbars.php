@@ -52,15 +52,17 @@ $trans["homeLicenseLink"]          = "\$text = 'License';";
 #****************************************************************************
 $trans["adminSummary"]             = "\$text = 'Admin Summary';";
 $trans["adminStaff"]               = "\$text = 'Staff Admin';";
-$trans["adminSettings"]            = "\$text = 'Library Settings';";
 $trans["adminMaterialTypes"]       = "\$text = 'Material Types';";
 $trans["adminCollections"]         = "\$text = 'Collections';";
-$trans["adminThemes"]              = "\$text = 'Themes';";
 $trans["adminTranslation"]         = "\$text = 'Translation';";
 $trans["Member Types"]             = "\$text = 'Member Types';";
 $trans["Member Fields"]            = "\$text = 'Member Fields';";
 $trans["Copy Fields"]              = "\$text = 'Copy Fields';";
 $trans["Checkout Privs"]           = "\$text = 'Checkout Privs';";
+$trans["adminSettings"]            = "\$text = 'Library Settings';";
+$trans["adminMailSettings"]        = "\$text = 'E-mail Settings';";
+$trans["adminMailMessages"]        = "\$text = 'Mail Messages';";
+$trans["adminThemes"]              = "\$text = 'Themes';";
 
 #****************************************************************************
 #*  Translation text for page cataloging.php
@@ -105,6 +107,11 @@ $trans["catalogResults"]           = "\$text = 'Search Results';";
 $trans["catalogBibInfo"]           = "\$text = 'Biblio Info';";
 $trans["userlogin"]                = "\$text = 'User Login';";
 $trans["memberaccount"]            = "\$text = 'Member Account';";
+
+#****************************************************************************
+#*  Translation text for page navbar opac for file mbr_pwd_forget_form.php
+#****************************************************************************
+$trans["PwdNewSet"]           = "\$text='Reset password';";
 
 #Added
 

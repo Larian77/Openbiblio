@@ -57,8 +57,8 @@
   $_POST["loginAttempts"] = $set->getLoginAttempts();
   $set->setPwdTimeout($_POST["pwdTimeout"]);
   $_POST["pwdTimeout"] = $set->getPwdTimeout();
-  $set->setLibraryOnline(isset($_POST["isLibraryOnline"]));
-  $_POST["isLibraryOnline"] = $set->isLibraryOnline();
+  $set->setMbrAccountOnline(isset($_POST["isMbrAccountOnline"]));
+  $_POST["isMbrAccountOnline"] = $set->isMbrAccountOnline();
 
 
   if (!$set->validateData()) {

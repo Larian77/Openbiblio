@@ -9,6 +9,7 @@
 <style type="text/css">
   <?php include("../css/style.css"); ?>
 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
 <meta name="description" content="OpenBiblio Library Automation System">
 <title>OpenBiblio Install</title>
 </head>

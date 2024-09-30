@@ -73,11 +73,11 @@ class SettingsQuery extends Query
         if (isset($array["pwd_timeout"])) {
             $set->setPwdTimeout($array["pwd_timeout"]);
         }
-        if(isset($array["library_online"])) {
-            if ($array["library_online"] == 'Y') {
-                $set->setLibraryOnline(true);
+        if(isset($array["mbraccount_online"])) {
+            if ($array["mbraccount_online"] == 'Y') {
+                $set->setMbrAccountOnline(true);
             } else {
-                $set->setLibraryOnline(false);
+                $set->setMbrAccountOnline(false);
             }
         }
 
@@ -103,7 +103,7 @@ class SettingsQuery extends Query
             . "block_checkouts_when_fines_due=%Q, "
             . "hold_max_days=%N, "
             . "locale=%Q, charset=%Q, html_lang_attr=%Q, login_attempts=%N, "
-            . "pwd_timeout=%N, library_online=%Q ",    
+            . "pwd_timeout=%N, mbraccount_online=%Q ",    
             $set->getLibraryName(),
             $set->getLibraryImageUrl(),
             $set->isUseImageSet() ? "Y" : "N",
@@ -121,7 +121,7 @@ class SettingsQuery extends Query
             $set->getHtmlLangAttr(),
             $set->getLoginAttempts(),
             $set->getPwdTimeout(),
-            $set->isLibraryOnline() ? "Y" : "N"   
+            $set->isMbrAccountOnline() ? "Y" : "N"   
         );
 
         return $this->_query($sql, "Error updating library settings information");

@@ -70,7 +70,7 @@
   #**************************************************************************
   require_once("../shared/header.php");
 
-  echo $loc->getText("mbr_pwd_reset_successfully");?>
+  echo $loc->getText("PwdResetSuccessfully");?>
   <br><br>
   <a href="../circ/mbr_view.php?mbrid=<?php echo U($mbrid); ?>"> <?php echo $loc->getText("mbr_return"); ?> </a>
   

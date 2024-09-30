@@ -14,7 +14,7 @@ if (isset($_SESSION["mbrid"])) {
     $sess_mbrid = "";
 }
 // instead of link now buttonn
-if (OBIB_LIBRARY_ONLINE == TRUE) {
+if (OBIB_MBR_ACCOUNT_ONLINE == TRUE) {
       if ($sess_mbrid > 0) { ?>
             <input type="button" onClick="self.location='./logout.php'" value="<?php echo $navLoc->getText("logout");?>" class="navbutton">
 <?php } else if ($nav == "userlogin") {
@@ -27,7 +27,7 @@ echo '<br />';
 
     if ($nav == "memberaccount") {
         echo '&raquo; ' . $navLoc->getText("memberaccount") . '<br>';
-        if (OBIB_LIBRARY_ONLINE == TRUE) {
+        if (OBIB_MBR_ACCOUNT_ONLINE == TRUE) {
             if ($mbr->getPwd() == "") {
                 echo '&nbsp; &nbsp;<a href="../opac/mbr_pwd_reset_form.php?mbrid=' . $sess_mbrid
                         . '" class="alt1">' . $navLoc->getText("PwdCreate") . '</a><br>';
@@ -38,7 +38,7 @@ echo '<br />';
         }
     } 
 
-    if (isset($sess_mbrid) && !$sess_mbrid == "" && ($nav != "memberaccount")) { 
+    if (isset($sess_mbrid) && !$sess_mbrid == "" && ($nav != "memberaccount") && (!$nav == "pwdforget")) { 
         echo '<a href="../opac/mbr_account.php?mbrid=' . $sess_mbrid;
         if (isset($lookup) == 'Y') {
             echo '&lookup=Y';
@@ -61,6 +61,9 @@ if ($nav == "search") {
 }
 if ($nav == "view") {
     echo '&raquo; ' . $navLoc->getText("catalogBibInfo") . '<br>';
+}
+if ($nav == "pwdforget") {
+    echo '&raquo; ' . $navLoc->getText("PwdNewSet") . '<br>';
 }
 ?>
 

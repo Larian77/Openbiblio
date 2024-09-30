@@ -131,7 +131,7 @@ $trans["reportCriteriaDateTimeErr"] = "\$text = 'Invalid datetime format.';";
 $trans["reportCriteriaDateErr"]   = "\$text = 'Invalid date format.';";
 
 #****************************************************************************
-#*  Translation text for classes Staff and Member
+#*  Translation text for classes Staff, Member and EmailMessages
 #****************************************************************************
 $trans["LastNameReqErr"]     = "\$text = 'Last name is required.';";
 $trans["UserNameLenErr"]     = "\$text = 'Username must be at least 4 characters.';";
@@ -142,6 +142,7 @@ $trans["PwdCharErr"]         = "\$text = 'Password must not contain any spaces.'
 $trans["PwdMatchErr"]        = "\$text = 'Passwords do not match.';";
 $trans["PwdRequirementErr"]  = "\$text = 'Password must have at least 1 digit(s), at least 1 lower case letter(s),"
         . " at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
+$trans["mailSubjectReqErr"]  = "\$text = 'Subject is required.';";
 
 #****************************************************************************
 #*  Translation text for class Member

@@ -144,10 +144,10 @@ for more details.
 ?>
         <form name="updateForm" method="POST" action="../install/upgradeSettings.php">
             
-    <?php       #***************************************************************
-                #* Protection against attacks
-                #***************************************************************
-                if (isset($_GET["upgrade"]) && $_GET["upgrade"] != "") {
+<?php       #***************************************************************
+            #* Protection against attacks
+            #***************************************************************
+            if (isset($_GET["upgrade"]) && $_GET["upgrade"] != "") {
                 $upgradeattempts = $_GET["upgrade"];
                 $upgrade = intval($upgradeattempts) +1;
                 $_GET["upgrade"] = $upgrade;
@@ -155,13 +155,13 @@ for more details.
                 $upgrade = 1;
             }
             if ($upgrade <= 9) {
-                #***************************************************************
-                #* Upgrade only for administrators with upgrade key
-                #* The upgrade key OBIB_UPGRADE_KEY is set in the shared/global_settings.php file.
-                #* and should be set individually
-                #***************************************************************
-                echo '<br /><br /><h2>' . $loc->getText('MaintenanceAccess') . '</h2>'; 
-    ?>
+            #***************************************************************
+            #* Upgrade only for administrators with upgrade key
+            #* The upgrade key OBIB_UPGRADE_KEY is set in the shared/global_settings.php file.
+            #* and should be set individually
+            #***************************************************************
+            echo '<br /><br /><h2>' . $loc->getText('MaintenanceAccess') . '</h2>'; 
+?>
                 <blockquote>
                     <table style="border: none; border-spacing: 0px">
                         <tr>

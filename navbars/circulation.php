@@ -25,7 +25,7 @@
  &nbsp; &nbsp; <a href="../circ/mbr_edit_form.php?mbrid=<?php echo HURL($mbrid);?>&FileSource=mbr_edit_form" class="alt1"><?php echo $navloc->getText("editInfo"); ?></a><br>
 <?php   
 
-if (OBIB_LIBRARY_ONLINE == 1) {
+if (OBIB_MBR_ACCOUNT_ONLINE == 1) {
     if ($mbr->getPwd() == "") {
         echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
            . '" class="alt1">' . $navloc->getText("PwdCreate") . '</a><br>';
@@ -44,7 +44,7 @@ if (OBIB_LIBRARY_ONLINE == 1) {
  &nbsp; <a href="../circ/mbr_view.php?mbrid=<?php echo HURL($mbrid);?>" class="alt1"><?php echo $navloc->getText("memberInfo"); ?></a><br>
  &nbsp; &nbsp; &raquo; <?php echo $navloc->getText("editInfo"); ?><br>
  <?php   
- if (OBIB_LIBRARY_ONLINE == 1) {
+ if (OBIB_MBR_ACCOUNT_ONLINE == 1) {
     if ($mbr->getPwd() == "") {
         echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
            . '" class="alt1">' . $navloc->getText("PwdCreate") . '</a><br>';
@@ -62,15 +62,15 @@ if (OBIB_LIBRARY_ONLINE == 1) {
 <?php if ($nav == "PwdReset") { ?>
  &nbsp; <a href="../circ/mbr_view.php?mbrid=<?php echo HURL($mbrid);?>" class="alt1"><?php echo $navloc->getText("memberInfo"); ?></a><br>
  &nbsp; &nbsp; <a href="../circ/mbr_edit_form.php?mbrid=<?php echo HURL($mbrid);?>&FileSource=mbr_edit_form" class="alt1"><?php echo $navloc->getText("editInfo"); ?></a><br>
-<?php   
-if (OBIB_LIBRARY_ONLINE == 1) {
-    if ($mbr->getPwd() == "") {
-        echo '&nbsp; &nbsp; &raquo; ' . $navloc->getText("PwdCreate") . '<br>';
-    } else {
-        echo '&nbsp; &nbsp; &raquo;' . $navloc->getText("PwdReset") . '<br>'; 
-    }
-}
-?>
+        <?php   
+        if (OBIB_MBR_ACCOUNT_ONLINE == 1) {
+            if ($mbr->getPwd() == "") {
+                echo '&nbsp; &nbsp; &raquo; ' . $navloc->getText("PwdCreate") . '<br>';
+            } else {
+                echo '&nbsp; &nbsp; &raquo;' . $navloc->getText("PwdReset") . '<br>'; 
+            }
+        }
+        ?>
  &nbsp; &nbsp; <a href="../circ/mbr_del_confirm.php?mbrid=<?php echo HURL($mbrid);?>" class="alt1"><?php echo $navloc->getText("catalogDelete"); ?></a><br>
  &nbsp; &nbsp; <a href="../circ/mbr_account.php?mbrid=<?php echo HURL($mbrid);?>&amp;reset=Y" class="alt1"><?php echo $navloc->getText("account"); ?></a><br>
  &nbsp; &nbsp; <a href="../circ/mbr_history.php?mbrid=<?php echo HURL($mbrid);?>" class="alt1"><?php echo $navloc->getText("checkoutHistory"); ?></a><br>
@@ -103,7 +103,7 @@ if (OBIB_LIBRARY_ONLINE == 1) {
 <?php if ($nav == "new") { ?>
  &raquo; <?php echo $navloc->getText("newMember"); ?><br>
 <?php } else { ?>
- <a href="../circ/mbr_new_form.php?reset=Y" class="alt1"><?php echo $navloc->getText("newMember"); ?></a><br>
+ <a href="../circ/mbr_new_form.php?reset=Y&FileSource=mbr_new_form" class="alt1"><?php echo $navloc->getText("newMember"); ?></a><br>
 <?php } ?>
 
 <?php if ($nav == "checkin") { ?>

@@ -19,7 +19,7 @@ create table %prfx%settings (
   ,html_lang_attr varchar(8) null
   ,login_attempts integer(2) not null
   ,pwd_timeout integer(2) not null
-  ,library_online char(1) not null
+  ,mbraccount_online char(1) not null
 )
   ENGINE=MyISAM
 ;

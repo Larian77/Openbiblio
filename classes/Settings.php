@@ -34,7 +34,7 @@ class Settings {
   var $_htmlLangAttr = "";
   var $_loginAttempts = 9;
   var $_pwdTimeout = 30;
-  var $_isLibraryOnline = TRUE;
+  var $_isMbrAccountOnline = TRUE;
 
   /****************************************************************************
   * @return array with code and description of installed locales
@@ -160,8 +160,8 @@ class Settings {
   function getPwdTimeout() {
       return $this->_pwdTimeout;
   }
-  function isLibraryOnline() {
-      return $this->_isLibraryOnline;
+  function isMbrAccountOnline() {
+      return $this->_isMbrAccountOnline;
   }
 
   /****************************************************************************
@@ -257,11 +257,11 @@ class Settings {
   function setPwdTimeout($value) {
       $this->_pwdTimeout = $value;
   } 
-  function setLibraryOnline($value) {
+  function setMbrAccountOnline($value) {
     if ($value) {
-      $this->_isLibraryOnline = TRUE;
+      $this->_isMbrAccountOnline = TRUE;
     } else {
-      $this->_isLibraryOnline = FALSE;
+      $this->_isMbrAccountOnline = FALSE;
     }
   }
 

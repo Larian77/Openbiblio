@@ -215,7 +215,7 @@ require_once ("../shared/header.php");
                     <?php
                         }
                     }
-                    if (OBIB_LIBRARY_ONLINE == TRUE) {
+                    if (OBIB_MBR_ACCOUNT_ONLINE == TRUE) {
                     ?>
                     <tr>
 			<td class="primary" valign="top">

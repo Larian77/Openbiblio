@@ -61,6 +61,7 @@ $trans["MemberID"]        	   = "\$text = 'Benutzernummer';";
 $trans["Secret Word"]	           = "\$text = 'Kennwort';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
 $trans["loginDeactived"]           = "\$text = 'Login ist deaktiviert.';";
+$trans["PasswordForgotten"]	   = "\$text = 'Kennwort vergessen?';";
 
 #****************************************************************************
 #*  Translation text for page login.php
@@ -109,7 +110,7 @@ $trans["mbrViewNoHolds"]          = "\$text='Derzeit keine Medien vorbestellt.';
 $trans["Please send a mail to delete holds"] = "\$text='Wenn Sie Vorbestellungen löschen wollen, mailen Sie uns bitte!';";
 $trans["eMail"]                   = "\$text='E-Mail';";
 $trans["mbrViewPwd"]              = "\$text='Kennwort:';";
-$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Passwort gesetzt!</p>';";
+$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Kennwort gesetzt!</p>';";
 
 #****************************************************************************
 #*  Translation text for page mbr_print_checkouts.php

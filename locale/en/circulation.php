@@ -89,17 +89,24 @@ $trans["mbrsearchSearchResults"] = "\$text='Search Results:';";
 $trans["mbrsearchCardNumber"] = "\$text='Card Number:';";
 $trans["mbrsearchClassification"] = "\$text='Classification:';";
 $trans["mbr_new_form_Reenterpassword"]     = "\$text = 'Repeat password:';";
-$trans["mbrPwdRequirement"]                = "\$text = '<p style=\"color: #1a62ac;\">Rules: Password must have between 8 and 20 characters, at least 1 digit(s), <br />"
-        . "at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)</p>';";
-$trans["mbrPwdRequirementErr"]  = "\$text = 'Password must have at least 8 characters, at least 1 digit(s), at least 1 lower case letter(s),"
+$trans["PwdRequirement"]                = "\$text = 'Rules: Password must have between 8 and 20 characters, at least 1 digit(s), <br />"
+        . "at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
+$trans["PwdRequirementErr"]  = "\$text = 'Password must have at least 8 characters, at least 1 digit(s), at least 1 lower case letter(s),"
         . " at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
 
 # ****************************************************************************
 # * Translation text for page mbr_new.php (and mbr_view.php)
 # ****************************************************************************
-$trans["mbrNewSuccess"] = "\$text='Member has been successfully added.';";
-$trans["mbr_new_form_Password"]            = "\$text = 'Password:';";
-$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>No password set!</p>';";
+$trans["mbr_new_form_TypeOfPwdCreation"]        = "\$text = 'Password creation by e-mail?&nbsp;';";
+$trans["mbr_new_form_TypeOfPwdCreationInfo"]    = "\$text = 'If you enter a valid e-mail address, a welcome message "
+                                                    . "can be sent by e-mail with a link to create an own password';";
+$trans["mbr_new_form_Reenterpassword"]          = "\$text = 'Repeat password:';";
+$trans["mbr_new_form_Password"]                 = "\$text = 'Password:';";
+$trans["errNoPwdForgottenCode"]                 = "\$text = 'No password code could be created!';";
+$trans["mbrNewSuccess"]                         = "\$text='Member has been successfully added.';";
+$trans["mbrNewMailingSuccessful"]               = "\$text='Welcome e-mail with password creation was sent successfully.';";
+$trans["errMailCouldNotBeSent"]                 = "\$text = 'Message could not be sent.';";
+$trans["mbrNoPassword"]                         = "\$text = '<p style=\"font-weight: bold; color: red;\";>No password set!</p>';";
 
 # ****************************************************************************
 # * Translation text for page mbr_edit.php

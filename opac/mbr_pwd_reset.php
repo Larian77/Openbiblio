@@ -52,7 +52,7 @@
   }
 
   #**************************************************************************
-  #*  Reset password in member (fields)
+  #*  Reset password in member
   #**************************************************************************
   $mbrQ = new MemberQuery();
   $mbrQ->connect_e();
@@ -70,7 +70,7 @@
   #**************************************************************************
   require_once("../shared/header.php");
 
-  echo $loc->getText("mbr_pwd_reset_successfully");?>
+  echo $loc->getText("PwdResetSuccessfully");?>
   <br><br>
   <a href="../opac/mbr_account.php?mbrid=<?php echo U($mbrid) ?>"> <?php echo $loc->getText("mbr_return") ?> </a>
   

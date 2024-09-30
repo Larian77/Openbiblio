@@ -62,6 +62,7 @@ $trans["MemberID"]        	   = "\$text = 'Card Number';";
 $trans["Secret Word"]	           = "\$text = 'Secret Word';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
 $trans["loginDeactived"]           = "\$text = 'Login is deactivated.';";
+$trans["PasswordForgotten"]	   = "\$text = 'Forgotten password?';";
 
 #****************************************************************************
 #*  Translation text for page login.php

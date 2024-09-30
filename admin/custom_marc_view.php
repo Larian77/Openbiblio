@@ -80,7 +80,7 @@ if (empty($rows)) {
             <tr>
 		<td valign="top" class="primary"><a
 			href="custom_marc_edit_form.php?xref_id=<?php echo HURL($row["xref_id"]) ?>&amp;materialCd=<?php echo HURL($materialCd) ?>&amp;reset=Y">
-                        <?php echo $loc->getText("admin_materials_listEdit"); ?>
+                        <?php echo $loc->getText("edit"); ?>
                     </a></td>
 		<td valign="top" class="primary"><a
 			href="custom_marc_delete.php?xref_id=<?php echo HURL($row["xref_id"]) ?>&amp;materialCd=<?php echo HURL($materialCd) ?>">

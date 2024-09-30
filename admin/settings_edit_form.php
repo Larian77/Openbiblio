@@ -64,10 +64,10 @@
     $postVars["htmlLangAttr"] = $set->getHtmlLangAttr();
     $postVars["loginAttempts"] = $set->getLoginAttempts();
     $postVars["pwdTimeout"] = $set->getPwdTimeout();
-    if ($set->isLibraryOnline()) {
-        $postVars["isLibraryOnline"] = "CHECKED";
+    if ($set->isMbrAccountOnline()) {
+        $postVars["isMbrAccountOnline"] = "CHECKED";
     } else {
-        $postVars["isLibraryOnline"] = "";
+        $postVars["isMbrAccountOnline"] = "";
     }
     $postVars["pwdTimeout"] = $set->getPwdTimeout();
     
@@ -268,13 +268,13 @@
   </tr>
   <tr>
     <td style="white-space:nowrap;" class="primary">
-      <?php echo $loc->getText("admin_settingsLibraryOnline"); ?>
+      <?php echo $loc->getText("admin_settingsMbrAccountOnline"); ?>
     </td>
     <td valign="top" class="primary">
-      <?php echo $loc->getText("admin_settingsLibraryOnline_explication"); ?>
-      <input type="checkbox" name="isLibraryOnline" value="CHECKED"
-        <?php if (isset($postVars["isLibraryOnline"])) {
-                echo H($postVars["isLibraryOnline"]);
+      <?php echo $loc->getText("admin_settingsMbrAccountOnline_explication"); ?>
+      <input type="checkbox" name="isMbrAccountOnline" value="CHECKED"
+        <?php if (isset($postVars["isMbrAccountOnline"])) {
+                echo H($postVars["isMbrAccountOnline"]);
         }
         ?>
       >

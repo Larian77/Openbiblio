@@ -20,12 +20,12 @@
 
   if (OBIB_LATEST_DB_VERSION == '0.8.1') {
       $settings = $_POST;
-      if (isset($_POST["libraryOnline"]) == 'checked') {
-        $libraryOnline = 'Y';
+      if (isset($_POST["mbrAccountOnline"]) == 'checked') {
+        $mbrAccountOnline = 'Y';
       } else {
-        $libraryOnline = "N";
+        $mbrAccountOnline = "N";
       }
-      $settings["libraryOnline"] = $libraryOnline;
+      $settings["mbrAccountOnline"] = $mbrAccountOnline;
       $_POST = $settings;
   }
 

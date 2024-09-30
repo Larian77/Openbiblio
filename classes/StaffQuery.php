@@ -86,7 +86,11 @@ class StaffQuery extends Query {
     if ($array == false) {
       return false;
     }
-    $staff = new Staff();
+    return $this->_skObj($array);
+  }
+  
+  function _skObj($array) {
+      $staff = new Staff();
     $staff->setUserid($array["userid"]);
     $staff->setLastName($array["last_name"]);
     $staff->setFirstName($array["first_name"]);
@@ -94,6 +98,8 @@ class StaffQuery extends Query {
     $staff->setEmail($array["email"]);
     $staff->setPwd($array["pwd"]);
     $staff->setPwdTimeout($array["pwd_timeout"]);
+    $staff->setPwdForgotten($array["pwd_forgotten"]);
+    $staff->setPwdForgottenTime($array["pwd_forgotten_time"]);
     if ($array["circ_flg"] == "Y") {
       $staff->setCircAuth(true);
     } else {
@@ -163,13 +169,12 @@ class StaffQuery extends Query {
       $this->_error = "Username is already in use.";
       return false;
     }
-    if(!$staff->_pwd == 0) {
-        $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
-    }
+    $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
     $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), "
-                        . "%N, %Q, %Q, '0000-00-00 00:00:00', %Q, ",
+                        . "%N, %Q, " 
+                        . "%Q, '1970-01-01 12:00:00', %Q, '1970-01-01 12:00:00', %Q, ",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $pwdhash, $staff->getLastName());
+                        $pwdhash, $staff->getPwdForgotten(), $staff->getLastName());
     if ($staff->getFirstName() == "") {
       $sql .= "null, ";
     } else {
@@ -186,9 +191,7 @@ class StaffQuery extends Query {
                          $staff->hasCircMbrAuth() ? "Y" : "N",
                          $staff->hasCatalogAuth() ? "Y" : "N",
                          $staff->hasReportsAuth() ? "Y" : "N");
-    return $this->_query($sql, "Error inserting new staff member information.");
-    
-    if ($this->_query($sql)== 0) {
+    if ($this->exec($sql)== NULL) {
       $this->_errorOccurred = true;
       $this->_error = "Error inserting new staff member information.";
       return false;
@@ -254,9 +257,15 @@ class StaffQuery extends Query {
    */
   function resetPwd($staff) {
       $pwdhash = password_hash($staff->getPwd(), PASSWORD_DEFAULT);
-      $sql = $this->mkSQL("update staff set pwd=%Q "
-                        . "where userid=%N ",
-                          $pwdhash, $staff->getUserid());
+      if ($staff->getUserid() != NULL) {
+        $sql = $this->mkSQL("update staff set pwd=%Q "
+                          . "where userid=%N ",
+                            $pwdhash, $staff->getUserid());
+      } else if ($staff->getUsername() != NULL) {
+          $sql = $this->mkSQL("update staff set pwd=%Q "
+                        . "where username=%Q ",
+                          $pwdhash, $staff->getUsername());
+      }
     return $this->_query($sql, "Error resetting password.");
   }
   
@@ -289,6 +298,62 @@ class StaffQuery extends Query {
     return $this->_query($sql, "Error deleting staff information.");
   }
 
+  
+  /****************************************************************************
+  * Count members with this email
+  * @param string $email email of member
+  * @return Reports the number of members with the same email back
+  * @access public
+  ****************************************************************************
+  */
+  function getRow($email)
+  {
+    $sql = $this->mkSQL("select * from staff where email=%Q ", $email);
+    $staffInfos = $this->exec($sql);
+    $rows = count($staffInfos);
+
+    return $rows;
+  }
+  function getStaff_or($db_column, $value)
+  {
+    $sql = $this->mkSQL("SELECT * FROM staff WHERE %q = %Q ", $db_column, $value);
+    $rows = $this->exec($sql);
+    if (count($rows) == 0) {
+        //Changes PVD(8.0.x)
+        return false;
+    }           
+    return $this->_skObj($rows[0]);
+  }
+  function getStaff_and($db_column_mail, $db_column_username, $mail, $username)
+  {
+    $sql = $this->mkSQL("SELECT * FROM staff WHERE %q = %Q AND %q = %Q ", 
+            $db_column_mail, $mail,
+            $db_column_username, $username);
+    $rows = $this->exec($sql);
+    if (count($rows) == 0) {
+        //Changes PVD(8.0.x)
+        return false;
+    }
+    return $this->_skObj($rows[0]);
+  }
+  function setPwdForgottenCode($staff)
+  {
+          $sql = $this->mkSQL("UPDATE staff SET pwd_forgotten = %Q, pwd_forgotten_time = sysdate() "
+                            . " WHERE userid = %N "
+                            , $staff->getPwdForgotten()
+                            , $staff->getUserid());
+        return $this->_query($sql, "Error set Password-Forgotten-Code by member.");;
+  }
+  function getPwdForgottenCode($username)
+  {
+      $sql = $this->mkSQL("SELECT pwd_forgotten, pwd_forgotten_time FROM staff WHERE username = %Q", $username);
+      $result = $this->exec($sql);
+      if (!isset($result[0])) {
+        return false;
+      }
+      return $result[0];
+  }
+  
 }
 
 ?>

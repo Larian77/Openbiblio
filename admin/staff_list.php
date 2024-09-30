@@ -80,7 +80,7 @@
   ?>
   <tr>
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/staff_edit_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Edit"); ?></a>
+      <a href="../admin/staff_edit_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("edit"); ?></a>
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <a href="../admin/staff_pwd_reset_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Pwd"); ?></a>

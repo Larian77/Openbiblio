@@ -88,17 +88,23 @@ $trans["mbrsearchFoundResults"] = "\$text=' Ergebnisse gefunden.';";
 $trans["mbrsearchSearchResults"] = "\$text='Suchergebnisse:';";
 $trans["mbrsearchCardNumber"] = "\$text='Benutzernummer:';";
 $trans["mbrsearchClassification"] = "\$text='Klassifikation:';";
-$trans["mbrPwdRequirement"]                = "\$text = '<p style=\"color: #1a62ac;\">Regeln: Passwort muss zwischen 8 bis 20 Zeichen lang sein, "
-        . "mindestens 1 Ziffer, <br />1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.<br /></p>';";
-$trans["mbrPwdRequirementErr"]  = "\$text = 'Passwort muss mindestens 8 Zeichen, davon mindestens 1 Ziffer, 1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.';";
+$trans["PwdRequirement"]                = "\$text = 'Regeln: Kennwort muss zwischen 8 bis 20 Zeichen lang sein, "
+        . "mindestens 1 Ziffer, <br />1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.<br />';";
+$trans["PwdRequirementErr"]  = "\$text = 'Kennwort muss mindestens 8 Zeichen, davon mindestens 1 Ziffer, 1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.';";
 
 # ****************************************************************************
 # * Translation text for page mbr_new.php (and mbr_view.php)
-# ****************************************************************************
-$trans["mbrNewSuccess"] = "\$text='Benutzer wurde erfolgreich hinzugefügt.';";
-$trans["mbr_new_form_Password"]            = "\$text = 'Kennwort:';";
-$trans["mbr_new_form_Reenterpassword"]     = "\$text = 'Kennwort wiederholen:';";
-$trans["mbrNoPassword"]                    = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Passwort gesetzt!</p>';";
+# ****************************************************************************´
+$trans["mbr_new_form_TypeOfPwdCreation"]        = "\$text = 'Kennwort-Erstellung per Mail?&nbsp;';";
+$trans["mbr_new_form_TypeOfPwdCreationInfo"]    = "\$text = 'Bei Hinterlegung einer gültigen E-Mail-Adresse, kann per Mail eine Willkommensnachricht "
+                                                                . "versandt werden mit einem Link zur Erstellung eines eigenen Kennwortes.';";
+$trans["mbr_new_form_Password"]                 = "\$text = 'Kennwort:';";
+$trans["mbr_new_form_Reenterpassword"]          = "\$text = 'Kennwort wiederholen:';";
+$trans["errNoPwdForgottenCode"]                 = "\$text = 'Es konnte kein Kennwort-Code erstellt werden!';";
+$trans["mbrNewSuccess"]                         = "\$text='Benutzer wurde erfolgreich hinzugefügt.';";
+$trans["mbrNewMailingSuccessful"]               = "\$text='Willkommen-Mail mit Passwort-Erstellung wurde erfolgreich versandt.';";
+$trans["errMailCouldNotBeSent"]                 = "\$text = 'Nachricht konnte nicht versendet werden.';";
+$trans["mbrNoPassword"]                         = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Kennwort gesetzt!</p>';";
 
 # ****************************************************************************
 # * Translation text for page mbr_edit.php

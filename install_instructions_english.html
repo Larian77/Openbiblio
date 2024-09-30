@@ -326,10 +326,10 @@ mysql> <b>show databases;</b>
 				the main openbiblio directory) with the text editor of your choice.
 				Change the username and password to match the new MySQL user and
 				password that you created in the previous steps.</li>
-                        <li id="step13">Edit the file global_constants.php (located in the 
-                                        shared directory of openbiblio) with a text editor 
-                                        of your choice. Change the constant OBIB_UPGRADE_KEY 
-                                        according to your choice.</li>
+                        <li id="step13">Edit the file global_constants.php (located in the shared directory of openbiblio) 
+                                with a text editor of your choice. Change the following two constants according to your choice:<br />
+                                --> OBIB_UPGRADE_KEY 
+                                --> OBIB_PWD_FORGOTTEN_KEY</li>
 			<li>Create the OpenBiblio database tables. To do this run the
 				install php script located at <a
 				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>.</li>
@@ -347,8 +347,25 @@ mysql> <b>show databases;</b>
 				directory. Enter "admin" for the userid and for password "Administrator#1" whenever
 				you are prompted to signon. You can change the admin password from
 				the "Admin" tab -> staff list, where you can also add more library
-				staff members.
-			</li>
+				staff members.</li>
+                        <li>Under admin --> Library settings, system-relevant settings can be made, including whether or 
+                                not library users can access their personal account online.</li>
+                        <li>In order to be able to use the mail dispatch for e.g. "forgotten password function" or 
+                                "welcome message" you must enter a valid e-mail address as the sender for the 
+                                respective messages under admin --> Mail messages. messages, you must enter a valid e-mail address 
+                                as the sender. This can also differ for the individual messages may also differ.</li>
+                        <li>The "Forgot password function" can be activated under admin --> Mail settings. Here you can decide 
+                                whether either the user number/name or the e-mail address must be entered or both.</li>
+                        <li>Mail can be sent either via the php mail function or via PHPMailer, provided that the system requirements 
+                                are met and the necessary settings have been made.</li>
+                        <li>As of Openbiblio version 0.8.1, two libraries are included:<br />
+                                --> PHPMailer (URL: <a href="https://github.com/PHPMailer/PHPMailer">https://github.com/PHPMailer/PHPMailer</a>)<br />
+                                --> TinyMCE-Text-Editor (URL: <a href="https://www.tiny.cloud/docs/tinymce/latest/php-projects/">https://www.tiny.cloud/docs/tinymce/latest/php-projects/</a>)<br />
+                                If the technical system requirements of your server are met, this should be done. 
+                                If there are any difficulties, please read the information on the URLs above.</li>
+                        
+
+Translated with DeepL.com (free version)
 		</ol>
 
 		<br>

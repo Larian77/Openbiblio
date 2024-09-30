@@ -55,17 +55,17 @@
   </tr>
   <tr>
     <td nowrap="true" class="primary">
-      <?php echo $loc->getText("mbr_new_form_Password"); ?>
+      <?php echo $loc->getText("new_form_Password"); ?>
     </td>
     <td valign="top" class="primary">
-      <?php echo $loc->getText("mbrPwdRequirement"); ?>
+      <?php echo $loc->getText("PwdRequirement"); ?>
       <input type="password" name="pwd" size="20" maxlength="20"
       value="<?php if (isset($postVars["pwd"])) echo H($postVars["pwd"]); ?>" ><br>
     </td>
   </tr>
   <tr>
     <td nowrap="true" class="primary">
-      <?php echo $loc->getText("mbr_new_form_Reenterpassword"); ?>
+      <?php echo $loc->getText("new_form_Reenterpassword"); ?>
     </td>
     <td valign="top" class="primary">
       <input type="password" name="pwdRepeat" size="20" maxlength="20"
@@ -76,8 +76,8 @@
   </tr>
   <tr>
     <td align="center" colspan="2" class="primary">
-      <input type="submit" value="  <?php echo $loc->getText("mbrFldsSubmit"); ?>  " class="button">
-      <input type="button" onClick="self.location='<?php echo H(addslashes($cancelLocation));?>'" value="<?php echo $loc->getText("mbrFldsCancel"); ?> " class="button">
+      <input type="submit" value="  <?php echo $loc->getText("sharedSubmit"); ?>  " class="button">
+      <input type="button" onClick="self.location='<?php echo H(addslashes($cancelLocation));?>'" value="<?php echo $loc->getText("sharedCancel"); ?> " class="button">
     </td>
   </tr>
 

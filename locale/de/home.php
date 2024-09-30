@@ -55,7 +55,7 @@ $trans["indexCatDesc2"]      = "\$text='Medien-Verwaltung (Neu, Suche, Bearbeite
 //$trans["indexCatDesc3"]      = "\$text='Import bibliography from USMarc record';";
 $trans["indexAdmin"]         = "\$text='Admin';";
 $trans["indexAdminDesc1"]    = "\$text='Benutzen Sie diesen Reiter um die Mitarbeiter zu verwalten und die Programmeinstellungen zu ändern.';";
-$trans["indexAdminDesc2"]    = "\$text='Mitarbeiter Verwaltung (Neu, Bearbeiten, Passwort, Löschen)';";
+$trans["indexAdminDesc2"]    = "\$text='Mitarbeiter Verwaltung (Neu, Bearbeiten, Kennwort, Löschen)';";
 $trans["indexAdminDesc3"]    = "\$text='Generelle Bibliothekseinstellungen';";
 $trans["indexAdminDesc5"]    = "\$text='Liste der Medienarten';";
 $trans["indexAdminDesc4"]    = "\$text='Liste der Genres';";

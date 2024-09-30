@@ -408,11 +408,19 @@ class UpgradeQuery extends InstallQuery {
                     . 'ADD pwd VARCHAR(255) AFTER barcode_nmbr ');
     $this->exec("ALTER TABLE " . $prfx . "member "
                     . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
+    $this->exec('ALTER TABLE ' . $prfx . 'member '
+                    . 'ADD pwd_forgotten varchar(255) NULL AFTER pwd_timeout ');
+    $this->exec("ALTER TABLE " . $prfx . "member "
+                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd_forgotten ");
     $this->exec('ALTER TABLE ' . $prfx . 'staff MODIFY pwd VARCHAR(255) ');
     $this->exec("ALTER TABLE " . $prfx . "staff "
                     . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
     $this->exec('ALTER TABLE ' . $prfx . 'staff '
                     . 'ADD email VARCHAR(128) NULL AFTER first_name ');
+        $this->exec('ALTER TABLE ' . $prfx . 'staff '
+                    . 'ADD pwd_forgotten varchar(255) NULL AFTER pwd_timeout ');
+    $this->exec("ALTER TABLE " . $prfx . "staff "
+                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd_forgotten ");
     $this->exec("UPDATE " . $prfx . 'settings SET version = "' . OBIB_LATEST_DB_VERSION . '"');
     $this->exec('ALTER TABLE ' . $prfx . 'settings '
                     . 'ADD login_attempts INT(2) NOT NULL AFTER html_lang_attr ');
@@ -421,8 +429,8 @@ class UpgradeQuery extends InstallQuery {
                     . 'ADD pwd_timeout INT(2) NOT NULL AFTER login_attempts ');
     $this->exec('UPDATE ' . $prfx . 'settings SET pwd_timeout = ' . $settings["pwdTimeout"]);
     $this->exec('ALTER TABLE ' . $prfx . 'settings '
-                    . 'ADD library_online CHAR(1) ');
-    $this->exec('UPDATE ' . $prfx . 'settings SET library_online = "' . $settings["libraryOnline"] . '"');
+                    . 'ADD mbraccount_online CHAR(1) ');
+    $this->exec('UPDATE ' . $prfx . 'settings SET mbraccount_online = "' . $settings["mbrAccountOnline"] . '"');
     $mbrfieldsdm = $this->exec("SELECT * FROM " . $prfx . "member_fields_dm WHERE code = 'secret' ");
     if ($mbrfieldsdm == TRUE) {
         $mbrSecretCodes = $this->exec("SELECT * FROM member_fields WHERE code = 'secret'");
@@ -442,6 +450,16 @@ class UpgradeQuery extends InstallQuery {
             }
         }
     }
+    $this->executeSqlFile('../install/0.8.1/sql/email_settings.sql', $prfx);
+    $this->executeSqlFile('../install/0.8.1/sql/email_messages.sql', $prfx);
+
+    $locale = $this->select1('SELECT locale FROM ' . $prfx . 'settings');
+    $this->executeSqlFile('../locale/' . $locale['locale'] . '/sql/0.8.1/domain/mail_settings.sql', $prfx);
+    $this->executeSqlFile('../locale/' . $locale['locale'] . '/sql/0.8.1/domain/mail_messages.sql', $prfx);
+    $this->exec("UPDATE " . $prfx . "mail_settings SET pwd_forgotten_settings = " . $settings["pwdForgottenSettings"] 
+                . ", pwd_forgotten_code_duration = " . $settings["pwdForgottenCodeDuration"]);
+    $this->exec("UPDATE " . $prfx . "mail_messages SET mail_from_mail = '" . $settings["mailFromMail"] 
+                . "', mail_from_name = '" . $settings["mailFromName"] . "' WHERE id < 3");
     
     $notices = array();
     return array($notices, NULL);

@@ -2,7 +2,9 @@
  *  Body Style
  *********************************************************/
 body {
-  background-color: <?php echo H(OBIB_PRIMARY_BG);?>
+  height: 100vh;
+  background-color: <?php echo H(OBIB_PRIMARY_BG);?>;
+  margin: 0;
 }
 
 /*********************************************************
@@ -56,12 +58,15 @@ a.nav {
   background-color: <?php echo H(OBIB_ALT1_BG);?>;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
 h1 {
   font-size: 16px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
   font-weight: normal;
+}
+.notice {
+    color: #1a62ac;
 }
 
 /*********************************************************
@@ -119,12 +124,11 @@ a.tab:hover {text-decoration: underline}
  *  Table Styles
  *********************************************************/
 table.primary {
-  border-collapse: collapse
+  border-collapse: collapse;
 }
 table.border {
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>
 }
 th {
   background-color: <?php echo H(OBIB_ALT2_BG);?>;
@@ -133,13 +137,13 @@ th {
   font-family: <?php echo H(OBIB_ALT2_FONT_FACE);?>;
   padding: <?php echo H(OBIB_PADDING);?>;
   border-style: solid;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
 <?php if (OBIB_ALT2_FONT_BOLD) { ?>
   font-weight: bold;
 <?php } else { ?>
   font-weight: normal;
 <?php } ?>
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>;
   height: 1
 }
 th.rpt {
@@ -163,7 +167,7 @@ td.primary {
   padding: <?php echo H(OBIB_PADDING);?>;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
 td.borderless {
   background-color: <?php echo H(OBIB_PRIMARY_BG);?>;
@@ -197,23 +201,24 @@ td.primaryNoWrap {
   padding: <?php echo H(OBIB_PADDING);?>;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
   white-space: nowrap
 }
 
-td.title {
+td.title, div.title {
   background-color: <?php echo H(OBIB_TITLE_BG);?>;
   color: <?php echo H(OBIB_TITLE_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_TITLE_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_TITLE_FONT_FACE);?>;
   padding: <?php echo H(OBIB_PADDING);?>;
+  margin-bottom: 1px;
 <?php if (OBIB_TITLE_FONT_BOLD) { ?>
   font-weight: bold;
 <?php } else { ?>
   font-weight: normal;
 <?php } ?>
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
   text-align: <?php echo H(OBIB_TITLE_ALIGN);?>;
 }
 td.alt1 {
@@ -224,9 +229,9 @@ td.alt1 {
   padding: <?php echo H(OBIB_PADDING);?>;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
-td.tab1 {
+td.tab1, div.tab1 {
   background-color: <?php echo H(OBIB_ALT1_BG);?>;
   color: <?php echo H(OBIB_ALT1_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_ALT1_FONT_SIZE);?>px;
@@ -237,8 +242,9 @@ td.tab1 {
   font-weight: normal;
 <?php } ?>
   padding: <?php echo H(OBIB_PADDING);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
-td.tab2 {
+td.tab2, div.tab2 {
   background-color: <?php echo H(OBIB_ALT2_BG);?>;
   color: <?php echo H(OBIB_ALT2_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_ALT2_FONT_SIZE);?>px;
@@ -249,6 +255,7 @@ td.tab2 {
   font-weight: normal;
 <?php } ?>
   padding: <?php echo H(OBIB_PADDING);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
 td.noborder {
   background-color: <?php echo H(OBIB_PRIMARY_BG);?>;
@@ -321,7 +328,7 @@ input {
   border-top-color: <?php echo H(OBIB_PRIMARY_BG);?>;
   border-bottom-color: <?php echo H(OBIB_PRIMARY_BG);?>;
   border-right-color: <?php echo H(OBIB_PRIMARY_BG);?>;
-  padding: 0px;
+  padding: 0 2px 0 2px;
   scrollbar-base-color: <?php echo H(OBIB_ALT1_BG);?>;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
@@ -346,7 +353,7 @@ select {
   border-top-color: <?php echo H(OBIB_PRIMARY_BG);?>;
   border-bottom-color: <?php echo H(OBIB_PRIMARY_BG);?>;
   border-right-color: <?php echo H(OBIB_PRIMARY_BG);?>;
-  padding: 0px;
+  padding: 0 2px 0 2px;
   scrollbar-base-color: <?php echo H(OBIB_ALT1_BG);?>;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
@@ -426,7 +433,7 @@ table.buttons a:visited { color: <?php echo OBIB_ALT2_FONT_COLOR;?>; }
 div.errorbox {
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
   max-width: 500px;
   margin: 10px;
   padding: 5px;
@@ -435,3 +442,258 @@ div.errorbox {
 div.errorbox .errorhdr { font-size: large; font-weight: bold }
 div.errorbox ul { margin-left: 0; padding-left: 1.5em }
 div.errorbox li { margin-left: 0 }
+
+#pwdForgottenLink {
+    font-size: 13px;
+    font-family: verdana, arial, helvetica;
+}
+
+.pwdCss {
+    color: #1a62ac;
+}
+
+/*********************************************************
+ *  div - Header
+ *********************************************************/
+ .headertop {
+    width: 100%;
+    height: 93px;
+    border: none;
+    border-spacing: 0;
+    background-color: <?php echo H(OBIB_TITLE_BG);?>;
+ }
+ /* Logo */
+ #logo {
+    float: left;
+    padding-right: 10px;
+ }
+ #imglogo {
+    border: 0;
+ }
+ .headerBiblioInfo {
+    padding: 5px 5px 0 0;
+    float: right;
+    background-color: <?php echo H(OBIB_TITLE_BG);?>;
+ }
+ .title.headerBiblioSingleInfo {
+    font-size: 12px;
+ }
+
+ @media only screen and (min-width: 320px) {
+    #headertitle {
+    padding: 20px 0;
+
+    }
+ }
+ @media only screen and (min-width: 970px) {
+    #headertitle {
+        font-size: 1.0em;
+    }
+ }
+ 
+ /*********************************************************
+ *  div - Top-Navigation
+ *********************************************************/
+ .navigationTop {
+    background-color: <?php echo H(OBIB_TITLE_BG);?>;
+    position: absolute;
+    padding-top: 1px;
+ }
+ .tab1.tabnew, .tab2.tabnew {
+    float: left;
+    border: 1px solid;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    padding: 2px 3px;
+ }
+ 
+ /*********************************************************
+ *  div - Top-Navigation
+ *********************************************************/
+ .navigationLeft {
+    padding-left: 10px;
+    width: 140px;
+    height: 100%;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+ }
+ 
+ /*********************************************************
+ *  Content Body
+ *********************************************************/
+ .ContentBody {
+    padding-left: 10px;
+ }
+ 
+/*********************************************************
+ *  div - Container Styles
+ *********************************************************/
+ .header1 {
+    background-color: <?php echo H(OBIB_ALT2_BG);?>;
+    color: <?php echo H(OBIB_ALT2_FONT_COLOR);?>;
+    font-size: <?php echo H(OBIB_ALT2_FONT_SIZE);?>px;
+    font-family: <?php echo H(OBIB_ALT2_FONT_FACE);?>;
+    padding: <?php echo H(OBIB_PADDING);?>px;
+<?php if (OBIB_ALT2_FONT_BOLD) { ?>
+        font-weight: bold;
+<?php } else { ?>
+        font-weight: normal;
+<?php } ?>
+  border-bottom: 1px <?php echo H(OBIB_BORDER_COLOR);?> solid;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
+}
+.header2 {
+    padding-left: 10px;
+}
+
+/*********************************************************
+ *  InputFields with div container
+ *********************************************************/
+.formular {
+    border: 1px solid;
+    width: 99%;
+ }
+ .middle {
+    margin: auto;
+    width: 50%
+ }
+ .info {
+    padding: 0 5px;
+ }
+ .form {
+    width: 100%;
+ }
+ .descriptionField {
+    width: 30%;
+    float: left;
+    text-align: right;
+    padding: 12px 10px 5px 0;
+ }
+ .inputField {
+    text-align: left;
+    padding: 15px 0 15px 0;
+ }
+ .inputField.hidden {
+  padding: 0 0;
+ }
+ .helpInfo {
+    padding-left: 5px;
+    width: 70%;
+    margin: auto;
+ }
+ .buttonarea {
+    padding: 10px 0 10px;
+ }
+ .submit {
+    padding: 2px 0 5px;
+    margin-left: 31%;
+ }
+ .errorInfo {
+   padding: 5px 5px;
+   text-align: center;
+ }
+ .choice {
+    text-align: center;
+    font-weight: bold;
+ }
+ /*********************************************************
+ *  Lists with div container
+ *********************************************************/
+ .messagesList {
+   width: 70%;
+ }
+ .list {
+  border-bottom: 1px solid;
+ }
+ .function {
+  width: 20%;
+  float: left;
+  padding: 5px 2px 5px 2px;
+}
+.descriptionList {
+  padding: 5px 2px 5px 2px;
+}
+.straightRow {
+  background-color: <?php echo H(OBIB_ALT1_BG);?>;
+}
+
+/*********************************************************
+ *  Footer
+ *********************************************************/
+.footer {
+    text-align: center;
+    line-height: normal;
+}
+
+/*********************************************************
+ *  Phones/Tables Header with div container
+ *********************************************************/
+ @media only screen and (max-width: 950px) {
+    .headerBiblioInfo {
+       display: none;
+    }
+
+ }
+ 
+ @media only screen and (max-width: 320px) {
+    .navigationTop {
+       position: inherit;
+       padding-top: 7px;
+    }
+ }
+
+ /*********************************************************
+ *  Phones/Tables InputFields/Lists with div container
+ *********************************************************/
+ @media only screen and (max-width: 900px) {
+    .formular {
+        width: 100%;    
+    }
+    .form {
+        padding-left: 5px;
+    }
+    .descriptionField {
+        text-align: left; 
+        width: 100%;
+        margin: auto;
+        padding: 5px 0;
+    }
+    .function {
+        width: 99.4%;
+    }
+    .descriptionList {
+        width: 99.4%;
+    }
+    .helpInfo {
+        width: 100%;
+        padding-left: 0;
+    }
+    .submit {
+        margin-left: 0;
+    }
+    .errorInfo {
+        text-aling: left;
+        width: 95%;
+        padding: 5px 5px;
+    }
+    .choice {
+        text-align: left;
+    }
+ }
+
+ /*********************************************************
+ *  TinyMCE
+ *********************************************************/
+ .tox-tinymce {
+  width: 68%;
+ }
+ /*********************************************************
+ *  Phones/Tables Header with TinyMCE
+ *********************************************************/
+ @media only screen and (max-width: 900px) {
+    .tox-tinymce {
+       width: 98%;
+    }
+ }
+ 

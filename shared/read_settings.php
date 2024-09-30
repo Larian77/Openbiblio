@@ -85,7 +85,7 @@ define("OBIB_LIBRARY_USE_IMAGE_ONLY", $set->isUseImageSet());
 define("OBIB_LIBRARY_IMAGE_URL", $set->getLibraryImageUrl());
 define("OBIB_LOGIN_ATTEMPTS", $set->getLoginAttempts());
 define("OBIB_PWD_TIMEOUT", $set->getPwdTimeout());
-define("OBIB_LIBRARY_ONLINE", $set->isLibraryOnline());
+define("OBIB_MBR_ACCOUNT_ONLINE", $set->isMbrAccountOnline());
 
 /****************************************************************************
  * theme related constants.

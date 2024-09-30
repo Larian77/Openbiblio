@@ -44,6 +44,9 @@ p.info {
 p.goodNews {
     color: green;
 }
+p.text {
+    font-size: 14px;
+}
 
 /*********************************************************
  *  Link Styles
@@ -56,15 +59,61 @@ a:visited {
 }
 
 /*********************************************************
- *  Table Styles
+ *  Div / Container Styles
  *********************************************************/
+.headerUpgrade {
+    padding-left: 15px;
+}
 
-table.upgrade {
-  border-collapse: collapse;
+.primary { 
+  color: #000000;
+  font-size: 14px;
+  font-family: verdana,arial,helvetica;
 }
-td.upgrade {
-  border-bottom: 1px solid black;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  valign: top;
+.upgradeSetting {
+      border-bottom: 1px solid;
 }
+.descriptionField {
+  width: 30%;
+  float: left;
+  padding: 10px 15px 10px 0;
+  min-height: 60px;
+  text-align: right;
+}
+.inputField {
+  padding: 10px 0 20px 15px;
+  min-height: 60px;
+  overflow: hidden;
+}
+input.inputEmailInfos {
+  width: 350px;
+}
+
+ /*********************************************************
+ *  Phones/Tables UpgradeSettings div container
+ *********************************************************/
+ @media only screen and (max-width: 900px) {
+     .upgradeSetting {
+         height: auto;
+     }
+    .descriptionField {
+        text-align: left; 
+        width: 100%;
+        margin: auto;
+        padding: 15px 0 10px 0;
+        min-height: 0;
+    }
+    .inputField {
+        padding: 10px 0 15px 0;
+        margin: auto;
+        overflow: unset;
+    }
+ }
+ @media only screen and (max-width: 600px) {
+     select {
+        width: 100%;
+    }
+    input.inputEmailInfos {
+        width: 100%;
+    }
+ }

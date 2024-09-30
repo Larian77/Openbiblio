@@ -45,7 +45,7 @@ if (str_replace(' ', '', $pwd) == "") {
 
     if ($mbrQ->getRowCount() == 1) {
         $mbr = $mbrQ->fetchMember();
-        if (OBIB_LIBRARY_ONLINE == FALSE) {
+        if (OBIB_MBR_ACCOUNT_ONLINE == FALSE) {
             $error_found = true;
             $pageErrors["common"] = "Member-Login is deactivated!";
         } else {
@@ -108,9 +108,9 @@ if (str_replace(' ', '', $pwd) == "") {
                 #****************************************************************************
                 #*  Redirect of a message if timeout due to too frequent incorrect login
                 #****************************************************************************
-                    $_SESSION["loginPage"] = $tab;
-                    header("Location: ../shared/timeout.php");
-                    exit();
+                $_SESSION["loginPage"] = $tab;
+                header("Location: ../shared/timeout.php");
+                exit();
             }
         }
     } else {

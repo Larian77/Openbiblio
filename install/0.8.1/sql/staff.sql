@@ -7,6 +7,8 @@ create table %prfx%staff (
   ,username varchar(20) not null
   ,pwd varchar(255) not null
   ,pwd_timeout datetime not null
+  ,pwd_forgotten varchar(255) null
+  ,pwd_forgotten_time datetime null
   ,last_name varchar(30) not null
   ,first_name varchar(30) null
   ,email varchar(128) null

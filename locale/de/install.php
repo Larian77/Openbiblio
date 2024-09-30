@@ -55,7 +55,7 @@ $trans["indexStep"]             = "\$text='Schritt';";
 $trans["indexInstInstr"]        = "\$text='der Installationsanleitung';";
 $trans["indexInstr1"]           = "\$text='Erstellen Sie die OpenBiblio Datenbank';";
 $trans["indexInstr2"]           = "\$text='Erstellen Sie den OpenBiblio Datenbank-Benutzer';";
-$trans["indexInstr3"]           = "\$text='Updaten Sie openbibilio/database_constants.php mit dem angelegeten Datenbank-Benutzername und Passwort';";
+$trans["indexInstr3"]           = "\$text='Updaten Sie openbibilio/database_constants.php mit dem angelegeten Datenbank-Benutzername und Kennwort';";
 $trans["indexInstr4"]           = "\$text='Schauen Sie für mehr Details auch';";
 $trans["indexInstr5"]           = "\$text='die Installationsanleitung';";
 $trans["indexInstr6"]           = "\$text='an.';";

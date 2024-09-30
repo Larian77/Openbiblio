@@ -57,17 +57,40 @@
       <?php echo $loc->getText("adminStaff_edit_email"); ?>
     </td>
     <td valign="top" class="primary">
-      <?php printInputText("email",30,30,$postVars,$pageErrors); ?>
+      <?php printInputText("email",50,50,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap;" class="primary">
+        <?php echo $loc->getText("admin_new_form_TypeOfPwdCreation"); ?>
+    </td>
+    <td valign="top" class="primary">
+        <?php // Select whether the password should be set manually or by e-mail ?>
+        <input type="checkbox" id="TypeOfPwdCreation" name="TypeOfPwdCreation" value="CHECKED"
+        <?php if (isset($postVars["TypeOfPwdCreation"])) {
+                echo H($postVars["TypeOfPwdCreation"]); 
+        }  
+        ?> 
+        >
+        <span class="notice"><?php echo $loc->getText("admin_new_form_TypeOfPwdCreationInfo"); ?> </span>
     </td>
   </tr>
   <tr>
     <td style="white-space:nowrap;" class="primary">
       <?php echo $loc->getText("adminStaff_new_form_Password"); ?>
     </td>
-    <td valign="top" class="primary">
-      <?php echo $loc->getText("adminStaffPwdRequirement"); ?> 
-      <input type="password" name="pwd" size="20" maxlength="20"
-      value="<?php if (isset($postVars["pwd"])) echo H($postVars["pwd"]); ?>" ><br>
+    <td valign="top" class="<?php echo 'pwdCss">';  
+      echo $loc->getText("adminStaffPwdRequirement");
+      
+      // If an incorrect entry is made (e.g. mail), the password fields would be available again even if TypeOfPwdCreation is checked. 
+      // Therefore the use of readonly. If the checkmark is removed, a password can be set manually again.
+      if (isset($postVars['TypeOfPwdCreation']) && $postVars['TypeOfPwdCreation'] == 'CHECKED') {
+          $readonly = 'readonly';
+      } else {
+          $readonly = '';
+      }
+      echo '<input type="password" id="pwd" name="pwd" size="20" maxlength="20" ' . $readonly . ' value="';
+           if (isset($postVars["pwd"])) echo H($postVars["pwd"]); ?>" ><br>
       <font class="error">
       <?php if (isset($pageErrors["pwd"])) echo H($pageErrors["pwd"]); ?></font>
     </td>
@@ -76,11 +99,26 @@
     <td style="white-space:nowrap;" class="primary">
       <?php echo $loc->getText("adminStaff_new_form_Reenterpassword"); ?>
     </td>
-    <td valign="top" class="primary">
-      <input type="password" name="pwd2" size="20" maxlength="20"
-      value="<?php if (isset($postVars["pwd2"])) echo H($postVars["pwd2"]); ?>" ><br>
+    <td valign="top" class="<?php echo 'pwdCss">';
+      echo '<input type="password" id="pwd2" name="pwd2" size="20" maxlength="20" ' . $readonly . ' value="';
+            if (isset($postVars["pwd2"])) echo H($postVars["pwd2"]); ?>" ><br>
       <font class="error">
       <?php if (isset($pageErrors["pwd2"])) echo H($pageErrors["pwd2"]); ?></font>
+       <script>
+            document.getElementById('TypeOfPwdCreation').addEventListener('click', function() {
+                var changeThisPwd = document.getElementById('pwd');
+                changeThisPwd.readOnly = this.checked;
+                var changeThisPwdRepeat = document.getElementById('pwd2');
+                changeThisPwdRepeat.readOnly = this.checked;
+                var element1 = document.querySelector('.pwdCss');
+                var element2 = document.querySelector('.pwdCss');
+                if (element2.style = this.checked) {
+                    element1.style.color = 'gray';        
+                    element2.style.fontStyle = 'italic';
+                }
+            });
+        </script>
+      
     </td>
   </tr>
   <tr>

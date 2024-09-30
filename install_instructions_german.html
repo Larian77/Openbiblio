@@ -341,7 +341,9 @@ mysql> <b>show databases;</b>
 				vorigen Schritt erstellt haben).</li>
                         <li id="step13">Bearbeiten sie die Datei global_constants.php
 				(befindet sich im Verzeichnis shared von openbiblio) mit einem
-				Texteditor ihrer Wahl. Ändern sie die Konstante OBIB_UPGRADE_KEY nach Ihrer Wahl.</li>
+				Texteditor ihrer Wahl. Ändern sie folgende zwei Konstanten nach Ihrer Wahl:<br/>
+                                --> OBIB_UPGRADE_KEY<br />
+                                --> OBIB_PWD_FORGOTTEN_KEY</li>
 			<li>Erstellen sie die OpenBiblio Tabellen. Um dies zu machen
 				führen Sie das Install-Skript aus, welches Sie mit <a
 				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>
@@ -361,8 +363,23 @@ mysql> <b>show databases;</b>
 				zum einloggen "admin" als Username und als Passwort "Administrator#1" ein, sobald sie
 				sich einloggen müssen. Sie können das Admin-Passwort ändern in der
 				"Admin"-Registerkarte unter Mitarbeiter, wo Sie auch neue
-				Mitarbeiter hinzufügen können.
-			</li>
+                                Mitarbeiter hinzufügen können.</li>
+                        <li>Unter admin --> Bibliothekseinstellung können systemreleavante Einstellungen vorgenommen werden, u.a. auch, ob die Bibliotheksnutzer
+                                per Online auf ihren persönlichen Account zugreifen dürfen oder nicht.</li>
+                        <li>Um den Mailversand für bspw. Passwort-Vergessen-Funktion oder Willkommensmeldung nützen
+                                zu können, müssen Sie als Administrator unter admin --> Mail-Nachrichten bei den jeweiligen 
+                                Nachrichten eine gültige E-Mail-Adresse als Absender hinterlegen. Diese kann sich bei den einzelnen 
+                                Nachrichten auch unterscheiden.</li>
+                        <li>Die Passwort-Vergessen-Funktion kann unter admin --> Mail-Einstellungen aktiviert werden. Dabei können Sie entscheiden, ob
+                                entweder die Benutzernummer/-name oder die E-Mail-Adresse angegeben werden müssen oder beides.</li>
+                        <li>Der Mailversand kann entweder über die php-Mail-Funktion oder über PHPMailer geschehen, soweit die Systemvoraussetzungen gegeben sind
+                                und die nötigen Einstellungen vorgenommen wurden.</li>
+                        <li>Ab der Openbiblio-Version 0.8.1 sind zwei Bibliotheken mit eingebunden:<br />
+                                --> PHPMailer (URL: <a href="https://github.com/PHPMailer/PHPMailer">https://github.com/PHPMailer/PHPMailer</a>)<br />
+                                --> TinyMCE-Text-Editor (URL: <a href="https://www.tiny.cloud/docs/tinymce/latest/php-projects/">https://www.tiny.cloud/docs/tinymce/latest/php-projects/</a>)<br />
+                                Diese sollten ohne weiteres funktionieren, soweit die technischen Systemvoraussetzungen Ihres Servers gegeben sind. Sollte es Schwierigkeiten geben, lesen 
+                                Sie bitte die Informationen über obige URLs durch.<br />
+                                </li>
 		</ol>
 
 		<br>

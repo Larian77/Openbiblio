@@ -154,6 +154,8 @@ class MemberQuery extends Query
         $mbr->setFirstName($array["first_name"]);
         $mbr->setPwd($array["pwd"]);
         $mbr->setPwdTimeOut($array["pwd_timeout"]);
+        $mbr->setPwdForgotten($array["pwd_forgotten"]);
+        $mbr->setPwdForgottenTime($array["pwd_forgotten_time"]);
         $mbr->setAddress($array["address"]);
         $mbr->setHomePhone($array["home_phone"]);
         $mbr->setWorkPhone($array["work_phone"]);
@@ -237,16 +239,21 @@ class MemberQuery extends Query
         $sql = $this->mkSQL(
             "insert into member "
             . "(mbrid, barcode_nmbr, create_dt, last_change_dt, "
-            . " last_change_userid, last_name, first_name, pwd, pwd_timeout, "
-            . " address, home_phone, work_phone, email, classification, mbrshipend) "
-            . "values (null, %Q, sysdate(), sysdate(), %N, "
-            . " %Q, %Q, %Q, %Q, %Q, %Q, %Q, %Q, %Q, %Q) ",
+            . "last_change_userid, last_name, first_name, pwd, pwd_timeout, "
+            . "pwd_forgotten, pwd_forgotten_time, address, home_phone, "
+            . "work_phone, email, classification, mbrshipend) "
+            . "values (null, %Q, sysdate(), sysdate(), "
+            . "%N, %Q, %Q, %Q, %Q, "
+            . "%Q, %Q, %Q, %Q, "
+            . "%Q, %Q, %Q, %Q) ",
             $mbr->getBarcodeNmbr(),
             $mbr->getLastChangeUserid(),
             $mbr->getLastName(),
             $mbr->getFirstName(),
             $pwdhash,
             $mbr->getPwdTimeOut(),
+            $mbr->getPwdForgotten(),
+            $mbr->getPwdForgotteTime(),
             $mbr->getAddress(),
             $mbr->getHomePhone(),
             $mbr->getWorkPhone(),
@@ -330,7 +337,7 @@ class MemberQuery extends Query
     return $this->_query($sql, "Error resetting password.");
 }
 
-   /****************************************************************************
+  /****************************************************************************
    * Updates a member and sets the timeout.
    * @param string $mbrid mbrid of member to suspend for some minutes
    * @return boolean returns false, if error occurs
@@ -339,9 +346,64 @@ class MemberQuery extends Query
    */
   function LoginTimeoutMember($username)
   {
-    $sql = $this->mkSQL("update member set pwd_timeout=sysdate() "
+    $sql = $this->mkSQL("update member set pwd_timeout = sysdate() "
                         . "where barcode_nmbr = lower(%Q)", $username);
     return $this->_query($sql, "Error suspending member.");
+  }
+
+  /****************************************************************************
+   * Count members with this email
+   * @param string $email email of member
+   * @return Reports the number of members with the same email back
+   * @access public
+   ****************************************************************************
+   */
+  function getRow($email)
+  {
+    $sql = $this->mkSQL("select * from member where email=%Q ", $email);
+    $memberInfos = $this->exec($sql);
+    $rows = count($memberInfos);
+
+    return $rows;
+  }
+  function getMember_or($db_column, $value)
+  {
+    $sql = $this->mkSQL("SELECT * FROM member WHERE %q = %Q ", $db_column, $value);
+    $rows = $this->exec($sql);
+    if (count($rows) == 0) {
+        //Changes PVD(8.0.x)
+        return false;
+    }
+    return $this->_mkObj($rows[0]);
+  }
+  function getMember_and($db_column_mail, $db_column_bc_nmbr, $mail, $bcNmbr)
+  {
+    $sql = $this->mkSQL("SELECT * FROM member WHERE %q = %Q AND %q = %Q ", 
+            $db_column_mail, $mail,
+            $db_column_bc_nmbr, $bcNmbr);
+    $rows = $this->exec($sql);
+    if (count($rows) == 0) {
+        //Changes PVD(8.0.x)
+        return false;
+    }
+    return $this->_mkObj($rows[0]);
+  }
+  function setPwdForgottenCode($mbr)
+  {
+          $sql = $this->mkSQL("UPDATE member SET pwd_forgotten = %Q, pwd_forgotten_time = sysdate() "
+                            . " WHERE mbrid = %N "
+                            , $mbr->getPwdForgotten()
+                            , $mbr->getMbrid());
+        return $this->_query($sql, "Error set Password-Forgotten-Code by member.");;
+  }
+  function getPwdForgottenCode($mbrid)
+  {
+      $sql = $this->mkSQL("SELECT pwd_forgotten, pwd_forgotten_time FROM member WHERE mbrid = $mbrid");
+      $result = $this->exec($sql);
+      if (!isset($result[0])) {
+        return false;
+      }
+      return $result[0];
   }
 }
 

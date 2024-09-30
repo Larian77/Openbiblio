@@ -23,7 +23,12 @@
  &raquo; <?php echo $navLoc->getText("homeHomeLink");?><br>
 <?php } else { ?>
  <a href="../home/index.php" class="alt1"><?php echo $navLoc->getText("homeHomeLink");?></a><br>
-<?php } ?>
+<?php } 
+
+ if ($nav == "pwdforget") {
+    echo '&raquo; ' . $navLoc->getText("PwdNewSet") . '<br>';
+}
+?>
 
 <?php if ($nav == "license") { ?>
  &raquo; <?php echo $navLoc->getText("homeLicenseLink");?><br>

@@ -20,10 +20,16 @@ class Staff
     var $_lastChangeDt = "";
     var $_lastChangeUserid = "";
     var $_lastChangeUsername = "";
+    var $_typeOfPwdCreation = '';
     var $_pwd = "";
     var $_pwdError = "";
     var $_pwd2 = "";
-    var $_pwdTimeout = '0000-00-00 00:00:00';
+    var $_pwdTimeout = '1970-01-01 12:00:00';
+    var $_pwdForgotten = "";
+    var $_pwdForgottenTime = '1970-01-01 12:00:00';
+    var $_pwdForgottenMail = "";
+    var $_pwdForgottenUsername = "";
+    var $_pwdForgottenError = "";
     var $_lastName = "";
     var $_lastNameError = "";
     var $_firstName = "";
@@ -115,7 +121,24 @@ class Staff
     {
         $this->_userid = trim($userid);
     }
-
+    
+    /****************************************************************************
+     * @param string $value Create password manually or by e-mail
+     * @return void
+     * @access public
+     ****************************************************************************
+     */
+    function setTypeOfPwdCreation($value) {
+        if ($value == true) {
+            $this->_typeOfPwdCreation = true;
+        } else {
+            $this->_typeOfPwdCreation = false;
+        }
+    }
+    function getTypeOfPwdCreation() {
+      return $this->_typeOfPwdCreation;
+    }
+    
     /****************************************************************************
      * @param string $pwd Password of staff member und Pwd-Timeout
      * @return void
@@ -142,10 +165,12 @@ class Staff
     {
         return $this->_pwd2;
     }
-    function getPwdTimeout() {
+    function getPwdTimeout() 
+    {
         return $this->_pwdTimeout;
     }
-    function setPwdTimeout($pwdTimeout) {
+    function setPwdTimeout($pwdTimeout) 
+    {
             $this->_pwdTimeout = $pwdTimeout;
     }
 
@@ -417,6 +442,105 @@ class Staff
         $this->_lastChangeUserid = trim($value);
     }
 
+    /****************************************************************************
+     * @return string Staff forgotten password code and period of validity
+     * @access public
+     ****************************************************************************
+     */
+    function getPwdForgotten () 
+    {
+      return $this->_pwdForgotten;
+    }
+    function getPwdForgotteTime() 
+    {
+        return $this->_pwdForgottenTime;
+    }
+    function setPwdForgotten($value) 
+    {
+      $this->_pwdForgotten = $value;
+    }
+    function setPwdForgottenTime($value) 
+    {
+        $this->_pwdForgottenTime = $value;
+    }
+    
+    /****************************************************************************
+     * @return string Staff Mail or/and barcodenumber input for new password request
+     * @access public
+     ****************************************************************************
+     */
+    function getPwdForgottenMail() 
+    {
+        return $this->_pwdForgottenMail;
+    }
+    function getPwdForgottenUsername() 
+    {
+        return $this->_pwdForgottenUsername;
+    }
+    function getPwdForgottenError() 
+    {
+        return $this->_PwdForgottenError;
+    }
+    function setPwdForgottenMail($value) 
+    {
+      $this->_pwdForgottenMail = trim($value);
+    }
+    function setPwdForgottenUsername($value) 
+    {
+        $this->_pwdForgottenUsername = trim($value);
+    }
+    function setPwdForgottenError($value) 
+    {
+        $this->_pwdForgottenError = $value;
+    }
+
+   /****************************************************************************
+    * Set an individual forget password URL
+    * @param Staff $staff forgotten password code to update
+    * @return boolean returns false, if error occurs
+    * @access public
+    ****************************************************************************
+    */
+    function random_string() 
+    {
+      if(function_exists('random_bytes')) {
+         $bytes = random_bytes(16);
+         $str = bin2hex($bytes); 
+      } else if(function_exists('openssl_random_pseudo_bytes')) {
+         $bytes = openssl_random_pseudo_bytes(16);
+         $str = bin2hex($bytes); 
+      } else if(function_exists('mcrypt_create_iv')) {
+         $bytes = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
+         $str = bin2hex($bytes); 
+      } else {
+         //Bitte euer_geheim_string durch einen zufälligen String mit >12 Zeichen austauschen
+         $str = md5(uniqid(OBIB_PWD_FORGOTTEN_KEY, true));
+      } 
+      return $str;
+    }
+    
+   /****************************************************************************
+    * Preparation of the URL for resetting the password
+    * @param $mbr, $passwordCode
+    * @return URL for passwort create oder newset
+    * @access public
+    *****************************************************************************
+    */
+    function createURLPwdCode($staff, $passwordCode) {
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == TRUE) {
+            $httpS = 'https://';
+        } else {
+            $httpS = 'http://';;
+        }
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            $url_passwordcode .= '/openbiblio';
+        }
+        $url_passwordcode .= "/admin/staff_pwd_newset_form.php?username=" . $staff->getUsername() . "&code=". $passwordCode;
+        
+        return $url_passwordcode;
+  }
+    
 }
 
 ?>
