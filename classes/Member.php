@@ -233,52 +233,52 @@ class Member {
   ****************************************************************************
   */
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim($value ?? '');
   }
   function setBarcodeNmbr($value) {
-    $this->_barcodeNmbr = trim($value);
+    $this->_barcodeNmbr = trim($value ?? '');
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim($value ?? '');
   }
   function setLastChangeDt($value) {
-    $this->_lastChangeDt = trim($value);
+    $this->_lastChangeDt = trim($value ?? '');
   }
   function setLastChangeUserid($value) {
-    $this->_lastChangeUserid = trim($value);
+    $this->_lastChangeUserid = trim($value ?? '');
   }
   function setLastChangeUsername($value) {
-    $this->_lastChangeUsername = trim($value);
+    $this->_lastChangeUsername = trim($value ?? '');
   }
   function setLastName($value) {
-    $this->_lastName = trim($value);
+    $this->_lastName = trim($value ?? '');
   }
   function setLastNameError($value) {
-    $this->_lastNameError = trim($value);
+    $this->_lastNameError = trim($value ?? '');
   }
   function setFirstName($value) {
-    $this->_firstName = trim($value);
+    $this->_firstName = trim($value ?? '');
   }
   function setFirstNameError($value) {
-    $this->_firstNameError = trim($value);
+    $this->_firstNameError = trim($value ?? '');
   }
   function setAddress($value) {
-    $this->_address = trim($value);
+    $this->_address = trim($value ?? '');
   }
   function setHomePhone($value) {
-    $this->_homePhone = trim($value);
+    $this->_homePhone = trim($value ?? '');
   }
   function setWorkPhone($value) {
-    $this->_workPhone = trim($value);
+    $this->_workPhone = trim($value ?? '');
   }
   function setEmail($value) {
-    $this->_email = trim($value);
+    $this->_email = trim($value ?? '');
   }
   function setEmailError ($value) {
       $this->_emailError = trim($value);
   }
   function setMembershipEnd ($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_membershipEnd = "0000-00-00";
     } else {
@@ -286,10 +286,10 @@ class Member {
     }
   }
   function setMembershipEndError($value) {
-    $this->_membershipEndError = trim($value);
+    $this->_membershipEndError = trim($value ?? '');
   }
   function setClassification($value) {
-    $this->_classification = trim($value);
+    $this->_classification = trim($value ?? '');
   }
   function setPwd($value) {
       $this->_pwd = trim($value);

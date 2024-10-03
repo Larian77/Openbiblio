@@ -100,28 +100,28 @@ class MemberAccountTransaction {
    ****************************************************************************
    */
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim($value ?? '');
   }
   function setTransid($value) {
-    $this->_transid = trim($value);
+    $this->_transid = trim($value ?? '');
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim($value ?? '');
   }
   function setCreateUserid($value) {
-    $this->_createUserid = trim($value);
+    $this->_createUserid = trim($value ?? '');
   }
   function setTransactionTypeCd($value) {
-    $this->_transactionTypeCd = trim($value);
+    $this->_transactionTypeCd = trim($value ?? '');
   }
   function setTransactionTypeDesc($value) {
-    $this->_transactionTypeDesc = trim($value);
+    $this->_transactionTypeDesc = trim($value ?? '');
   }
   function setAmount($value) {
-    $this->_amount = trim($value);
+    $this->_amount = trim($value ?? '');
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim($value ?? '');
   }
 
 }

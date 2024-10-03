@@ -149,31 +149,31 @@ class Dm {
    ****************************************************************************
    */
   function setCode($value) {
-    $this->_code = trim($value);
+    $this->_code = trim($value ?? '');
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim($value ?? '');
   }
   function setDescriptionError($value) {
-    $this->_descriptionError = trim($value);
+    $this->_descriptionError = trim($value ?? '');
   }
   function setDefaultFlg($value) {
-    $this->_defaultFlg = trim($value);
+    $this->_defaultFlg = trim($value ?? '');
   }
   function setDaysDueBack($value) {
     $this->_setNumeric($value, $this->_daysDueBack);
   }
   function setDaysDueBackError($value) {
-    $this->_daysDueBackError = trim($value);
+    $this->_daysDueBackError = trim($value ?? '');
   }
   function setDailyLateFee($value) {
     $this->_setNumeric($value, $this->_dailyLateFee);
   }
   function setDailyLateFeeError($value) {
-    $this->_dailyLateFeeError = trim($value);
+    $this->_dailyLateFeeError = trim($value ?? '');
   }
   function setImageFile($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     $fileloc = "../images/$temp";
     if (($temp == "") or (!file_exists($fileloc))) {
       $this->_imageFile = "shim.gif";
@@ -182,13 +182,13 @@ class Dm {
     }
   }
   function setCheckoutLimit($value) {
-    $this->_checkoutLimit = trim($value);
+    $this->_checkoutLimit = trim($value ?? '');
   }
   function setRenewalLimit($value) {
-    $this->_renewalLimit = trim($value);
+    $this->_renewalLimit = trim($value ?? '');
   }
   function setMaxFines($value) {
-    $this->_maxFines = trim($value);
+    $this->_maxFines = trim($value ?? '');
   }
   function setCount($value) {
     $this->_setNumeric($value, $this->_count);
