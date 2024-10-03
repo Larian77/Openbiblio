@@ -27,6 +27,11 @@
   $mbrQ->connect_e();
   $mbr = $mbrQ->get($mbrid);
   $mbrQ->close();
+
+  foreach($mbr->_custom as $name => $value) {
+    $mbr->setCustom($name, $value);
+    $_POST["$name"] = $mbr->getCustom($name);;
+  }
   require_once("../shared/header.php");
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);

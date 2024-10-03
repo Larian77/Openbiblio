@@ -59,8 +59,8 @@ $trans["indexName"] = "\$text='Nachname beginnt mit:';";
 # * Translation text for page mbr_new_form.php, mbr_edit_form.php and mbr_fields.php, mbr_search.php
 # ****************************************************************************
 $trans["Mailing Address:"] = "\$text='Postanschrift:';";
-$trans["mbrNewForm"] = "\$text='Füge hinzu neuen';";
-$trans["mbrEditForm"] = "\$text='Bearbeite';";
+$trans["mbrNewForm"] = "\$text='Füge hinzu neuen ';";
+$trans["mbrEditForm"] = "\$text='Bearbeite ';";
 $trans["mbrFldsHeader"] = "\$text='Benutzer:';";
 $trans["mbrFldsCardNmbr"] = "\$text='Benutzernummer:';";
 $trans["mbrFldsLastName"] = "\$text='Nachname:';";
@@ -88,11 +88,23 @@ $trans["mbrsearchFoundResults"] = "\$text=' Ergebnisse gefunden.';";
 $trans["mbrsearchSearchResults"] = "\$text='Suchergebnisse:';";
 $trans["mbrsearchCardNumber"] = "\$text='Benutzernummer:';";
 $trans["mbrsearchClassification"] = "\$text='Klassifikation:';";
+$trans["PwdRequirement"]                = "\$text = 'Regeln: Kennwort muss zwischen 8 bis 20 Zeichen lang sein, "
+        . "mindestens 1 Ziffer, <br />1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.<br />';";
+$trans["PwdRequirementErr"]  = "\$text = 'Kennwort muss mindestens 8 Zeichen, davon mindestens 1 Ziffer, 1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.';";
 
 # ****************************************************************************
-# * Translation text for page mbr_new.php
-# ****************************************************************************
-$trans["mbrNewSuccess"] = "\$text='Benutzer wurde erfolgreich hinzugefügt.';";
+# * Translation text for page mbr_new.php (and mbr_view.php)
+# ****************************************************************************´
+$trans["mbr_new_form_TypeOfPwdCreation"]        = "\$text = 'Kennwort-Erstellung per Mail?&nbsp;';";
+$trans["mbr_new_form_TypeOfPwdCreationInfo"]    = "\$text = 'Bei Hinterlegung einer gültigen E-Mail-Adresse, kann per Mail eine Willkommensnachricht "
+                                                                . "versandt werden mit einem Link zur Erstellung eines eigenen Kennwortes.';";
+$trans["mbr_new_form_Password"]                 = "\$text = 'Kennwort:';";
+$trans["mbr_new_form_Reenterpassword"]          = "\$text = 'Kennwort wiederholen:';";
+$trans["errNoPwdForgottenCode"]                 = "\$text = 'Es konnte kein Kennwort-Code erstellt werden!';";
+$trans["mbrNewSuccess"]                         = "\$text='Benutzer wurde erfolgreich hinzugefügt.';";
+$trans["mbrNewMailingSuccessful"]               = "\$text='Willkommen-Mail mit Passwort-Erstellung wurde erfolgreich versandt.';";
+$trans["errMailCouldNotBeSent"]                 = "\$text = 'Nachricht konnte nicht versendet werden.';";
+$trans["mbrNoPassword"]                         = "\$text = '<p style=\"font-weight: bold; color: red;\";>Kein Kennwort gesetzt!</p>';";
 
 # ****************************************************************************
 # * Translation text for page mbr_edit.php
@@ -104,26 +116,26 @@ $trans["All items renewed."] = "\$text='Alle Medien verlängert.';";
 # ****************************************************************************
 # * Translation text for page mbr_view.php
 # ****************************************************************************
-$trans["mbrViewHead1"] = "\$text='Benutzerinformation:';";
+$trans["mbrViewHead1"] = "\$text='Benutzerinformation';";
 $trans["mbrViewName"] = "\$text='Name:';";
 $trans["mbrViewAddr"] = "\$text='Adresse:';";
 $trans["mbrViewCardNmbr"] = "\$text='Benutzernummer:';";
 $trans["mbrViewClassify"] = "\$text='Klassifikation:';";
 $trans["mbrViewPhone"] = "\$text='Telefon:';";
-$trans["mbrViewPhoneHome"] = "\$text='H:';";
+$trans["mbrViewPhoneHome"] = "\$text='P:';";
 $trans["mbrViewPhoneWork"] = "\$text='A:';";
 $trans["mbrViewEmail"] = "\$text='E-Mail-Adresse:';";
 $trans["mbrViewGrade"] = "\$text='Schulklasse:';";
 $trans["mbrViewTeacher"] = "\$text='Klassenlehrer:';";
 $trans["mbrViewMbrShipEnd"] = "\$text='bezahlt bis:';";
 $trans["mbrViewMbrShipNoEnd"] = "\$text='unendlich/nicht benutzt';";
-$trans["mbrViewHead2"] = "\$text='Ausleih-Status:';";
+$trans["mbrViewHead2"] = "\$text='Ausleih-Status';";
 $trans["mbrViewStatColHdr1"] = "\$text='Medienart';";
 $trans["mbrViewStatColHdr2"] = "\$text='Anzahl';";
 $trans["mbrViewStatColHdr3"] = "\$text='Limits';";
 $trans["mbrViewStatColHdr4"] = "\$text='Ausleihe';";
 $trans["mbrViewStatColHdr5"] = "\$text='Verlängerung';";
-$trans["mbrViewHead3"] = "\$text='Medienausleihe:';";
+$trans["mbrViewHead3"] = "\$text='Medienausleihe';";
 $trans["mbrViewBarcode"] = "\$text='Mediennummer:';";
 $trans["mbrViewCheckOut"] = "\$text='Ausleihen';";
 $trans["mbrViewHead4"] = "\$text='Derzeit ausgeliehene Medien:';";
@@ -211,7 +223,7 @@ $trans["checkinErr1"] = "\$text='Keine Medien wurden ausgewählt.';";
 # * Translation text for page hold_message.php
 # ****************************************************************************
 $trans["holdMessageHdr"] = "\$text='Medium wurde vorbestellt!';";
-$trans["holdMessageMsg1"] = "\$text='Das Medium mit der Mediennummer %barcode% welches Sie eincecken wollen wurde vorbestellt. <b>Bitte das Medium ins Vorbestellfach legen und nicht in die Eingangsablage.</b> Der Statuscode des Medium wurde auf vorbestellt geändert.';";
+$trans["holdMessageMsg1"] = "\$text='Das Medium mit der Mediennummer %barcode% welches Sie einchecken wollen wurde vorbestellt. <b>Bitte das Medium ins Vorbestellfach legen und nicht in die Eingangsablage.</b> Der Statuscode des Medium wurde auf vorbestellt geändert.';";
 $trans["holdMessageMsg2"] = "\$text='Kehre zur Medienrückgabe zurück.';";
 
 # ****************************************************************************

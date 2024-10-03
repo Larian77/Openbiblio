@@ -67,6 +67,19 @@ class SettingsQuery extends Query
         $set->setLocale($array["locale"]);
         $set->setCharset($array["charset"]);
         $set->setHtmlLangAttr($array["html_lang_attr"]);
+        if (isset($array["login_attempts"])) {
+            $set->setLoginAttempts($array["login_attempts"]);
+        }
+        if (isset($array["pwd_timeout"])) {
+            $set->setPwdTimeout($array["pwd_timeout"]);
+        }
+        if(isset($array["mbraccount_online"])) {
+            if ($array["mbraccount_online"] == 'Y') {
+                $set->setMbrAccountOnline(true);
+            } else {
+                $set->setMbrAccountOnline(false);
+            }
+        }
 
         return $set;
     }
@@ -89,7 +102,8 @@ class SettingsQuery extends Query
             . "items_per_page=%N, purge_history_after_months=%N, "
             . "block_checkouts_when_fines_due=%Q, "
             . "hold_max_days=%N, "
-            . "locale=%Q, charset=%Q, html_lang_attr=%Q ",
+            . "locale=%Q, charset=%Q, html_lang_attr=%Q, login_attempts=%N, "
+            . "pwd_timeout=%N, mbraccount_online=%Q ",    
             $set->getLibraryName(),
             $set->getLibraryImageUrl(),
             $set->isUseImageSet() ? "Y" : "N",
@@ -104,7 +118,10 @@ class SettingsQuery extends Query
             $set->getHoldMaxDays(),
             $set->getLocale(),
             $set->getCharset(),
-            $set->getHtmlLangAttr()
+            $set->getHtmlLangAttr(),
+            $set->getLoginAttempts(),
+            $set->getPwdTimeout(),
+            $set->isMbrAccountOnline() ? "Y" : "N"   
         );
 
         return $this->_query($sql, "Error updating library settings information");

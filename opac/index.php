@@ -6,6 +6,11 @@
 session_cache_limiter(null);
 require_once ("../shared/common.php");
 
+if (OBIB_LATEST_DB_VERSION != OBIB_DB_VERSION) {
+      header("Location: ../install/maintenance.php");
+      exit();
+}
+
 $tab = "opac";
 $nav = "home";
 $helpPage = "opac";

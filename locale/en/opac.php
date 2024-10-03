@@ -61,14 +61,15 @@ $trans["loginFormTbleHdr"]         = "\$text = 'Member Login';";
 $trans["MemberID"]        	   = "\$text = 'Card Number';";
 $trans["Secret Word"]	           = "\$text = 'Secret Word';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
+$trans["loginDeactived"]           = "\$text = 'Login is deactivated.';";
+$trans["PasswordForgotten"]	   = "\$text = 'Forgotten password?';";
 
 #****************************************************************************
 #*  Translation text for page login.php
 #****************************************************************************
 $trans["MemberID is required."]    = "\$text = 'Card Number is required.';";
-$trans["Secret Word is required."] = "\$text = 'Secret Word is required.';";
-$trans["No Memberfield 'secret' defined. Member-Login is deactivated!"]	= "\$text = 'No Memberfield 'secret' defined. Member-Login is deactivated!';";
-$trans["Invalid Logon. Maybe you don't have a Secret Word? Please ask the Staff!"] = "\$text = 'Invalid Logon. Maybe you don't have a Secret Word? Please ask the Staff!';";
+$trans["Password is required."] = "\$text = 'Password is required.';";
+$trans["Invalid Login!"] = "\$text = 'Invalid Login datas!';";
 
 #****************************************************************************
 #*  Translation text for page mbr_account.php
@@ -108,6 +109,9 @@ $trans["mbrViewHoldHdr7"]         = "\$text='Status';";
 $trans["mbrViewHoldHdr8"]         = "\$text='Due Back';";
 $trans["mbrViewNoHolds"]          = "\$text='No bibliographies are currently on hold.';";
 $trans["Please send a mail to delete holds"] = "\$text='Please send a mail to delete holds';";
+$trans["eMail"]                   = "\$text='eMail';";
+$trans["mbrViewPwd"]              = "\$text='Password:';";
+$trans["mbrNoPassword"]           = "\$text = '<p style=\"font-weight: bold; color: red;\";>No password set!</p>';";
 
 #****************************************************************************
 #*  Translation text for page mbr_print_checkouts.php

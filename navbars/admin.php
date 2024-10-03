@@ -22,12 +22,6 @@
  <a href="../admin/staff_list.php" class="alt1"><?php echo $navLoc->getText("adminStaff");?></a><br>
 <?php } ?>
 
-<?php if ($nav == "settings") { ?>
- &raquo; <?php echo $navLoc->getText("adminSettings");?><br>
-<?php } else { ?>
- <a href="../admin/settings_edit_form.php?reset=Y" class="alt1"><?php echo $navLoc->getText("adminSettings");?></a><br>
-<?php } ?>
-
 <?php if ($nav == "classifications") { ?>
  &raquo; <?php echo $navLoc->getText("Member Types");?><br>
 <?php } else { ?>
@@ -64,6 +58,24 @@
  <a href="../admin/checkout_privs_list.php" class="alt1"><?php echo $navLoc->getText("Checkout Privs");?></a><br>
 <?php } ?>
 
+<?php if ($nav == "settings") { ?>
+ &raquo; <?php echo $navLoc->getText("adminSettings");?><br>
+<?php } else { ?>
+ <a href="../admin/settings_edit_form.php?reset=Y" class="alt1"><?php echo $navLoc->getText("adminSettings");?></a><br>
+<?php } ?>
+
+<?php if ($nav == "mail_settings") { ?>
+ &raquo; <?php echo $navLoc->getText("adminMailSettings");?><br>
+<?php } else { ?>
+ <a href="../admin/email_settings_edit_form.php?reset=Y" class="alt1"><?php echo $navLoc->getText("adminMailSettings");?></a><br>
+<?php } ?>
+
+ <?php if ($nav == "mail_messages") { ?>
+ &raquo; <?php echo $navLoc->getText("adminMailMessages");?><br>
+<?php } else { ?>
+ <a href="../admin/email_messages_list.php" class="alt1"><?php echo $navLoc->getText("adminMailMessages");?></a><br>
+<?php } ?>
+ 
 <?php if ($nav == "themes") { ?>
  &raquo; <?php echo $navLoc->getText("adminThemes");?><br>
 <?php } else { ?>

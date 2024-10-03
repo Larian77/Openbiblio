@@ -50,7 +50,7 @@
   ?>
   <tr>
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/collections_edit_form.php?code=<?php echo HURL($dm->getCode());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminCollections_listEdit"); ?></a>
+      <a href="../admin/collections_edit_form.php?code=<?php echo HURL($dm->getCode());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("edit"); ?></a>
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <?php if ($dm->getCount() == 0) { ?>

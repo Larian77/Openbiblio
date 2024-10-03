@@ -1,34 +1,34 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="OpenBiblio Library Automation System">
+    <title>OpenBiblio Installationsanleitung</title>
+    <style type="text/css">
+    .notice {
+            margin-left: 50px;
+            margin-right: 50px;
+            border: solid black 1px;
+            background: #ffaaaa;
+            padding: 4px;
+    }
 
-<meta name="description" content="OpenBiblio Library Automation System">
-<title>OpenBiblio Installationsanleitung</title>
-<style type="text/css">
-.notice {
-	margin-left: 50px;
-	margin-right: 50px;
-	border: solid black 1px;
-	background: #ffaaaa;
-	padding: 4px;
-}
+    .new {
+            margin-left: 50px;
+            margin-right: 50px;
+            border: solid black 1px;
+            background: #ffffaa;
+            padding: 4px;
+    }
 
-.new {
-	margin-left: 50px;
-	margin-right: 50px;
-	border: solid black 1px;
-	background: #ffffaa;
-	padding: 4px;
-}
+    h1 {
+            border-bottom: solid black 1px
+    }
 
-h1 {
-	border-bottom: solid black 1px
-}
-
-th {
-	text-align: right
-}
-</style>
+    th {
+            text-align: right
+    }
+    </style>
 </head>
 <body bgcolor="#ffffff" topmargin="0" bottommargin="0" leftmargin="0"
 	rightmargin="0" marginheight="0" marginwidth="0">
@@ -67,6 +67,8 @@ th {
 			<li>0.7.3.x: Update auf PHP 7.x möglich</li>
 			<li>0.8 und größer: Update auf das aktuelle und sicherere PHP
 				8.1/8.2 möglich (PHP bor 7.0 wird nicht mehr unterstützt!)</li>
+                        <li>0.8.1: Verbesserung der Sicherheit, v.a. in Bezug auf 
+                                Passwortverschlüselung</li>
 		</ul>
 		Bekannte Probleme:
 		<ul>
@@ -109,13 +111,10 @@ th {
 		</blockquote>
 		<h1 id="sysReq">Systemvoraussetzungen</h1>
 		<ul>
-			<li>PHP version 7.0 oder höher und ein Webserver, der dies
-				unterstützt. (PHP 4.2 mit Versionen bis 0.7.x)</li>
+			<li>PHP version 8.0 oder höher und ein Webserver, der dies
+				unterstützt.</li>
 			<li>MySQL version 4.0.12 oder höher</li>
 		</ul>
-		<div class="notice">Diese Version ist weiterhin kompatibel mit
-			älteren Versionen von PHP und MySQL. Achten Sie aber darauf, dass sie
-			für diese Versionen die Sicherheitsupdates einspielen.</div>
 		<br>
 		<div class="new">
 			<strong>Oft genutzte Szenarien um ihr System den
@@ -280,7 +279,7 @@ mysql> <b>create database OpenBiblio /*!40100 default character set utf8 */;</b>
 								<td>utf8<br> <i>(empfohlen)</i></td>
 								<td>UTF-8<br> <i>(Initialwert, von der
 										Installation gesetzt)</i></td>
-								<td>PDF Layouts machen noch Probleme, wird noch geändert</td>
+                                                                <td>PDF Layouts machen noch Probleme, wird noch geändert</td>
 							</tr>
 						</table>
 					</div>
@@ -327,74 +326,76 @@ mysql> <b>show databases;</b>
 				Texteditor ihrer Wahl. Ändern sie den Username und das Passwort auf
 				den neu erstellten MySQL-Benutzer und dessen Passwort (den sie im
 				vorigen Schritt erstellt haben).</li>
+                        <li id="step13">Bearbeiten sie die Datei global_constants.php
+				(befindet sich im Verzeichnis shared von openbiblio) mit einem
+				Texteditor ihrer Wahl. Ändern sie folgende zwei Konstanten nach Ihrer Wahl:<br/>
+                                --> OBIB_UPGRADE_KEY<br />
+                                --> OBIB_PWD_FORGOTTEN_KEY</li>
 			<li>Erstellen sie die OpenBiblio Tabellen. Um dies zu machen
 				führen Sie das Install-Skript aus, welches Sie mit <a
 				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>
-				aufrufen können, wobei ich davon ausgehe, daß sie das
-				openbiblio-Verzeichniss in das htdocs-Verzeichniss ihres Webservers
-				kopiert haben.
-			</li>
-			<li><strong>Für die Sicherheit:</strong> Entfernen Sie das
-				Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf
-				die install- oder update-Tools zu verhindern.</li>
+				aufrufen können. <br /></li>
 			<li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die
-				display_errors Einstellung in der php.ini ist 'Off' um zu
+				display_errors Einstellung in der php.ini ist 'Off', um zu
 				verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
 			<li><strong>Für die Sicherheit:</strong> Wechseln Sie in das
 				openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei
 				database_constants.php auf die Apache-Gruppe (meist www-data) und
-				ändern Sie die Rechte auf 440. (chgrp www-data
-				database_constants.php; chmod 440 database_constants.php)</li>
+				ändern Sie die Rechte auf 440 oder auf 400. (chgrp www-data
+				database_constants.php; chmod 440 oder chmod 400 database_constants.php)</li>
 			<li>Greifen Sie auf ihre neue Bibliothekssoftware unter <a
 				href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a>
 				zu, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss in
 				das htdocs-Verzeichniss ihres Webservers kopiert haben. Geben Sie
-				zum einloggen "admin" als Username und als Passwort ein, sobald sie
+				zum einloggen "admin" als Username und als Passwort "Administrator#1" ein, sobald sie
 				sich einloggen müssen. Sie können das Admin-Passwort ändern in der
 				"Admin"-Registerkarte unter Mitarbeiter, wo Sie auch neue
-				Mitarbeiter hinzufügen können.
-			</li>
+                                Mitarbeiter hinzufügen können.</li>
+                        <li>Unter admin --> Bibliothekseinstellung können systemreleavante Einstellungen vorgenommen werden, u.a. auch, ob die Bibliotheksnutzer
+                                per Online auf ihren persönlichen Account zugreifen dürfen oder nicht.</li>
+                        <li>Um den Mailversand für bspw. Passwort-Vergessen-Funktion oder Willkommensmeldung nützen
+                                zu können, müssen Sie als Administrator unter admin --> Mail-Nachrichten bei den jeweiligen 
+                                Nachrichten eine gültige E-Mail-Adresse als Absender hinterlegen. Diese kann sich bei den einzelnen 
+                                Nachrichten auch unterscheiden.</li>
+                        <li>Die Passwort-Vergessen-Funktion kann unter admin --> Mail-Einstellungen aktiviert werden. Dabei können Sie entscheiden, ob
+                                entweder die Benutzernummer/-name oder die E-Mail-Adresse angegeben werden müssen oder beides.</li>
+                        <li>Der Mailversand kann entweder über die php-Mail-Funktion oder über PHPMailer geschehen, soweit die Systemvoraussetzungen gegeben sind
+                                und die nötigen Einstellungen vorgenommen wurden.</li>
+                        <li>Ab der Openbiblio-Version 0.8.1 sind zwei Bibliotheken mit eingebunden:<br />
+                                --> PHPMailer (URL: <a href="https://github.com/PHPMailer/PHPMailer">https://github.com/PHPMailer/PHPMailer</a>)<br />
+                                --> TinyMCE-Text-Editor (URL: <a href="https://www.tiny.cloud/docs/tinymce/latest/php-projects/">https://www.tiny.cloud/docs/tinymce/latest/php-projects/</a>)<br />
+                                Diese sollten ohne weiteres funktionieren, soweit die technischen Systemvoraussetzungen Ihres Servers gegeben sind. Sollte es Schwierigkeiten geben, lesen 
+                                Sie bitte die Informationen über obige URLs durch.<br />
+                                </li>
 		</ol>
 
 		<br>
 
-		<h1 id="userlogin">Einrichten des Userlogin:</h1>
-		<p>Beim Userlogin habe ich versucht eine Version zu programmieren,
-			die nicht die bisherige Datenbankstruktur anfässt oder erweitert,
-			damit auch weiterhin Updates der deutschen Version zur englischen
-			Originalversion möglich sind und die Datenbankeinträge die gleichen
-			bleiben. Daher habe ich einige Funktionen, die openbiblio schon hat
-			für diese neue Funktionalität benutzt. Aus diesem Grund war es mir
-			aber auch nicht möglich eine echte Passwortfunktion zu verwenden,
-			sondern nur ein Geheimwort (welches aber im Klartext in der Datenbank
-			gespeichert wird und vom Bibliothekar auch im Klartext lesbar ist).</p>
-		<p>Im folgenden wird erklärt, wie man das Userlogin (ab Version
-			0.7.2g) einrichtet, da es ohne diese zusätzliche Einrichtung nicht
-			funktioniert</p>
+		<h1 id="userlogin">Einrichten des Benutzer-Logins:</h1>
+                <p>Generell muss entschieden werden, ob die Openbiblio als reines Verwaltungsprogramm 
+                    ohne Online-Login-Zugang für die Benutzer sein soll oder diese einen Online-Login-Zugang erhalten sollen. 
+                    Die Einstellung dazu ist zu finden über das Register "Admin" unter dem Link "Bibliothekseinstellungen".
+                    Im Verlauf der Aktualisierung auf 0.8.1 kann diese Einstellung entsprechend vorgenommen werden.</p>
+                <p>Das Benutzer-Login wird ab der Version 0.8.1 geändert. Das Passwort der Benutzer (member)
+                    wird nun in der DB-Tabelle member verschlüsselt hinterlegt. Bisher angelegte Passworter 
+                    unter dem Mitgliederfeld 'secret' werden bei der Aktualisierung automatisch kopiert und 
+                    verschlüsselt in die DB-Tabelle member gesetzt. Die nicht mehr benötigten 'secret'-Felder 
+                    in den DB-Tabellen member_fields und member_fields_dm werden danach gelöscht.</p>
+                <p>Außerdem wird der Benutzer bei zu häufiger Fehleingabe der Zugangsdaten für eine bestimmte Zeit gesperrt.<br />
+                    Bei der Aktualiserung auf 0.8.1 können während dem Update die Anzahl der Fehlversuche und 
+                    die Sperrzeit gesetzt werden. Ansonsten können diese Einstellungen jederseit über das Register "Admin" 
+                    unter dem Link "Bibliothekseinstellungen" geändert werden.</p>
+                <p>Soweit in den Bibliothekseinstellungen der Online-Login-Zugriff für Benutzer erlaubt wurde, </p>
 		<ol>
-			<li>In Openbiblio unter <a
-				href="http://localhost/openbiblio/index.html">http://localhost/openbiblio/index.html</a>
-				einloggen und dort in den Admin-Bereich wechseln.
-			</li>
-			<li>Hier in den Bereich Mitgliederfelder wechseln und dort ein
-				neues spezifisches Feld hinzufügen.</li>
-			<li>Das neue Feld muss unbedingt als Kennzeichen "secret"
-				benannt werden. In der Beschreibung können Sie die Bezeichnung
-				selber wählen, ich selber verwende hier "Geheimes Wort". Das Ganze
-				anschliessend übermitteln.</li>
-			<li>Ab jetzt ist unter <a
+			<li>steht dem Benutzer unter <a
 				href="http://localhost/openbiblio/opac/index.html">http://localhost/openbiblio/opac/index.html</a>
-				das Benutzerlogin freigeschaltet.
-			</li>
-			<li>In den Benutzerinfos eines Mitglieds kann man ab nun das
-				Geheime Wort hinterlegen. Sobald dies hinterlegt ist kann sich
-				dieses Mitglied unter <a
-				href="http://localhost/openbiblio/opac/loginform.php">http://localhost/openbiblio/opac/loginform.php</a>
-				unter Angabe der Benutzernummer und des Geheimwort einloggen und
-				seine Medien verlängern bzw. Vorbestellungen vornehmen. Wenn ein
-				Mitglied kein Geheimwort hinterlegt hat erscheint hier die Info,
-				dass er ein Geheimes Wort hinterlegen lassen muss.
-			</li>
+				der Button zum Benutzer-Login zur Verfügung.</li>
+                        <li>muss beim Anlegen des neuen Benutzers das Kennwort angelegt werden.</li>
+                        <li>kann sich der Benutzer über den Button "Benutzer-Login" oder über den Link <a
+				href="http://localhost/openbiblio/opac/loginform.php">http://localhost/openbiblio/opac/loginform.php</a> 
+				unter Angabe der Benutzernummer und des Kennwortes einloggen.
+                                Über sein Benutzerkonto kann der Benutzer seine Medien verlängern, Vorbestellungen vornehmen
+                                und das Kennwort ändern.</li>
 		</ol>
 
 
@@ -413,27 +414,29 @@ mysql> <b>show databases;</b>
 			<li>Erstellen sie unbedingt ein Backup ihrer Datenbank. Lesen
 				Sie dazu die MySQL Dokumentation für eine Anleitung. (mysqldump
 				benutzen)</li>
-			<li>Updaten Sie die OpenBiblio-Datenbank-Tabellen, indem Sie das
+                        <li>Zum Updaten wird der Upgrade-Key benötigt, welcher unter der Konstante 
+                                OBIB_UPGRADE_KEY in der Datei ../shared/global_constants.php hinterlegt ist.</li>
+                        <li>Updaten Sie die OpenBiblio-Datenbank-Tabellen, indem Sie das
 				Konversions-Tool nutzen, welches sie unter <a
 				href="http://localhost/openbiblio/install/index.php">http://localhost/openbiblio/install/index.php</a>
 				finden, wobei ich davon ausgehe, daß sie das openbiblio-Verzeichniss
 				in das htdocs-Verzeichniss ihres Webservers kopiert haben. Wenn es
 				auf einem entfernten Server installiert ist, ist auch der erste Teil
 				der Adresse unterschiedlich. Wenn die Tabellen schon OK sind dann
-				sagt das Tool: nein
+				meldet dies das Tool entsprechend zurück.
 			</li>
-			<li><strong>Für die Sicherheit:</strong> Entfernen Sie das
-				Verzeichniss openbiblio/install komplett um unbefugten Zugriff auf
-				die install- oder update-Tools zu verhindern. Falls vorhanden
-				entfernen Sie auch das openbiblio/tests-Verzeichniss</li>
+			<li><strong>Für die Sicherheit:</strong> Das Verzeichniss openbiblio/install 
+                                kann komplett nach der Installation bzw. Update gelöscht werden. 
+                                Allerdings ist dies ab Version 0.8.1 nicht zwingend mehr notwendig, da
+                                der Aktualisierungsprozess über den Upgrade-Key abgesichert ist.</li>
 			<li><strong>Für die Sicherheit:</strong> Prüfen Sie, dass die
 				display_errors Einstellung in der php.ini ist 'Off' um zu
 				verhindern, dass ungeprüfte Informationen angezeigt werden.</li>
 			<li><strong>Für die Sicherheit:</strong> Wechseln Sie in das
 				openbiblio-Verzeichnis, ändern Sie sie Gruppe der Datei
 				database_constants.php auf die Apache-Gruppe (meist www-data) und
-				ändern Sie die Rechte auf 440. (chgrp www-data
-				database_constants.php; chmod 440 database_constants.php)</li>
+				ändern Sie die Rechte auf 440 oder auf 400. (chgrp www-data
+				database_constants.php; chmod 440 oder chmod 400 database_constants.php)</li>
 		</ol>
 		<div class="notice">
 			<strong>Updates von 0.7.0:</strong> 0.8 ist ein Bugfix für 0.7.x: es
@@ -442,6 +445,22 @@ mysql> <b>show databases;</b>
 			der Datenbank und entfernt einige Restriktionen.*<br> 
 			<strong>Updates	von 0.7.1 oder höher:</strong> 0.8 ist ein Bugfix für 0.7.x: es funktioniert
 			ohne, dass sie die Datenbank upgraden.*<br>
+                        <strong>Updates	von 0.7.1 oder höher:</strong> 0.8.1 ist eine Erweiterung und benötigt ein Upgrade 
+                            der Datenbank. Es beinhaltet folgende Änderungen:
+                        <ul>
+                            <li>Einstellung, ob Benutzer (member) einen Online-Zugriff auf ihr Konto haben oder nicht.</li>
+                            <li>Passwörter für Benutzer sind Pflicht bei Online-Zugriff und müssen bestimmten Kriterien 
+                                entsprechen.</li>
+                            <li>Passworter von Benutzer und Bibliotheksmitarbeitenden werden per password_hash verschlüsselt.<br />
+                                Bisherige Geheimwörter, welche in der DB-Tabelle memmber_fields hinterlegt waren, werden, verschlüsselt 
+                                in die DB-Tabelle member kopiert. Die nicht mehr benötigten Felder in member_fields und member_fields_dm 
+                                werden gelöscht.</li>
+                            <li>Passwörter für Benutzer werden nun standardmäüig in der DB-Tabelle member verschlüsselt hinterlegt.</li>
+                            <li>Bei entsprechenden Fehlversuchen bei Login eine zeitliche Sperrung. Sowohl die Anzahl der 
+                                Fehlversuche, als auch der Zeitraum ist in einer bestimmten Spanne einstellbar.</li>
+                            <li>Bei dem Upgrade auf 0.8.1 können die neuen Einstellungen beim Upgrade-Prozess gesetzt werden.</li>
+                            <li>Die Aktualisierungseiten sind nun sprachlich angepasst.</li>
+                        </ul>
 			<strong>*</strong> Wenn Sie die neue Präsenzfunktion (ab 0.8) in ihrer bestehenden Datenbank nutzen wollen müssen Sie folgenden Befehl in ihrer Datenbank ausführen: <i>insert into biblio_status_dm values ('pre','Präsenz','N');</i>
 		</div>
 	</div>

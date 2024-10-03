@@ -47,6 +47,25 @@ $_POST["email"] = $mbr->getEmail();
 $mbr->setMembershipEnd($_POST["membershipEnd"]);
 $_POST["membershipEnd"] = $mbr->getMembershipEnd();
 $mbr->setClassification($_POST["classification"]);
+$mbr->setTypeOfPwdCreation($_POST["TypeOfPwdCreation"]);
+$_POST["TypeOfPwdCreation"] = $mbr->getTypeOfPwdCreation();
+if (isset($_POST['pwd'])) {
+    $mbr->setPwd($_POST["pwd"]);
+    $_POST["pwd"] = $mbr->getPwd();
+}
+if (isset($_POST['pwdRepeat'])) {
+    $mbr->setPwdRepeat($_POST["pwdRepeat"]);
+    $_POST["pwdRepeat"] = $mbr->getPwdRepeat();
+}
+
+#********************************************************
+#* Depending on whether a new member is created or edited
+#********************************************************
+if (isset($_GET["FileSource"])) {
+    $mbr->setFileSource($_GET["FileSource"]);
+} else {
+    $mbr->setFileSource('mbr_new_form');
+}
 
 $dmQ = new DmQuery();
 $dmQ->connect_e();
@@ -59,14 +78,22 @@ foreach ($customFields as $name => $title) {
 }
 
 $validData = $mbr->validateData();
-if (!$validData) {
+if ($mbr->getTypeOfPwdCreation() != 1) {
+    $validPwd = $mbr->validatePwd();
+} else {
+    $validPwd = "notSet";
+    $mbr->setPwd(NULL);
+}
+if (!($validData && $validPwd)) {
     $pageErrors["barcodeNmbr"] = $mbr->getBarcodeNmbrError();
     $pageErrors["lastName"] = $mbr->getLastNameError();
     $pageErrors["firstName"] = $mbr->getFirstNameError();
+    $pageErrors["email"] = $mbr->getEmailError();
     $pageErrors["membershipEnd"] = $mbr->getMembershipEndError();
-    $_SESSION["postVars"] = $_POST;
+    $pageErrors["pwd"] = $mbr->getPwdError();
     $_SESSION["pageErrors"] = $pageErrors;
-    header("Location: ../circ/mbr_new_form.php");
+    $_SESSION["postVars"] = $_POST;
+    header("Location: ../circ/mbr_new_form.php?FileSource=mbr_new_form");
     exit();
 }
 
@@ -80,15 +107,63 @@ if ($dupBarcode) {
     $pageErrors["barcodeNmbr"] = $loc->getText("mbrDupBarcode", array("barcode" => $mbr->getBarcodeNmbr()));
     $_SESSION["postVars"] = $_POST;
     $_SESSION["pageErrors"] = $pageErrors;
-    header("Location: ../circ/mbr_new_form.php");
+    header("Location: ../circ/mbr_new_form.php?FileSource=mbr_new_form");
     exit();
 }
 
 #**************************************************************************
 #*  Insert new library member
 #**************************************************************************
-$mbrid = $mbrQ->insert($mbr);
+$mbr->setMbrid($mbrQ->insert($mbr));
 $mbrQ->close();
+
+#**************************************************************************
+#*  If the password will be created by the library member by e-mail.
+#**************************************************************************
+if($mbr->getTypeOfPwdCreation() == 1 && (!$mbr->getMbrid() == NULL)) {
+    #********************************************************************************
+    #* Creation of the password code, encryption and entry in the DB in table member
+    #******************************************************************************** 
+    $passwordCode = $mbr->random_string();
+    $mbr->setPwdForgotten(hash('sha256', $passwordCode));
+    $success = $mbrQ->setPwdForgottenCode($mbr);
+    if ($success == NULL) {
+        $error = $loc->getText('errNoPwdForgottenCode');
+    }
+    $mbrQ->close();
+    
+    #************************************************************************
+    #* Creation of the URL for resetting the password
+    #************************************************************************        
+    $url_passwordcode = $mbr->createURLPwdCode($mbr, $passwordCode);
+    
+    #********************************************************************************
+    #* Reference to the required message (DB --> mail_messages --> mail_message_type)
+    #********************************************************************************
+    $mailMessageType = 'welcome_message';
+    
+    #**************************************************************************
+    #*  Preparation of the text variables which will be included in the message
+    #**************************************************************************
+    // PwdForgottenCodeDuration is only set in Mailing.php as an exception, as MailSet is queried there first.
+    $mailTextVariables = array(
+            "FirstName"=>$mbr->getFirstName(),
+            "LastName"=>$mbr->getLastName(),
+            "url_pwdcode"=>$url_passwordcode);
+    
+    #**************************************************************************
+    #*  Preparation of fürhter variables for mailing
+    #**************************************************************************
+    $mailAdress = $mbr->getEmail();
+    $noticeSuccess = $loc->getText('mbrNewMailingSuccessful');
+    $noticeError = $loc->getText('errMailCouldNotBeSent');
+    
+    #**************************************************************************
+    #*  Inclusion of the general mailing code
+    #**************************************************************************
+    include_once('../classes/email/Mailing.php');
+
+}
 
 #**************************************************************************
 #*  Destroy form values and errors
@@ -96,7 +171,11 @@ $mbrQ->close();
 unset($_SESSION["postVars"]);
 unset($_SESSION["pageErrors"]);
 
-$msg = $loc->getText("mbrNewSuccess");
-header("Location: ../circ/mbr_view.php?mbrid=" . U($mbrid) . "&reset=Y&msg=" . U($msg));
+if ($error != NULL) {
+    $msg = $error . ' ' . $notice;
+} else {
+    $msg = $loc->getText("mbrNewSuccess") . ' ' . $notice;
+}
+header("Location: ../circ/mbr_view.php?mbrid=" . U($mbr->getMbrid()) . "&reset=Y&msg=" . U($msg));
 exit();
 ?>
