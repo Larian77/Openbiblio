@@ -8,8 +8,11 @@ Folgende Änderungen wurden in der Version 0.8.1 umgesetzt:
    member_fields_dm werden gelöscht.
 * Passwörter für Benutzer werden nun standardmäüig in der DB-Tabelle member verschlüsselt hinterlegt.
 * Bei entsprechenden Fehlversuchen bei Login eine zeitliche Sperrung. Sowohl die Anzahl der Fehlversuche, als auch der Zeitraum ist in einer bestimmten Spanne einstellbar.
+* Eine Passwort-Vergessen-Funktion wurde hinzugefügt,
+* damit verbunden ist das Intergrieren zweier Mail-Funktionen (mail() und PHPMailer).
+* Beim Erstellen eines Bibliotheksmitglieds oder eines Mitarbeiters kann ausgewählt werden, ob das Kennwort manuell erstellt wird oder eine Mail an den neuen Nutzer gesendet wird, um ein eigenes Kennwort zu setzen. 
 * Bei dem Upgrade auf 0.8.1 können die neuen Einstellungen beim Upgrade-Prozess gesetzt werden.
-* Die Aktualisierungseiten sind nun sprachlich angepasst.
+* Die Aktualisierungsseiten sind nun sprachlich angepasst.
 --------
 The following changes have been implemented in version 0.8.1:
 * Setting whether users (members) have online access to their account or not.
@@ -20,6 +23,9 @@ The following changes have been implemented in version 0.8.1:
    member_fields_dm are deleted.
 * Passwords for users are now stored in encrypted form in the member DB table by default.
 * A time block is set for login failures. Both the number of failed attempts and the time period can be set within a certain range.
+* A forgotten password function has been added, 
+* along with the integration of two mail functions (mail() and PHPMailer).
+* When creating a library member or a staff member, you can choose whether the password is created manually or a mail is sent to the new user to set their own password.
 * When upgrading to 0.8.1, the new settings can be set during the upgrade process.
 * The language of the update pages has been adapted.
 
