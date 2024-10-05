@@ -59,7 +59,9 @@
         <input type="button" onClick="self.location='../install/cancel_msg.php'" value="Cancel">
         </form>
       <?php
-      $setQ->close();
+      if (isset($setQ)) {
+        $setQ->close();
+      }
       include("../install/footer.php");
       exit();
     }

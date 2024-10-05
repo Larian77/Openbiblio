@@ -24,5 +24,7 @@
   $mbr = new Member();
 ?>
 <form name="newmbrform" method="POST" action="../circ/mbr_new.php">
-<?php include("../circ/mbr_fields.php"); ?>
-<?php include("../shared/footer.php"); ?>
+<?php 
+include("../circ/mbr_fields.php");
+include("../shared/footer.php"); 
+?>

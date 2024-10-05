@@ -62,6 +62,15 @@
     $postVars["locale"] = $set->getLocale();
     $postVars["charset"] = $set->getCharset();
     $postVars["htmlLangAttr"] = $set->getHtmlLangAttr();
+    $postVars["loginAttempts"] = $set->getLoginAttempts();
+    $postVars["pwdTimeout"] = $set->getPwdTimeout();
+    if ($set->isMbrAccountOnline()) {
+        $postVars["isMbrAccountOnline"] = "CHECKED";
+    } else {
+        $postVars["isMbrAccountOnline"] = "";
+    }
+    $postVars["pwdTimeout"] = $set->getPwdTimeout();
+    
     $setQ->close();
   } else {
     require("../shared/get_form_vars.php");
@@ -220,11 +229,62 @@
     </td>
   </tr>
   <tr>
+    <td class="primary" valign="top">
+      <?php echo $loc->getText("admin_settingsLoginAttemps"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <select name="loginAttempts">
+        <?php
+          $arr_loginAttempts = array(3, 5, 7, 9, 11, 13, 15);
+          foreach ($arr_loginAttempts as $AttemptsCode => $AttemptsDesc) {
+            echo "<option value=\"".H($AttemptsDesc)."\"";
+            if ($AttemptsDesc == $postVars["loginAttempts"]) {
+              echo " selected";
+            }
+            echo ">".H($AttemptsDesc)."</option>\n";
+          }
+        ?>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="primary" valign="top">
+      <?php echo $loc->getText("admin_settingsPwdTimeout"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <select name="pwdTimeout">
+        <?php
+          $arr_timeout = array(10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60);
+          foreach ($arr_timeout as $TimeoutCode => $TimeoutDesc) {
+            echo "<option value=\"".H($TimeoutDesc)."\"";
+            if ($TimeoutDesc == $postVars["pwdTimeout"]) {
+              echo " selected";
+            }
+            echo ">".H($TimeoutDesc)."</option>\n";
+          }
+        ?>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap;" class="primary">
+      <?php echo $loc->getText("admin_settingsMbrAccountOnline"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php echo $loc->getText("admin_settingsMbrAccountOnline_explication"); ?>
+      <input type="checkbox" name="isMbrAccountOnline" value="CHECKED"
+        <?php if (isset($postVars["isMbrAccountOnline"])) {
+                echo H($postVars["isMbrAccountOnline"]);
+        }
+        ?>
+      >
+    </td>
+  </tr>
+  <tr>
     <td align="center" colspan="2" class="primary">
       <input type="submit" value="  <?php echo $loc->getText("adminUpdate"); ?>  " class="button">
     </td>
   </tr>
-
 </table>
       </form>
 <table><tr><td valign="top"><font class="small"><?php echo $loc->getText("adminCollections_edit_formNote"); ?></font></td>

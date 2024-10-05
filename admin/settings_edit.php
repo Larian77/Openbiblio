@@ -53,6 +53,13 @@
   $_POST["charset"] = $set->getCharset();
   $set->setHtmlLangAttr($_POST["htmlLangAttr"]);
   $_POST["htmlLangAttr"] = $set->getHtmlLangAttr();
+  $set->setLoginAttempts($_POST["loginAttempts"]);
+  $_POST["loginAttempts"] = $set->getLoginAttempts();
+  $set->setPwdTimeout($_POST["pwdTimeout"]);
+  $_POST["pwdTimeout"] = $set->getPwdTimeout();
+  $set->setMbrAccountOnline(isset($_POST["isMbrAccountOnline"]));
+  $_POST["isMbrAccountOnline"] = $set->isMbrAccountOnline();
+
 
   if (!$set->validateData()) {
     $pageErrors["sessionTimeout"] = $set->getSessionTimeoutError();

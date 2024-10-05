@@ -4,6 +4,9 @@
 body {
   background-color: #ffffff
 }
+div.content {
+    padding-left: 15px;
+}
 
 /*********************************************************
  *  Font Styles
@@ -13,6 +16,9 @@ font.primary {
   font-size: 13px;
   font-family: verdana,arial,helvetica;
 }
+font.settingLocation {
+  font-size: 10px; 
+}
 font.error {
   color: #aa0000;
   font-size: 13px;
@@ -20,9 +26,26 @@ font.error {
   font-weight: bold;
 }
 h1 {
+  font-size: 20px;
+  font-family: verdana,arial,helvetica;
+  font-weight: bold;
+}
+h2 {
   font-size: 16px;
   font-family: verdana,arial,helvetica;
-  font-weight: normal;
+  font-weight: bold;    
+}
+p {
+  font-family: verdana,arial,helvetica;  
+}
+p.info {
+  font-size: 16px;
+}
+p.goodNews {
+    color: green;
+}
+p.text {
+    font-size: 14px;
 }
 
 /*********************************************************
@@ -34,3 +57,63 @@ a:link {
 a:visited {
   color: #0000aa;
 }
+
+/*********************************************************
+ *  Div / Container Styles
+ *********************************************************/
+.headerUpgrade {
+    padding-left: 15px;
+}
+
+.primary { 
+  color: #000000;
+  font-size: 14px;
+  font-family: verdana,arial,helvetica;
+}
+.upgradeSetting {
+      border-bottom: 1px solid;
+}
+.descriptionField {
+  width: 30%;
+  float: left;
+  padding: 10px 15px 10px 0;
+  min-height: 60px;
+  text-align: right;
+}
+.inputField {
+  padding: 10px 0 20px 15px;
+  min-height: 60px;
+  overflow: hidden;
+}
+input.inputEmailInfos {
+  width: 350px;
+}
+
+ /*********************************************************
+ *  Phones/Tables UpgradeSettings div container
+ *********************************************************/
+ @media only screen and (max-width: 900px) {
+     .upgradeSetting {
+         height: auto;
+     }
+    .descriptionField {
+        text-align: left; 
+        width: 100%;
+        margin: auto;
+        padding: 15px 0 10px 0;
+        min-height: 0;
+    }
+    .inputField {
+        padding: 10px 0 15px 0;
+        margin: auto;
+        overflow: unset;
+    }
+ }
+ @media only screen and (max-width: 600px) {
+     select {
+        width: 100%;
+    }
+    input.inputEmailInfos {
+        width: 100%;
+    }
+ }

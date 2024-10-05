@@ -37,6 +37,7 @@
 #****************************************************************************
 #*  Common translation text shared among multiple pages
 #****************************************************************************
+$trans["sharedSubmit"]             = "\$text = 'Übermitteln';";
 $trans["sharedCancel"]             = "\$text = 'Abbrechen';";
 $trans["sharedDelete"]             = "\$text = 'Löschen';";
 
@@ -105,14 +106,15 @@ $trans["biblioSearchBCode2Hold"]   = "\$text = 'Barcode zum Vorbestellen';";
 #****************************************************************************
 $trans["loginFormTbleHdr"]         = "\$text = 'Mitarbeiter Login';";
 $trans["loginFormUsername"]        = "\$text = 'Benutzername';";
-$trans["loginFormPassword"]        = "\$text = 'Passwort';";
+$trans["loginFormPassword"]        = "\$text = 'Kennwort';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
+$trans["PasswordForgotten"]	   = "\$text = 'Kennwort vergessen?';";
 
 #****************************************************************************
 #*  Translation text for page login.php
 #****************************************************************************
-$trans["loginUserNameReqErr"]      = "\$text = 'Benutzername wird benötigt.';";
-$trans["loginPwdReqErr"]           = "\$text = 'Passwort wird benötigt.';";
+$trans["loginUserNameReqErr"]      = "\$text = 'Benutzername wird benötigt oder ist nicht korrekt.';";
+$trans["loginPwdReqErr"]           = "\$text = 'Kennwort wird benötigt.';";
 $trans["loginPwdInvErr"]           = "\$text = 'Anmeldung fehlgeschlagen.';";
 
 #****************************************************************************
@@ -162,4 +164,69 @@ $trans["footerCopyright"]          = "\$text='Copyright';";
 $trans["footerUnderThe"]           = "\$text='under the';";
 $trans["footerGPL"]                = "\$text='GNU General Public License';";
 
+#**************************************************************************************
+#*  Translation text for page 
+#   - circ/
+#   - opac/
+#   -- mbr_pwd_reset_form.php
+#   -- mbr_pwd_newset.php
+#   -- mbr_pwd_newset_form.php
+#   - admin/staff_pwd_newset_form.php
+#**************************************************************************************
+$trans["mbr_pwd_create_form_Resetheader"]   = "\$text = 'Benutzer-Kennwort neu setzen:';";
+$trans["mbr_pwd_reset_form_Resetheader"]    = "\$text = 'Benutzer-Kennwort ändern:';";
+$trans["staff_pwd_reset_form_Resetheader"]  = "\$text = 'Mitarbeiter-Kennwort ändern:';";
+$trans["new_form_Password"]                 = "\$text = 'Kennwort:';";
+$trans["PwdRequirement"]                    = "\$text = '<p style=\"color: #1a62ac;\">Regeln: Kennwort muss zwischen 8 bis 20 Zeichen lang sein, "
+        . "mindestens 1 Ziffer, <br />1 Groß- und 1 Kleinbuchstaben und 1 Sonderzeichen (erlaubt: @_#§%$) enthalten.<br /></p>';";
+$trans["new_form_Reenterpassword"]      = "\$text = 'Kennwort wiederholen:';";
+
+#****************************************************************************
+#*  Translation text for page circ/ and opac/mbr_pwd_reset.php
+#****************************************************************************
+$trans["mbr_return"]                      = "\$text = 'Zurück zum Benutzerprofil';";
+$trans["PwdResetSuccessfully"]      = "\$text = 'Kennwort wurde erfolgreich geändert.';";
+$trans["memberSecretRepeatReqErr"]        = "\$text = 'Kennwort stimmt mit Kennwort-Wiederholung nicht überein.';";
+
+
+#****************************************************************************
+#*  Translation text for page circ/ and shared/timeout.php
+#****************************************************************************
+$trans["PwdTimeout"]                      = "\$text = 'Ihr Account ist für %time% Minuten aufgrund zu häufiger Fehleingaben gesperrt.';";
+
+#****************************************************************************
+#*  Translation text for page shared/supsended.php
+#****************************************************************************
+$trans["staffSuspended"]                  = "\$text = 'Ihr Account ist deaktiviert worden.';";
+
+#****************************************************************************
+#*  Translation text for files in folders opac and shared
+#   mbr_pwd_forget_form.php, mbr_pwd_forget.php and mbr_pwd_newset_form.php
+#   staff_pwd_forget_form.php, staff_pwd_forget.php and staff_pwd_newset.php
+#****************************************************************************
+$trans["PwdForgottenSettingNone"]         = "\$text = 'Kennwort-Vergessen-Funtkion ist deaktiviert.';";
+$trans["PwdForgotten"]                    = "\$text = 'Neues Kennwort beantragen:';";
+$trans["PwdForgottenInfo_or"]             = "\$text = 'Um Ihr Kennwort zurückzusetzen, tragen Sie bitte entweder "
+                                                    . "Ihren Benutzernamen <u>oder</u> Ihre E-Mail-Adresse ein. Wenn Sie in der "
+                                                    . "Datenbank zu finden sind, wird eine Mitteilung an Ihre E-Mail-Adresse verschickt.';";
+$trans["PwdForgottenInfo_and"]            = "\$text = 'Um Ihr Kennwort zurückzusetzen, tragen Sie bitte entweder "
+                                                    . "Ihren Benutzernamen <u>und</u> Ihre E-Mail-Adresse ein. Wenn Sie in der "
+                                                    . "Datenbank zu finden sind, wird eine Mitteilung an Ihre E-Mail-Adresse verschickt.';";
+$trans["email"]                           = "\$text = 'E-Mail:';";
+$trans["barcodeNmbr"]                     = "\$text = 'Benutzernummer:';";
+$trans["or"]                              = "\$text = 'oder';";
+$trans["and"]                             = "\$text = 'und';";
+$trans["NewPassword"]                     = "\$text = 'Neues Kennwort';";
+$trans["errEmailMissing"]                 = "\$text = 'Bitte eine E-Mail-Adresse eintragen!';";
+$trans["errbarcodeNmbrMissing"]           = "\$text = 'Bitte Benutzernummer eingeben!';";
+$trans["errNoUserFound"]                  = "\$text = 'Keinen Benutzer gefunden!';";
+$trans["errNoPwdForgottenCode"]           = "\$text = 'Es konnte kein Kennwort-Vergessen-Code erstellt werden!';";
+$trans["errTooManyUserFound"]             = "\$text = 'Zu viele Benutzer mit der gleichen E-Mail gefunden. "
+                                                . "Bitte benutzen Sie das Eingabefeld für Ihren Benutzernamen!';";
+$trans["SendMailForPwdForgottenCode"]     = "\$text = 'Wenn Sie den Benutzeramen bzw. die eindeutige E-Mail-Adresse richtig "
+                                                        . "angegeben haben, wird eine automatische E-Mail an Sie gesendet.';";
+$trans["errMailCouldNotBeSent"]           = "\$text = 'Nachricht konnte nicht versendet werden.';";
+$trans["TooManyAttempts"]                 = "\$text = 'Zu viele Versuche!';";
+$trans["errExpiredPwdForgottenCode"]      = "\$text = 'Dein Code ist leider abgelaufen.';";
+$trans["errInvalidPwdForgottenURL"]       = "\$text = 'Stellen Sie sicher, dass Sie den genauen Link in der URL aufgerufen haben!';";
 ?>

@@ -4,7 +4,7 @@
  */
 
 require_once("../classes/Localize.php");
-
+//require_once("../classes/Query.php"); // MV not necessary
 /******************************************************************************
  * Staff represents a library staff member.  Contains business rules for
  * staff member data validation.
@@ -20,12 +20,21 @@ class Staff
     var $_lastChangeDt = "";
     var $_lastChangeUserid = "";
     var $_lastChangeUsername = "";
+    var $_typeOfPwdCreation = '';
     var $_pwd = "";
     var $_pwdError = "";
     var $_pwd2 = "";
+    var $_pwdTimeout = '1970-01-01 12:00:00';
+    var $_pwdForgotten = "";
+    var $_pwdForgottenTime = '1970-01-01 12:00:00';
+    var $_pwdForgottenMail = "";
+    var $_pwdForgottenUsername = "";
+    var $_pwdForgottenError = "";
     var $_lastName = "";
     var $_lastNameError = "";
     var $_firstName = "";
+    var $_email = "";
+    var $_emailError = "";
     var $_username = "";
     var $_usernameError = "";
     var $_circAuth = false;
@@ -53,14 +62,18 @@ class Staff
         $valid = true;
         if ($this->_lastName == "") {
             $valid = false;
-            $this->_lastNameError = $this->_loc->getText("staffLastNameReqErr");
+            $this->_lastNameError = $this->_loc->getText("LastNameReqErr");
         }
         if (strlen($this->_username) < 4) {
             $valid = false;
-            $this->_usernameError = $this->_loc->getText("staffUserNameLenErr");
+            $this->_usernameError = $this->_loc->getText("UserNameLenErr");
         } elseif (substr_count($this->_username, " ") > 0) {
             $valid = false;
-            $this->_usernameError = $this->_loc->getText("staffUserNameCharErr");
+            $this->_usernameError = $this->_loc->getText("UserNameCharErr");
+        }
+        if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
+            $valid = false;
+            $this->_emailError = $this->_loc->getText("UserEmailCharErr");
         }
         return $valid;
     }
@@ -73,15 +86,18 @@ class Staff
     function validatePwd()
     {
         $valid = true;
-        if (strlen($this->_pwd) < 4) {
+        if (strlen($this->_pwd) < 8 || strlen($this->_pwd) > 20) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdLenErr");
+            $this->_pwdError = $this->_loc->getText("PwdLenErr");
         } elseif (substr_count($this->_pwd, " ") > 0) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdCharErr");
+            $this->_pwdError = $this->_loc->getText("PwdCharErr");
         } elseif ($this->_pwd != $this->_pwd2) {
             $valid = false;
-            $this->_pwdError = $this->_loc->getText("staffPwdMatchErr");
+            $this->_pwdError = $this->_loc->getText("PwdMatchErr");
+        } elseif(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[@_#§%$])[0-9A-Za-z@_#§%$]{8,20}$/', $this->_pwd)) { 
+            $valid = false;
+            $this->_pwdError = $this->_loc->getText("PwdRequirementErr");        
         }
         return $valid;
     }
@@ -105,16 +121,33 @@ class Staff
     {
         $this->_userid = trim($userid);
     }
-
+    
     /****************************************************************************
-     * @param string $pwd Password of staff member
+     * @param string $value Create password manually or by e-mail
+     * @return void
+     * @access public
+     ****************************************************************************
+     */
+    function setTypeOfPwdCreation($value) {
+        if ($value == true) {
+            $this->_typeOfPwdCreation = true;
+        } else {
+            $this->_typeOfPwdCreation = false;
+        }
+    }
+    function getTypeOfPwdCreation() {
+      return $this->_typeOfPwdCreation;
+    }
+    
+    /****************************************************************************
+     * @param string $pwd Password of staff member und Pwd-Timeout
      * @return void
      * @access public
      ****************************************************************************
      */
     function setPwd($pwd)
     {
-        $this->_pwd = strtolower(trim($pwd));
+    $this->_pwd = trim($pwd);
     }
     function getPwd()
     {
@@ -126,11 +159,19 @@ class Staff
     }
     function setPwd2($pwd)
     {
-        $this->_pwd2 = strtolower(trim($pwd));
+        $this->_pwd2 = trim($pwd);
     }
     function getPwd2()
     {
         return $this->_pwd2;
+    }
+    function getPwdTimeout() 
+    {
+        return $this->_pwdTimeout;
+    }
+    function setPwdTimeout($pwdTimeout) 
+    {
+            $this->_pwdTimeout = $pwdTimeout;
     }
 
     /****************************************************************************
@@ -207,7 +248,35 @@ class Staff
      */
     function setUsername($username)
     {
-        $this->_username = strtolower(trim($username));
+        $this->_username = trim($username);
+    }
+    /****************************************************************************
+     * @return string Staff E-mail
+     * @access public
+     ****************************************************************************
+     */
+    function getEmail()
+    {
+        return $this->_email;
+    }
+    /****************************************************************************
+     * @return string E-mail error text
+     * @access public
+     ****************************************************************************
+     */
+    function getEmailError()
+    {
+        return $this->_emailError;
+    }
+    /****************************************************************************
+     * @param string $email E-mail of staff member
+     * @return void
+     * @access public
+     ****************************************************************************
+     */
+    function setEmail($email)
+    {
+        $this->_email = trim($email);
     }
     /****************************************************************************
      * @return boolean true if staff member has circulation authorization
@@ -373,7 +442,105 @@ class Staff
         $this->_lastChangeUserid = trim($value ?? '');
     }
 
+    /****************************************************************************
+     * @return string Staff forgotten password code and period of validity
+     * @access public
+     ****************************************************************************
+     */
+    function getPwdForgotten () 
+    {
+      return $this->_pwdForgotten;
+    }
+    function getPwdForgotteTime() 
+    {
+        return $this->_pwdForgottenTime;
+    }
+    function setPwdForgotten($value) 
+    {
+      $this->_pwdForgotten = $value;
+    }
+    function setPwdForgottenTime($value) 
+    {
+        $this->_pwdForgottenTime = $value;
+    }
+    
+    /****************************************************************************
+     * @return string Staff Mail or/and barcodenumber input for new password request
+     * @access public
+     ****************************************************************************
+     */
+    function getPwdForgottenMail() 
+    {
+        return $this->_pwdForgottenMail;
+    }
+    function getPwdForgottenUsername() 
+    {
+        return $this->_pwdForgottenUsername;
+    }
+    function getPwdForgottenError() 
+    {
+        return $this->_PwdForgottenError;
+    }
+    function setPwdForgottenMail($value) 
+    {
+      $this->_pwdForgottenMail = trim($value);
+    }
+    function setPwdForgottenUsername($value) 
+    {
+        $this->_pwdForgottenUsername = trim($value);
+    }
+    function setPwdForgottenError($value) 
+    {
+        $this->_pwdForgottenError = $value;
+    }
 
+   /****************************************************************************
+    * Set an individual forget password URL
+    * @param Staff $staff forgotten password code to update
+    * @return boolean returns false, if error occurs
+    * @access public
+    ****************************************************************************
+    */
+    function random_string() 
+    {
+      if(function_exists('random_bytes')) {
+         $bytes = random_bytes(16);
+         $str = bin2hex($bytes); 
+      } else if(function_exists('openssl_random_pseudo_bytes')) {
+         $bytes = openssl_random_pseudo_bytes(16);
+         $str = bin2hex($bytes); 
+      } else if(function_exists('mcrypt_create_iv')) {
+         $bytes = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
+         $str = bin2hex($bytes); 
+      } else {
+         //Bitte euer_geheim_string durch einen zufälligen String mit >12 Zeichen austauschen
+         $str = md5(uniqid(OBIB_PWD_FORGOTTEN_KEY, true));
+      } 
+      return $str;
+    }
+    
+   /****************************************************************************
+    * Preparation of the URL for resetting the password
+    * @param $mbr, $passwordCode
+    * @return URL for passwort create oder newset
+    * @access public
+    *****************************************************************************
+    */
+    function createURLPwdCode($staff, $passwordCode) {
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == TRUE) {
+            $httpS = 'https://';
+        } else {
+            $httpS = 'http://';;
+        }
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            $url_passwordcode .= '/openbiblio';
+        }
+        $url_passwordcode .= "/admin/staff_pwd_newset_form.php?username=" . $staff->getUsername() . "&code=". $passwordCode;
+        
+        return $url_passwordcode;
+  }
+    
 }
 
 ?>

@@ -37,6 +37,7 @@
 #****************************************************************************
 #*  Common translation text shared among multiple pages
 #****************************************************************************
+$trans["sharedSubmit"]             = "\$text = 'Submit';";
 $trans["sharedCancel"]             = "\$text = 'Cancel';";
 $trans["sharedDelete"]             = "\$text = 'Delete';";
 
@@ -107,11 +108,12 @@ $trans["loginFormTbleHdr"]         = "\$text = 'Staff Login';";
 $trans["loginFormUsername"]        = "\$text = 'Username';";
 $trans["loginFormPassword"]        = "\$text = 'Password';";
 $trans["loginFormLogin"]           = "\$text = 'Login';";
+$trans["PasswordForgotten"]	   = "\$text = 'Forgotten password?';";
 
 #****************************************************************************
 #*  Translation text for page login.php
 #****************************************************************************
-$trans["loginUserNameReqErr"]      = "\$text = 'Username is required.';";
+$trans["loginUserNameReqErr"]      = "\$text = 'Username is required or not correct.';";
 $trans["loginPwdReqErr"]           = "\$text = 'Password is required.';";
 $trans["loginPwdInvErr"]           = "\$text = 'Invalid signon.';";
 
@@ -162,5 +164,66 @@ $trans["footerDatabaseVersion"]    = "\$text='database version';";
 $trans["footerCopyright"]          = "\$text='Copyright';";
 $trans["footerUnderThe"]           = "\$text='under the';";
 $trans["footerGPL"]                = "\$text='GNU General Public License';";
+
+#**************************************************************************************
+#*  Translation text for page 
+#   - circ/
+#   - opac/
+#   -- mbr_pwd_reset_form.php
+#   -- mbr_pwd_newset.php
+#   -- mbr_pwd_newset_form.php
+#   - admin/staff_pwd_newset_form.php
+#**************************************************************************************
+$trans["mbr_pwd_create_form_Resetheader"]   = "\$text = 'Create member password:';";
+$trans["mbr_pwd_reset_form_Resetheader"]    = "\$text = 'Reset member password:';";
+$trans["staff_pwd_reset_form_Resetheader"]  = "\$text = 'Reset staff password:';";
+$trans["new_form_Password"]                 = "\$text = 'Password:';";
+$trans["PwdRequirement"]                    = "\$text = '<p style=\"color: #1a62ac;\">Rules: Password must have between 8 and 20 characters, at least 1 digit(s), <br />"
+        . "at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)</p>';";
+$trans["new_form_Reenterpassword"]          = "\$text = 'Repeat password:';";
+
+#****************************************************************************
+#*  Translation text for page circ/ and opac/mbr_pwd_reset.php
+#****************************************************************************
+$trans["mbr_return"]                       = "\$text = 'Return to member profil';";
+$trans["PwdResetSuccessfully"]             = "\$text = 'Password was changed successfully.';";
+
+#****************************************************************************
+#*  Translation text for page circ/ and shared/timeout.php
+#****************************************************************************
+$trans["PwdTimeout"]                       = "\$text = 'Your account is blocked for %time% minutes due to too many incorrect entries';";
+
+#****************************************************************************
+#*  Translation text for page shared/supsended.php
+#****************************************************************************
+$trans["staffSuspended"]                   = "\$text = 'Ihr Account ist deaktiviert worden.';";
+
+#****************************************************************************
+#*  Translation text for files in folders opac and shared
+#   mbr_pwd_forget_form.php, mbr_pwd_forget.php and mbr_pwd_newset_form.php
+#   staff_pwd_forget_form.php, staff_pwd_forget.php and staff_pwd_newset.php
+#****************************************************************************
+$trans["PwdForgottenSettingNone"]          = "\$text = 'Forgot password function is deactivated.';";
+$trans["PwdForgotten"]                     = "\$text = 'Request a new password:';";
+$trans["PwdForgottenInfo"]                 = "\$text = 'To reset your password, please enter either your user name "
+                                                        . "or your e-mail address. If you can be found in the database, "
+                                                        . "a message will be sent to your e-mail address.';";
+$trans["email"]                            = "\$text = 'E-Mail:';";
+$trans["barcodeNmbr"]                      = "\$text = 'Barcode Number:';";
+$trans["or"]                               = "\$text = 'or';";
+$trans["and"]                              = "\$text = 'and';";
+$trans["NewPassword"]                      = "\$text = 'New Password';";
+$trans["errEmailMissing"]                  = "\$text = 'Please enter an e-mail address!';";
+$trans["errbarcodeNmbrMissing"]            = "\$text = 'Bitte Benutzernummer eingeben!';";
+$trans["errNoUserFound"]                   = "\$text = 'No user found!';";
+$trans["errNoPwdForgottenCode"]            = "\$text = 'No forgotten password code could be created!';";
+$trans["errTooManyUserFound"]              = "\$text = 'Too many users found with the same e-mail. "
+                                                        . "Please use the input field for your user name!';";
+$trans["errMailCouldNotBeSent"]            = "\$text = 'Message could not be sent.';";
+$trans["SendMailForPwdForgottenCode"]      = "\$text = 'If you have entered the user name or the unique e-mail address "
+                                                    . "correctly, an automatic e-mail will be sent to you.';";
+$trans["TooManyAttempts"]                  = "\$text = 'Too many attempts!';";
+$trans["errExpiredPwdForgottenCode"]       = "\$text = 'Unfortunately your code has expired.';";
+$trans["errInvalidPwdForgottenURL"]        = "\$text = 'Make sure that you have the exact link in the URL!';";
 
 ?>

@@ -6,6 +6,31 @@
 
 /**
  * **************************************************************************
+ * 
+ * You must set these system constants!
+ * 
+ * ***************************************************************************
+ */
+#* OBIB_UPGRADE_KEY is necessary to start an upgrade of openbiblio
+#* used in the following files
+#* - install/index.php
+#* - install/upgradeSettings.php
+define("OBIB_UPGRADE_KEY", "Your_own_Upgrade_Key");
+
+#* OBIB_PWD_FORGOTTEN_KEY is the last key which is used if there are no other ways 
+#* of randomly generating a secure forgotten password code.
+#* (used in the following files 
+#* - admin/staff_pwd_forget.php and
+#* - opac/mbr_pwd_forget.php)
+define("OBIB_PWD_FORGOTTEN_KEY", "Cofz4#3HuR=8y3"); // at least 12 characters
+
+
+/* END for setting your own constants */
+
+
+
+/**
+ * **************************************************************************
  * result types:
  * OBIB_ASSOC - associative array result type
  * OBIB_NUM - numeric array result type
@@ -40,8 +65,8 @@ define("OBIB_SEARCH_FIRSTNAME", "9");
  * system constants
  * ***************************************************************************
  */
-define("OBIB_CODE_VERSION", "0.8");
-define("OBIB_LATEST_DB_VERSION", "0.7.1");
+define("OBIB_CODE_VERSION", "0.8.1");
+define("OBIB_LATEST_DB_VERSION", "0.8.1");
 define("OBIB_DEFAULT_STATUS", "in");
 define("OBIB_STATUS_IN", "in");
 define("OBIB_STATUS_OUT", "out");

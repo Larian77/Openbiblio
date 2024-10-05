@@ -44,6 +44,7 @@
     $postVars["last_name"] = $staff->getLastName();
     $postVars["first_name"] = $staff->getFirstName();
     $postVars["username"] = $staff->getUsername();
+    $postVars["email"] = $staff->getEmail();
     if ($staff->hasCircAuth()) {
       $postVars["circ_flg"] = "CHECKED";
     } else {
@@ -111,6 +112,14 @@
     </td>
     <td valign="top" class="primary">
       <?php printInputText("username",20,20,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  <tr>
+    <td style="white-space:nowrap;" class="primary">
+      <?php echo $loc->getText("adminStaff_edit_email"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php printInputText("email",30,30,$postVars,$pageErrors); ?>
     </td>
   </tr>
   <tr>

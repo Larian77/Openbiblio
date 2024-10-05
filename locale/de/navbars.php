@@ -52,15 +52,17 @@ $trans["homeLicenseLink"]          = "\$text = 'Lizenz';";
 #****************************************************************************
 $trans["adminSummary"]             = "\$text = 'Admin-Übersicht';";
 $trans["adminStaff"]               = "\$text = 'Mitarbeiter';";
-$trans["adminSettings"]            = "\$text = 'Bibliothekseinst.';";
 $trans["adminMaterialTypes"]       = "\$text = 'Medienarten';";
 $trans["adminCollections"]         = "\$text = 'Genres';";
-$trans["adminThemes"]              = "\$text = 'Layout';";
 $trans["adminTranslation"]         = "\$text = 'Übersetzung';";
 $trans["Member Types"]             = "\$text = 'Mitgliederarten';";
 $trans["Member Fields"]            = "\$text = 'Mitgliederfelder';";
 $trans["Copy Fields"]              = "\$text = 'Exemplarfelder';";
 $trans["Checkout Privs"]           = "\$text = 'Ausleiheinst.';";
+$trans["adminSettings"]            = "\$text = 'Bibliothekseinst.';";
+$trans["adminMailSettings"]        = "\$text = 'Mail-Einstellungen';";
+$trans["adminMailMessages"]        = "\$text = 'Mail-Nachrichten';";
+$trans["adminThemes"]              = "\$text = 'Layout';";
 
 #****************************************************************************
 #*  Translation text for page cataloging.php
@@ -97,25 +99,31 @@ $trans["Report List"]              = "\$text = 'Berichteübersicht';";
 $trans["Report Criteria"]          = "\$text = 'Berichtskriterien';";
 
 #****************************************************************************
-#*  Translation text for page opac.php
+#*  Translation text for page opac.php and loginform.php
 #****************************************************************************
 $trans["catalogSearch1"]           = "\$text = 'Suche';";
 $trans["catalogSearch2"]           = "\$text = 'Mediensuche';";
 $trans["catalogResults"]           = "\$text = 'Suchergebnisse';";
 $trans["catalogBibInfo"]           = "\$text = 'Medieninfo';";
-$trans["userlogin"]      	   = "\$text = 'Benutzerlogin';";
+$trans["userlogin"]      	   = "\$text = 'Benutzer-Login';";
 $trans["memberaccount"]      	   = "\$text = 'Benutzerkonto';";
+
+#****************************************************************************
+#*  Translation text for page navbar opac for file mbr_pwd_forget_form.php
+#****************************************************************************
+$trans["PwdNewSet"]           = "\$text='Kennw. neu setzen';";
 
 #Added
 
-$trans["memberInfo"]="\$text = 'Benutzerinfos';";
-$trans["memberSearch"]="\$text = 'Benutzersuche';";
-$trans["editInfo"]="\$text = 'Bearb. Infos';";
-$trans["checkoutHistory"]= "\$text = 'Ausleih-History';";
-$trans["account"]="\$text = 'Gebühren';";
-$trans["checkIn"]="\$text = 'Medienrückgabe';";
-$trans["memberSearch"]= "\$text = 'Benutzersuche';";
-$trans["newMember"]= "\$text = 'Neuer Benutzer';";
-$trans["Offline Circulation"]= "\$text = 'Offline Ausleihe';";
-//$trans["account"]        	= "\$text = 'Account';";
+$trans["memberInfo"]               = "\$text = 'Benutzerinfos';";
+$trans["memberSearch"]             = "\$text = 'Benutzersuche';";
+$trans["editInfo"]                 = "\$text = 'Bearb. Profil';";
+$trans["PwdCreate"]                = "\$text = 'Kennw. anlegen';";
+$trans["PwdReset"]                 = "\$text = 'Kennw. ändern';";
+$trans["checkoutHistory"]          = "\$text = 'Ausleih-History';";
+$trans["account"]                  = "\$text = 'Gebühren';";
+$trans["checkIn"]                  = "\$text = 'Medienrückgabe';";
+$trans["memberSearch"]             = "\$text = 'Benutzersuche';";
+$trans["newMember"]                = "\$text = 'Neuer Benutzer';";
+$trans["Offline Circulation"]      = "\$text = 'Offline Ausleihe';";
 ?>
