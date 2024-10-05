@@ -53,7 +53,9 @@ $trans["indexCardHdr"] = "\$text='Search Member by Card Number:';";
 $trans["indexCard"] = "\$text='Card Number:';";
 $trans["indexSearch"] = "\$text='Search';";
 $trans["indexNameHdr"] = "\$text='Search Member by Last Name:';";
-$trans["indexName"] = "\$text='Last name start with:';";
+$trans["indexName"] = "\$text='Last name starts with:';";
+$trans["indexFirstNameHdr"] = "\$text='Search Member by First Name:';";
+$trans["indexFirstName"] = "\$text='First name starts with:';";
 
 # ****************************************************************************
 # * Translation text for page mbr_new_form.php, mbr_edit_form.php and mbr_fields.php

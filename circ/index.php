@@ -64,4 +64,24 @@ if (isset($_REQUEST['msg'])) {
 	</table>
 </form>
 
+
+<form name="phrasesearch" method="POST" action="../circ/mbr_search.php">
+	<table class="primary">
+		<tr>
+			<th valign="top" style="white-space: nowrap;" align="left">
+      <?php echo $loc->getText("indexFirstNameHdr"); ?>
+    </th>
+		</tr>
+		<tr>
+			<td style="white-space: nowrap;" class="primary">
+      <?php echo $loc->getText("indexFirstName"); ?>
+      <input type="text" name="searchText" size="30" maxlength="80"> <input
+				type="hidden" name="searchType" value="firstName"> <input
+				type="submit" value="<?php echo $loc->getText("indexSearch"); ?>"
+				class="button">
+			</td>
+		</tr>
+	</table>
+</form>
+
 <?php include("../shared/footer.php"); ?>

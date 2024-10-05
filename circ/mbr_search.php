@@ -81,6 +81,8 @@ $searchText = preg_replace('/\s+/', " ", $searchText);
 
 if ($searchType == "barcodeNmbr") {
     $sType = OBIB_SEARCH_BARCODE;
+} elseif ($searchType == "firstName") {
+    $sType = OBIB_SEARCH_FIRSTNAME;
 } else {
     $sType = OBIB_SEARCH_NAME;
 }
