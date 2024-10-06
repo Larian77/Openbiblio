@@ -161,7 +161,7 @@ class MemberQuery extends Query
         $mbr->setWorkPhone($array["work_phone"]);
         $mbr->setEmail($array["email"]);
         $mbr->setClassification($array["classification"]);
-        $mbr->setMembershipEnd($array["mbrshipend"]);
+        $mbr->setMembershipEnd($array["mbrshipend"] ?? '');
 
         $mbr->_custom = $this->getCustomFields($array['mbrid']);
         return $mbr;
@@ -241,7 +241,8 @@ class MemberQuery extends Query
             . "(mbrid, barcode_nmbr, create_dt, last_change_dt, "
             . "last_change_userid, last_name, first_name, pwd, pwd_timeout, "
             . "pwd_forgotten, pwd_forgotten_time, address, home_phone, "
-            . "work_phone, email, classification, mbrshipend) "
+            // . "work_phone, email, classification, mbrshipend) "
+            . "work_phone, email, classification) "
             . "values (null, %Q, sysdate(), sysdate(), "
             . "%N, %Q, %Q, %Q, %Q, "
             . "%Q, %Q, %Q, %Q, "
@@ -281,7 +282,8 @@ class MemberQuery extends Query
             . " last_change_dt = sysdate(), last_change_userid=%N, "
             . " barcode_nmbr=%Q, last_name=%Q, first_name=%Q, "
             . " address=%Q, home_phone=%Q, work_phone=%Q, "
-            . " email=%Q, classification=%Q, mbrshipend=%Q "
+            // . " email=%Q, classification=%Q, mbrshipend=%Q "
+            . " email=%Q, classification=%Q "
             . "where mbrid=%N",
             $mbr->getLastChangeUserid(),
             $mbr->getBarcodeNmbr(),
@@ -292,7 +294,7 @@ class MemberQuery extends Query
             $mbr->getWorkPhone(),
             $mbr->getEmail(),
             $mbr->getClassification(),
-            $mbr->getMembershipEnd(),
+            // $mbr->getMembershipEnd(),
             $mbr->getMbrid()
         );
 

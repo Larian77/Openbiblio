@@ -131,9 +131,9 @@ class Query
     function lock()
     {
         //Changes PVD(8.0.x)
-        //this two define is added because they have not defined this statment
-        define('OBIB_LOCK_NAME', 'akshar');
-        define('OBIB_LOCK_TIMEOUT', '10');
+        //2 global constants defined here because they have not defined elsewhere
+        if (!defined('OBIB_LOCK_NAME')){define('OBIB_LOCK_NAME', 'openbiblio_lock');}
+        if (!defined('OBIB_LOCK_TIMEOUT')){define('OBIB_LOCK_TIMEOUT', '10');}
         global $_Query_lock_depth;
         if ($_Query_lock_depth < 0) {
             //Changes PVD(8.0.x)

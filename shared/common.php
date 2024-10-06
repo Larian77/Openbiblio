@@ -63,7 +63,7 @@ function H($s)
         return htmlspecialchars($s, ENT_QUOTES | ENT_IGNORE);
     } else {
         //Changes PVD(8.0.x)
-        return htmlspecialchars($s ?: '', ENT_QUOTES | ENT_SUBSTITUTE, $charset);
+        return htmlspecialchars($s ?? '', ENT_QUOTES | ENT_SUBSTITUTE, $charset);
     }
 }
 function HURL($s)
