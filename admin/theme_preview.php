@@ -270,7 +270,7 @@ define("OBIB_PADDING", $_POST["tablePadding"]);
 			</font> <br>
 			<br>
 			<br>
-			<br> <a href="http://obiblio.sourceforge.net/"><img
+			<br> <a href="http://openbiblio.de/"><img
 					src="../images/powered_by_openbiblio.gif" width="125" height="44"
 					border="0"></a></td>
 			<td style="padding: 0px" bgcolor="<?php echo H(OBIB_BORDER_COLOR);?>"><img
