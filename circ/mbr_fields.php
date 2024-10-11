@@ -33,14 +33,14 @@ if ($set->_isMbrAccountOnline == TRUE && $mbr->getFileSource() != "mbr_edit_form
     // If an incorrect entry is made (e.g. mail), the password fields would be available again even if TypeOfPwdCreation is checked. 
     // Therefore the use of readonly. If the checkmark is removed, a password can be set manually again.
     if (isset($postVars['TypeOfPwdCreation']) && $postVars['TypeOfPwdCreation'] == 'CHECKED') {
-        $readonly = 'readonly';
+        $Pwd_ID = array('id' => 'pwd',
+                        'readonly' => 'readonly');
+        $PwdRepeat_ID = array('id' => 'pwdRepeat',
+                              'readonly' => 'readonly');
     } else {
-        $readonly = '';
+        $Pwd_ID = array('id' => 'pwd');
+        $PwdRepeat_ID = array('id' => 'pwdRepeat');
     }
-    $Pwd_ID = array('id' => 'pwd',
-                    'readonly' => $readonly);
-    $PwdRepeat_ID = array('id' => 'pwdRepeat',
-                          'readonly' => $readonly);
     $fields["mbr_new_form_TypeOfPwdCreation"] = inputField('checkbox', 'TypeOfPwdCreation', NULL, $TypeOfPwdCreation_ID, 'CHECKED');
     $fields["mbr_new_form_Password"] = inputField('password', 'pwd', $mbr->getPwd(), $Pwd_ID);
     $fields['mbr_new_form_Reenterpassword'] = inputField('password', 'pwdRepeat', $mbr->getPwdRepeat(), $PwdRepeat_ID);

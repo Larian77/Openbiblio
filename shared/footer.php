@@ -24,7 +24,7 @@
         <a href="javascript:popSecondary('../shared/help.php<?php if (isset($helpPage)) echo "?page=".H(addslashes(U($helpPage))); ?>')"><?php echo $headerLoc->getText("footerHelp"); ?></a>
     </p>
     <p>
-        <a href="http://obiblio.sourceforge.net/"><img src="../images/powered_by_openbiblio.gif" width="125" height="44" border="0"></a>
+        <a href="https://openbiblio.de/"><img src="../images/powered_by_openbiblio.gif" width="125" height="44" border="0"></a>
     </p>
     <p class="footerInfo">  
         <?php echo $headerLoc->getText("footerPoweredBy"); ?> <?php echo H(OBIB_CODE_VERSION);?>
