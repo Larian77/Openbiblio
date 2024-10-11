@@ -25,7 +25,7 @@
   }
 
   #****************************************************************************
-  #*  Validate data
+  #*  Set new member datas
   #****************************************************************************
   $staff = new Staff();
   $staff->setLastChangeUserid($_SESSION["userid"]);
@@ -35,6 +35,9 @@
   $_POST["first_name"] = $staff->getFirstName();
   $staff->setUsername($_POST["username"]);
   $_POST["username"] = $staff->getUsername();
+  $staff->setEmail($_POST["email"]);
+  $_POST["email"] = $staff->getEmail();
+  $staff->setTypeOfPwdCreation(isset($_POST["TypeOfPwdCreation"]));
   $staff->setPwd($_POST["pwd"]);
   $_POST["pwd"] = $staff->getPwd();
   $staff->setPwd2($_POST["pwd2"]);
@@ -44,11 +47,21 @@
   $staff->setCatalogAuth(isset($_POST["catalog_flg"]));
   $staff->setAdminAuth(isset($_POST["admin_flg"]));
   $staff->setReportsAuth(isset($_POST["reports_flg"]));
+  
+  #**************************************************************************
+  #*  Validation of the new staff member datas
+  #**************************************************************************
   $validData = $staff->validateData();
-  $validPwd = $staff->validatePwd();
+  if ($staff->getTypeOfPwdCreation() != 1) {
+    $validPwd = $staff->validatePwd();
+  } else {
+      $validPwd = "notSet";
+      $staff->setPwd(NULL);
+  }
   if (!($validData && $validPwd)) {
     $pageErrors["last_name"] = $staff->getLastNameError();
     $pageErrors["username"] = $staff->getUsernameError();
+    $pageErrors["email"] = $staff->getEmailError();
     $pageErrors["pwd"] = $staff->getPwdError();
     $_SESSION["postVars"] = $_POST;
     $_SESSION["pageErrors"] = $pageErrors;
@@ -65,11 +78,59 @@
     $staffQ->close();
     displayErrorPage($staffQ);
   }
-  if (!$staffQ->insert($staff)) {
+  $staff->setUserid($staffQ->insert($staff));
+  if ($staff->getUserid() == Null) {
     $staffQ->close();
     displayErrorPage($staffQ);
   }
-  $staffQ->close();
+    
+#**************************************************************************
+#*  If the password will be created by the library member by e-mail.
+#**************************************************************************
+if($staff->getTypeOfPwdCreation() == 1 && (!$staff->getUserid() == NULL)) {
+    #********************************************************************************
+    #* Creation of the password code, encryption and entry in the DB in table member
+    #******************************************************************************** 
+    $passwordCode = $staff->random_string();
+    $staff->setPwdForgotten(hash('sha256', $passwordCode));
+    $success = $staffQ->setPwdForgottenCode($staff);
+    if ($success == NULL) {
+        $error = $loc->getText('errNoPwdForgottenCode');
+    }
+    $staffQ->close();
+    
+    #************************************************************************
+    #* Creation of the URL for resetting the password
+    #************************************************************************        
+    $url_passwordcode = $staff->createURLPwdCode($staff, $passwordCode);
+    
+    #********************************************************************************
+    #* Reference to the required message (DB --> mail_messages --> mail_message_type)
+    #********************************************************************************
+    $mailMessageType = 'welcome_message';
+    
+    #**************************************************************************
+    #*  Preparation of the text variables which will be included in the message
+    #**************************************************************************
+    // PwdForgottenCodeDuration is only set in Mailing.php as an exception, as MailSet is queried there first.
+    $mailTextVariables = array(
+            "FirstName"   => $staff->getFirstName(),
+            "LastName"    => $staff->getLastName(),
+            "url_pwdcode" => $url_passwordcode);
+    
+    #**************************************************************************
+    #*  Preparation of fürhter variables for mailing
+    #**************************************************************************
+    $mailAdress = $staff->getEmail();
+    $noticeSuccess = $loc->getText('staffNewMailingSuccessful');
+    $noticeError = $loc->getText('errMailCouldNotBeSent');
+    
+    #**************************************************************************
+    #*  Inclusion of the general mailing code
+    #**************************************************************************
+    include_once('../classes/email/Mailing.php');
+
+}
 
   #**************************************************************************
   #*  Destroy form values and errors

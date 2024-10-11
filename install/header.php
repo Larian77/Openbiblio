@@ -9,6 +9,7 @@
 <style type="text/css">
   <?php include("../css/style.css"); ?>
 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
 <meta name="description" content="OpenBiblio Library Automation System">
 <title>OpenBiblio Install</title>
 </head>
@@ -35,4 +36,4 @@ if (isset($focus_form_name) && ($focus_form_name != "")) {
 	<!-- **************************************************************************************
      * beginning of main body
      **************************************************************************************-->
-	<font class="primary" color="#ffffff">
+	

@@ -79,7 +79,7 @@
   ?>
   <tr>
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/theme_edit_form.php?themeid=<?php echo HURL($theme->getThemeid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminTheme_Edit"); ?></a>
+      <a href="../admin/theme_edit_form.php?themeid=<?php echo HURL($theme->getThemeid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("edit"); ?></a>
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <a href="../admin/theme_new_form.php?themeid=<?php echo HURL($theme->getThemeid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminTheme_Copy"); ?></a>

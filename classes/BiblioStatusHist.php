@@ -99,58 +99,58 @@ class BiblioStatusHist
    */
   function setBibid($value)
   {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim($value ?? '');
   }
   function setCopyid($value)
   {
-    $this->_copyid = trim($value);
+    $this->_copyid = trim($value ?? '');
   }
   function setBiblioBarcodeNmbr($value)
   {
-    $this->_biblioBarcodeNmbr = trim($value);
+    $this->_biblioBarcodeNmbr = trim($value ?? '');
   }
   function setTitle($value)
   {
-    $this->_title = trim($value);
+    $this->_title = trim($value ?? '');
   }
   function setAuthor($value)
   {
-    $this->_author = trim($value);
+    $this->_author = trim($value ?? '');
   }
   function setStatusCd($value)
   {
-    $this->_statusCd = trim($value);
+    $this->_statusCd = trim($value ?? '');
   }
   function setStatusBeginDt($value)
   {
-    $this->_statusBeginDt = trim($value);
+    $this->_statusBeginDt = trim($value ?? '');
   }
   function setMbrid($value)
   {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim($value ?? '');
   }
   function setLastName($value)
   {
-    $this->_lastName = trim($value);
+    $this->_lastName = trim($value ?? '');
   }
   function setFirstName($value)
   {
-    $this->_firstName = trim($value);
+    $this->_firstName = trim($value ?? '');
   }
   function setMbrBarcodeNmbr($value)
   {
     //Changes PVD(8.0.x)
-    $this->_mbrBarecodeNmbr = @trim($value);
+    $this->_mbrBarecodeNmbr = trim($value ?? '');
   }
   function setDueBackDt($value)
   {
     //Changes PVD(8.0.x)
-    $this->_dueBackDt = @trim($value);
+    $this->_dueBackDt = trim($value ?? '');
   }
   function setRenewalCount($value)
   {
     //Changes PVD(8.0.x)
-    $this->_renewalCount = @trim($value);
+    $this->_renewalCount = trim($value ?? '');
   }
 }
 

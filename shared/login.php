@@ -3,6 +3,7 @@
  * See the file COPYRIGHT.html for more details.
  */
 
+$tab = "home";
 require_once("../shared/common.php");
 require_once("../classes/Staff.php");
 require_once("../classes/StaffQuery.php");
@@ -35,40 +36,82 @@ if ($username == "") {
 #****************************************************************************
 $error_found = false;
 $pwd = $_POST["pwd"];
-if ($pwd == "") {
+if (str_replace(' ','',$pwd) == "") {
     $error_found = true;
     $pageErrors["pwd"] = $loc->getText("loginPwdReqErr");
 } else {
-
-
     $staffQ = new StaffQuery();
     $staffQ->connect_e();
     if ($staffQ->errorOccurred()) {
         displayErrorPage($staffQ);
     }
-    $staffQ->verifySignon($username, $pwd);
+    $PwdHashChange = 0;
+    $pwdmd5 = $staffQ->verifySignonMd5($username, $pwd); // Necessary as long as md5 passwords are still available
+    if ($pwdmd5->num_rows == 1) {
+        $PwdHashChange = 1;
+    } else {
+        $pwdHash = $staffQ->verifySignonPwdHash($username);    
+    }
     if ($staffQ->errorOccurred()) {
         displayErrorPage($staffQ);
     }
     $staff = $staffQ->fetchStaff();
-    if ($staff == false) {
-        # invalid password.  Add one to login attempts.
+    if ($staff == NULL) {
         $error_found = true;
-        $pageErrors["pwd"] = $loc->getText("loginPwdInvErr");
-        if (!isset($_SESSION["loginAttempts"]) || ($_SESSION["loginAttempts"] == "")) {
-            $sess_login_attempts = 1;
+        $pageErrors["username"] = $loc->getText("loginUserNameReqErr");
+        
+    } else {
+        #****************************************************************************
+        # Password timeout query
+        #****************************************************************************
+        $PwdTimeout = new DateTimeImmutable($staff->getPwdTimeout());
+        $PwdTimeon = $PwdTimeout->add(new DateInterval('PT' . OBIB_PWD_TIMEOUT . 'M'));
+        $timeCurrent = new DateTime("now");
+        if ($PwdTimeon == $timeCurrent || $PwdTimeon < $timeCurrent) {
+            if (isset($pwdHash->num_rows) == 1) {
+                $validatepassword = '';
+                $validatepassword = password_verify($pwd, $staff->_pwd);
+                if($validatepassword != 1) {
+                    $staff = false;
+                }
+            }   
+            if ($PwdHashChange === 1) {
+                $PwdHashNew = $staffQ->Change_Md5_Pwd($staff, $pwd);  //Update md5-Pwd to Pwd-Hash
+                if($PwdHashNew != 1) {
+                    $staff = false;
+                }
+            }
+
+            if ($staff == false) { 
+                # invalid password.  Add one to login attempts.
+                $error_found = true;
+                $pageErrors["pwd"] = $loc->getText("loginPwdInvErr");
+                if (!isset($_SESSION["loginAttempts"]) || ($_SESSION["loginAttempts"] == "")) {
+                    $sess_login_attempts = 1;
+                } else {
+                    $sess_login_attempts = $_SESSION["loginAttempts"] + 1;
+                }
+                $_SESSION["loginAttempts"] = $sess_login_attempts;   
+                # Suspend userid if there are too many login attempts
+                if ($sess_login_attempts >= OBIB_LOGIN_ATTEMPTS ) {
+                    $staffQ->LoginTimeoutStaff($username);
+                    $staffQ->close();
+                    $_SESSION["loginAttempts"] = 0;
+                    $_SESSION["loginPage"] = $tab;
+                    header("Location: timeout.php");
+                    exit();
+                }
+            }
         } else {
-            $sess_login_attempts = $_SESSION["loginAttempts"] + 1;
-        }
-        # Suspend userid if login attempts >= 3
-        if ($sess_login_attempts >= 3) {
-            $staffQ->suspendStaff($username);
-            $staffQ->close();
-            header("Location: suspended.php");
+        #****************************************************************************
+        #*  Redirect of a message if timeout due to too frequent incorrect login
+        #****************************************************************************
+            $_SESSION["loginPage"] = $tab;
+            header("Location: ../shared/timeout.php");
             exit();
         }
+        $staffQ->close();
     }
-    $staffQ->close();
 }
 
 #****************************************************************************

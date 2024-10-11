@@ -388,19 +388,19 @@ class Theme {
    ****************************************************************************
    */
   function setThemeid($value) {
-    $this->_themeid = trim($value);
+    $this->_themeid = trim($value ?? '');
   }
   function setThemeName($value) {
-    $this->_themeName = trim($value);
+    $this->_themeName = trim($value ?? '');
   }
   function setTitleBg($value) {
-    $this->_titleBg = trim($value);
+    $this->_titleBg = trim($value ?? '');
   }
   function setTitleFontFace($value) {
-    $this->_titleFontFace = trim($value);
+    $this->_titleFontFace = trim($value ?? '');
   }
   function setTitleFontSize($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_titleFontSize = 0;
     } else {
@@ -415,19 +415,19 @@ class Theme {
     }
   }
   function setTitleFontColor($value) {
-    $this->_titleFontColor = trim($value);
+    $this->_titleFontColor = trim($value ?? '');
   }
   function setTitleAlign($value) {
-    $this->_titleAlign = trim($value);
+    $this->_titleAlign = trim($value ?? '');
   }
   function setPrimaryBg($value) {
-    $this->_primaryBg = trim($value);
+    $this->_primaryBg = trim($value ?? '');
   }
   function setPrimaryFontFace($value) {
-    $this->_primaryFontFace = trim($value);
+    $this->_primaryFontFace = trim($value ?? '');
   }
   function setPrimaryFontSize($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_primaryFontSize = 0;
     } else {
@@ -435,22 +435,22 @@ class Theme {
     }
   }
   function setPrimaryFontColor($value) {
-    $this->_primaryFontColor = trim($value);
+    $this->_primaryFontColor = trim($value ?? '');
   }
   function setPrimaryLinkColor($value) {
-    $this->_primaryLinkColor = trim($value);
+    $this->_primaryLinkColor = trim($value ?? '');
   }
   function setPrimaryErrorColor($value) {
-    $this->_primaryErrorColor = trim($value);
+    $this->_primaryErrorColor = trim($value ?? '');
   }
   function setAlt1Bg($value) {
-    $this->_alt1Bg = trim($value);
+    $this->_alt1Bg = trim($value ?? '');
   }
   function setAlt1FontFace($value) {
-    $this->_alt1FontFace = trim($value);
+    $this->_alt1FontFace = trim($value ?? '');
   }
   function setAlt1FontSize($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_alt1FontSize = 0;
     } else {
@@ -458,19 +458,19 @@ class Theme {
     }
   }
   function setAlt1FontColor($value) {
-    $this->_alt1FontColor = trim($value);
+    $this->_alt1FontColor = trim($value ?? '');
   }
   function setAlt1LinkColor($value) {
-    $this->_alt1LinkColor = trim($value);
+    $this->_alt1LinkColor = trim($value ?? '');
   }
   function setAlt2Bg($value) {
-    $this->_alt2Bg = trim($value);
+    $this->_alt2Bg = trim($value ?? '');
   }
   function setAlt2FontFace($value) {
-    $this->_alt2FontFace = trim($value);
+    $this->_alt2FontFace = trim($value ?? '');
   }
   function setAlt2FontSize($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_alt2FontSize = 0;
     } else {
@@ -478,10 +478,10 @@ class Theme {
     }
   }
   function setAlt2FontColor($value) {
-    $this->_alt2FontColor = trim($value);
+    $this->_alt2FontColor = trim($value ?? '');
   }
   function setAlt2LinkColor($value) {
-    $this->_alt2LinkColor = trim($value);
+    $this->_alt2LinkColor = trim($value ?? '');
   }
   function setAlt2FontBold($value) {
     if ($value) {
@@ -491,13 +491,13 @@ class Theme {
     }
   }
   function setBorderColor($value) {
-    $this->_borderColor = trim($value);
+    $this->_borderColor = trim($value ?? '');
   }
   function setBorderWidth($value) {
-    $this->_borderWidth = trim($value);
+    $this->_borderWidth = trim($value ?? '');
   }
   function setTablePadding($value) {
-    $this->_tablePadding = trim($value);
+    $this->_tablePadding = trim($value ?? '');
   }
 
 }

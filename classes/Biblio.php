@@ -108,37 +108,37 @@ class Biblio {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim($value ?? '');
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim($value ?? '');
   }
   function setLastChangeDt($value) {
-    $this->_lastChangeDt = trim($value);
+    $this->_lastChangeDt = trim($value ?? '');
   }
   function setLastChangeUserid($value) {
-    $this->_lastChangeUserid = trim($value);
+    $this->_lastChangeUserid = trim($value ?? '');
   }
   function setLastChangeUsername($value) {
-    $this->_lastChangeUsername = trim($value);
+    $this->_lastChangeUsername = trim($value ?? '');
   }
   function setMaterialCd($value) {
-    $this->_materialCd = trim($value);
+    $this->_materialCd = trim($value ?? '');
   }
   function setCollectionCd($value) {
-    $this->_collectionCd = trim($value);
+    $this->_collectionCd = trim($value ?? '');
   }
   function setCallNmbr1($value) {
-    $this->_callNmbr1 = trim($value);
+    $this->_callNmbr1 = trim($value ?? '');
   }
   function setCallNmbr2($value) {
-    $this->_callNmbr2 = trim($value);
+    $this->_callNmbr2 = trim($value ?? '');
   }
   function setCallNmbr3($value) {
-    $this->_callNmbr3 = trim($value);
+    $this->_callNmbr3 = trim($value ?? '');
   }
   function setCallNmbrError($value) {
-    $this->_callNmbrError = trim($value);
+    $this->_callNmbrError = trim($value ?? '');
   }
   function setOpacFlg($flag) {
     if ($flag == true) {

@@ -32,6 +32,9 @@ class Settings {
   var $_locale = "";
   var $_charset = "";
   var $_htmlLangAttr = "";
+  var $_loginAttempts = 9;
+  var $_pwdTimeout = 30;
+  var $_isMbrAccountOnline = TRUE;
 
   /****************************************************************************
   * @return array with code and description of installed locales
@@ -151,6 +154,15 @@ class Settings {
   function getHtmlLangAttr() {
     return $this->_htmlLangAttr;
   }
+  function getLoginAttempts() {
+      return $this->_loginAttempts;
+  }
+  function getPwdTimeout() {
+      return $this->_pwdTimeout;
+  }
+  function isMbrAccountOnline() {
+      return $this->_isMbrAccountOnline;
+  }
 
   /****************************************************************************
    * Setter methods for all fields
@@ -160,10 +172,10 @@ class Settings {
    ****************************************************************************
    */
   function setLibraryName($value) {
-    $this->_libraryName = trim($value);
+    $this->_libraryName = trim($value ?? '');
   }
   function setLibraryImageUrl($value) {
-    $this->_libraryImageUrl = trim($value);
+    $this->_libraryImageUrl = trim($value ?? '');
   }
   function setUseImageFlg($value) {
     if ($value) {
@@ -173,19 +185,19 @@ class Settings {
     }
   }
   function setLibraryHours($value) {
-    $this->_libraryHours = trim($value);
+    $this->_libraryHours = trim($value ?? '');
   }
   function setLibraryPhone($value) {
-    $this->_libraryPhone = trim($value);
+    $this->_libraryPhone = trim($value ?? '');
   }
   function setLibraryUrl($value) {
-    $this->_libraryUrl = trim($value);
+    $this->_libraryUrl = trim($value ?? '');
   }
   function setOpacUrl($value) {
-    $this->_opacUrl = trim($value);
+    $this->_opacUrl = trim($value ?? '');
   }
   function setSessionTimeout($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_sessionTimeout = 0;
     } else {
@@ -193,10 +205,10 @@ class Settings {
     }
   }
   function setSessionTimeoutError($value) {
-    $this->_sessionTimeoutError = trim($value);
+    $this->_sessionTimeoutError = trim($value ?? '');
   }
   function setItemsPerPage($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_itemsPerPage = 0;
     } else {
@@ -204,13 +216,13 @@ class Settings {
     }
   }
   function setItemsPerPageError($value) {
-    $this->_itemsPerPageError = trim($value);
+    $this->_itemsPerPageError = trim($value ?? '');
   }
   function setVersion($value) {
-    $this->_version = trim($value);
+    $this->_version = trim($value ?? '');
   }
   function setThemeid($value) {
-    $temp = trim($value);
+    $temp = trim($value ?? '');
     if ($temp == "") {
       $this->_themeid = 0;
     } else {
@@ -218,7 +230,7 @@ class Settings {
     }
   }
   function setPurgeHistoryAfterMonths($value) {
-    $this->_purgeHistoryAfterMonths = trim($value);
+    $this->_purgeHistoryAfterMonths = trim($value ?? '');
   }
   function setBlockCheckoutsWhenFinesDue($value) {
     if ($value) {
@@ -228,16 +240,29 @@ class Settings {
     }
   }
   function setHoldMaxDays($value) {
-    $this->_holdMaxDays = trim($value);
+    $this->_holdMaxDays = trim($value ?? '');
   }
   function setLocale($value) {
-    $this->_locale = trim($value);
+    $this->_locale = trim($value ?? '');
   }
   function setCharset($value) {
-    $this->_charset = trim($value);
+    $this->_charset = trim($value ?? '');
   }
   function setHtmlLangAttr($value) {
-    $this->_htmlLangAttr = trim($value);
+    $this->_htmlLangAttr = trim($value ?? '');
+  }
+  function setLoginAttempts($value) {
+      $this->_loginAttempts = $value;
+  }
+  function setPwdTimeout($value) {
+      $this->_pwdTimeout = $value;
+  } 
+  function setMbrAccountOnline($value) {
+    if ($value) {
+      $this->_isMbrAccountOnline = TRUE;
+    } else {
+      $this->_isMbrAccountOnline = FALSE;
+    }
   }
 
 }

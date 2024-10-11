@@ -131,14 +131,18 @@ $trans["reportCriteriaDateTimeErr"] = "\$text = 'Invalid datetime format.';";
 $trans["reportCriteriaDateErr"]   = "\$text = 'Invalid date format.';";
 
 #****************************************************************************
-#*  Translation text for class Staff
+#*  Translation text for classes Staff, Member and EmailMessages
 #****************************************************************************
-$trans["staffLastNameReqErr"]     = "\$text = 'Last name is required.';";
-$trans["staffUserNameLenErr"]     = "\$text = 'Username must be at least 4 characters.';";
-$trans["staffUserNameCharErr"]    = "\$text = 'Username must not contain any spaces.';";
-$trans["staffPwdLenErr"]          = "\$text = 'Password must be at least 4 characters.';";
-$trans["staffPwdCharErr"]         = "\$text = 'Password must not contain any spaces.';";
-$trans["staffPwdMatchErr"]        = "\$text = 'Passwords do not match.';";
+$trans["LastNameReqErr"]     = "\$text = 'Last name is required.';";
+$trans["UserNameLenErr"]     = "\$text = 'Username must be at least 4 characters.';";
+$trans["UserNameCharErr"]    = "\$text = 'Username must not contain any spaces.';";
+$trans["PwdLenErr"]          = "\$text = 'Password must have between 8 and 20 characters.';";
+$trans["UserEmailCharErr"]   = "\$text = 'E-mail address not correct.';";
+$trans["PwdCharErr"]         = "\$text = 'Password must not contain any spaces.';";
+$trans["PwdMatchErr"]        = "\$text = 'Passwords do not match.';";
+$trans["PwdRequirementErr"]  = "\$text = 'Password must have at least 1 digit(s), at least 1 lower case letter(s),"
+        . " at least 1 upper case letter(s), at least 1 non-alphanumeric character(s) (allowed: @_#§%$)';";
+$trans["mailSubjectReqErr"]  = "\$text = 'Subject is required.';";
 
 #****************************************************************************
 #*  Translation text for class Member

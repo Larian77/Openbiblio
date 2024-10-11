@@ -34,6 +34,8 @@
   $_POST["first_name"] = $staff->getFirstName();
   $staff->setUsername($_POST["username"]);
   $_POST["username"] = $staff->getUsername();
+  $staff->setEmail($_POST["email"]);
+  $_POST["email"] = $staff->getEmail();
   $staff->setCircAuth(isset($_POST["circ_flg"]));
   $staff->setCircMbrAuth(isset($_POST["circ_mbr_flg"]));
   $staff->setCatalogAuth(isset($_POST["catalog_flg"]));
@@ -43,6 +45,7 @@
   if (!$staff->validateData()) {
     $pageErrors["last_name"] = $staff->getLastNameError();
     $pageErrors["username"] = $staff->getUsernameError();
+    $pageErrors["email"] = $staff->getEmailError();
     $_SESSION["postVars"] = $_POST;
     $_SESSION["pageErrors"] = $pageErrors;
     header("Location: ../admin/staff_edit_form.php");

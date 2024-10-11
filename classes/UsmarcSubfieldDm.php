@@ -44,20 +44,20 @@ class UsmarcSubfieldDm {
    ****************************************************************************
    */
   function setTag($value) {
-    if (trim($value) == "") {
+    if (trim($value ?? '') == "") {
       $this->_tag = "0";
     } else {
-      $this->_tag = trim($value);
+      $this->_tag = trim($value ?? '');
     }
   }
   function setSubfieldCd($value) {
-    $this->_subfieldCd = substr(trim($value),0,1);
+    $this->_subfieldCd = substr(trim($value ?? ''),0,1);
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim($value ?? '');
   }
   function setRepeatableFlg($value) {
-    $this->_repeatableFlg = trim($value);
+    $this->_repeatableFlg = trim($value ?? '');
   }
 
 }
