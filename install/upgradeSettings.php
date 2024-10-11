@@ -12,7 +12,7 @@
   require_once("../classes/SettingsQuery.php");
   require_once("../functions/inputFuncs.php");
   require_once("../classes/Localize.php");
-  $loc = new Localize('de',$tab);
+  $loc = new Localize(MAIN_LOCALE, $tab);
   require_once("../classes/UpgradeQuery.php"); // MV wahrscheinlich hier nicht notwednig
 
   if (count($_POST) == 0) {
