@@ -280,7 +280,7 @@ function changePage(page,sort)
     ************************************************************************** -->
 <table class="primary">
   <tr>
-    <th valign="top" style="white-space:nowrap" align="left" colspan="3">
+    <th valign="top" style="white-space:nowrap" align="left" colspan="4">
       <?php echo $loc->getText("biblioSearchResults"); ?>:
     </th>
   </tr>
