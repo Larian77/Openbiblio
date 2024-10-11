@@ -292,7 +292,7 @@ class MemberQuery extends Query
             $mbr->getWorkPhone(),
             $mbr->getEmail(),
             $mbr->getClassification(),
-            // $mbr->getMembershipEnd(),
+            $mbr->getMembershipEnd(),
             $mbr->getMbrid()
         );
 
