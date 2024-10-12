@@ -407,20 +407,20 @@ class UpgradeQuery extends InstallQuery {
     $this->exec('ALTER TABLE ' . $prfx . 'member '
                     . 'ADD pwd VARCHAR(255) AFTER barcode_nmbr ');
     $this->exec("ALTER TABLE " . $prfx . "member "
-                    . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
+                    . "ADD pwd_timeout DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' AFTER pwd ");
     $this->exec('ALTER TABLE ' . $prfx . 'member '
                     . 'ADD pwd_forgotten varchar(255) NULL AFTER pwd_timeout ');
     $this->exec("ALTER TABLE " . $prfx . "member "
-                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd_forgotten ");
+                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT '1970-01-01 00:00:00' AFTER pwd_forgotten ");
     $this->exec('ALTER TABLE ' . $prfx . 'staff MODIFY pwd VARCHAR(255) ');
     $this->exec("ALTER TABLE " . $prfx . "staff "
-                    . "ADD pwd_timeout DATETIME NOT NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd ");
+                    . "ADD pwd_timeout DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' AFTER pwd ");
     $this->exec('ALTER TABLE ' . $prfx . 'staff '
                     . 'ADD email VARCHAR(128) NULL AFTER first_name ');
-        $this->exec('ALTER TABLE ' . $prfx . 'staff '
+    $this->exec('ALTER TABLE ' . $prfx . 'staff '
                     . 'ADD pwd_forgotten varchar(255) NULL AFTER pwd_timeout ');
     $this->exec("ALTER TABLE " . $prfx . "staff "
-                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT ('1970-01-01 12:00:00') AFTER pwd_forgotten ");
+                    . "ADD pwd_forgotten_time DATETIME NULL DEFAULT '1970-01-01 00:00:00' AFTER pwd_forgotten ");
     $this->exec("UPDATE " . $prfx . 'settings SET version = "' . OBIB_LATEST_DB_VERSION . '"');
     $this->exec('ALTER TABLE ' . $prfx . 'settings '
                     . 'ADD login_attempts INT(2) NOT NULL AFTER html_lang_attr ');

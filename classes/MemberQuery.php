@@ -161,7 +161,7 @@ class MemberQuery extends Query
         $mbr->setWorkPhone($array["work_phone"]);
         $mbr->setEmail($array["email"]);
         $mbr->setClassification($array["classification"]);
-        $mbr->setMembershipEnd($array["mbrshipend"]);
+        $mbr->setMembershipEnd($array["mbrshipend"] ?? '');
 
         $mbr->_custom = $this->getCustomFields($array['mbrid']);
         return $mbr;
