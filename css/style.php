@@ -204,23 +204,6 @@ td.primaryNoWrap {
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
   white-space: nowrap
 }
-
-td.title, div.title {
-  background-color: <?php echo H(OBIB_TITLE_BG);?>;
-  color: <?php echo H(OBIB_TITLE_FONT_COLOR);?>;
-  font-size: <?php echo H(OBIB_TITLE_FONT_SIZE);?>px;
-  font-family: <?php echo H(OBIB_TITLE_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
-  margin-bottom: 1px;
-<?php if (OBIB_TITLE_FONT_BOLD) { ?>
-  font-weight: bold;
-<?php } else { ?>
-  font-weight: normal;
-<?php } ?>
-  border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
-  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
-  text-align: <?php echo H(OBIB_TITLE_ALIGN);?>;
-}
 td.alt1 {
   background-color: <?php echo H(OBIB_ALT1_BG);?>;
   color: <?php echo H(OBIB_ALT1_FONT_COLOR);?>;
@@ -478,6 +461,22 @@ div.errorbox li { margin-left: 0 }
  .title.headerBiblioSingleInfo {
     font-size: 12px;
  }
+
+div.title {
+  background-color: <?php echo H(OBIB_TITLE_BG);?>;
+  color: <?php echo H(OBIB_TITLE_FONT_COLOR);?>;
+  font-size: <?php echo H(OBIB_TITLE_FONT_SIZE);?>px;
+  font-family: <?php echo H(OBIB_TITLE_FONT_FACE);?>;
+  padding-bottom: 1px;
+<?php if (OBIB_TITLE_FONT_BOLD) { ?>
+  font-weight: bold;
+<?php } else { ?>
+  font-weight: normal;
+<?php } ?>
+  border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
+  border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
+  text-align: <?php echo H(OBIB_TITLE_ALIGN);?>;
+}
 
  @media only screen and (min-width: 320px) {
     #headertitle {
