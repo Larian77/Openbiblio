@@ -121,14 +121,12 @@ $matQ->close();
 # **************************************************************************
 # * Show bibliography info.
 # **************************************************************************
+require_once ("../shared/header.php");
 if ($tab == "opac") {
-    require_once ("../shared/header_opac.php");
     if (! $biblio->showInOpac()) {
         $biblio = $biblioQ->doQuery($bibid = 0);
         $biblioFlds = $biblio->getBiblioFields();
     }
-} else {
-    require_once ("../shared/header.php");
 }
 
 ?>

@@ -83,7 +83,7 @@ if ($balance > 0 && $balance >= $mbrMaxFines[$mbr->getClassification()]) {
 # **************************************************************************
 # * Show member information
 # **************************************************************************
-require_once ("../shared/header_opac.php");
+require_once ("../shared/header.php");
 ?>
 
 <?php echo $msg ?>

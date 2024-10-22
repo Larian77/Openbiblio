@@ -10,7 +10,7 @@ $tab = "opac";
 $nav = "pwdforget";
 $helpPage = "opac";
 
-require_once ("../shared/header_opac.php");
+require_once ("../shared/header.php");
 require_once ("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE, 'shared');
 
