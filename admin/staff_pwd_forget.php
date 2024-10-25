@@ -155,7 +155,7 @@ if($staff === false) {
     #************************************************************************
     #* Creation of the URL for resetting the password
     #************************************************************************ 
-    $url_passwordcode = $staff->createURLPwdCode($mbr, $passwordCode);
+    $url_passwordcode = $staff->createURLPwdCode($staff, $passwordCode);
 
     #*************************************************************************
     #* Preparation of the text variables which will be included in the message
