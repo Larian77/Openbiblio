@@ -47,8 +47,10 @@ $_POST["email"] = $mbr->getEmail();
 $mbr->setMembershipEnd($_POST["membershipEnd"]);
 $_POST["membershipEnd"] = $mbr->getMembershipEnd();
 $mbr->setClassification($_POST["classification"]);
-$mbr->setTypeOfPwdCreation($_POST["TypeOfPwdCreation"]);
-$_POST["TypeOfPwdCreation"] = $mbr->getTypeOfPwdCreation();
+if (isset($_POST["TypeOfPwdCreation"])) {
+    $mbr->setTypeOfPwdCreation($_POST["TypeOfPwdCreation"]);
+    $_POST["TypeOfPwdCreation"] = $mbr->getTypeOfPwdCreation();
+}
 if (isset($_POST['pwd'])) {
     $mbr->setPwd($_POST["pwd"]);
     $_POST["pwd"] = $mbr->getPwd();
@@ -78,7 +80,7 @@ foreach ($customFields as $name => $title) {
 }
 
 $validData = $mbr->validateData();
-if ($mbr->getTypeOfPwdCreation() != 1) {
+if ($mbr->getTypeOfPwdCreation() != 1 && $set->_isMbrAccountOnline == TRUE) {
     $validPwd = $mbr->validatePwd();
 } else {
     $validPwd = "notSet";
