@@ -18,7 +18,7 @@ require_once("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE,'shared');
 
 #****************************************************************************
-#*  Connect with MemberQuery and set $_POST
+#*  Connect with StaffQuery and set $_POST
 #****************************************************************************
 $staff = new Staff();
 $staffQ = new StaffQuery();
@@ -145,7 +145,7 @@ if($staff === false) {
     $mailMessageType = 'password_forgotten_message';
 
     #********************************************************************************
-    #* Creation of the password code, encryption and entry in the DB in table member
+    #* Creation of the password code, encryption and entry in the DB in table staff
     #******************************************************************************** 
     $passwordCode = $staff->random_string();
     $staff->setPwdForgotten(hash('sha256', $passwordCode));
@@ -155,7 +155,7 @@ if($staff === false) {
     #************************************************************************
     #* Creation of the URL for resetting the password
     #************************************************************************ 
-    $url_passwordcode = $staff->createURLPwdCode($mbr, $passwordCode);
+    $url_passwordcode = $staff->createURLPwdCode($staff, $passwordCode);
 
     #*************************************************************************
     #* Preparation of the text variables which will be included in the message
