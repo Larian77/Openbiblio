@@ -396,6 +396,9 @@ class UpgradeQuery extends InstallQuery {
                 . 'left join '.$prfx.'material_type_dm on '
                 . $prfx.'material_usmarc_xref.materialCd='.$prfx.'material_type_dm.code '
                 . 'where '.$prfx.'material_type_dm.code is null ');
+    $this->exec("ALTER TABLE " . $prfx . "member "
+                    . "ADD mbrshipend date NOT NULL DEFAULT '1000-01-01' ");
+    $this->exec("UPDATE " . $prfx . "member SET mbrshipend = '0000-00-00' WHERE mbrshipend = '1000-01-01' ");
     $this->exec("update settings set version='0.7.1'");
     $notices = array();
     return array($notices, NULL);
@@ -404,6 +407,12 @@ class UpgradeQuery extends InstallQuery {
   function _upgrade081_e($prfx, $tmpPrfx) {
     $settings = $_POST;
     
+    $result = $this->exec("SHOW COLUMNS FROM " . $prfx . "`member` LIKE 'mbrshipend' ");
+    if ($result == FALSE) {
+        $this->exec("ALTER TABLE " . $prfx . "member "
+                    . "ADD mbrshipend date NOT NULL DEFAULT '1000-01-01' ");
+        $this->exec("UPDATE " . $prfx . "member SET mbrshipend = '0000-00-00' WHERE mbrshipend = '1000-01-01' ");
+    }
     $this->exec('ALTER TABLE ' . $prfx . 'member '
                     . 'ADD pwd VARCHAR(255) AFTER barcode_nmbr ');
     $this->exec("ALTER TABLE " . $prfx . "member "
