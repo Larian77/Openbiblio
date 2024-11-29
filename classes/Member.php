@@ -17,7 +17,7 @@
  */
 class Member {
   var $_mbrid = 0;
-  var $_barcodeNmbr = 0;
+  var $_barcodeNmbr = NULL;
   var $_barcodeNmbrError = "";
   var $_createDt = "";
   var $_lastChangeDt = "";
