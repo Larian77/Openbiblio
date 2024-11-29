@@ -532,7 +532,7 @@ class Staff
         } else {
             $httpS = 'http://';;
         }
-        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'] . str_replace('/admin/staff_pwd_forget.php','',$_SERVER['PHP_SELF']);
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             $url_passwordcode .= '/openbiblio';
         }

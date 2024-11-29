@@ -17,7 +17,7 @@
  */
 class Member {
   var $_mbrid = 0;
-  var $_barcodeNmbr = 0;
+  var $_barcodeNmbr = NULL;
   var $_barcodeNmbrError = "";
   var $_createDt = "";
   var $_lastChangeDt = "";
@@ -366,7 +366,7 @@ class Member {
         } else {
             $httpS = 'http://';;
         }
-        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'] . str_replace('/opac/mbr_pwd_forget.php','',$_SERVER['PHP_SELF']);
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             $url_passwordcode .= '/openbiblio';
         }
