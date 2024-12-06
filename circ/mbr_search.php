@@ -91,7 +91,7 @@ if ($searchType == "barcodeNmbr") {
 $mbrQ = new MemberQuery();
 $mbrQ->setItemsPerPage(OBIB_ITEMS_PER_PAGE);
 $mbrQ->connect_e();
-$mbrQ->execSearch($sType, $searchText, $currentPageNmbr);
+$mbrQ->execSearch($sType, $searchText, $currentPageNmbr, $login = FALSE);
 
 # **************************************************************************
 # * Show member view screen if only one result from barcode query

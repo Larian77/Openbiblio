@@ -50,7 +50,7 @@ class MemberQuery extends Query
      * @access public
      ****************************************************************************
      */
-    function execSearch($type, $word, $page)
+    function execSearch($type, $word, $page, $login)
     {
         # reset stats
         $this->_rowNmbr = 0;
@@ -67,7 +67,11 @@ class MemberQuery extends Query
         }
 
         # Building sql statements
-        $sql = $this->mkSQL("from member where %C like %Q ", $col, $word . "%");
+        if ($login == TRUE) {
+            $sql = $this->mkSQL("from member where %C = %Q ", $col, $word);
+        } else {
+            $sql = $this->mkSQL("from member where %C like %Q ", $col, $word . "%"); 
+        }
         $sqlcount = "select count(*) as rowcount " . $sql;
         $sql = "select * " . $sql;
 
