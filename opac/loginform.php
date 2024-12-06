@@ -17,7 +17,7 @@ $focus_form_name = "loginform";
 $focus_form_field = "username";
 
 require_once ("../shared/get_form_vars.php");
-require_once ("../shared/header_opac.php");
+require_once ("../shared/header.php");
 require_once ("../classes/email/EmailSettings.php");
 require_once ("../classes/email/EmailSettingsQuery.php");
 require_once ("../classes/Localize.php");
