@@ -38,11 +38,9 @@ if (str_replace(' ', '', $pwd) == "") {
     $error_found = true;
     $pageErrors["pwd"] = $loc->getText("Password is required.");
 } else {
-
     $mbrQ = new MemberQuery();
     $mbrQ->connect_e();
-    $mbrQ->execSearch(OBIB_SEARCH_BARCODE, $username, 1);
-
+    $mbrQ->execSearch(OBIB_SEARCH_BARCODE, $username, 1, $login = TRUE);
     if ($mbrQ->getRowCount() == 1) {
         $mbr = $mbrQ->fetchMember();
         if (OBIB_MBR_ACCOUNT_ONLINE == FALSE) {
