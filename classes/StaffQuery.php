@@ -90,7 +90,7 @@ class StaffQuery extends Query {
   }
   
   function _skObj($array) {
-      $staff = new Staff();
+    $staff = new Staff();
     $staff->setUserid($array["userid"]);
     $staff->setLastName($array["last_name"]);
     $staff->setFirstName($array["first_name"]);
