@@ -85,11 +85,13 @@ class Member {
 	$this->_membershipEndError = "The enddate isn't valid.";
       }
     }
-    if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
-        $validData = false;
-        $this->_emailError = $this->_loc->getText("UserEmailCharErr");
+    if (!$this->_email == '' || $this->_typeOfPwdCreation == TRUE) {
+        if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
+            $validData = false;
+            $this->_emailError = $this->_loc->getText("UserEmailCharErr");
+        }
     }
-
+        
     return $validData;
   }
 
