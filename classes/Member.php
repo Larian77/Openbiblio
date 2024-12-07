@@ -368,12 +368,14 @@ class Member {
         } else {
             $httpS = 'http://';;
         }
-        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'] . str_replace('/opac/mbr_pwd_forget.php','',$_SERVER['PHP_SELF']);
-        if ($_SERVER['HTTP_HOST'] == 'localhost') {
-            $url_passwordcode .= '/openbiblio';
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        if ($mbr->getFileSource() == 'mbr_new_form') {
+            $url_passwordcode .= str_replace('/circ/mbr_new.php','',$_SERVER['PHP_SELF']);
+        } else {
+            $url_passwordcode .= str_replace('/opac/mbr_pwd_forget.php','',$_SERVER['PHP_SELF']);
         }
         $url_passwordcode .= "/opac/mbr_pwd_newset_form.php?mbrid=" . $mbr->getMbrid() . "&code=". $passwordCode;
-        
+
         return $url_passwordcode;
   }
   
