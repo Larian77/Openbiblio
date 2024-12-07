@@ -534,9 +534,11 @@ class Staff
         } else {
             $httpS = 'http://';;
         }
-        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'] . str_replace('/admin/staff_pwd_forget.php','',$_SERVER['PHP_SELF']);
-        if ($_SERVER['HTTP_HOST'] == 'localhost') {
-            $url_passwordcode .= '/openbiblio';
+        $url_passwordcode = $httpS . $_SERVER['HTTP_HOST'];
+        if ($staff->getTypeOfPwdCreation() == TRUE) {
+            $url_passwordcode .= str_replace('/admin/staff_new.php','',$_SERVER['PHP_SELF']);
+        } else {
+            $url_passwordcode .= str_replace('/admin/staff_pwd_forget.php','',$_SERVER['PHP_SELF']);
         }
         $url_passwordcode .= "/admin/staff_pwd_newset_form.php?username=" . $staff->getUsername() . "&code=". $passwordCode;
         
