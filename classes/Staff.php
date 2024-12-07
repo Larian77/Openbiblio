@@ -71,9 +71,11 @@ class Staff
             $valid = false;
             $this->_usernameError = $this->_loc->getText("UserNameCharErr");
         }
-        if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
-            $valid = false;
-            $this->_emailError = $this->_loc->getText("UserEmailCharErr");
+        if (!$this->_email == '' || $this->_typeOfPwdCreation == TRUE) {
+            if (!filter_var($this->_email, FILTER_VALIDATE_EMAIL)) {
+                $valid = false;
+                $this->_emailError = $this->_loc->getText("UserEmailCharErr");
+            }
         }
         return $valid;
     }
