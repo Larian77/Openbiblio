@@ -68,6 +68,9 @@ h1 {
 .notice {
     color: #1a62ac;
 }
+span.underline {
+    text-decoration: underline;
+}
 
 /*********************************************************
  *  Link Styles
@@ -517,6 +520,14 @@ div.errorbox li { margin-left: 0 }
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
+ }
+ 
+ /*********************************************************
+ *  Navbars
+ *********************************************************/
+ .loginName {
+    white-space: break-spaces;
+    font-weight: bold;
  }
  
  /*********************************************************
