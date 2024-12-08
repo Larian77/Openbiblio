@@ -40,7 +40,8 @@
 $trans["login"]                    = "\$text = 'Login';";
 $trans["logout"]                   = "\$text = 'Logout';";
 $trans["help"]                     = "\$text = 'Hilfe';";
-$trans["catalogSearch"]           = "\$text = 'Mediensuche';";
+$trans["catalogSearch"]            = "\$text = 'Mediensuche';";
+$trans["staff"]                    = "\$text = 'Mitarbeiter/-in: ';";
 
 #****************************************************************************
 #*  Translation text for page home.php

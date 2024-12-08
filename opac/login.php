@@ -97,6 +97,8 @@ if (str_replace(' ', '', $pwd) == "") {
                     unset($_SESSION["pageErrors"]);
 
                     $_SESSION["mbrid"] = $mbr->getMbrid();
+                    $_SESSION["mbrFirstName"] = $mbr->getFirstName();
+                    $_SESSION["mbrLastName"] = $mbr->getLastName();
                     $_SESSION["mbrtoken"] = $token;
                     $_SESSION["mbrloginAttempts"] = 0;
                     header("Location: ../opac/mbr_account.php?mbrid=" . U($mbr->getMbrid()));

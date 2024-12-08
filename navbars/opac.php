@@ -3,28 +3,65 @@
  * See the file COPYRIGHT.html for more details.
  */
  
-  require_once("../classes/Localize.php");
-  require_once("../opac/MemberLoginQuery.php");
-  $navLoc = new Localize(OBIB_LOCALE,"navbars");
+require_once("../classes/Localize.php");
+require_once("../opac/MemberLoginQuery.php");
+$navLoc = new Localize(OBIB_LOCALE,"navbars");
 
-// Session_mbrid-Request with reference to login and logout button    
+/************************************************************************
+ * Session_mbr-Request with reference to login and logout button 
+ ************************************************************************/   
 if (isset($_SESSION["mbrid"])) {
     $sess_mbrid = $_SESSION["mbrid"];
 } else {
     $sess_mbrid = "";
 }
+if (isset($_SESSION["mbrFirstName"])) {
+     $sess_mbrFirstName = $_SESSION["mbrFirstName"];
+} else {
+    $sess_mbrFirstName = "";
+}
+if (isset($_SESSION["mbrLastName"])) {
+    $sess_mbrLastName = $_SESSION["mbrLastName"];
+} else {
+    $sess_mbrLastName = "";
+}
+
+/************************************************************************
+ * Session staff-Request: Is a staff member logged in?
+ *  ************************************************************************/ 
+if (isset($_SESSION["userid"])) {
+    $sess_userid = $_SESSION["userid"];
+} else {
+    $sess_userid = NULL;
+}
+if (isset($_SESSION["firstName"])) {
+     $sess_firstName = $_SESSION["firstName"];
+ } else {
+     $sess_firstName = "";
+ }
+ if (isset($_SESSION["lastName"])) {
+     $sess_lastName = $_SESSION["lastName"];
+ } else {
+     $sess_lastName = "";
+ }
+
 // instead of link now buttonn
 if (OBIB_MBR_ACCOUNT_ONLINE == TRUE) {
       if ($sess_mbrid > 0) { ?>
             <input type="button" onClick="self.location='./logout.php'" value="<?php echo $navLoc->getText("logout");?>" class="navbutton">
-<?php } else if ($nav == "userlogin") {
+<?php 
+            echo '<p class="loginName">' . $sess_mbrFirstName . ' ' . $sess_mbrLastName . '</p>';
+      } else if ($nav == "userlogin") {
             echo '&raquo; ' . $navLoc->getText("userlogin");;
-      } else {   ?>                    
+      } else if ($sess_userid > NULL ) { ?>
+            <input type="button" onClick="self.location='../shared/logout.php'" value="<?php echo $navLoc->getText("logout");?>" class="navbutton">
+      <?php echo '<p class="loginName"><span class="underline">' .$navLoc->getText("staff") . '</span><br />';
+            echo $sess_firstName . ' ' . $sess_lastName . '</p>';
+      } else { ?>                    
             <input type="button" onClick="self.location='../opac/loginform.php'" value="<?php echo $navLoc->getText("userlogin");?>" class="navbutton">
+            <br /><br />    
 <?php } 
  
-echo '<br />';
-
     if ($nav == "memberaccount") {
         echo '&raquo; ' . $navLoc->getText("memberaccount") . '<br>';
         if (OBIB_MBR_ACCOUNT_ONLINE == TRUE) {
