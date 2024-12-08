@@ -51,9 +51,9 @@ echo '<br />';
     }
 }
 if ($nav == "home") { 
-    echo '&raquo; ' . $navLoc->getText("catalogSearch1") . '<br>';
+    echo '&raquo; ' . $navLoc->getText("catalogSearch") . '<br>';
 } else { ?>
-    <a href="../opac/index.php<?php if (isset($lookup) == 'Y') echo "?lookup=Y"; ?> " class="alt1"><?php echo $navLoc->getText("catalogSearch2"); ?></a><br>
+    <a href="../opac/index.php<?php if (isset($lookup) == 'Y') echo "?lookup=Y"; ?> " class="alt1"><?php echo $navLoc->getText("catalogSearch"); ?></a><br>
 <?php 
 } 
 if ($nav == "search") {
