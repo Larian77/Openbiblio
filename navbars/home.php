@@ -6,18 +6,30 @@
   require_once("../classes/Localize.php");
   $navLoc = new Localize(OBIB_LOCALE,"navbars");
 
-
  if (isset($_SESSION["userid"])) {
    $sess_userid = $_SESSION["userid"];
  } else {
    $sess_userid = "";
  }
+ if (isset($_SESSION["firstName"])) {
+     $sess_firstName = $_SESSION["firstName"];
+ } else {
+     $sess_firstName = "";
+ }
+ if (isset($_SESSION["lastName"])) {
+     $sess_lastName = $_SESSION["lastName"];
+ } else {
+     $sess_lastName = "";
+ }
+ 
  if ($sess_userid == "") { ?>
   <input type="button" onClick="self.location='../shared/loginform.php?RET=../home/index.php'" value="<?php echo $navLoc->getText("login");?>" class="navbutton">
+  <br /><br />
 <?php } else { ?>
   <input type="button" onClick="self.location='../shared/logout.php'" value="<?php echo $navLoc->getText("logout");?>" class="navbutton">
-<?php } ?>
-<br /><br />
+<?php 
+    echo '<p class="loginName">' . $sess_firstName . ' ' . $sess_lastName . '</p>';
+} ?>
 
 <?php if ($nav == "home") { ?>
  &raquo; <?php echo $navLoc->getText("homeHomeLink");?><br>

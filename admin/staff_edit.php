@@ -68,6 +68,16 @@
   $staffQ->close();
 
   #**************************************************************************
+  #*  Update $_SESSION if editor equals edited staff member
+  #**************************************************************************  
+  if ($_SESSION["userid"] === $staff->getUserid()) {
+    $_SESSION["username"] = $staff->getUsername();
+    $_SESSION["userid"] = $staff->getUserid();
+    $_SESSION["firstName"] = $staff->getFirstName();
+    $_SESSION["lastName"] = $staff->getLastName();
+  }
+
+  #**************************************************************************
   #*  Destroy form values and errors
   #**************************************************************************
   unset($_SESSION["postVars"]);

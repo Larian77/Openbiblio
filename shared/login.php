@@ -157,6 +157,8 @@ unset($_SESSION["pageErrors"]);
 
 $_SESSION["username"] = $staff->getUsername();
 $_SESSION["userid"] = $staff->getUserid();
+$_SESSION["firstName"] = $staff->getFirstName();
+$_SESSION["lastName"] = $staff->getLastName();
 $_SESSION["token"] = $token;
 $_SESSION["loginAttempts"] = 0;
 $_SESSION["hasAdminAuth"] = $staff->hasAdminAuth();

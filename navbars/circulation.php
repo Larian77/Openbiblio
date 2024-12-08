@@ -3,12 +3,23 @@
  * See the file COPYRIGHT.html for more details.
  */
  
-  require_once("../classes/Localize.php");
-  $navloc = new Localize(OBIB_LOCALE,"navbars");
+require_once("../classes/Localize.php");
+$navloc = new Localize(OBIB_LOCALE,"navbars");
+
+if (isset($_SESSION["firstName"])) {
+    $sess_firstName = $_SESSION["firstName"];
+} else {
+    $sess_firstName = "";
+}
+if (isset($_SESSION["lastName"])) {
+    $sess_lastName = $_SESSION["lastName"];
+} else {
+    $sess_lastName = "";
+}
 
 ?>
 <input type="button" onClick="self.location='../shared/logout.php'" value="<?php echo $navloc->getText("Logout"); ?>" class="navbutton"><br />
-<br />
+<?php echo '<p class="loginName">' . $sess_firstName . ' ' . $sess_lastName . '</p>'; ?>
 
 <?php if ($nav == "searchform") { ?>
  &raquo; <?php echo $navloc->getText("memberSearch"); ?><br>
