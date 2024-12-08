@@ -40,6 +40,7 @@
 $trans["login"]                    = "\$text = 'Login';";
 $trans["logout"]                   = "\$text = 'Logout';";
 $trans["help"]                     = "\$text = 'Hilfe';";
+$trans["catalogSearch"]           = "\$text = 'Mediensuche';";
 
 #****************************************************************************
 #*  Translation text for page home.php
@@ -68,8 +69,6 @@ $trans["adminThemes"]              = "\$text = 'Layout';";
 #*  Translation text for page cataloging.php
 #****************************************************************************
 $trans["catalogSummary"]           = "\$text = 'Katalogisierung';";
-$trans["catalogSearch1"]           = "\$text = 'Mediensuche';";
-$trans["catalogSearch2"]           = "\$text = 'Mediensuche';";
 $trans["catalogResults"]           = "\$text = 'Suchergebnisse';";
 $trans["catalogBibInfo"]           = "\$text = 'Medieninformationen';";
 $trans["catalogBibEdit"]           = "\$text = 'Med. bearb.';";
@@ -101,8 +100,6 @@ $trans["Report Criteria"]          = "\$text = 'Berichtskriterien';";
 #****************************************************************************
 #*  Translation text for page opac.php and loginform.php
 #****************************************************************************
-$trans["catalogSearch1"]           = "\$text = 'Suche';";
-$trans["catalogSearch2"]           = "\$text = 'Mediensuche';";
 $trans["catalogResults"]           = "\$text = 'Suchergebnisse';";
 $trans["catalogBibInfo"]           = "\$text = 'Medieninfo';";
 $trans["userlogin"]      	   = "\$text = 'Benutzer-Login';";
