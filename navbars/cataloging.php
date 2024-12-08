@@ -11,9 +11,9 @@
 <br />
 
 <?php if ($nav == "searchform") { ?>
- &raquo; <?php echo $navLoc->getText("catalogSearch1");?><br>
+ &raquo; <?php echo $navLoc->getText("catalogSearch");?><br>
 <?php } else { ?>
- <a href="../catalog/index.php" class="alt1"><?php echo $navLoc->getText("catalogSearch2");?></a><br>
+ <a href="../catalog/index.php" class="alt1"><?php echo $navLoc->getText("catalogSearch");?></a><br>
 <?php } ?>
 
 <?php if ($nav == "search") { ?>
