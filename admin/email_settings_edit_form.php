@@ -64,9 +64,9 @@
   $PwdForgottenCodeDuration = array(
       1 => 1,
       2 => 2,
-      3 => 12,
-      4 => 24,
-      5 => 48
+      12 => 12,
+      24 => 24,
+      48 => 48
   );
   $mailProcess = array(
     0 => ' ',
