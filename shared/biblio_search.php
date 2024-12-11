@@ -330,7 +330,7 @@ function changePage(page,sort)
       <table class="primary" style="width:100%">
         <tr>
           <td class="noborder" width="1%" valign="top"><b><?php echo $loc->getText("biblioSearchTitle"); ?>:</b></td>
-          <td class="noborder" colspan="3"><a href="../shared/biblio_view.php?bibid=<?php echo HURL($biblio->getBibid());?>&amp;tab=<?php echo HURL($tab);?>"><?php echo H($biblio->getTitle());?></a></td>
+          <td class="noborder" colspan="3"><a target="_blank" rel="noopener" href="../shared/biblio_view.php?bibid=<?php echo HURL($biblio->getBibid());?>&amp;tab=<?php echo HURL($tab);?>"><?php echo H($biblio->getTitle());?></a></td>
         </tr>
         <tr>
           <td class="noborder" width="1%" valign="top"><font class="small"><b><?php echo $loc->getText("biblioSearchTitleRemainder"); ?>:</b></font></td>
