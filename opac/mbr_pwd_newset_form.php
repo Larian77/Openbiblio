@@ -56,12 +56,32 @@ $result = $mbrQ->getPwdForgottenCode($mbrid);
 if(isset($result) && $result == null) {
     $error = $loc->getText('errInvalidPwdForgottenURL');
 } else {
+#**************************************************************************
+    #* Query to table mail_settings to get pwd_forgotten_code_duration
+    #**************************************************************************
+    include_once("../classes/email/EmailSettings.php");
+    include_once("../classes/email/EmailSettingsQuery.php");
+    include_once("../functions/errorFuncs.php");
+    $mailSetQ = new MailSettingsQuery();
+    $mailSetQ->connect_e();
+    if ($mailSetQ->errorOccurred()) {
+      $mailSetQ->close();
+      displayErrorPage($mailSetQ);
+    }
+    $mailSetQ->execSelect();
+    if ($mailSetQ->errorOccurred()) {
+      $mailSetQ->close();
+      displayErrorPage($mailSetQ);
+    }
+    $MailSet = $mailSetQ->fetchRow();
+    $PwdDuration = $MailSet->_pwdForgottenCodeDuration;
 
     #**************************************************************************
     #* Password-Forgotten-time query
     #**************************************************************************
+    $DateInterval = "PT" . $PwdDuration . "H";
     $PwdForgottenTime = new DateTimeImmutable($result["pwd_forgotten_time"]);
-    $PwdTimeon = $PwdForgottenTime->add(new DateInterval('PT2H'));
+    $PwdTimeon = $PwdForgottenTime->add(new DateInterval("$DateInterval"));
     $timeCurrent = new DateTime("now");
     if($result['pwd_forgotten_time'] === null || $PwdTimeon < $timeCurrent) {
         $error = $loc->getText('errExpiredPwdForgottenCode');
