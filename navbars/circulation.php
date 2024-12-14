@@ -37,12 +37,14 @@ if (isset($_SESSION["lastName"])) {
 <?php   
 
 if (OBIB_MBR_ACCOUNT_ONLINE == 1) {
-    if ($mbr->getPwd() == "") {
-        echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
-           . '" class="alt1">' . $navloc->getText("PwdCreate") . '</a><br>';
-    } else {
-        echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
-           . '" class="alt1">' . $navloc->getText("PwdReset") . '</a><br>';
+    if(isset($mbr)) {
+        if ($mbr->getPwd() == "") {
+            echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
+               . '" class="alt1">' . $navloc->getText("PwdCreate") . '</a><br>';
+        } else {
+            echo '&nbsp; &nbsp; <a href="../circ/mbr_pwd_reset_form.php?mbrid=' . HURL($mbrid) 
+               . '" class="alt1">' . $navloc->getText("PwdReset") . '</a><br>';
+        }
     }
 }
 ?> 
