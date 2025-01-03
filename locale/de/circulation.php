@@ -54,6 +54,8 @@ $trans["indexCard"] = "\$text='Benutzernummer:';";
 $trans["indexSearch"] = "\$text='Suche';";
 $trans["indexNameHdr"] = "\$text='Suche Benutzer nach Nachname:';";
 $trans["indexName"] = "\$text='Nachname beginnt mit:';";
+$trans["indexFirstNameHdr"] = "\$text='Suche Benutzer nach Vorname:';";
+$trans["indexFirstName"] = "\$text='Vorname beginnt mit:';";
 
 # ****************************************************************************
 # * Translation text for page mbr_new_form.php, mbr_edit_form.php and mbr_fields.php, mbr_search.php

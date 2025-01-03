@@ -57,6 +57,7 @@ define("OBIB_SEARCH_NAME", "5");
 define("OBIB_SEARCH_CALLNO", "6");
 define("OBIB_SEARCH_KEYWORD", "7");
 define("OBIB_SEARCH_ALL", "8");
+define("OBIB_SEARCH_FIRSTNAME", "9");
 
 /**
  * **************************************************************************
