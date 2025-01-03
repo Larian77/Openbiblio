@@ -82,11 +82,7 @@ $focus_form_field = "lay_skip";
 require_once("../classes/Localize.php");
 $loc = new Localize(OBIB_LOCALE, 'reports');
 
-if ($tab == 'opac') {
-  include_once("../shared/header_opac.php");
-} else {
-  include_once("../shared/header.php");
-}
+require_once("../shared/header.php");
 
 require("../shared/get_form_vars.php");
 

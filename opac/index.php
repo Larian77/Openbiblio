@@ -30,7 +30,7 @@ if (isset($_GET["msg"])) {
 } else {
     $msg = "";
 }
-require_once ("../shared/header_opac.php");
+require_once ("../shared/header.php");
 ?>
 
 <h1>

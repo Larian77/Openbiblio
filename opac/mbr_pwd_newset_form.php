@@ -23,7 +23,7 @@ if (isset($_SESSION["postVars"])) {
     $postVars = $_SESSION["postVars"];
 }
 if(!isset($_GET['mbrid']) || !isset($_GET['code'])) {
-    require_once("../shared/header_opac.php");
+    require_once("../shared/header.php");
     echo $loc->getText('errInvalidPwdForgottenURL');
     include("../shared/footer.php");
     exit();
@@ -94,7 +94,7 @@ if(isset($result) && $result == null) {
         $error = $loc->getText('errInvalidPwdForgottenURL');
     }
     if(!isset($send)) {
-        require_once ("../shared/header_opac.php");
+        require_once ("../shared/header.php");
     }
     
     #**************************************************************************
@@ -126,7 +126,7 @@ if(isset($result) && $result == null) {
             #**************************************************************************
             #*  Show success page
             #**************************************************************************
-            require_once("../shared/header_opac.php");
+            require_once("../shared/header.php");
             echo $loc->getText("PwdResetSuccessfully");  
         }
     }
@@ -135,7 +135,7 @@ if (isset($error)) {
     #**************************************************************************
     #*  Show Error page - invalid Code or expired code
     #**************************************************************************
-    require_once("../shared/header_opac.php");
+    require_once("../shared/header.php");
     echo $error;
 }
 
