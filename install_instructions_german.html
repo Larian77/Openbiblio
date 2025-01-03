@@ -40,7 +40,7 @@
 		<ul>
 			<li><a href="#releaseNotes">Erscheinungsbemerkungen</a></li>
 			<li><a href="#sysReq">Systemvoraussetzungen</a></li>
-			<li><a href="#install">OpenBiblio 0.8 Installationsanleitung
+			<li><a href="#install">OpenBiblio 0.8.1 Installationsanleitung
 					(Neues System)</a></li>
 			<li><a href="#userlogin">Einrichten des Userlogin</a></li>
 			<li><a href="#update">Update einer früheren Version</a></li>
@@ -48,7 +48,7 @@
 
 		<h1 id="releaseNotes">Erscheinungsbemerkungen</h1>
 		<p>
-			Version 0.8 wird für neue Installationen und zum updaten von älteren
+			Version 0.8.1 wird für neue Installationen und zum updaten von älteren
 			Openbiblio-Versionen empfohlen, da hiermit die Sicherheit verbessert
 			wird. Die wichtigsten Änderungen sind im <a href="ChangeLog">ChangeLog</a>
 			zu finden.
@@ -66,18 +66,12 @@
 				in der Ausleihe. Verbesserung der Sicherheit.</li>
 			<li>0.7.3.x: Update auf PHP 7.x möglich</li>
 			<li>0.8 und größer: Update auf das aktuelle und sicherere PHP
-				8.1/8.2 möglich (PHP bor 7.0 wird nicht mehr unterstützt!)</li>
-                        <li>0.8.1: Verbesserung der Sicherheit, v.a. in Bezug auf 
-                                Passwortverschlüselung</li>
+				8.x möglich (PHP vor 7.0 wird nicht mehr unterstützt!)</li>
+            <li>0.8.1: Verbesserung der Sicherheit, v.a. in Bezug auf Passwortverschlüselung</li>
 		</ul>
 		Bekannte Probleme:
 		<ul>
-			<li>MARC wird nicht perfekt in der Datenbank abgespeichert
-				(Problem 1, wird gefixed in obiblio-10-wip).</li>
-			<li>Wenn Sie bis ins Jahr 2038 noch nicht auf 64bit PHP
-				geupdatet haben kann es zu Problemen bei der Berechnung von den
-				Verspätungen, den entsprechenden Verspätungsgebühren und der
-				Berechnung der Reservierungsdauer kommen. (Problem 51).</li>
+			<li>MARC wird nicht perfekt in der Datenbank abgespeichert</li>
 		</ul>
 		<p>OpenBiblio Testläufe arbeiteten erfolgreich in den folgenden
 			Konfigurationen:</p>
@@ -353,7 +347,7 @@ mysql> <b>show databases;</b>
                                 Mitarbeiter hinzufügen können.</li>
                         <li>Unter admin --> Bibliothekseinstellung können systemreleavante Einstellungen vorgenommen werden, u.a. auch, ob die Bibliotheksnutzer
                                 per Online auf ihren persönlichen Account zugreifen dürfen oder nicht.</li>
-                        <li>Um den Mailversand für bspw. Passwort-Vergessen-Funktion oder Willkommensmeldung nützen
+                        <li>Um den Mailversand für bspw. Passwort-Vergessen-Funktion oder Willkommensmeldung nutzen
                                 zu können, müssen Sie als Administrator unter admin --> Mail-Nachrichten bei den jeweiligen 
                                 Nachrichten eine gültige E-Mail-Adresse als Absender hinterlegen. Diese kann sich bei den einzelnen 
                                 Nachrichten auch unterscheiden.</li>
