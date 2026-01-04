@@ -4,4 +4,7 @@
 .project
 .settings
 .database_constants.php
-database_constants.php
+database_constants*.php
+
+navbars/
+apache2/

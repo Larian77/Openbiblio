@@ -131,6 +131,9 @@ function showForm($postVars, $pageErrors=array()) {
       }
     //-->
   </script>
+<?php
+  include("../catalog/biblio_new_isbn_helper.php");
+?>
 <form name="newbiblioform" method="POST"
 	action="../catalog/biblio_new.php">
 <?php

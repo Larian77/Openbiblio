@@ -1,0 +1,9 @@
+bottle==0.13.4
+isbnlib==3.10.14
+isbnlib-dnb==0.0.4
+isbnlib-loc==1.0.2
+legacy-cgi; python_version >= '3.13'
+matplotlib==3.9.4
+opencv-python==4.12.0.88
+pyzbar==0.1.9
+numpy==2.0.2
