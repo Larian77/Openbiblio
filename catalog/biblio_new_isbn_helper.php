@@ -160,7 +160,7 @@ SPDX-Copyright-Text: 2026 Holger Smolinski <holger@smolinski.name>
 </style>
 
 <div id="helper-div">
-  <button id="scan-button">Scan</button>
+  <div><button id="scan-button">Scan</button></div>
   <div>
     <form id="photo-form" method="post" enctype="multipart/form-data">
       <label>Or select an image.
@@ -211,6 +211,8 @@ SPDX-Copyright-Text: 2026 Holger Smolinski <holger@smolinski.name>
         const isbnField = document.getElementsByName("values[020a]")[0]; // FIXME: I am not a unique name
         const titleField = document.getElementsByName("values[245a]")[0]; // FIXME: I am not a unique name
         const authorField = document.getElementsByName("values[100a]")[0]; // FIXME: I am not a unique name
+        const yearField = document.getElementsByName("values[260c]")[0]; // FIXME: I am not a unique name
+        const publisherField = document.getElementsByName("values[260b]")[0]; // FIXME: I am not a unique name
 	const isbnSelectorDiv= document.getElementById("ISBNSelectorDiv");
 	const isbnSelectorModal = document.getElementById("ISBNSelectorModal");
 	const isbnSelectorModalFooter = document.getElementById("ISBNSelectorModalFooter");
@@ -469,6 +471,8 @@ SPDX-Copyright-Text: 2026 Holger Smolinski <holger@smolinski.name>
 		returnValue = {};
 		returnValue["Authors"] = entry.metadata[index].data.Authors;
 		returnValue["Title"] = entry.metadata[index].data.Title;
+		returnValue["Year"] = entry.metadata[index].data.Year;
+		returnValue["Publisher"] = entry.metadata[index].data.Publisher;
 		console.log("RETURN:"+JSON.stringify(returnValue));
 		return returnValue;
 	}
@@ -482,6 +486,12 @@ SPDX-Copyright-Text: 2026 Holger Smolinski <holger@smolinski.name>
 		    isbnSelectorModal.style.display = "none"; // TODO: Confirm and postprocess selection
 		    titleField.setAttribute("value", selectedMetadata["Title"]);
 		    authorField.setAttribute("value", selectedMetadata["Authors"]);
+		    if ( selectedMetadata["Year"] && selectedMetadata["Year"] != "" ) {
+  		        yearField.setAttribute("value", selectedMetadata["Year"]);
+		    }
+		    if ( selectedMetadata["Publisher"] && selectedMetadata["Publisher"] != "" ) {
+  		        publisherField.setAttribute("value", selectedMetadata["Publisher"]);
+		    }
 		}
 		metadataDisplayDiv.appendChild(createMetadataDisplay(entry,index));
 		isbnSelectorModalFooter.addEventListener("click", transferSelectedMetadata);
@@ -588,7 +598,7 @@ SPDX-Copyright-Text: 2026 Holger Smolinski <holger@smolinski.name>
 	}
 	
 	scanButton.addEventListener("click", (ev) => { 
-	  displayCaptureModal(null);
+	  displayCaptureModal(videoPreview);
 	  startVideoCapture();
           ev.preventDefault();
 	});
