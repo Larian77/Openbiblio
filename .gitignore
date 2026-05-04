@@ -5,3 +5,15 @@
 .settings
 .database_constants.php
 database_constants.php
+
+# Environment / secrets
+.env
+
+# IDE
+.idea/
+
+# Claude Code local config
+.claude/
+
+# Binary test data
+*.mrc

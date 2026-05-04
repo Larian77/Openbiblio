@@ -76,6 +76,21 @@ class InstallQuery extends Query {
     }
   }
   
+  function createAdminUser($password) {
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $sql = $this->mkSQL(
+      "INSERT INTO staff (create_dt, last_change_dt, last_change_userid,
+        username, pwd, pwd_timeout,
+        last_name,
+        suspended_flg, admin_flg, circ_flg, circ_mbr_flg, catalog_flg, reports_flg)
+       VALUES (NOW(), NOW(), 0, 'admin', %Q, '1970-01-01 00:00:00',
+        'Administrator',
+        'N', 'Y', 'Y', 'Y', 'Y', 'Y')",
+      $hash
+    );
+    $this->exec($sql);
+  }
+
   function freshInstall($locale, $sampleDataRequired = false,
                         $version=OBIB_LATEST_DB_VERSION,
                         $tablePrfx = DB_TABLENAME_PREFIX) {
