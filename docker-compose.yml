@@ -1,0 +1,64 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8989:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    healthcheck:
+      test: ["CMD", "pgrep", "nginx"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    volumes:
+      - .:/var/www/html
+    environment:
+      TZ: ${TZ:-Europe/Berlin}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-openbiblio}
+      DB_USER: ${DB_USER:-openbiblio}
+      DB_PASSWORD: ${DB_PASSWORD:-openbiblio}
+      DB_LOCALE: ${DB_LOCALE:-de}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  install:
+    image: curlimages/curl:latest
+    entrypoint: ["/bin/sh", "-c"]
+    restart: "no"
+    environment:
+      DB_LOCALE: ${DB_LOCALE:-de}
+      INSTALL_TEST_DATA: ${INSTALL_TEST_DATA:-no}
+    command:
+      - |
+        curl -sf -X POST http://web/install/install.php \
+          -d "locale=$$DB_LOCALE&installTestData=$$INSTALL_TEST_DATA"
+    depends_on:
+      web:
+        condition: service_healthy
+
+  db:
+    image: mariadb:11
+    environment:
+      TZ: ${TZ:-Europe/Berlin}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MARIADB_DATABASE: ${DB_NAME:-openbiblio}
+      MARIADB_USER: ${DB_USER:-openbiblio}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-openbiblio}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db_data:
