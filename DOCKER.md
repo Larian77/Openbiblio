@@ -9,9 +9,9 @@ cp .env.example .env   # edit passwords and TZ as needed
 docker compose up -d
 ```
 
-The install wizard runs automatically. Once complete the app is available at `http://localhost:8080`.
+If `INITIAL_ADMIN_PASSWORD` is set in `.env`, the install wizard runs automatically and the app is ready at `http://localhost:8989` once the stack is up. Admin username is **admin**; the password is whatever you set.
 
-Default admin credentials: **admin** / **Administrator#1**
+If `INITIAL_ADMIN_PASSWORD` is left blank, the automated install is skipped — open `http://localhost:8989/install/index.php` to run the wizard manually and choose your own admin password.
 
 ### Environment variables
 
@@ -24,6 +24,7 @@ Default admin credentials: **admin** / **Administrator#1**
 | `MYSQL_ROOT_PASSWORD` | *(required)* | MariaDB root password |
 | `DB_LOCALE` | `de` | UI locale (`de` or `en`) |
 | `INSTALL_TEST_DATA` | `false` | Load sample data on install |
+| `INITIAL_ADMIN_PASSWORD` | *(blank)* | Password for the initial `admin` account; leave blank to install manually via the web wizard |
 
 ### Notes
 

@@ -44,10 +44,17 @@ services:
     environment:
       DB_LOCALE: ${DB_LOCALE:-de}
       INSTALL_TEST_DATA: ${INSTALL_TEST_DATA:-no}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:-}
     command:
       - |
+        if [ -z "$$INITIAL_ADMIN_PASSWORD" ]; then
+          echo "INITIAL_ADMIN_PASSWORD not set — open http://localhost:8989/install/index.php to run the install wizard."
+          exit 0
+        fi
         until curl -sf -X POST http://web/install/install.php \
-          -d "locale=$$DB_LOCALE&installTestData=$$INSTALL_TEST_DATA"; do
+          -d "locale=$$DB_LOCALE&installTestData=$$INSTALL_TEST_DATA" \
+          --data-urlencode "initialAdminPassword=$$INITIAL_ADMIN_PASSWORD" \
+          | grep -q "tables have been created"; do
           sleep 3
         done
     depends_on:

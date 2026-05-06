@@ -1,9 +1,0 @@
-services:
-  db:
-    volumes:
-      - ./docker/db-init/01-seed.sql:/docker-entrypoint-initdb.d/01-data.sql:ro
-      - ./docker/db-init/02-admin.sql:/docker-entrypoint-initdb.d/02-admin.sql:ro
-
-  install:
-    entrypoint: ["sh", "-c", "echo 'Skipping install wizard (seeding from SQL dump)'; exit 0"]
-    command: []
