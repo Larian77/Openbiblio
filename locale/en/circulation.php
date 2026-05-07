@@ -75,7 +75,7 @@ $trans["mbrFldsEmail"] = "\$text='Email Address:';";
 $trans["mbrFldsClassify"] = "\$text='Classification:';";
 $trans["mbrFldsGrade"] = "\$text='School Grade:';";
 $trans["mbrFldsTeacher"] = "\$text='School Teacher:';";
-$trans["mbrFldsMbrShip"] = "\$text='Membership Ends (yyyy-mm-dd):';";
+$trans["mbrFldsMbrShip"] = "\$text='Membership Ends:';";
 $trans["mbrFldsSubmit"] = "\$text='Submit';";
 $trans["mbrFldsCancel"] = "\$text='Cancel';";
 $trans["mbrsearchResult"] = "\$text='Result Pages: ';";

@@ -254,7 +254,7 @@ $menu_items = [
             ],
             [
                 'title' => $navLoc->getText("catalogBibNew"),
-                'url' => '../catalog/biblio_new.php',
+                'url' => '../catalog/biblio_type_select.php',
                 'icon' => 'fas fa-circle'
             ],
             [

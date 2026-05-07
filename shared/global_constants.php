@@ -64,7 +64,7 @@ define("OBIB_SEARCH_ALL", "8");
  * system constants
  * ***************************************************************************
  */
-define("OBIB_CODE_VERSION", "0.8.1");
+define("OBIB_CODE_VERSION", "0.8.2a");
 define("OBIB_LATEST_DB_VERSION", "0.8.1");
 define("OBIB_DEFAULT_STATUS", "in");
 define("OBIB_STATUS_IN", "in");
