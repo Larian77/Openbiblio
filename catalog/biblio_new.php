@@ -13,7 +13,11 @@ $loc = new Localize(OBIB_LOCALE,$tab);
 
 if (!isset($_REQUEST['posted'])) {
   require_once("../shared/logincheck.php");
-  showForm(array('opacFlg'=>'CHECKED'));
+  $initVars = array('opacFlg'=>'CHECKED');
+  if (isset($_GET['materialCd'])) {
+    $initVars['materialCd'] = $_GET['materialCd'];
+  }
+  showForm($initVars);
 } else {
   $postVars = $_POST;
   if ($_REQUEST['posted'] == 'media_change') {

@@ -6,3 +6,5 @@ insert into %prfx%material_type_dm values (5,'equipment','N','case.gif');
 insert into %prfx%material_type_dm values (6,'magazines','N','mag.gif');
 insert into %prfx%material_type_dm values (7,'maps','N','map.gif');
 insert into %prfx%material_type_dm values (8,'video/dvd','N','camera.gif');
+insert into %prfx%material_type_dm values (9,'board game','N','board_game.gif');
+insert into %prfx%material_type_dm values (10,'board game expansion','N','board_game_expansion.gif');

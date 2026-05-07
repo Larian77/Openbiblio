@@ -48,7 +48,7 @@ if ($set->_isMbrAccountOnline == TRUE && $mbr->getFileSource() != "mbr_edit_form
 foreach ($customFields as $name => $title) {
        $fields[$title . ':'] = inputField('text', 'custom_' . $name, $mbr->getCustom($name));
 }
-$fields["mbrFldsMbrShip"] = inputField('text', "membershipEnd", (!empty($mbr->getMembershipEnd()) ? $mbr->getMembershipEnd() : '') );
+$fields["mbrFldsMbrShip"] = inputField('date', "membershipEnd", (!empty($mbr->getMembershipEnd()) ? $mbr->getMembershipEnd() : '') );
 $fields["mbrFldsClassify"] = inputField('select', 'classification', $mbr->getClassification(), NULL, $mbrClassifyDm);
 
 ?>

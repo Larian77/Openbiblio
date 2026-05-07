@@ -76,6 +76,7 @@ $trans["PictDesc"]                 = "\$text = 'Die Bilddatei muß sich im Verze
 #****************************************************************************
 #*  Translation text for page biblio_new.php
 #****************************************************************************
+$trans["biblioTypeSelectHeading"]  = "\$text = 'Medientyp wählen';";
 $trans["biblioNewFormLabel"]       = "\$text = 'Neues hinzufügen';";
 $trans["biblioNewSuccess"]         = "\$text = 'Das folgende neue Medium wurde erstellt. Um ein Exemplar hinzuzufügen, wähle \"Neues Exemplar\" aus dem linken Navigationsbereich oder \"Füge neues Exemplar hinzu\" aus der untenstehenden Information.';";
 

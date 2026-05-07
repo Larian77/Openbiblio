@@ -78,6 +78,7 @@ $trans["PictDesc"] = "\$text = 'Image files must be located in the openbiblio/pi
 # ****************************************************************************
 # * Translation text for page biblio_new.php
 # ****************************************************************************
+$trans["biblioTypeSelectHeading"] = "\$text = 'Select Media Type';";
 $trans["biblioNewFormLabel"] = "\$text = 'Add New';";
 $trans["biblioNewSuccess"] = "\$text = 'The following new bibliography has been created.  To add a copy, select \"New Copy\" from the left hand navigation or \"Add New Copy\" from the copy information below.';";
 

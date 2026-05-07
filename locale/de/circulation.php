@@ -75,7 +75,7 @@ $trans["mbrFldsEmail"] = "\$text='E-Mail-Adresse:';";
 $trans["mbrFldsClassify"] = "\$text='Klassifikation:';";
 $trans["mbrFldsGrade"] = "\$text='Schulklasse:';";
 $trans["mbrFldsTeacher"] = "\$text='Klassenlehrer:';";
-$trans["mbrFldsMbrShip"] = "\$text='bezahlt bis (jjjj-mm-dd):';";
+$trans["mbrFldsMbrShip"] = "\$text='bezahlt bis:';";
 $trans["mbrFldsSubmit"] = "\$text='Übermitteln';";
 $trans["mbrFldsCancel"] = "\$text='Abbrechen';";
 $trans["mbrsearchResult"] = "\$text='Ergebnisseiten: ';";
