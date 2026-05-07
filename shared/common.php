@@ -134,6 +134,29 @@ require_once('../classes/DBError.php');
 require_once('../classes/Fatal.php');
 require_once('../classes/FatalHandler.php');
 $_Error_FatalHandler = new FatalHandler;
+
+set_exception_handler(function($exception) {
+    global $_Error_FatalHandler;
+    if ($exception instanceof mysqli_sql_exception) {
+        $msg = $exception->getMessage();
+        $isConnectivityIssue = stripos($msg, "getaddrinfo") !== false ||
+            stripos($msg, "php_network_getaddresses") !== false ||
+            stripos($msg, "No address associated with hostname") !== false ||
+            stripos($msg, "Connection refused") !== false;
+        $isUninitializedDb = stripos($msg, "doesn't exist") !== false || 
+            stripos($msg, "Table") !== false ||
+            stripos($msg, "Unknown database") !== false ||
+            stripos($msg, "Access denied") !== false;
+        
+        if ($isConnectivityIssue) {
+            $_Error_FatalHandler->showDatabaseConnectivityError($msg);
+        } elseif ($isUninitializedDb) {
+            $_Error_FatalHandler->redirectToInstall();
+        }
+    }
+    throw $exception;
+});
+
 require_once('../classes/FieldError.php');
 require_once('../classes/Iter.php');
 require_once('../classes/DbIter.php');
