@@ -17,3 +17,6 @@ database_constants.php
 
 # Binary test data
 *.mrc
+
+# Local note files
+local-notes/
