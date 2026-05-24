@@ -15,14 +15,14 @@
 #* used in the following files
 #* - install/index.php
 #* - install/upgradeSettings.php
-define("OBIB_UPGRADE_KEY", "Your_own_Upgrade_Key");
+define("OBIB_UPGRADE_KEY",      getenv('OBIB_UPGRADE_KEY')      ?: "Your_own_Upgrade_Key");
 
-#* OBIB_PWD_FORGOTTEN_KEY is the last key which is used if there are no other ways 
+#* OBIB_PWD_FORGOTTEN_KEY is the last key which is used if there are no other ways
 #* of randomly generating a secure forgotten password code.
-#* (used in the following files 
+#* (used in the following files
 #* - admin/staff_pwd_forget.php and
 #* - opac/mbr_pwd_forget.php)
-define("OBIB_PWD_FORGOTTEN_KEY", "Cofz4#3HuR=8y3"); // at least 12 characters
+define("OBIB_PWD_FORGOTTEN_KEY", getenv('OBIB_PWD_FORGOTTEN_KEY') ?: "Cofz4#3HuR=8y3"); // at least 12 characters
 
 
 /* END for setting your own constants */

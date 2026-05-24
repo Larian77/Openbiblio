@@ -1,0 +1,81 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8989:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "pgrep", "nginx"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    volumes:
+      - .:/var/www/html
+    environment:
+      TZ: ${TZ:-Europe/Berlin}
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-openbiblio}
+      DB_USER: ${DB_USER:-openbiblio}
+      DB_PASSWORD: ${DB_PASSWORD:-openbiblio}
+      DB_LOCALE: ${DB_LOCALE:-de}
+      OBIB_UPGRADE_KEY: ${OBIB_UPGRADE_KEY:-Your_own_Upgrade_Key}
+      OBIB_PWD_FORGOTTEN_KEY: ${OBIB_PWD_FORGOTTEN_KEY:-Cofz4#3HuR=8y3}
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/127.0.0.1/9000' 2>/dev/null"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
+  install:
+    image: curlimages/curl:latest
+    entrypoint: ["/bin/sh", "-c"]
+    restart: "no"
+    environment:
+      DB_LOCALE: ${DB_LOCALE:-de}
+      INSTALL_TEST_DATA: ${INSTALL_TEST_DATA:-no}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:-}
+    command:
+      - |
+        if [ -z "$$INITIAL_ADMIN_PASSWORD" ]; then
+          echo "INITIAL_ADMIN_PASSWORD not set — open http://localhost:8989/install/index.php to run the install wizard."
+          exit 0
+        fi
+        until curl -sf -X POST http://web/install/install.php \
+          -d "locale=$$DB_LOCALE&installTestData=$$INSTALL_TEST_DATA" \
+          --data-urlencode "initialAdminPassword=$$INITIAL_ADMIN_PASSWORD" \
+          | grep -q "tables have been created"; do
+          sleep 3
+        done
+    depends_on:
+      web:
+        condition: service_healthy
+
+  db:
+    image: mariadb:11
+    environment:
+      TZ: ${TZ:-Europe/Berlin}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MARIADB_DATABASE: ${DB_NAME:-openbiblio}
+      MARIADB_USER: ${DB_USER:-openbiblio}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-openbiblio}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db_data:

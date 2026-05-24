@@ -95,7 +95,8 @@ for more details.
 ?>
         <h2>New Install:</h2>
         <blockquote>
-            <form name="installForm" method="POST" action="../install/install.php">
+            <form name="installForm" method="POST" action="../install/install.php"
+                  onsubmit="return validateInstallPwd()">
                 <table style="border: none; border-spacing: 0px">
                     <tr>
                         <td style="padding: 5px"><font class="primary">Language:</font></td>
@@ -111,6 +112,26 @@ for more details.
                             </select>
                         </td>
                     </tr>
+                    <tr id="pwdErrorRow" style="display:<?php echo isset($_GET['pwdError']) ? 'table-row' : 'none'; ?>">
+                        <td colspan="2" style="padding: 5px">
+                            <font class="error" id="pwdErrorMsg"><?php echo isset($_GET['pwdError']) ? H($_GET['pwdError']) : ''; ?></font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px"><font class="primary">Admin Password:</font></td>
+                        <td style="padding: 5px">
+                            <input type="password" name="initialAdminPassword" id="initialAdminPassword" maxlength="20" required>
+                            <br><font class="primary" style="font-size:80%">8–20 characters, at least 1 digit, 1 letter, 1 special character (allowed: @_#§%$)</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px"><font class="primary">Confirm Password:</font></td>
+                        <td style="padding: 5px"><input type="password" name="confirmAdminPassword" id="confirmAdminPassword" maxlength="20" required></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px" valign="top"><font class="primary"><strong>Important:</strong></font></td>
+                        <td style="padding: 5px"><font class="primary">There is no password recovery for the admin account. Please remember this password and store it in a safe place.</font></td>
+                    </tr>
                     <tr>
                         <td style="padding: 5px" rowspan="2" valign="top"><font
                                 class="primary">Install Test Data:</font></td>
@@ -123,6 +144,33 @@ for more details.
                 </table>
             </form>
         </blockquote>
+<script>
+function validateInstallPwd() {
+    var pwd  = document.getElementById('initialAdminPassword').value;
+    var pwd2 = document.getElementById('confirmAdminPassword').value;
+    var msg  = null;
+    var re   = /^(?=.*\d)(?=.*[A-Za-z])(?=.*[@_#§%$])[0-9A-Za-z@_#§%$]{8,20}$/;
+
+    if (pwd.length === 0) {
+        msg = 'Admin password is required.';
+    } else if (pwd.length < 8 || pwd.length > 20) {
+        msg = 'Password must have between 8 and 20 characters.';
+    } else if (pwd.indexOf(' ') !== -1) {
+        msg = 'Password must not contain any spaces.';
+    } else if (pwd !== pwd2) {
+        msg = 'Passwords do not match.';
+    } else if (!re.test(pwd)) {
+        msg = 'Password must have at least 1 digit, at least 1 letter, at least 1 special character (allowed: @_#§%$).';
+    }
+
+    if (msg !== null) {
+        document.getElementById('pwdErrorMsg').textContent = msg;
+        document.getElementById('pwdErrorRow').style.display = 'table-row';
+        return false;
+    }
+    return true;
+}
+</script>
 <?php
     } else {
         $tab = 'admin';
