@@ -138,7 +138,7 @@ th {
   color: <?php echo H(OBIB_ALT2_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_ALT2_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_ALT2_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-style: solid;
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>;
 <?php if (OBIB_ALT2_FONT_BOLD) { ?>
@@ -155,7 +155,7 @@ th.rpt {
   font-size: <?php echo (OBIB_PRIMARY_FONT_SIZE - 2);?>px;
   font-family: Arial;
   font-weight: bold;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
   border-width: 1;
@@ -167,7 +167,7 @@ td.primary {
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_PRIMARY_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
@@ -177,14 +177,14 @@ td.borderless {
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_PRIMARY_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
 }
 td.rpt {
   background-color: <?php echo H(OBIB_PRIMARY_BG);?>;
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
   font-size: <?php echo (OBIB_PRIMARY_FONT_SIZE - 2);?>px;
   font-family: Arial;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-top-style: none;
   border-bottom-style: none;
   border-left-style: solid;
@@ -213,7 +213,7 @@ td.title, div.title {
   color: <?php echo H(OBIB_TITLE_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_TITLE_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_TITLE_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   margin-bottom: 1px;
 <?php if (OBIB_TITLE_FONT_BOLD) { ?>
   font-weight: bold;
@@ -229,7 +229,7 @@ td.alt1 {
   color: <?php echo H(OBIB_ALT1_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_ALT1_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_ALT1_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-style: solid;
   border-color: <?php echo H(OBIB_BORDER_COLOR);?>;
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
@@ -244,7 +244,7 @@ td.tab1, div.tab1 {
 <?php } else { ?>
   font-weight: normal;
 <?php } ?>
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
 td.tab2, div.tab2 {
@@ -257,7 +257,7 @@ td.tab2, div.tab2 {
 <?php } else { ?>
   font-weight: normal;
 <?php } ?>
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   border-width: <?php echo H(OBIB_BORDER_WIDTH) . "px";?>
 }
 td.noborder {
@@ -265,7 +265,7 @@ td.noborder {
   color: <?php echo H(OBIB_PRIMARY_FONT_COLOR);?>;
   font-size: <?php echo H(OBIB_PRIMARY_FONT_SIZE);?>px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
 }
 
 table.form { margin-bottom: 1em }
@@ -309,7 +309,7 @@ input.button {
   border-top-color: <?php echo H(OBIB_ALT1_BG);?>;
   border-bottom-color: <?php echo H(OBIB_ALT1_BG);?>;
   border-right-color: <?php echo H(OBIB_ALT1_BG);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
   color: <?php echo H(OBIB_ALT1_FONT_COLOR);?>;
 }
@@ -320,7 +320,7 @@ input.navbutton {
   border-top-color: <?php echo H(OBIB_ALT2_BG);?>;
   border-bottom-color: <?php echo H(OBIB_ALT2_BG);?>;
   border-right-color: <?php echo H(OBIB_ALT2_BG);?>;
-  padding: <?php echo H(OBIB_PADDING);?>;
+  padding: <?php echo H(OBIB_PADDING);?>px;
   font-family: <?php echo H(OBIB_PRIMARY_FONT_FACE);?>;
   color: <?php echo H(OBIB_ALT2_FONT_COLOR);?>;
 }
