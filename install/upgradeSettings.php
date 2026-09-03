@@ -136,9 +136,9 @@ if ( OBIB_LATEST_DB_VERSION == '0.8.1') {
               $PwdForgottenCodeDuration = array(
                 1 => 1,
                 2 => 2,
-                3 => 12,
-                4 => 24,
-                5 => 48
+                12 => 12,
+                24 => 24,
+                48 => 48
               );
               foreach ($PwdForgottenCodeDuration as $PwdForgottenCodeDurationCode => $PwdForgottenCodeDurationDesc) {
                 echo "<option value=\"".H($PwdForgottenCodeDurationCode)."\"";
