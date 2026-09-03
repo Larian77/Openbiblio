@@ -446,13 +446,16 @@ div.errorbox .errorhdr { font-size: large; font-weight: bold }
 div.errorbox ul { margin-left: 0; padding-left: 1.5em }
 div.errorbox li { margin-left: 0 }
 
-#pwdForgottenLink {
+#ForgottenLink {
     font-size: 13px;
     font-family: verdana, arial, helvetica;
 }
 
 .pwdCss {
     color: #1a62ac;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
 }
 
 /*********************************************************
