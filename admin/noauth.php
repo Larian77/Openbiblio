@@ -7,6 +7,11 @@
   $tab = "admin";
   $nav = "";
 
+  if (!OBIB_DEMO_FLG && (!isset($_SESSION["userid"]) || $_SESSION["userid"] == "")) {
+      header("Location: ../shared/loginform.php");
+      exit();
+  }
+
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
 
