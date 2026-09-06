@@ -16,7 +16,7 @@ $loc = new Localize(OBIB_LOCALE, $tab);
 # ****************************************************************************
 $pageErrors = array();
 if (count($_POST) == 0) {
-    header("Location: ../shared/loginform.php");
+    header("Location: ../opac/loginform.php");
     exit();
 }
 
